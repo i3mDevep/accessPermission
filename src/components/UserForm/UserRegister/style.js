@@ -36,7 +36,7 @@ export const Form = styled.form`
  border: 4px solid white;
  align-items: center;
  width: 80%;
- min-height: 630px;
+ min-height: 650px;
  max-width: 350px;
  color: white;
  &[disabled]{

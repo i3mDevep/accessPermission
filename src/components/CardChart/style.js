@@ -1,14 +1,5 @@
 import styled from 'styled-components'
 
-export const Card = styled.div`
- background-color: ${props => props.color};
- color: white;
- width: 300px;
- height: 170px;
- position: absolute;
- top: -20px;
- border-radius: 10px;
-`
 export const CardContainer = styled.div`
   background-color: #fff;
   display: flex;
@@ -20,6 +11,25 @@ export const CardContainer = styled.div`
   -moz-box-shadow: 0px 5px 10px -4px rgba(0,0,0,0.75);
    box-shadow: 0px 5px 10px -4px rgba(0,0,0,0.75);
    margin: 10px;
+   @media (max-width: 1200px) {
+    width: 40%;
+  }
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+  margin-top: 50px;
+`
+export const Card = styled.div`
+ background-color: ${props => props.color};
+ color: white;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 300px;
+ height: 170px;
+ position: absolute;
+ top: -20px;
+ border-radius: 10px;
 `
 export const Title = styled.h3`
     color :#222831;

@@ -2,11 +2,11 @@ import { keyframes , css } from 'styled-components'
 
 const fadeInKeyframes = keyframes`
   from {
-    width: 40%;
+   left: -120px;
   }
   to {
-    width: 100%;
+    left: 0px;
   }
 `
-export const DesplaceX = ({ time = '1s' , type = 'ease' } = {}) =>
+export const Traslation = ({ time = '1s' , type = 'ease' } = {}) =>
     css`animation:${time} ${fadeInKeyframes} ${type};`

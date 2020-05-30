@@ -36,6 +36,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     #app {
-        overflow-x: hidden;
+        overflow-x: auto;
     }
 `

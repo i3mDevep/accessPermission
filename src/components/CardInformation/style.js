@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { DesplaceX } from '../../styles/DesplaceX'
 
 export const ContainerBox = styled.div`
   display: flex;
@@ -35,6 +36,7 @@ export const ContainerBox = styled.div`
   }
   @media (max-width: 748px) {
     width: 100%;
+    ${ DesplaceX() }
     & h3 {
     font-size: 20px;
     }

@@ -1,13 +1,13 @@
 import React from 'react'
 import { ContainerWorkspace } from './style'
-import { CardChart } from '../CardChart'
+import { ListCardsChart } from '../ListCardsChart'
 import { ListCardsInformation } from '../ListCardsInformation'
 
 export const Workspace = () => {
     return(
       <ContainerWorkspace>
         <ListCardsInformation />
-        <CardChart />
+        <ListCardsChart />
       </ContainerWorkspace>
     )
 }
