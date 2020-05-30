@@ -1,6 +1,6 @@
 import React from 'react'
 import { Background, Form, Input, Mylogo, Foother, Button, Rederict,Error } from './style'
-import { useInputValue } from '../../../hooks/useInputValue'
+import useInputValue from '../../../hooks/useInputValue'
 import { Link } from 'react-router-dom'
 
 export const UserRegister = ({onSubmit,loading,error}) => {

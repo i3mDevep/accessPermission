@@ -1,7 +1,7 @@
 import React from 'react'
 import { Background, Form, Input, Mylogo, Foother, Button, LoginGoogle, Error, Rederict } from './style'
 import { FaGofore } from 'react-icons/fa'
-import { useInputValue } from '../../../hooks/useInputValue'
+import useInputValue  from '../../../hooks/useInputValue'
 import { Link } from 'react-router-dom'
 
 export const UserLogin = ({onSubmit, error, loading}) => {
