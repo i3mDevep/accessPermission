@@ -4,21 +4,33 @@
   "description": "App control person",
   "main": "index.js",
   "scripts": {
-    "lint": "standard",
-    "dev": "webpack-dev-server --history-api-fallback",
-    "mybuild": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open --mode development"
   },
   "author": "Michael atehortua henao",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/core": "^7.10.1",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.10.1",
+    "@babel/preset-react": "^7.10.1",
+    "@babel/runtime-corejs2": "^7.9.6",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
     "file-loader": "^6.0.0",
+    "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
     "standard": "^14.3.4",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
@@ -27,7 +39,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
+    "@material-ui/icons": "^4.9.1",
     "@reach/router": "^1.3.3",
+    "@rjsf/core": "^2.0.0",
     "apollo-boost": "^0.4.9",
     "bootstrap": "^4.5.0",
     "firebase": "^7.14.5",
@@ -42,11 +56,5 @@
     "react-vis": "^1.11.7",
     "react-with-firebase-auth": "^1.3.2",
     "styled-components": "^5.1.0"
-  },
-  "standard": {
-    "ignore": [
-      "/dist/**",
-      "/api/**"
-    ]
   }
 }
