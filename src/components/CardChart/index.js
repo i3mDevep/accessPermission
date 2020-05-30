@@ -3,7 +3,7 @@ import { XYPlot, MarkSeries, VerticalBarSeries, HorizontalBarSeries, LineSeries,
 import '../../../node_modules/react-vis/dist/style.css';
 import { Card, CardContainer, Title } from './style'
 
-export const CardChart = ({ title="Completed Visit", color="#2fc4b2" }) => {
+export const CardChart = ({ title="Completed Visit", color="#2fc4b2", children }) => {
     const data = [
         { x: 0, y: 0 },
         { x: 1, y: 5 },
@@ -19,6 +19,7 @@ export const CardChart = ({ title="Completed Visit", color="#2fc4b2" }) => {
     return (
         <CardContainer>
             <Card color={color}>
+
                 {/* <XYPlot color="white" height={170} width={270} stackBy="y">
                     <LineSeries style={{ strokeWidth: 5 }} color="white" data={data} />
                     <HorizontalGridLines style={{ strokeWidth: 0.4 }} />
