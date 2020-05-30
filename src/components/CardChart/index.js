@@ -1,9 +1,9 @@
 import React from 'react'
-import { XYPlot,MarkSeries ,VerticalBarSeries, HorizontalBarSeries, LineSeries, XAxis, YAxis, VerticalGridLines, HorizontalGridLines,FlexibleXYPlot } from 'react-vis';
+import { XYPlot, MarkSeries, VerticalBarSeries, HorizontalBarSeries, LineSeries, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, FlexibleXYPlot } from 'react-vis';
 import '../../../node_modules/react-vis/dist/style.css';
-import { Card } from './style'
+import { Card, CardContainer, Title } from './style'
 
-export const CardChart = () => {
+export const CardChart = ({ title="Completed Visit", color="#2fc4b2" }) => {
     const data = [
         { x: 0, y: 0 },
         { x: 1, y: 5 },
@@ -17,14 +17,16 @@ export const CardChart = () => {
         { x: 9, y: 20 }
     ];
     return (
-        <Card>
-            <FlexibleXYPlot height={200} width={400} stackBy="y">
-                <LineSeries style={{strokeWidth: 5}} color="white" data={data} />
-                <HorizontalGridLines />
-                <MarkSeries color="white" data={data} />
-                <XAxis />
-                <YAxis />
-            </FlexibleXYPlot>
-        </Card>
+        <CardContainer>
+            <Card color={color}>
+                {/* <XYPlot color="white" height={170} width={270} stackBy="y">
+                    <LineSeries style={{ strokeWidth: 5 }} color="white" data={data} />
+                    <HorizontalGridLines style={{ strokeWidth: 0.4 }} />
+                    <VerticalGridLines style={{ strokeWidth: 0.4,strokeStyle: "solid" }} />
+                    <MarkSeries color="white" data={data} />
+                </XYPlot> */}
+            </Card>
+            <Title>{title}</Title>
+        </CardContainer>
     )
 }
