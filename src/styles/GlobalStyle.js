@@ -32,6 +32,7 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         overflow-x: hidden;
         overscroll-behavior: none;
+        background-color:#edf4f2;
     }
 
     #app {

@@ -2,20 +2,20 @@ import React, {useContext} from 'react'
 import { Toolbox } from '../../components/Toolbox'
 import { Graphics } from '../../components/Graphics'
 import { Container, BodyCenter, Search, ContainerTable } from './style'
-import { ListBoxInformation } from '../../components/ListBoxInformation'
 import { TableData } from '../../components/TableData'
 import { Context } from '../../Context'
 import { Redirect } from 'react-router-dom'
+import { Workspace } from '../../components/Workspace'
 
 
 export const Dashboard = () => {
     const { isAuth, logout } = useContext(Context)
     return(
-      isAuth.loggedIn ?
+      true ?
       <Container>
-        <button onClick={()=>logout()}>close session</button>
         <Toolbox />
-        <div style = {{width:"100%"}}>
+        <Workspace />
+        {/* <div style = {{width:"100%"}}>
           <ListBoxInformation />
           <BodyCenter>
               <Graphics />
@@ -23,8 +23,9 @@ export const Dashboard = () => {
                 <Search placeholder="Search Identification"/>
                 <TableData />
               </ContainerTable>
+              <button onClick={()=>logout()}>close session</button>
           </BodyCenter>
-        </div>
+        </div> */}
       </Container>:<Redirect to="/login"/>
     )
 }

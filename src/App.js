@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import "bootstrap/dist/css/bootstrap.min.css";
 import { GlobalStyle } from './styles/GlobalStyle'
 import { Dashboard } from './pages/Dashboard'
 import { Login } from './pages/Login'
@@ -19,7 +20,6 @@ export const App = () => (
               <Route exact path="/login" component={() => <Login />} />
               <Route exact path="/register" component={() => <Register />} />
               <Route exact path="/dashboard" component={() => <Dashboard />} />
-
             </Switch>
           </BrowserRouter>
         )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ItemsList } from '../ItemsList'
+import { ListItemsToolbox } from '../ListItemsToolbox'
 import { HeaderToolbox } from '../HeaderToolbox'
 import { ToolboxContainer } from './style'
 
@@ -7,7 +7,7 @@ export const Toolbox = () => {
     return (
       <ToolboxContainer>
         <HeaderToolbox/>
-        <ItemsList />
+        <ListItemsToolbox/>
       </ToolboxContainer>
     )
 }
