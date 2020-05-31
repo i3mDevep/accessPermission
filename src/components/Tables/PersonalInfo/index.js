@@ -1,51 +1,63 @@
 import React from "react";
-import { ContainerTable } from "./style";
+import { ContainerTable, Table, Thead } from "./style";
 
 export const PersonalInformation = () => {
   return (
     <ContainerTable>
-      <table>
-        <thead>
+      <Table>
+        <Thead>
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Identifiaction</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Age</th>
+            <th>Name</th>
+            <th>Identification</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>In</th>
+            <th>Out</th>
           </tr>
-        </thead>
+        </Thead>
         <tbody>
           <tr>
             <td>Michael Atehortua</td>
             <td>1017250202</td>
             <td>Male</td>
             <td>22</td>
+            <td>3</td>
+            <td>3</td>
           </tr>
           <tr>
             <td>Michael Atehortua</td>
             <td>1017250202</td>
             <td>Male</td>
             <td>22</td>
+            <td>3</td>
+            <td>3</td>
           </tr>
           <tr>
             <td>Michael Atehortua</td>
             <td>1017250202</td>
             <td>Male</td>
             <td>22</td>
+            <td>3</td>
+            <td>3</td>
           </tr>
           <tr>
             <td>Michael Atehortua</td>
             <td>1017250202</td>
             <td>Male</td>
             <td>22</td>
+            <td>3</td>
+            <td>3</td>
           </tr>
           <tr>
             <td>Michael Atehortua</td>
             <td>1017250202</td>
             <td>Male</td>
             <td>22</td>
+            <td>3</td>
+            <td>3</td>
           </tr>
         </tbody>
-      </table>
+      </Table>
     </ContainerTable>
   );
 };

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ContainerTable = styled.div`
   overflow: auto;
   padding: 30px;
-  width:60%;
+  width:40%;
   max-height: 500px;
   @media (max-width: 1200px) {
     width: 50%;
