@@ -42,14 +42,16 @@ export const ContainerBox = styled.div`
     }
   }
 `
-export const Img = styled.img`
-  position: absolute;
-  border-radius: 3px;
-  left: 8px;
-  top: -10px;
-  padding: 8px;
-  width: 90px;
-  height: 90px;
-  object-fit:cover;
-  background: linear-gradient(to right,${props => props.colorR},${props=>props.colorL});
+export const Icon = styled.div`
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ position: absolute;
+ left: 10px;
+ top: 10px;
+ color: white;
+ background-color: ${props => props.color};
+ border-radius: 100%;
+ width: 50px;
+ height: 50px;
 `
