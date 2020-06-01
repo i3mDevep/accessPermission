@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ContainerWorkspace = styled.div`
   padding-left: 200px;

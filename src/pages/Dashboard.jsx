@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Toolbox } from '../components/Toolbox';
+import Toolbox from '../components/Toolbox/Toolbox';
 import { Container } from './style';
 import { Context } from '../containers/Context';
-import { Workspace } from '../components/Workspace';
+import Workspace from '../components/Workspace/WorkSpace';
 
 const Dashboard = () => {
   const { isAuth, logout } = useContext(Context);

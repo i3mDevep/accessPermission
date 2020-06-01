@@ -1,21 +1,23 @@
-import React from "react";
-import { CardChart } from "../CardChart";
-import { List } from "./style";
-import { MyChartBar, MyChartRadar, MyChartMix } from "../Charts";
-import "../../../node_modules/react-vis/dist/style.css";
+import React from 'react';
+import CardChart from '../CardChart/CardChart';
+import { List } from './style';
+import { MyChartBar, MyChartRadar, MyChartMix } from '../Charts';
+import '../../../node_modules/react-vis/dist/style.css';
 
-export const ListCardsChart = () => {
+const ListCardsChart = () => {
   return (
     <List>
       <CardChart>
-        <MyChartBar color="#400082" />
+        <MyChartBar color='#400082' />
       </CardChart>
       <CardChart>
-        <MyChartRadar color="#323edd" />
+        <MyChartRadar color='#323edd' />
       </CardChart>
       <CardChart>
-        <MyChartMix color="#ff1e56" />
+        <MyChartMix color='#ff1e56' />
       </CardChart>
     </List>
   );
 };
+
+export default ListCardsChart;

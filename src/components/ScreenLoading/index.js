@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { BlockLoading } from 'react-loadingg';
-import { Background } from './style'
+import { Background } from './style';
 
-export const ScreenLoading = () => {
-    return (
-      <Background>
-        <BlockLoading size="large" />
-      </Background>
-    )
-}
+const ScreenLoading = () => {
+  return (
+    <Background>
+      <BlockLoading size='large' />
+    </Background>
+  );
+};
+export default ScreenLoading;

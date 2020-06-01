@@ -248,7 +248,7 @@ let chartExample3 = {
         {
           label: "Countries",
           fill: true,
-          backgroundColor: "#fff",
+          backgroundColor: "rgba(255,255,255,0.2)",
           hoverBackgroundColor: "rgba(255,255,255,0.7)",
           borderColor: "#fff",
           borderWidth: 2,

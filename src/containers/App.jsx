@@ -4,9 +4,9 @@ import { GlobalStyle } from '../styles/GlobalStyle';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import { ScreenLoading } from '../components/ScreenLoading'
+import ScreenLoading from '../components/ScreenLoading';
 
-import Context from './Context';
+import { Context } from './Context';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,15 +16,16 @@ const App = () => (
     <Context.Consumer>
       {
         ({ isAuth }) => (
-           isAuth.update? <ScreenLoading />:
+          isAuth.update ? <ScreenLoading /> : (
             <BrowserRouter>
-            <Switch>
-              <Route exact path='/' component={() => <Login />} />
-              <Route exact path='/login' component={() => <Login />} />
-              <Route exact path='/register' component={() => <Register />} />
-              <Route exact path='/dashboard' component={() => <Dashboard />} />
-            </Switch>
-          </BrowserRouter>    
+              <Switch>
+                <Route exact path='/' component={() => <Login />} />
+                <Route exact path='/login' component={() => <Login />} />
+                <Route exact path='/register' component={() => <Register />} />
+                <Route exact path='/dashboard' component={() => <Dashboard />} />
+              </Switch>
+            </BrowserRouter>
+          )
         )
       }
     </Context.Consumer>
