@@ -4,6 +4,7 @@ import { GlobalStyle } from '../styles/GlobalStyle';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import { ScreenLoading } from '../components/ScreenLoading'
 
 import Context from './Context';
 
@@ -15,14 +16,15 @@ const App = () => (
     <Context.Consumer>
       {
         ({ isAuth }) => (
-          <BrowserRouter>
+           isAuth.update? <ScreenLoading />:
+            <BrowserRouter>
             <Switch>
               <Route exact path='/' component={() => <Login />} />
               <Route exact path='/login' component={() => <Login />} />
               <Route exact path='/register' component={() => <Register />} />
               <Route exact path='/dashboard' component={() => <Dashboard />} />
             </Switch>
-          </BrowserRouter>
+          </BrowserRouter>    
         )
       }
     </Context.Consumer>

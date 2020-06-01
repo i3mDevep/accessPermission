@@ -3,7 +3,6 @@ import firebase from 'firebase';
 import { Redirect } from 'react-router-dom';
 import { UserRegister } from '../components/UserForm/UserRegister';
 import { Context } from '../containers/Context';
-import { ScreenLoading } from '../components/ScreenLoading';
 
 const Register = () => {
   const [error, setError] = useState('');
@@ -30,9 +29,6 @@ const Register = () => {
       .catch((error) => setError(error.code))
       .finally(() => setLoading(false));
   };
-  if (isAuth.update) {
-    return <ScreenLoading />;
-  }
   return (
     !isAuth.loggedIn ? (
       <UserRegister

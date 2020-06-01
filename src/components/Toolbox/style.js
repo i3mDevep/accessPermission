@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { FaAlignJustify } from "react-icons/fa"
 import { Traslation } from '../../styles/Traslation'
+import { HiddenToolbox } from '../../styles/HiddenToolbox'
 
 export const ToolboxContainer = styled.nav`
   background-color: #0b4779;
@@ -14,6 +15,7 @@ export const ToolboxContainer = styled.nav`
   top: 0;
   ${ props => ( props.modeCellPhone && Traslation() ) }
   z-index: 100;
+  ${ props => !props.show && HiddenToolbox()}
 `
 export const Menu = styled(FaAlignJustify)`
   margin: 15px;
@@ -25,7 +27,7 @@ export const Wrapper = styled.div`
  background:rgba(0,0,0,.3);
  position: absolute;
  top: 0;
- margin-left: 160px;
+ margin-left: 158px;
  height:100vh;
  width: 500px;
 `

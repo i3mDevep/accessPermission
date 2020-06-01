@@ -4,7 +4,7 @@ import { ListCardsChart } from "../ListCardsChart";
 import { ListCardsInformation } from "../ListCardsInformation";
 import { ListTables } from "../Tables/ListTables";
 import { HeaderPerfil } from "../HeaderPerfil";
-import { MyChartBar, MyChartLine } from '../Charts'
+import { MyChartLine } from '../Charts'
 
 export const Workspace = () => {
   return (

@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import { UserLogin } from '../components/UserForm/UserLogin';
-import { ScreenLoading } from '../components/ScreenLoading';
 
 import { Context } from '../containers/Context';
 
@@ -20,9 +19,6 @@ const Login = () => {
       .catch((error) => setError(error.code))
       .finally(() => setLoading(false));
   };
-  if (isAuth.update) {
-    return <ScreenLoading />;
-  }
   if (!isAuth.loggedIn) {
     return <UserLogin onSubmit={onSubmit} error={error} loading={loading} />;
   }

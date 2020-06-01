@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 
-export const Label = styled.label`
-  padding: 20px 10px 0 0;
-  color: #888888;
+export const Title = styled.label`
+  padding: 0 0 0 40px;
+  color: #8888;
+  font-size: 20px;
 `
-export const Header = styled.div`
+export const Header = styled.nav`
   display: flex;
-  justify-content: flex-end;
-  padding: 10px;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 5px;
   align-items: center;
+  position: relative;
+  left: -12px;
 `
 export const Image = styled.img`
   border: 1px solid #ddd;

@@ -54,4 +54,8 @@ module.exports = {
       filename: 'assets/[name].css',
     }),
   ],
+  devServer: {
+    disableHostCheck: true,
+    host: '192.168.0.13'
+  }
 };
