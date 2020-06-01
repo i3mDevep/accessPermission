@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
   position: relative;
   justify-content: center;
   width: 340px;
-  height: 230px;
+  height: 260px;
   -webkit-box-shadow: 0px 5px 10px -4px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 5px 10px -4px rgba(0,0,0,0.75);
    box-shadow: 0px 5px 10px -4px rgba(0,0,0,0.75);
@@ -25,10 +25,10 @@ export const Card = styled.div`
  display: flex;
  justify-content: center;
  align-items: center;
- width: 300px;
- height: 170px;
+ width: 80%;
+ height: 230px;
  position: absolute;
- top: -20px;
+ top: -50px;
  border-radius: 10px;
 `
 export const Title = styled.h3`
