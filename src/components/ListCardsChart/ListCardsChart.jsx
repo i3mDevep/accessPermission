@@ -1,22 +1,23 @@
 import React from 'react';
+import { Row } from 'reactstrap';
 import CardChart from '../CardChart/CardChart';
-import { List } from './style';
-import { MyChartBar, MyChartRadar, MyChartMix } from '../Charts';
+
+import { MyChartBar, MyChartRadar, MyChartMix } from '../Charts/Charts';
 import '../../../node_modules/react-vis/dist/style.css';
 
 const ListCardsChart = () => {
   return (
-    <List>
-      <CardChart>
+    <Row>
+      <CardChart title='Semana' titleheader='Total'>
         <MyChartBar color='#400082' />
       </CardChart>
-      <CardChart>
+      <CardChart title='Mes' titleheader='Total'>
         <MyChartRadar color='#323edd' />
       </CardChart>
-      <CardChart>
+      <CardChart title='Genero' titleheader='Total'>
         <MyChartMix color='#ff1e56' />
       </CardChart>
-    </List>
+    </Row>
   );
 };
 

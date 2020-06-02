@@ -1,16 +1,36 @@
 import React from 'react';
-import { Card, CardContainer, Title } from './style';
+//import { Card, CardContainer, Title } from './style';
 
-const CardChart = ({
-  title = 'Completed Visit',
-  color = '#2fc4b2',
-  children,
-}) => {
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardTitle,
+  Col,
+} from 'reactstrap';
+
+const CardChart = ({ titleheader, children, title }) => {
   return (
-    <CardContainer>
-      <Card color={color}>{children}</Card>
-      <Title>{title}</Title>
-    </CardContainer>
+
+    <Col lg='4'>
+      <Card className='card-chart'>
+        <CardHeader>
+          <h5 className='card-category'>{titleheader}</h5>
+          <CardTitle tag='h3'>
+            <i className='tim-icons icon-bell-55 text-info' />
+            {' '}
+            {' '}
+            { title }
+          </CardTitle>
+        </CardHeader>
+        <CardBody>
+          <div className='chart-area'>
+            {children}
+          </div>
+        </CardBody>
+      </Card>
+    </Col>
+
   );
 };
 
