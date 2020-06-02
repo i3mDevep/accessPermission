@@ -3,6 +3,8 @@ import { IoIosPeople } from 'react-icons/io';
 import { AiOutlineMan, AiOutlineWoman } from 'react-icons/ai';
 import { CardInformation } from '../CardInformation';
 import { ContainerList } from './style';
+import { defaults } from 'chart.js';
+import { defaultTypeResolver } from 'graphql';
 
 const Info = [
   { color: '#e84a5f', title: 'People', data: '155', icon: IoIosPeople },
@@ -11,7 +13,7 @@ const Info = [
   { color: '#ff5200', title: 'Average age', data: '$254,000' },
 ];
 
-export const ListCardsInformation = () => {
+const ListCardsInformation = () => {
   return (
     <ContainerList>
       {
@@ -30,3 +32,5 @@ export const ListCardsInformation = () => {
     </ContainerList>
   );
 };
+
+export default ListCardsInformation;
