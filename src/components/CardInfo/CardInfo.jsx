@@ -7,7 +7,6 @@ class CardInfo extends React.Component {
   render() {
     return (
       <>
-
         <div className='header-body'>
           {/* Card stats */}
           <Row>
@@ -140,7 +139,6 @@ class CardInfo extends React.Component {
             </Col>
           </Row>
         </div>
-
       </>
     );
   }

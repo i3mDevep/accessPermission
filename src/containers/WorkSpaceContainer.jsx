@@ -11,7 +11,7 @@ const WorkSpaceContainer = ({ email = 'anonimu', setUsers }) => {
     docRef.get()
       .then((query) => {
         query.forEach((doc) => {
-          setUsers(doc.data());
+          setUsers({ ...doc.data(), id: doc.id });
           console.log(doc.id, ' => ', doc.data());
         });
       })
