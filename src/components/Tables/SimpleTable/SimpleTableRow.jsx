@@ -1,18 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const DEFAULT_DATA = [
-  { name: 'Dakota Rice', identification: 'Niger', gender: 'Oud-Turnhout', age: 12, action: 'In' },
-  { name: 'Dakota Rice', identification: 'Niger', gender: 'Oud-Turnhout', age: 12, action: 'In' },
-  { name: 'Dakota Rice', identification: 'Niger', gender: 'Oud-Turnhout', age: 12, action: 'In' },
-];
-
-const SimpleTableRow = ({ name, identification, gender, action, age, users = DEFAULT_DATA }) => {
+const SimpleTableRow = ({ users = DEFAULT_DATA }) => {
   return (
     <tbody>
       {
         users.map((user) => (
-          <tr>
+          <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.identification}</td>
             <td>{user.gender}</td>
@@ -21,13 +15,6 @@ const SimpleTableRow = ({ name, identification, gender, action, age, users = DEF
           </tr>
         ))
       }
-      <tr>
-        <td>{name}</td>
-        <td>{identification}</td>
-        <td>{gender}</td>
-        <td>{age}</td>
-        <td className='text-center'>{action}</td>
-      </tr>
     </tbody>
   );
 };

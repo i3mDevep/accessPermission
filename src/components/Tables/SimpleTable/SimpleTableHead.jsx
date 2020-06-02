@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const SimpleTableHead = ({ children, title1, title2, title3, title4, title5, name, identification, gender, action, age }) => {
+const SimpleTableHead = ({ children, title1, title2, title3, title4, title5}) => {
   return (
     <Table striped responsive='sm'>
       <thead className='text-primary'>

@@ -12,7 +12,7 @@ class CardInfo extends React.Component {
           {/* Card stats */}
           <Row>
             <Col lg='6' xl='3'>
-              <Card className='card-stats mb-4 mb-xl-0' >
+              <Card className='card-stats mb-4 mb-xl-0'>
                 <CardBody>
                   <Row>
                     <div className='col'>
