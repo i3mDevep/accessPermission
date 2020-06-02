@@ -1,6 +1,4 @@
 import React from 'react';
-//import { Card, CardContainer, Title } from './style';
-//import './style.scss';
 
 import {
   Card,
