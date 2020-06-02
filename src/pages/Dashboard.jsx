@@ -3,15 +3,15 @@ import { Redirect } from 'react-router-dom';
 import Toolbox from '../components/Toolbox/Toolbox';
 import { Container } from './style';
 import { Context } from '../containers/Context';
-import Workspace from '../components/Workspace/WorkSpace';
+import WorkSpaceContainer from '../containers/WorkSpaceContainer';
 
 const Dashboard = () => {
-  const { isAuth, logout } = useContext(Context);
+  const { isAuth } = useContext(Context);
   return (
     true ? (
       <Container>
         <Toolbox />
-        <Workspace />
+        <WorkSpaceContainer email={isAuth.email} />
       </Container>
     ) : <Redirect to='/login' />
   );

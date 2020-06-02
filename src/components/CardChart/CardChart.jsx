@@ -13,7 +13,7 @@ import {
 const CardChart = ({ titleheader, children, title }) => {
   return (
 
-    <Col lg='4'>
+    <Col lg='4' className='mb-5'>
       <Card className='card-chart'>
         <CardHeader>
           <h5 className='card-category'>{titleheader}</h5>

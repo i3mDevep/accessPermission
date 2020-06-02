@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
-import { UserLogin } from '../components/UserForm/UserLogin';
+import UserLogin from '../components/UserForm/UserLogin';
 
 import { Context } from '../containers/Context';
 

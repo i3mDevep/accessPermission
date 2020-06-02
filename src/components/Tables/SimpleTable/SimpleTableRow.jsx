@@ -1,22 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const SimpleTableRow = ({ name, identification, gender, action, age }) => {
+const DEFAULT_DATA = [
+  { name: 'Dakota Rice', identification: 'Niger', gender: 'Oud-Turnhout', age: 12, action: 'In' },
+  { name: 'Dakota Rice', identification: 'Niger', gender: 'Oud-Turnhout', age: 12, action: 'In' },
+  { name: 'Dakota Rice', identification: 'Niger', gender: 'Oud-Turnhout', age: 12, action: 'In' },
+];
+
+const SimpleTableRow = ({ name, identification, gender, action, age, users = DEFAULT_DATA }) => {
   return (
     <tbody>
-      <tr>
-        <td>Dakota Rice</td>
-        <td>Niger</td>
-        <td>Oud-Turnhout</td>
-        <td>Oud-Turnhout</td>
-        <td className='text-center'>$36,738</td>
-      </tr>
-      <tr>
-        <td>Minerva Hooper</td>
-        <td>Curaçao</td>
-        <td>Sinaai-Waas</td>
-        <td>Oud-Turnhout</td>
-        <td className='text-center'>$23,789</td>
-      </tr>
+      {
+        users.map((user, index) => (
+          <tr>
+            <td>{user.name}</td>
+            <td>{user.identification}</td>
+            <td>{user.gender}</td>
+            <td>{user.age}</td>
+            <td className='text-center'>{user.action}</td>
+          </tr>
+        ))
+      }
       <tr>
         <td>{name}</td>
         <td>{identification}</td>
@@ -27,5 +31,9 @@ const SimpleTableRow = ({ name, identification, gender, action, age }) => {
     </tbody>
   );
 };
-
-export default SimpleTableRow;
+const mapStateProps = (state) => {
+  return {
+    users: state.users,
+  };
+};
+export default connect(mapStateProps, null)(SimpleTableRow);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import GlobalStyle from '../styles/GlobalStyle';
 import Dashboard from '../pages/Dashboard';
@@ -10,13 +10,14 @@ import { Context } from './Context';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <Context.Consumer>
+const App = () => {
+  const { isAuth } = useContext(Context);
+  return (
+    <div>
+      <GlobalStyle />
       {
-        ({ isAuth }) => (
-          isAuth.update ? <ScreenLoading /> : (
+        isAuth.update ?
+          <ScreenLoading /> : (
             <BrowserRouter>
               <Switch>
                 <Route exact path='/' component={() => <Login />} />
@@ -26,10 +27,9 @@ const App = () => (
               </Switch>
             </BrowserRouter>
           )
-        )
       }
-    </Context.Consumer>
-  </>
-);
+    </div>
+  );
+};
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import firebase from 'firebase';
 import { Redirect } from 'react-router-dom';
-import { UserRegister } from '../components/UserForm/UserRegister';
+import UserRegister from '../components/UserForm/UserRegister';
 import { Context } from '../containers/Context';
 
 const Register = () => {
@@ -10,7 +10,11 @@ const Register = () => {
   const { isAuth } = useContext(Context);
   //const FirebaseRef = firebase.database().ref()
   //FirebaseRef.push().set('hola desde react')
-
+  /* No borrar */
+  // db.collection('business_collection').doc('mayxool.11@gmail.com').collection('users').add(docData)
+  // .then(() => {
+  //   console.log('Document successfully written!');
+  // });
   const handlerOnsubmit = ({ email, password, company, cellphone, address }) => {
     setLoading(true);
     firebase
@@ -18,11 +22,11 @@ const Register = () => {
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         const db = firebase.firestore();
-        const userRef = db.collection('Users').add({
-          company: { company },
-          email: { email },
-          address: { address },
-          cellphone: { cellphone },
+        db.collection('business_collection').doc(email).set({
+          company,
+          address,
+          cellphone,
+          password,
         });
         setError('');
       })
