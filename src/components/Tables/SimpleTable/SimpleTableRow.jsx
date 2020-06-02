@@ -11,7 +11,7 @@ const SimpleTableRow = ({ name, identification, gender, action, age, users = DEF
   return (
     <tbody>
       {
-        users.map((user, index) => (
+        users.map((user) => (
           <tr>
             <td>{user.name}</td>
             <td>{user.identification}</td>
