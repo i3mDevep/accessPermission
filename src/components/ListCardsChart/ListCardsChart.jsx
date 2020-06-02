@@ -3,7 +3,6 @@ import { Row } from 'reactstrap';
 import CardChart from '../CardChart/CardChart';
 
 import { MyChartBar, MyChartRadar, MyChartMix } from '../Charts/Charts';
-import '../../../node_modules/react-vis/dist/style.css';
 
 const ListCardsChart = () => {
   return (
