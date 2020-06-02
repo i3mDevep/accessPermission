@@ -1,16 +1,15 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const SimpleTableHead = ({ children, title1, title2, title3, title4, title5}) => {
+const SimpleTableHead = ({ children, titles = [], id = 'anonimus' }) => {
   return (
     <Table striped responsive='sm'>
       <thead className='text-primary'>
         <tr>
-          <th>{title1}</th>
-          <th>{title2}</th>
-          <th>{title3}</th>
-          <th>{title4}</th>
-          <th className='text-center'>{title5}</th>
+          {
+            // eslint-disable-next-line react/no-array-index-key
+            titles.map((item, index) => <th key={`${id} ${index}`}>{item}</th>)
+          }
         </tr>
       </thead>
       {children}

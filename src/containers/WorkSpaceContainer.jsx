@@ -13,6 +13,7 @@ const WorkSpaceContainer = ({ email = 'anonimu', setUsers }) => {
         query.forEach((doc) => {
           setUsers({ ...doc.data(), id: doc.id });
           console.log(doc.id, ' => ', doc.data());
+          console.log(doc.data().time.toDate().toISOString());
         });
       })
       .catch((error) => {

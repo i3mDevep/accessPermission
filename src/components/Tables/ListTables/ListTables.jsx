@@ -21,11 +21,8 @@ const ListTables = () => {
           </CardHeader>
           <CardBody>
             <SimpleTableHead
-              title1='Nombre'
-              title2='Documento'
-              title3='Genero'
-              title4='Edad'
-              title5='Acción'
+              titles={['Nombre', 'Documento', 'Genero', 'Edad', 'Accion']}
+              id='headusers'
             >
               <SimpleTableRow />
             </SimpleTableHead>
@@ -39,11 +36,8 @@ const ListTables = () => {
           </CardHeader>
           <CardBody>
             <SimpleTableHead
-              title1='Empresa'
-              title2='Documento'
-              title3='Genero'
-              title4='Edad'
-              title5='Acción'
+              titles={['Nombre', 'Documento', 'Genero', 'Edad', 'Accion']}
+              id='headusers2'
             >
               <SimpleTableRow />
             </SimpleTableHead>
