@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaGofore } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import './style.scss';
 import {
   Background,
   Form,
@@ -13,6 +14,7 @@ import {
   Rederict,
 } from './style';
 import useInputValue from '../../../hooks/useInputValue';
+import HeaderNavBar from '../../Header/HeaderNavBar';
 
 const UserLogin = ({ onSubmit, error, loading }) => {
   const email = useInputValue('');
@@ -22,7 +24,8 @@ const UserLogin = ({ onSubmit, error, loading }) => {
     onSubmit({ email: email.value, password: password.value });
   };
   return (
-    <Background>
+    <div>
+      <HeaderNavBar />
       <Form disabled={loading} onSubmit={handlerSubmit}>
         <Mylogo
           style={{ width: '200px' }}
@@ -56,7 +59,8 @@ const UserLogin = ({ onSubmit, error, loading }) => {
         {error && <Error>{error}</Error>}
         <Foother>developed by ardobot</Foother>
       </Form>
-    </Background>
+    </div>
+
   );
 };
 export default UserLogin;
