@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import logo from '../../assets/img/brand/logoardobot.png';
 import './HeaderNavBar.scss';
+
 // reactstrap components
 
 class HeaderNavBar extends React.Component {
@@ -60,17 +61,17 @@ class HeaderNavBar extends React.Component {
                   <NavItem>
                     <NavLink
                       className='nav-link-icon'
-                      to='/auth/register'
+                      to='/register'
                       tag={Link}
                     >
                       <i className='ni ni-circle-08' />
-                      <span className='nav-link-inner--text'>Register</span>
+                      <span className='nav-link-inner--text'>Registro</span>
                     </NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink
                       className='nav-link-icon'
-                      to='/auth/login'
+                      to='/'
                       tag={Link}
                     >
                       <i className='ni ni-key-25' />

@@ -51,7 +51,6 @@ const UserRegister = ({ onSubmit, loading, error }) => {
           are you already registered?
           <Link style={{ color: '#fff' }} to='/login'> login</Link>
         </Rederict>
-        <Foother>developed by ardobot</Foother>
       </Form>
     </div>
 
