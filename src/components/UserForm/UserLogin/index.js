@@ -26,6 +26,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
   return (
     <div>
       <HeaderNavBar />
+      <div className='main-content'>
       <Form className="m-auto" disabled={loading} onSubmit={handlerSubmit}>
         <Mylogo
           style={{ width: '200px' }}
@@ -59,6 +60,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
         {error && <Error>{error}</Error>}
         <Foother>developed by ardobot</Foother>
       </Form>
+      </div>
     </div>
 
   );
