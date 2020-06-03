@@ -1,133 +1,84 @@
 import React from 'react';
-
-// reactstrap components
+import { FaGofore } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import '../style.scss';
+import {
+  Background,
+  Form,
+  Mylogo,
+  Foother,
+  LoginGoogle,
+  Error,
+  Rederict,
+} from './style';
 import {
   Button,
+  ButtonGroup,
   Card,
   CardHeader,
   CardBody,
+  CardTitle,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  Label,
   FormGroup,
-  Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
+  Table,
   Row,
   Col,
-} from 'reactstrap';
+  UncontrolledTooltip
+} from "reactstrap";
 
-class Login extends React.Component {
-  render() {
-    return (
-      <>
-        <Col lg='5' md='7'>
-          <Card className='bg-secondary shadow border-0'>
-            <CardHeader className='bg-transparent pb-5'>
-              <div className='text-muted text-center mt-2 mb-3'>
-                <small>Sign in with</small>
-              </div>
-              <div className='btn-wrapper text-center'>
-                <Button
-                  className='btn-neutral btn-icon'
-                  color='default'
-                  href='#pablo'
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <span className='btn-inner--icon'>
-                    <img
-                      alt='...'
-                      src=''
-                    />
-                  </span>
-                  <span className='btn-inner--text'>Github</span>
-                </Button>
-                <Button
-                  className='btn-neutral btn-icon'
-                  color='default'
-                  href='#pablo'
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <span className='btn-inner--icon'>
-                    <img
-                      alt='...'
-                      src=''
-                    />
-                  </span>
-                  <span className='btn-inner--text'>Google</span>
-                </Button>
-              </div>
-            </CardHeader>
-            <CardBody className='px-lg-5 py-lg-5'>
-              <div className='text-center text-muted mb-4'>
-                <small>Or sign in with credentials</small>
-              </div>
-              <Form role='form'>
-                <FormGroup className='mb-3'>
-                  <InputGroup className='input-group-alternative'>
-                    <InputGroupAddon addonType='prepend'>
-                      <InputGroupText>
-                        <i className='ni ni-email-83' />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input placeholder='Email' type='email' autoComplete='new-email' />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className='input-group-alternative'>
-                    <InputGroupAddon addonType='prepend'>
-                      <InputGroupText>
-                        <i className='ni ni-lock-circle-open' />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input placeholder='Password' type='password' autoComplete='new-password' />
-                  </InputGroup>
-                </FormGroup>
-                <div className='custom-control custom-control-alternative custom-checkbox'>
-                  <input
-                    className='custom-control-input'
-                    id=' customCheckLogin'
-                    type='checkbox'
-                  />
-                  <label
-                    s
-                    className='custom-control-label'
-                    htmlFor=' customCheckLogin'
-                  >
-                    <span className='text-muted'>Remember me</span>
-                  </label>
-                </div>
-                <div className='text-center'>
-                  <Button className='my-4' color='primary' type='button'>
-                    Sign in
-                  </Button>
-                </div>
-              </Form>
-            </CardBody>
-          </Card>
-          <Row className='mt-3'>
-            <Col xs='6'>
-              <a
-                className='text-light'
-                href='#pablo'
-                onClick={(e) => e.preventDefault()}
-              >
-                <small>Forgot password?</small>
-              </a>
-            </Col>
-            <Col className='text-right' xs='6'>
-              <a
-                className='text-light'
-                href='#pablo'
-                onClick={(e) => e.preventDefault()}
-              >
-                <small>Create new account</small>
-              </a>
-            </Col>
-          </Row>
-        </Col>
-      </>
-    );
-  }
-}
+import useInputValue from '../../../hooks/useInputValue';
 
-export default Login;
+const UserLogin = ({ onSubmit, error, loading }) => {
+  const email = useInputValue('');
+  const password = useInputValue('');
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ email: email.value, password: password.value });
+  };
+  return (
+    <div>  
+      <div className='main-content'>
+        <Form className='m-auto' disabled={loading} onSubmit={handlerSubmit}>
+          <Mylogo
+            style={{ width: '200px' }}
+            src='https://cdn2.iconfinder.com/data/icons/web-store-crayons-volume-2/256/Login-512.png'
+          />
+          <Input
+            disabled={loading}
+            type='email'
+            required={true}
+            placeholder='Email'
+            {...email}
+          />
+          <Input
+            disabled={loading}
+            type='password'
+            required={true}
+            placeholder='Password'
+            {...password}
+          />
+          <Button disabled={loading}>Login</Button>
+          <LoginGoogle>
+            <FaGofore size='30px' />
+            <h1>Login with google</h1>
+          </LoginGoogle>
+          <Rederict disabled={loading}>
+            are you not registered?
+            <Link style={{ color: '#fff' }} to='/register'>
+              sign in
+            </Link>
+          </Rederict>
+          {error && <Error>{error}</Error>}
+          <Foother>developed by ardobot</Foother>
+        </Form>
+      </div>
+    </div>
+
+  );
+};
+export default UserLogin;

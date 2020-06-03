@@ -1,6 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Background, Form, Input, Mylogo, Foother, Button, Rederict, Error } from './style';
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardHeader,
+  CardBody,
+  CardTitle,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  Label,
+  FormGroup,
+  Input,
+  Table,
+  Row,
+  Col,
+  UncontrolledTooltip,
+} from 'reactstrap';
+import { Form, Mylogo, Foother, Rederict, Error } from './style';
 import useInputValue from '../../../hooks/useInputValue';
 
 const UserRegister = ({ onSubmit, loading, error }) => {
@@ -18,7 +37,7 @@ const UserRegister = ({ onSubmit, loading, error }) => {
       address: address.value });
   };
   return (
-    <Background>
+    <div className='main-content'>
       <Form disabled={loading} onSubmit={handlerSubmit}>
         <Mylogo style={{ width: '200px' }} src='https://cdn1.iconfinder.com/data/icons/business-finance-53/512/8-512.png' />
         <Input disabled={loading} type='text' required={true} placeholder='Company' {...company} />
@@ -34,7 +53,8 @@ const UserRegister = ({ onSubmit, loading, error }) => {
         </Rederict>
         <Foother>developed by ardobot</Foother>
       </Form>
-    </Background>
+    </div>
+
   );
 };
 export default UserRegister;

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
-import UserLogin from '../components/UserForm/UserLogin';
+import UserLogin from '../components/UserForm/UserLogin/Login';
 
 import { Context } from '../containers/Context';
 
@@ -21,7 +21,9 @@ const Login = () => {
   };
   if (!isAuth.loggedIn) {
     return <UserLogin onSubmit={onSubmit} error={error} loading={loading} />;
+
   }
+
   return <Redirect to='/dashboard' />;
 };
 

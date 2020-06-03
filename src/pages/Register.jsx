@@ -3,7 +3,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { Redirect } from 'react-router-dom';
-import UserRegister from '../components/UserForm/UserRegister';
+import UserRegister from '../components/UserForm/UserRegister/UserRegister';
 import { Context } from '../containers/Context';
 
 const Register = () => {
