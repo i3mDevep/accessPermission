@@ -26,7 +26,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
   return (
     <div>
       <HeaderNavBar />
-      <Form disabled={loading} onSubmit={handlerSubmit}>
+      <Form className="m-auto" disabled={loading} onSubmit={handlerSubmit}>
         <Mylogo
           style={{ width: '200px' }}
           src='https://cdn2.iconfinder.com/data/icons/web-store-crayons-volume-2/256/Login-512.png'
