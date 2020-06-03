@@ -8,13 +8,14 @@ import {
   Col,
 } from 'reactstrap';
 import SimpleTableHead from '../SimpleTable/SimpleTableHead';
-import SimpleTableRow from '../SimpleTable/SimpleTableRow';
+import UsersTableRow from '../SimpleTable/UsersTableRow';
+import TimesTableRow from '../SimpleTable/TimesTableRow';
 
 const ListTables = () => {
   return (
 
     <Row>
-      <Col lg='6' md='12'>
+      <Col lg='7' md='12'>
         <Card>
           <CardHeader>
             <CardTitle tag='h4'>Example Table 1 </CardTitle>
@@ -24,22 +25,22 @@ const ListTables = () => {
               titles={['Nombre', 'Documento', 'Genero', 'Edad', 'Accion']}
               id='headusers'
             >
-              <SimpleTableRow />
+              <UsersTableRow />
             </SimpleTableHead>
           </CardBody>
         </Card>
       </Col>
-      <Col lg='6' md='12'>
+      <Col lg='5' md='12'>
         <Card>
           <CardHeader>
             <CardTitle tag='h4'>Example Table 2 </CardTitle>
           </CardHeader>
           <CardBody>
             <SimpleTableHead
-              titles={['Nombre', 'Documento', 'Genero', 'Edad', 'Accion']}
-              id='headusers2'
+              titles={['Documento', 'Hora', 'Accion']}
+              id='timeusers2'
             >
-              <SimpleTableRow />
+              <TimesTableRow />
             </SimpleTableHead>
           </CardBody>
         </Card>

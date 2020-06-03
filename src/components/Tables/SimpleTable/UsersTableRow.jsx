@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SimpleTableRow = ({ users = DEFAULT_DATA }) => {
+const UsersTableRow = ({ users }) => {
   return (
     <tbody>
       {
@@ -23,4 +23,4 @@ const mapStateProps = (state) => {
     users: state.users,
   };
 };
-export default connect(mapStateProps, null)(SimpleTableRow);
+export default connect(mapStateProps, null)(UsersTableRow);
