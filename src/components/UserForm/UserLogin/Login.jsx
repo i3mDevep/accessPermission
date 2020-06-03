@@ -32,7 +32,7 @@ import {
 } from './style';
 
 import useInputValue from '../../../hooks/useInputValue';
-import Layaut from '../Layaut';
+import Layaut from '../Layout';
 
 const UserLogin = ({ onSubmit, error, loading }) => {
   const email = useInputValue('');

@@ -4,7 +4,7 @@ import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import ScreenLoading from '../components/ScreenLoading';
-import Layaut from '../components/UserForm/Layaut';
+import Layaut from '../components/UserForm/Layout';
 
 import { Context } from './Context';
 

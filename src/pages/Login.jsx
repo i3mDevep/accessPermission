@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import UserLogin from '../components/UserForm/UserLogin/Login';
-import Layaut from '../components/UserForm/Layaut';
+import Layout from '../components/UserForm/Layout';
 
 import { Context } from '../containers/Context';
 
@@ -22,9 +22,9 @@ const Login = () => {
   };
   if (!isAuth.loggedIn) {
     return (
-      <Layaut>
+      <Layout>
         <UserLogin onSubmit={onSubmit} error={error} loading={loading} />
-      </Layaut>
+      </Layout>
     );
   }
 
