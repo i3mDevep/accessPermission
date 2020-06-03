@@ -20,11 +20,9 @@ const App = () => {
           <ScreenLoading /> : (
             <BrowserRouter>
               <Switch>
-                <Layaut>
-                  <Route exact path='/' component={() => <Login />} />
-                  <Route exact path='/login' component={() => <Login />} />
-                  <Route exact path='/register' component={() => <Register />} />
-                </Layaut>
+                <Route exact path='/' component={() => <Login />} />
+                <Route exact path='/login' component={() => <Login />} />
+                <Route exact path='/register' component={() => <Register />} />
                 <Route exact path='/dashboard' component={() => <Dashboard />} />
               </Switch>
             </BrowserRouter>

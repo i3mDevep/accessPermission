@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { Redirect } from 'react-router-dom';
 import UserRegister from '../components/UserForm/UserRegister/UserRegister';
+import Layaut from '../components/UserForm/Layaut';
 import { Context } from '../containers/Context';
 
 const Register = () => {
@@ -35,14 +36,18 @@ const Register = () => {
       .finally(() => setLoading(false));
   };
   return (
+
     !isAuth.loggedIn ? (
-      <UserRegister
-        error={error}
-        loading={loading}
-        onSubmit={handlerOnsubmit}
-      />
+      <Layaut>
+        <UserRegister
+          error={error}
+          loading={loading}
+          onSubmit={handlerOnsubmit}
+        />
+      </Layaut>
     ) :
       <Redirect to='/dashboard' />
+
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import UserLogin from '../components/UserForm/UserLogin/Login';
+import Layaut from '../components/UserForm/Layaut';
 
 import { Context } from '../containers/Context';
 
@@ -20,8 +21,11 @@ const Login = () => {
       .finally(() => setLoading(false));
   };
   if (!isAuth.loggedIn) {
-    return <UserLogin onSubmit={onSubmit} error={error} loading={loading} />;
-
+    return (
+      <Layaut>
+        <UserLogin onSubmit={onSubmit} error={error} loading={loading} />
+      </Layaut>
+    );
   }
 
   return <Redirect to='/dashboard' />;
