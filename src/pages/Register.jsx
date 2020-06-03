@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { Redirect } from 'react-router-dom';
 import UserRegister from '../components/UserForm/UserRegister';
 import { Context } from '../containers/Context';
@@ -17,8 +19,7 @@ const Register = () => {
   // });
   const handlerOnsubmit = ({ email, password, company, cellphone, address }) => {
     setLoading(true);
-    firebase
-      .auth()
+    firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         const db = firebase.firestore();
