@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { setCurrentUsers } from '../../../store/actions/tablesUsersActions';
 
-const UsersTableRow = ({ users }) => {
+const UsersTableRow = ({ users = [], setCurrentUsers }) => {
+  useEffect(() => {
+    setCurrentUsers({ supername: 'michael' });
+  });
   return (
     <tbody>
       {
@@ -20,7 +24,12 @@ const UsersTableRow = ({ users }) => {
 };
 const mapStateProps = (state) => {
   return {
-    users: state.users,
+    users: state.tablesUsers,
   };
 };
-export default connect(mapStateProps, null)(UsersTableRow);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUsers: (user) => dispatch(setCurrentUsers(user)),
+  };
+};
+export default connect(mapStateProps, mapDispatchToProps)(UsersTableRow);

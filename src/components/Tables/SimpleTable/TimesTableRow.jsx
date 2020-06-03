@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const TimesTableRow = ({ users }) => {
+const TimesTableRow = ({ users = [] }) => {
   return (
     <tbody>
       {
@@ -21,4 +21,4 @@ const mapStateProps = (state) => {
     users: state.users,
   };
 };
-export default connect(mapStateProps, null)(TimesTableRow);
+export default connect(null, null)(TimesTableRow);
