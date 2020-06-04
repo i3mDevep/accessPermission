@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaGofore } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import '../style.scss';
+import './style.scss';
 import {
   Button,
   Container,

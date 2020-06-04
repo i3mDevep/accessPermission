@@ -37,11 +37,7 @@ class HeaderNavBar extends React.Component {
               <UncontrolledCollapse navbar toggler='#navbar-collapse-main'>
                 <div className='navbar-collapse-header d-md-none'>
                   <Row>
-                    <Col className='collapse-brand' xs='6'>
-                      <Link to='/'>
-                        <img alt='...' src={logo} />
-                      </Link>
-                    </Col>
+                    <Col className='collapse-brand' xs='6' />
                   </Row>
                 </div>
                 <Nav className='ml-auto' navbar>
