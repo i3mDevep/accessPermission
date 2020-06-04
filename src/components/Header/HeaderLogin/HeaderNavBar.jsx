@@ -12,7 +12,7 @@ import {
   Col,
 } from 'reactstrap';
 import { BsColumnsGap, BsPeopleCircle, BsCompass } from 'react-icons/bs';
-import logo from '../../assets/img/brand/ardobot_logo.png';
+import logo from '../../../assets/img/brand/ardobot_logo.png';
 import './HeaderNavBar.scss';
 
 // reactstrap components
@@ -26,13 +26,14 @@ class HeaderNavBar extends React.Component {
             className=''
             expand='md'
           >
-            <Container className='px-4'>
+            <Container className='.Navbar__brand-logo'>
               <NavbarBrand to='/' tag={Link}>
                 <img alt='...' src={logo} />
               </NavbarBrand>
-              <button className='navbar-toggler' id='navbar-collapse-main'>
-                <span className='navbar-toggler-icon' />
-              </button>
+              <button
+                className='Navbar__brand'
+                id='navbar-collapse-main'
+              />
               <UncontrolledCollapse navbar toggler='#navbar-collapse-main'>
                 <div className='navbar-collapse-header d-md-none'>
                   <Row>
@@ -46,7 +47,7 @@ class HeaderNavBar extends React.Component {
                 <Nav className='ml-auto' navbar>
                   <NavItem>
                     <NavLink to='/dashboard' tag={Link}>
-                      <span className='nav-link-inner--text icon'>
+                      <span className='Navbar__brand:hover icon'>
                         {' '}
                         <BsColumnsGap />
                         {' '}

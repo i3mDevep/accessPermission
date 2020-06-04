@@ -1,7 +1,7 @@
 import React from 'react';
 
-import HeaderNavBar from '../Header/HeaderNavBar';
-import FooterLogin from '../Footer/FooterLogin';
+import HeaderNavBar from '../Header/HeaderLogin/HeaderNavBar';
+import FooterLogin from '../Footer/FooterLogin/FooterLogin';
 
 function Layout({ children }) {
   // const children = props.children;
