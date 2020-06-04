@@ -23,7 +23,6 @@ import {
   UncontrolledTooltip,
 } from 'reactstrap';
 import {
-  Background,
   Form,
   Mylogo,
   Foother,
@@ -33,7 +32,6 @@ import {
 } from './style';
 
 import useInputValue from '../../../hooks/useInputValue';
-import Layaut from '../Layout';
 
 const UserLogin = ({ onSubmit, error, loading }) => {
   const email = useInputValue('');

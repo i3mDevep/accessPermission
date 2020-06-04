@@ -11,7 +11,8 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import logo from '../../assets/img/brand/logoardobot.png';
+import { BsColumnsGap, BsPeopleCircle, BsCompass } from 'react-icons/bs';
+import logo from '../../assets/img/brand/ardobot_logo.png';
 import './HeaderNavBar.scss';
 
 // reactstrap components
@@ -40,22 +41,18 @@ class HeaderNavBar extends React.Component {
                         <img alt='...' src={logo} />
                       </Link>
                     </Col>
-                    <Col className='collapse-close' xs='6'>
-                      <button
-                        className='navbar-toggler'
-                        id='navbar-collapse-main'
-                      >
-                        <span />
-                        <span />
-                      </button>
-                    </Col>
                   </Row>
                 </div>
                 <Nav className='ml-auto' navbar>
                   <NavItem>
-                    <NavLink className='nav-link-icon' to='/' tag={Link}>
-                      <i className='ni ni-planet' />
-                      <span className='nav-link-inner--text'>Dashboard</span>
+                    <NavLink to='/dashboard' tag={Link}>
+                      <span className='nav-link-inner--text icon'>
+                        {' '}
+                        <BsColumnsGap />
+                        {' '}
+                        Dashboard
+                        {' '}
+                      </span>
                     </NavLink>
                   </NavItem>
                   <NavItem>
@@ -65,7 +62,13 @@ class HeaderNavBar extends React.Component {
                       tag={Link}
                     >
                       <i className='ni ni-circle-08' />
-                      <span className='nav-link-inner--text'>Registro</span>
+                      <span className='nav-link-inner--text icon '>
+                        {' '}
+                        <BsPeopleCircle />
+                        {' '}
+                        Registro
+                        {' '}
+                      </span>
                     </NavLink>
                   </NavItem>
                   <NavItem>
@@ -75,17 +78,13 @@ class HeaderNavBar extends React.Component {
                       tag={Link}
                     >
                       <i className='ni ni-key-25' />
-                      <span className='nav-link-inner--text'>Login</span>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className='nav-link-icon'
-                      to='/admin/user-profile'
-                      tag={Link}
-                    >
-                      <i className='ni ni-single-02' />
-                      <span className='nav-link-inner--text'>Profile</span>
+                      <span className='nav-link-inner--text icon'>
+                        {' '}
+                        <BsCompass />
+                        {' '}
+                        Login
+                        {' '}
+                      </span>
                     </NavLink>
                   </NavItem>
                 </Nav>
