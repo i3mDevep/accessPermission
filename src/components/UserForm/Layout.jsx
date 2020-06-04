@@ -29,11 +29,11 @@ function Layout({ children }) {
   // const children = props.children;
 
   return (
-    <Container-fluid>
+    <div>
       <HeaderNavBar />
       {children}
       <FooterLogin />
-    </Container-fluid>
+    </div>
   );
 }
 

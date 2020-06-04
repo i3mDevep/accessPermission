@@ -1,29 +1,24 @@
 import React from 'react';
 import { FaGofore } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { BsFillEnvelopeFill, BsFillShieldLockFill } from 'react-icons/bs';
 import './style.scss';
 import {
   Button,
-  Container,
-  ButtonGroup,
   Card,
+  Container,
   CardHeader,
   CardBody,
-  CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
   FormGroup,
+  Form,
   Input,
-  Table,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
   Row,
   Col,
-  UncontrolledTooltip,
 } from 'reactstrap';
 import {
-  Form,
   Mylogo,
   Foother,
   LoginGoogle,
@@ -55,41 +50,76 @@ const UserLogin = ({ onSubmit, error, loading }) => {
             </Row>
           </div>
         </Container>
-        <Container className="mt--8 pb-5">
-          <Form className='m-auto' disabled={loading} onSubmit={handlerSubmit}>
-            <Mylogo
-              style={{ width: '200px' }}
-              src='https://cdn2.iconfinder.com/data/icons/web-store-crayons-volume-2/256/Login-512.png'
-            />
-            <Input
-              disabled={loading}
-              type='email'
-              required={true}
-              placeholder='Email'
-              {...email}
-            />
-            <Input
-              disabled={loading}
-              type='password'
-              required={true}
-              placeholder='Password'
-              {...password}
-            />
-            <Button disabled={loading}>Login</Button>
-            <LoginGoogle>
-              <FaGofore size='30px' />
-              <h1>Login with google</h1>
-            </LoginGoogle>
-            <Rederict disabled={loading}>
-              are you not registered?
-              <Link style={{ color: '#fff' }} to='/register'>
-                sign in
-              </Link>
-            </Rederict>
-            {error && <Error>{error}</Error>}
-            <Foother>developed by ardobot</Foother>
-          </Form>
-        </Container>
+        <Card role='form' className='Form'>
+          <CardBody className='px-lg-5 py-lg-5'>
+            <div className='text-center text-muted mb-4'>
+              <small>Incie sesión </small>
+            </div>
+            <Form disabled={loading} onSubmit={handlerSubmit}>
+              <FormGroup className='mb-3'>
+                <InputGroup>
+                  <InputGroupAddon addonType='prepend'>
+                    <InputGroupText>
+                      <BsFillEnvelopeFill />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    disabled={loading}
+                    type='email'
+                    required={true}
+                    placeholder='Email'
+                    {...email}
+                    autoComplete='new-email'
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup className='mb-3'>
+                <InputGroup className='input-group-alternative'>
+                  <InputGroupAddon addonType='prepend'>
+                    <InputGroupText>
+                      <BsFillShieldLockFill />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    disabled={loading}
+                    type='password'
+                    required={true}
+                    placeholder='Password'
+                    {...password}
+                    autoComplete='new-password'
+                  />
+                </InputGroup>
+              </FormGroup>
+              <div className='text-center'>
+                <Button className='my-4' disabled={loading} color='primary' type='button'>
+                  Sign in
+                </Button>
+              </div>
+              {error && <Error>{error}</Error>}
+              <Foother>developed by ardobot</Foother>
+            </Form>
+          </CardBody>
+        </Card>
+        <Row className='mt-3'>
+          <Col xs='6'>
+            <a
+              className='text-light'
+              href='#pablo'
+              onClick={(e) => e.preventDefault()}
+            >
+              <small>Forgot password?</small>
+            </a>
+          </Col>
+          <Col className='text-right' xs='6'>
+            <a
+              className='text-light'
+              href='#pablo'
+              onClick={(e) => e.preventDefault()}
+            >
+              <small>Create new account</small>
+            </a>
+          </Col>
+        </Row>
       </Col>
     </div>
 
