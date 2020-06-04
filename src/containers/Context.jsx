@@ -13,13 +13,13 @@ function onAuthStateChange(callback) {
     if (user) {
       callback({ loggedIn: true, email: user.email, update: false });
     } else {
-      callback({ loggedIn: false, update: false });
+      callback({ loggedIn: false, update: false, email: '' });
     }
   });
 }
 
 const Provider = ({ children }) => {
-  const [isAuth, setIsAuth] = useState({ loggedIn: false, update: true });
+  const [isAuth, setIsAuth] = useState({ loggedIn: false, update: true, email: '' });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChange(setIsAuth);

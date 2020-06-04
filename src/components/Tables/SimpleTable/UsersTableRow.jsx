@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { setCurrentUsers } from '../../../store/actions/tablesUsersActions';
 
-const UsersTableRow = ({ users = [], setCurrentUsers }) => {
-  useEffect(() => {
-    setCurrentUsers({ supername: 'michael' });
-  });
+const UsersTableRow = ({ users = [] }) => {
   return (
     <tbody>
       {
-        users.map((user) => (
+        users && users.map((user) => (
           <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.identification}</td>
@@ -25,19 +21,24 @@ const UsersTableRow = ({ users = [], setCurrentUsers }) => {
   );
 };
 const mapStateProps = (state) => {
-  console.log(state);
   return {
-    users: state.tablesUsers,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setCurrentUsers: (user) => dispatch(setCurrentUsers(user)),
+    isAuth: state.auth.isAuth,
+    users: state.firestore.ordered.users,
   };
 };
 export default compose(
-  connect(mapStateProps),
-  firestoreConnect([
-    { collection: 'business_collection' },
-  ]),
+  connect(mapStateProps, null),
+  firestoreConnect((props) => {
+    return [
+      { collection: 'business_collection',
+        doc: props.isAuth.email,
+        subcollections: [
+          {
+            collection: 'users',
+          },
+        ],
+        storeAs: 'users',
+      },
+    ];
+  }),
 )(UsersTableRow);

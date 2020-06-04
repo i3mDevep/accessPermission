@@ -1,22 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { Redirect } from 'react-router-dom';
 import UserRegister from '../components/UserForm/UserRegister';
-import { Context } from '../containers/Context';
 
 const Register = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { isAuth } = useContext(Context);
-  //const FirebaseRef = firebase.database().ref()
-  //FirebaseRef.push().set('hola desde react')
-  /* No borrar */
-  // db.collection('business_collection').doc('mayxool.11@gmail.com').collection('users').add(docData)
-  // .then(() => {
-  //   console.log('Document successfully written!');
-  // });
+
   const handlerOnsubmit = ({ email, password, company, cellphone, address }) => {
     setLoading(true);
     firebase.auth()
@@ -35,15 +26,20 @@ const Register = () => {
       .finally(() => setLoading(false));
   };
   return (
-    !isAuth.loggedIn ? (
-      <UserRegister
-        error={error}
-        loading={loading}
-        onSubmit={handlerOnsubmit}
-      />
-    ) :
-      <Redirect to='/dashboard' />
+    <UserRegister
+      error={error}
+      loading={loading}
+      onSubmit={handlerOnsubmit}
+    />
   );
 };
 
 export default Register;
+
+//const FirebaseRef = firebase.database().ref()
+//FirebaseRef.push().set('hola desde react')
+/* No borrar */
+// db.collection('business_collection').doc('mayxool.11@gmail.com').collection('users').add(docData)
+// .then(() => {
+//   console.log('Document successfully written!');
+// });
