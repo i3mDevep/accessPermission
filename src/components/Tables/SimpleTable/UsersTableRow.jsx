@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 import { setCurrentUsers } from '../../../store/actions/tablesUsersActions';
 
 const UsersTableRow = ({ users = [], setCurrentUsers }) => {
@@ -23,6 +25,7 @@ const UsersTableRow = ({ users = [], setCurrentUsers }) => {
   );
 };
 const mapStateProps = (state) => {
+  console.log(state);
   return {
     users: state.tablesUsers,
   };
@@ -32,4 +35,9 @@ const mapDispatchToProps = (dispatch) => {
     setCurrentUsers: (user) => dispatch(setCurrentUsers(user)),
   };
 };
-export default connect(mapStateProps, mapDispatchToProps)(UsersTableRow);
+export default compose(
+  connect(mapStateProps),
+  firestoreConnect([
+    { collection: 'business_collection' },
+  ]),
+)(UsersTableRow);
