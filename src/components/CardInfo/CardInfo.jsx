@@ -8,14 +8,14 @@ import Target from './Target';
 
 const CardInfo = ({ inforcards }) => {
   if (!inforcards) return 'Loading...';
-  const { totalUsers, timestamp, totalMen, totalWoman } = inforcards;
+  const { totalUsers, totalMen, totalWomen, totalChildren } = inforcards;
   return (
     <div className='header-body'>
       <Row>
-        <Target value={totalUsers} text={moment(timestamp.toDate().toISOString()).calendar()} />
-        <Target title='Women' value={totalWoman} porcentage='3.48%' text='Since yesterday' typetext='text-danger' />
-        <Target title='Men' value={totalMen} porcentage='1.10%' text='Since yesterday' typetext='text-warning' />
-        <Target title='Performance' value='49,65%' porcentage='12%' text='Since last month' typetext='text-info' />
+        <Target value={totalUsers.value} text={moment(totalUsers.time.toDate().toISOString()).calendar()} />
+        <Target title='Women' value={totalWomen.value} porcentage='3.48%' text={moment(totalWomen.time.toDate().toISOString()).calendar()} typetext='text-danger' />
+        <Target title='Men' value={totalMen.value} porcentage='1.10%' text={moment(totalMen.time.toDate().toISOString()).calendar()} typetext='text-warning' />
+        <Target title='Children' value={totalChildren.value} porcentage='12%' text={moment(totalChildren.time.toDate().toISOString()).calendar()} typetext='text-info' />
       </Row>
     </div>
   );
