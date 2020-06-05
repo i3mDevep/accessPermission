@@ -13,7 +13,7 @@ class HeaderNavBar extends React.Component {
   render() {
     return (
       <>
-        <Navbar className='Navbar' varian='#ffffff' expand='lg'>
+        <Navbar className='Navbar' varian='dark' expand='lg'>
           <Navbar.Brand href='dashboard'>
             <img
               alt=''
@@ -24,7 +24,7 @@ class HeaderNavBar extends React.Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='md-auto'>
+            <Nav className='ml-auto'>
               <Nav.Link href='/dashboard' tag={Link}>Dashboard</Nav.Link>
               <Nav.Link href='/' tag={Link}>Login</Nav.Link>
               <Nav.Link href='/register' tag={Link}>Registro</Nav.Link>

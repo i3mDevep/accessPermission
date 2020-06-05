@@ -18,9 +18,16 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+
+   button > span {
+      color:white !important;
+
+  }
+    div > a {
+      color:white !important;
+      padding:2px;  }
   }
 
-  
   .Navbar__brand {
     color: #ffffff;
   }
