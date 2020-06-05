@@ -15,14 +15,14 @@ const ListTables = () => {
   return (
 
     <Row>
-      <Col lg='7' md='12'>
+      <Col lg='8' md='12'>
         <Card>
           <CardHeader>
-            <CardTitle tag='h4'>Example Table 1 </CardTitle>
+            <CardTitle tag='h4'>User Register </CardTitle>
           </CardHeader>
           <CardBody>
             <SimpleTableHead
-              titles={['Nombre', 'Documento', 'Genero', 'Edad', 'Accion']}
+              titles={['Name', 'Identification', 'Gender', 'Age', 'Action', 'Time']}
               id='headusers'
             >
               <UsersTableRow />
@@ -30,14 +30,14 @@ const ListTables = () => {
           </CardBody>
         </Card>
       </Col>
-      <Col lg='5' md='12'>
+      <Col lg='4' md='12'>
         <Card>
           <CardHeader>
             <CardTitle tag='h4'>Example Table 2 </CardTitle>
           </CardHeader>
           <CardBody>
             <SimpleTableHead
-              titles={['Documento', 'Hora', 'Accion']}
+              titles={['Identification', 'Count']}
               id='timeusers2'
             >
               <TimesTableRow />

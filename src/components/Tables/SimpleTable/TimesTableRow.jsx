@@ -9,7 +9,6 @@ const TimesTableRow = ({ users = [] }) => {
           <tr key={user.id}>
             <td>{user.identification}</td>
             <td>{user.time.toDate().toISOString()}</td>
-            <td className='text-center'>{user.action}</td>
           </tr>
         ))
       }

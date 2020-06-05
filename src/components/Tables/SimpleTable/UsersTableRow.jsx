@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import moment from 'moment';
 
 const UsersTableRow = ({ users = [] }) => {
   return (
@@ -13,7 +14,8 @@ const UsersTableRow = ({ users = [] }) => {
             <td>{user.identification}</td>
             <td>{user.gender}</td>
             <td>{user.age}</td>
-            <td className='text-center'>{user.action}</td>
+            <td>{user.action}</td>
+            <td>{moment(user.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a')}</td>
           </tr>
         ))
       }

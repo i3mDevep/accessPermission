@@ -4,7 +4,7 @@ import { ContainerWorkspace } from './style';
 import ListCardsChart from '../ListCardsChart/ListCardsChart';
 import ListTables from '../Tables/ListTables/ListTables';
 import CardInfo from '../CardInfo/CardInfo';
-import { HeaderPerfil } from '../HeaderPerfil';
+import HeaderPerfil from '../HeaderPerfil';
 // reactstrap components
 
 const Workspace = () => {
