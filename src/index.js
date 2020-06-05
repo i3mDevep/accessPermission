@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import App from './containers/App';
 import Context from './containers/Context';
 import reducer from './reducers';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const initialState = {
   users: [],

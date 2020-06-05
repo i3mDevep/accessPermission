@@ -2,7 +2,6 @@ import React from 'react';
 import { FaGofore } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { BsFillEnvelopeFill, BsFillShieldLockFill } from 'react-icons/bs';
-import './style.scss';
 import {
   Button,
   Card,
@@ -18,6 +17,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+
 import {
   Mylogo,
   Foother,
@@ -36,92 +36,42 @@ const UserLogin = ({ onSubmit, error, loading }) => {
     onSubmit({ email: email.value, password: password.value });
   };
   return (
-    <div className='main-content'>
-      <Col>
-        <Container>
-          <div className='header-body text-center mb-7'>
-            <Row className='justify-content-center'>
-              <Col lg='5' md='6'>
-                <h1 className='text-white'>Bienvenido!</h1>
-                <p className='text-lead text-light'>
-                  Inicie sesión o Cree una cuenta.
-                </p>
-              </Col>
-            </Row>
-          </div>
-        </Container>
-        <Card role='form' className='Form'>
-          <CardBody className='px-lg-5 py-lg-5'>
-            <div className='text-center text-muted mb-4'>
-              <small>Incie sesión </small>
-            </div>
-            <Form disabled={loading} onSubmit={handlerSubmit}>
-              <FormGroup className='mb-3'>
-                <InputGroup>
-                  <InputGroupAddon addonType='prepend'>
-                    <InputGroupText>
-                      <BsFillEnvelopeFill />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    disabled={loading}
-                    type='email'
-                    required={true}
-                    placeholder='Email'
-                    {...email}
-                    autoComplete='new-email'
-                  />
-                </InputGroup>
-              </FormGroup>
-              <FormGroup className='mb-3'>
-                <InputGroup className='input-group-alternative'>
-                  <InputGroupAddon addonType='prepend'>
-                    <InputGroupText>
-                      <BsFillShieldLockFill />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    disabled={loading}
-                    type='password'
-                    required={true}
-                    placeholder='Password'
-                    {...password}
-                    autoComplete='new-password'
-                  />
-                </InputGroup>
-              </FormGroup>
-              <div className='text-center'>
-                <Button className='my-4' disabled={loading} color='primary' type='button'>
-                  Sign in
-                </Button>
-              </div>
-              {error && <Error>{error}</Error>}
-              <Foother>developed by ardobot</Foother>
-            </Form>
-          </CardBody>
-        </Card>
-        <Row className='mt-3'>
-          <Col xs='6'>
-            <a
-              className='text-light'
-              href='#pablo'
-              onClick={(e) => e.preventDefault()}
-            >
-              <small>Forgot password?</small>
-            </a>
-          </Col>
-          <Col className='text-right' xs='6'>
-            <a
-              className='text-light'
-              href='#pablo'
-              onClick={(e) => e.preventDefault()}
-            >
-              <small>Create new account</small>
-            </a>
-          </Col>
-        </Row>
-      </Col>
-    </div>
+
+    <Container>
+      <Row>
+        <Col>.col</Col>
+      </Row>
+      <Row>
+        <Col>.col</Col>
+        <Col>.col</Col>
+        <Col>.col</Col>
+        <Col>.col</Col>
+      </Row>
+      <Row>
+        <Col xs='3'>.col-3</Col>
+        <Col xs='auto'>.col-auto - variable width content</Col>
+        <Col xs='3'>.col-3</Col>
+      </Row>
+      <Row>
+        <Col xs='6'>.col-6</Col>
+        <Col xs='6'>.col-6</Col>
+      </Row>
+      <Row>
+        <Col xs='6' sm='4'>.col-6 .col-sm-4</Col>
+        <Col xs='6' sm='4'>.col-6 .col-sm-4</Col>
+        <Col sm='4'>.col-sm-4</Col>
+      </Row>
+      <Row>
+        <Col sm={{ size: 6, order: 2, offset: 1 }}>.col-sm-6 .order-sm-2 .offset-sm-1</Col>
+      </Row>
+      <Row>
+        <Col sm='12' md={{ size: 6, offset: 3 }}>.col-sm-12 .col-md-6 .offset-md-3</Col>
+      </Row>
+      <Row>
+        <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
+        <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
+      </Row>
+    </Container>
 
   );
 };

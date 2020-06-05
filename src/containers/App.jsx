@@ -4,8 +4,7 @@ import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import ScreenLoading from '../components/ScreenLoading';
-import Layaut from '../components/UserForm/Layout';
-
+import './App.scss';
 import { Context } from './Context';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

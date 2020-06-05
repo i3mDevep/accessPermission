@@ -1,7 +1,11 @@
 .footer_home {
     background: linear-gradient(to bottom, #1b6ca8, #3786c2);
     overflow: auto;
-    display: flex;
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }

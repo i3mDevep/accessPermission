@@ -1,18 +1,38 @@
+.header {
+  text-align: center;
+}
+
+.navItem {
+  color: white;
+}
+
+
 .Navbar {
     width: 100%;
     padding: 0.5rem 0;
     display: flex;
     width: 100%;
-     background-color: #004876 ;
-  }
-  .Navbar__brand {
-    color: #ffffff;
-    display: flex;
+    background-color: #004876 ;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
     align-items: center;
   }
+
+  
+  .Navbar__brand {
+    color: #ffffff;
+  }
+  
   .Navbar__brand:hover {
     color: #B92454;
     text-decoration: none;
+  }
+  
+  .navbar,
+  .navbar-default {
+    color: #ffffff !important;
   }
   .Navbar__brand-logo {
     margin-right: 0.5rem;
