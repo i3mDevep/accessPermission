@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
 import moment from 'moment';
 
 const UsersTableRow = ({ users = [] }) => {
@@ -30,20 +28,5 @@ const mapStateProps = (state) => {
     users: state.firestore.ordered.users,
   };
 };
-export default compose(
-  connect(mapStateProps, null),
-  firestoreConnect((props) => {
-    return [
-      { collection: 'business_collection',
-        doc: props.isAuth.email,
-        subcollections: [
-          {
-            collection: 'users',
-          },
-        ],
-        storeAs: 'users',
-        limit: 10,
-      },
-    ];
-  }),
-)(UsersTableRow);
+export default
+connect(mapStateProps, null)(UsersTableRow);

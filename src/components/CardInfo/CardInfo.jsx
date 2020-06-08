@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { firestoreConnect } from 'react-redux-firebase';
 import moment from 'moment';
 import { Row } from 'reactstrap';
 import { AiOutlineMan, AiOutlineWoman } from 'react-icons/ai';
@@ -38,20 +36,4 @@ const mapToProps = (state) => {
   };
 };
 
-export default compose(
-  connect(mapToProps, null),
-  firestoreConnect((props) => {
-    return [
-      { collection: 'business_collection',
-        doc: props.isAuth.email,
-        subcollections: [
-          {
-            collection: 'data',
-            doc: 'total',
-          },
-        ],
-        storeAs: 'total',
-      },
-    ];
-  }),
-)(CardInfo);
+export default connect(mapToProps, null)(CardInfo);
