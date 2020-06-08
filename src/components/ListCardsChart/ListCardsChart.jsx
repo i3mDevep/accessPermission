@@ -7,7 +7,15 @@ import { MyChartBar, MyChartRadar, MyChartMix } from '../Charts/Charts';
 
 const ListCardsChart = ({ total }) => {
 
-  if (!total) return 'Loading...';
+  if (!total) {
+    return (
+      <Row>
+        <CardChart />
+        <CardChart />
+        <CardChart />
+      </Row>
+    );
+  }
   const { totalMen, totalWomen } = total;
   const dataChartRadar = {
     labels: ['Men', 'Women'],
@@ -35,6 +43,7 @@ const ListCardsChart = ({ total }) => {
 };
 
 const mapToProps = (state) => {
+  console.log(state);
   return {
     total: state.firestore.data.total,
     isAuth: state.auth.isAuth,

@@ -19,7 +19,7 @@ const Target = ({
               {title || <Skeleton /> }
             </CardTitle>
             <span className='h2 font-weight-bold mb-0'>
-              {value || <Skeleton />}
+              {value || (value !== 0 ? <Skeleton /> : 0)}
             </span>
           </div>
           <Col className='col-1'>
