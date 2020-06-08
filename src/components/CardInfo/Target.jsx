@@ -1,12 +1,13 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
+import Skeleton from 'react-loading-skeleton';
 
 const Target = ({
-  title = 'Traffic',
-  value = '350,897',
-  porcentage = '3.48%',
-  text = 'Since last week',
-  typetext = 'text-success',
+  title,
+  value,
+  porcentage,
+  text,
+  typetext,
   children,
 }) => (
   <Col lg='6' xl='4' className='mb-3'>
@@ -15,10 +16,10 @@ const Target = ({
         <Row>
           <div className='col'>
             <CardTitle tag='h5' className='text-uppercase text-muted mb-0'>
-              {title}
+              {title || <Skeleton /> }
             </CardTitle>
             <span className='h2 font-weight-bold mb-0'>
-              {value}
+              {value || <Skeleton />}
             </span>
           </div>
           <Col className='col-1'>
@@ -26,16 +27,16 @@ const Target = ({
               <i className='fas fa-chart-bar' />
             </div>
           </Col>
-          <Col className='col-2'>
-            { children }
+          <Col className='col-3 text-right'>
+            { children || <Skeleton circle={true} height={50} width={50} />}
           </Col>
         </Row>
         <p className='mt-3 mb-0 text-muted text-sm'>
-          <span className={`${typetext} mr-2`}>
+          <span className={`${typetext || <Skeleton />} mr-2`}>
             <i className='fa fa-arrow-up' />
             {porcentage}
           </span>
-          <span className='text-nowrap'>{text}</span>
+          <span className='text-nowrap'>{text || <Skeleton />}</span>
         </p>
       </CardBody>
     </Card>
