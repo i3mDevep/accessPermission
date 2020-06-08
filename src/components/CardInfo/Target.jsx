@@ -7,8 +7,9 @@ const Target = ({
   porcentage = '3.48%',
   text = 'Since last week',
   typetext = 'text-success',
+  children,
 }) => (
-  <Col lg='6' xl='3'>
+  <Col lg='6' xl='4' className='mb-3'>
     <Card className='card-stats mb-4 mb-xl-0'>
       <CardBody>
         <Row>
@@ -20,10 +21,13 @@ const Target = ({
               {value}
             </span>
           </div>
-          <Col className='col-auto'>
+          <Col className='col-1'>
             <div className='icon icon-shape bg-danger text-white rounded-circle shadow'>
               <i className='fas fa-chart-bar' />
             </div>
+          </Col>
+          <Col className='col-2'>
+            { children }
           </Col>
         </Row>
         <p className='mt-3 mb-0 text-muted text-sm'>

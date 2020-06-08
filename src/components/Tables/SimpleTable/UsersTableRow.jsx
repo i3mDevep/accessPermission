@@ -14,8 +14,10 @@ const UsersTableRow = ({ users = [] }) => {
             <td>{user.identification}</td>
             <td>{user.gender}</td>
             <td>{user.age}</td>
-            <td>{user.action}</td>
             <td>{moment(user.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a')}</td>
+            <td>{user.sede}</td>
+            <td>{user.telphone}</td>
+            <td>{user.address}</td>
           </tr>
         ))
       }
@@ -40,6 +42,7 @@ export default compose(
           },
         ],
         storeAs: 'users',
+        limit: 10,
       },
     ];
   }),
