@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavItem, NavLink, Nav, Container, Row, Col } from 'reactstrap';
+
+import { Nav, Container, Row, Col, NavItem, NavLink } from 'react-bootstrap';
 import './FooterLogin.scss';
 
 class FooterLogin extends React.Component {

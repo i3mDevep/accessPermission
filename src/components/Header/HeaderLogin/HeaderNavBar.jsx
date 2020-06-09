@@ -6,15 +6,13 @@ import { Navbar, Nav, Container, Row, NavDropdown, Form, FormControl, Button } f
 import logo from '../../../assets/img/brand/ardobot_logo.png';
 import './HeaderNavBar.scss';
 
-// reactstrap components
-const navbar = { color: '#ffffff' };
 
 class HeaderNavBar extends React.Component {
   render() {
     return (
       <>
         <div style={{ backgroundColor: '#004876' }}>
-          <div className='container'>
+          <header className='container'>
             <Navbar className='Navbar' variant='dark' expand='lg'>
               <Navbar.Brand href='dashboard'>
                 <img
@@ -48,7 +46,7 @@ class HeaderNavBar extends React.Component {
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
-          </div>
+          </header>
         </div>
       </>
 
