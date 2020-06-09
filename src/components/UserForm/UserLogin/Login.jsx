@@ -6,7 +6,7 @@ import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
 
 import useInputValue from '../../../hooks/useInputValue';
 
-import { Error } from './style.scss';
+import { Error } from './Login.scss';
 
 const UserLogin = ({ onSubmit, error, loading }) => {
 
