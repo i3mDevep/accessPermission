@@ -16,7 +16,11 @@ const Login = () => {
       .catch((error) => setError(error.code))
       .finally(() => setLoading(false));
   };
-  return <UserLogin onSubmit={onSubmit} error={error} loading={loading} />;
+  return (
+    <Layout>
+      <UserLogin onSubmit={onSubmit} error={error} loading={loading} />
+    </Layout>
+  );
 };
 
 export default Login;

@@ -29,7 +29,7 @@ const App = ({ signIn, isAuth }) => {
   }, []);
   return (
     <div>
-
+      <GlobalStyle />
       {
         isAuth.update ?
           <ScreenLoading /> : (

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import UserRegister from '../components/UserForm/UserRegister';
+import UserRegister from '../components/UserForm/UserRegister/UserRegister';
+import Layout from '../components/UserForm/Layout';
 
 const Register = () => {
   const [error, setError] = useState('');
@@ -26,11 +27,13 @@ const Register = () => {
       .finally(() => setLoading(false));
   };
   return (
-    <UserRegister
-      error={error}
-      loading={loading}
-      onSubmit={handlerOnsubmit}
-    />
+    <Layout>
+      <UserRegister
+        error={error}
+        loading={loading}
+        onSubmit={handlerOnsubmit}
+      />
+    </Layout>
   );
 };
 

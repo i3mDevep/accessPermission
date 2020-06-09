@@ -10,7 +10,7 @@ const Target = ({
   typetext,
   children,
 }) => (
-  <Col lg='6' xl='4' className='mb-3'>
+  <Col lg='6' className='mb-3'>
     <Card className='card-stats mb-4 mb-xl-0'>
       <CardBody>
         <Row>
