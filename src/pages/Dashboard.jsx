@@ -1,17 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Toolbox from '../components/Toolbox/Toolbox';
 import { Container } from './style';
-import { Context } from '../containers/Context';
-import WorkSpaceContainer from '../containers/WorkSpaceContainer';
+import WorkspaceContainer from '../containers/WorkspaceContainer';
 
 const Dashboard = () => {
-  const { isAuth } = useContext(Context);
   return (
     true ? (
       <Container>
         <Toolbox />
-        <WorkSpaceContainer email={isAuth.email} />
+        <WorkspaceContainer />
       </Container>
     ) : <Redirect to='/login' />
   );

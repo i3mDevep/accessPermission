@@ -1,13 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import UserLogin from '../components/UserForm/UserLogin/Login';
 import Layout from '../components/UserForm/Layout';
 
-import { Context } from '../containers/Context';
-
 const Login = () => {
-  const { isAuth } = useContext(Context);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -20,15 +16,7 @@ const Login = () => {
       .catch((error) => setError(error.code))
       .finally(() => setLoading(false));
   };
-  if (!isAuth.loggedIn) {
-    return (
-      <Layout>
-        <UserLogin onSubmit={onSubmit} error={error} loading={loading} />
-      </Layout>
-    );
-  }
-
-  return <Redirect to='/dashboard' />;
+  return <UserLogin onSubmit={onSubmit} error={error} loading={loading} />;
 };
 
 export default Login;

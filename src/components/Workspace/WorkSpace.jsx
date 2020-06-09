@@ -2,9 +2,9 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import { ContainerWorkspace } from './style';
 import ListCardsChart from '../ListCardsChart/ListCardsChart';
-import ListTables from '../Tables/ListTables/ListTables';
+import UsersTableRow from '../Tables/SimpleTable/UsersTableRow';
 import CardInfo from '../CardInfo/CardInfo';
-import { HeaderPerfil } from '../HeaderPerfil';
+import HeaderPerfil from '../HeaderPerfil';
 // reactstrap components
 
 const Workspace = () => {
@@ -14,7 +14,7 @@ const Workspace = () => {
         <HeaderPerfil />
         <CardInfo />
         <ListCardsChart />
-        <ListTables />
+        <UsersTableRow />
       </ContainerWorkspace>
     </Container>
   );

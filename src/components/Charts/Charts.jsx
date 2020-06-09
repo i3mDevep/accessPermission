@@ -3,17 +3,6 @@ import { Line, Bar, Pie } from 'react-chartjs-2';
 import { chartExample1, chartExample3 } from '../../variables/charts';
 import { MyCard, AreaChart } from './style';
 
-const data = {
-  labels: ['Red', 'Blue', 'Yellow'],
-  datasets: [
-    {
-      data: [300, 50, 100],
-      backgroundColor: ['#f40552', '#ffd31d', '#00005c'],
-      hoverBackgroundColor: ['#f40552', '#ffd31d', '#00005c'],
-    },
-  ],
-};
-
 const options = {
   maintainAspectRatio: false,
   responsive: true,
@@ -24,6 +13,17 @@ const options = {
       fontColor: 'white',
     },
   },
+};
+
+const DEFAULT_DATA_RADAR = {
+  labels: ['Red', 'Blue', 'Yellow'],
+  datasets: [
+    {
+      data: [300, 50, 100],
+      backgroundColor: ['#f40552', '#ffd31d', '#00005c'],
+      hoverBackgroundColor: ['#f40552', '#ffd31d', '#00005c'],
+    },
+  ],
 };
 
 const datamix = {
@@ -38,8 +38,8 @@ const datamix = {
       backgroundColor: '#EC932F',
       pointBorderColor: '#EC932F',
       pointBackgroundColor: '#EC932F',
-      pointHoverBackgroundColor: '#EC932F',
-      pointHoverBorderColor: '#EC932F',
+      pointHoverBackgroundColor: '#32e0c4',
+      pointHoverBorderColor: '#32e0c4',
     },
     {
       type: 'bar',
@@ -49,8 +49,8 @@ const datamix = {
       backgroundColor: 'rgba(255,255,255,0.2)',
       borderColor: '#fff',
       borderWidth: 2,
-      hoverBackgroundColor: '#71B37C',
-      hoverBorderColor: '#71B37C',
+      hoverBackgroundColor: '#f4f4f4',
+      hoverBorderColor: '#f4f4f4',
     },
   ],
 };
@@ -121,7 +121,7 @@ export const MyChartBar = ({ color = 'white' }) => (
   </MyCard>
 );
 
-export const MyChartRadar = ({ color = 'white' }) => (
+export const MyChartRadar = ({ color = 'white', data = DEFAULT_DATA_RADAR }) => (
   <MyCard color={color}>
     <AreaChart className='chart-area w-75 h-75'>
       <Pie data={data} options={options} />
