@@ -5,10 +5,10 @@ export const ImageWrapper = styled.div`
   width: 100%;
   justify-content: center;
   padding-bottom: 20px;
-`
+  padding-top: 30px;
+`;
 
 export const Img = styled.img`
   width: 100px;
-  height: 100px;
   object-fit: cover;
-`
+`;

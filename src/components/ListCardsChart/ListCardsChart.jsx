@@ -29,13 +29,13 @@ const ListCardsChart = ({ total }) => {
   };
   return (
     <Row>
-      <CardChart title='Semana' titleheader='Total'>
+      <CardChart title='Week' titleheader='Total'>
         <MyChartBar color='#400082' />
       </CardChart>
-      <CardChart title='Mes' titleheader='Total'>
+      <CardChart title='Gender' titleheader='Total'>
         <MyChartRadar color='#323edd' data={dataChartRadar} />
       </CardChart>
-      <CardChart title='Genero' titleheader='Total'>
+      <CardChart title='Year' titleheader='Total'>
         <MyChartMix color='#ff1e56' />
       </CardChart>
     </Row>
