@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Form, Button, Card, InputGroup, Row, Col } from 'react-bootstrap';
 import { BsFillEnvelopeFill, BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
-import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
+import { IoIosKey } from 'react-icons/io';
 import { Rederict, Error } from './style';
 import useInputValue from '../../../hooks/useInputValue';
 
