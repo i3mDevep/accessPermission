@@ -2,13 +2,11 @@
 .main-content{
     background: linear-gradient(to bottom, #0b4779, #1b6ca8);
     height: 100%;
-    width: 100vw;
+    width: 100%;
     overflow: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 0;
-    left: 0;
     position: relative;
     padding-bottom: 3rem!important;
     
@@ -19,10 +17,8 @@
       flex: 1 1 auto;
     }
     div > .card {
-      background-color: #f8f9fe !important;
-      position: relative;
+      background-color: #f8f9fe !important;  
       display: flex;
-      flex-direction: column;
       min-width: 0;
       word-wrap: break-word;
       border: 1px solid rgba(0,0,0,.05);
@@ -32,10 +28,22 @@
       box-sizing: border-box
     }
 
-}
-
+} 
 
 .col {
+  justify-content: center;
+  align-items: center;
   min-height: 475px !important;
-  max-width: 592px !important;}
+  max-width: 592px !important;
+}
+
+.Error{
+  margin-top: 5px;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  width: 100%;
+  background-color: rgba(240, 0, 0, 0.5);
+  font-size: 15px;
+}
 

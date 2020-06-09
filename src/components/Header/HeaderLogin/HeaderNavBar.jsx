@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { BsTerminal, BsPeopleCircle, BsCompass } from 'react-icons/bs';
-import { Navbar, Nav, Container, Row, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav} from 'react-bootstrap';
 import logo from '../../../assets/img/brand/ardobot_logo.png';
 import './HeaderNavBar.scss';
 
