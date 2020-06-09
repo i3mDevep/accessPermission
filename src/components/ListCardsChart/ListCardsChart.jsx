@@ -43,7 +43,6 @@ const ListCardsChart = ({ total }) => {
 };
 
 const mapToProps = (state) => {
-  console.log(state);
   return {
     total: state.firestore.data.total,
     isAuth: state.auth.isAuth,

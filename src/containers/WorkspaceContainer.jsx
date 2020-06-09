@@ -36,7 +36,7 @@ export default compose(
           },
         ],
         storeAs: 'users',
-        limit: 10,
+        //limit: 10,
       },
     ];
   }),
