@@ -7,7 +7,6 @@ import { FiUsers } from 'react-icons/fi';
 import { GiEntryDoor } from 'react-icons/gi';
 import { Row, CardDeck } from 'react-bootstrap';
 import Target from './Target';
-import './Style.scss';
 
 const CardInfo = ({ inforcards }) => {
   if (!inforcards) {

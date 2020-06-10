@@ -123,7 +123,7 @@ const UserRegister = ({ onSubmit, loading, error }) => {
                     </Form.Group>
                     { error && <Error>{ error }</Error> }
                     <div className='text-center'>
-                      <Button disabled={loading}>Completar Registro</Button>
+                      <Button type='submit' disabled={loading}>Completar Registro</Button>
                     </div>
                     <Rederict disabled={loading}>
                       Estas registrado?

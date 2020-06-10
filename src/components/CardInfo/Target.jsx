@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
-import './Style.scss';
 
 const Target = ({
   title,
@@ -11,7 +10,7 @@ const Target = ({
   typetext,
   children,
 }) => (
-  <Card className='card'>
+  <Card>
     <Card.Body>
       <Row>
         <div className='col'>
