@@ -66,7 +66,7 @@ function UsersTableRow({ users = [] }) {
       address: user.address,
       telphone: user.telphone,
       sede: user.sede,
-      time: moment(user.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a'),
+      time: typeof user.time === 'object' ? moment(user.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
     });
   });
   return (
@@ -101,6 +101,7 @@ function UsersTableRow({ users = [] }) {
   );
 }
 const mapStateProps = (state) => {
+  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,

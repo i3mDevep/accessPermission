@@ -10,22 +10,6 @@ const Target = ({
   typetext,
   children,
 }) => (
-<<<<<<< HEAD
-  <Card>
-    <Card.Body>
-      <Row>
-        <div className='col'>
-          <Card.Title tag='h5' className='text-uppercase text-muted mb-0'>
-            {title || <Skeleton /> }
-          </Card.Title>
-          <span className='h2 font-weight-bold mb-0'>
-            {value || (value !== 0 ? <Skeleton /> : 0)}
-          </span>
-        </div>
-        <Col className='col-1'>
-          <div className='icon icon-shape bg-danger text-white rounded-circle shadow'>
-            <i className='fas fa-chart-bar' />
-=======
   <Col lg='4' className='mb-3'>
     <Card className='card'>
       <Card.Body>
@@ -37,7 +21,6 @@ const Target = ({
             <span className='h2 font-weight-bold mb-0'>
               {value || (value !== 0 ? <Skeleton /> : 0)}
             </span>
->>>>>>> 7bcd1f9a10a2d0cb1cd0dfc50ed7a960343d9de1
           </div>
           <Col className='col-1'>
             <div className='icon icon-shape bg-danger text-white rounded-circle shadow'>
