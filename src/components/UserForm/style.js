@@ -26,7 +26,7 @@ export const Background = styled.div`
 
 `;
 
-export const Form = styled.form`
+export const Formcustom = styled.form`
  background-color:transparent;
  position: relative;
  display: flex;
