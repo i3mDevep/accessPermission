@@ -108,7 +108,7 @@ const UserRegister = ({ onSubmit, loading, error }) => {
                     </Form.Group>
                     <Form.Group controlId='formGridAddress2'>
                       <Form.Label>Ciudad</Form.Label>
-                      <Form.Control placeholder='En que ciudad estas?' />
+                      <Form.Control placeholder='En ?' />
                     </Form.Group>
 
                     <Form.Group controlId='formGridAddress2'>

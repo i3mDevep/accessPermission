@@ -21,4 +21,16 @@ export const ContainerHeader = styled.div`
     padding-top: 10px;
   }
 `;
-
+export const Rederict = styled.label`
+  margin-top: 5px;
+  font-size:10px;
+`;
+export const Error = styled.span`
+  margin-top: 5px;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  width: 100%;
+  background-color: rgba(240,0,0,.5);
+  font-size: 15px;
+`;
