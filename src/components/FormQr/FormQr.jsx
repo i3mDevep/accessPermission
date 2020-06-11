@@ -29,10 +29,9 @@ const FormQr = ({ onSubmit, loading, error }) => {
       sede: Locale.value,
       age: Age.value,
       gender: Gender.value,
-      email: Email.value
+      email: Email.value,
     });
   };
-
 
   return (
     <div>
@@ -44,7 +43,20 @@ const FormQr = ({ onSubmit, loading, error }) => {
       <Card>
         <Card.Body>
           <WrapperFormQr>
-            <QRCode value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
+            <Card style={{ width: '28rem' }}>
+              <Card.Body>
+                <div className='text-center '>
+                  <QRCode value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
+                </div>
+              </Card.Body>
+              <Card.Body>
+                <Card.Title>QR</Card.Title>
+                <Card.Text>
+                  Descargue el QR
+                </Card.Text>
+                <Button variant='primary'>Download</Button>
+              </Card.Body>
+            </Card>
             <Form disabled={loading} onSubmit={handlerSubmit} className=' p-3 m-5'>
               <Form.Group controlId='Name'>
                 <Form.Label>Nombre</Form.Label>
@@ -139,7 +151,7 @@ const FormQr = ({ onSubmit, loading, error }) => {
                 </Form.Group>
               </Form.Row>
               <div className='text-center'>
-                      <Button type='submit' disabled={loading}>Guardar Usuario</Button>
+                <Button type='submit' disabled={loading}>Guardar Usuario</Button>
               </div>
             </Form>
           </WrapperFormQr>
