@@ -17,6 +17,15 @@ const FormQr = ({ onSubmit, loading, error }) => {
   const Email = useInputValue('');
   const Locale = useInputValue('');
 
+  function downloadPNGImage(linkElement) {
+    var myDiv = document.getElementById('download-area');
+    var myImage = myDiv.children[0];
+    let downloadLink = myImage.src + "&format=png";
+    linkElement.setAttribute('download', downloadLink);
+    linkElement.href = downloadLink;
+    linkElement.click();
+}
+
   const handlerSubmit = (e) => {
     e.preventDefault();
     onSubmit({
@@ -50,10 +59,6 @@ const FormQr = ({ onSubmit, loading, error }) => {
                 </div>
               </Card.Body>
               <Card.Body>
-                <Card.Title>QR</Card.Title>
-                <Card.Text>
-                  Descargue el QR
-                </Card.Text>
                 <Button variant='primary'>Download</Button>
               </Card.Body>
             </Card>
