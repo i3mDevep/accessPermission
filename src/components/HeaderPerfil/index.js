@@ -6,7 +6,7 @@ import { Header, Image, Title } from './style';
 const DEFAULT_IMAGE =
   'https://cdn2.iconfinder.com/data/icons/scenarium-vol-4/128/015_avatar_astronaut_space_gagarin_cosmonaut_discover_cosmos-512.png';
 
-const HeaderPerfil = () => {
+const HeaderPerfil = ({ title = 'DASHBOARD', children }) => {
   const logout = () => {
     firebase.auth().signOut();
   };
@@ -14,8 +14,8 @@ const HeaderPerfil = () => {
     <div>
       <Header>
         <Title>
-          <MdDashboard />
-          DASHBOARD
+          {children || <MdDashboard />}
+          {title}
         </Title>
         <div>
           <button onClick={logout}>log out</button>

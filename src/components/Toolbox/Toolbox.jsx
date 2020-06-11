@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ListItemsToolbox } from '../ListItemsToolbox';
+import ListItemsToolbox from '../ListItemsToolbox';
 import { HeaderToolbox } from '../HeaderToolbox';
 import useGetsize from '../../hooks/useGetsize';
 import { ToolboxContainer, Menu, Wrapper } from './style';

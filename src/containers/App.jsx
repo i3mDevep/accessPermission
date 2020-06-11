@@ -8,6 +8,7 @@ import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import ScreenLoading from '../components/ScreenLoading';
+import GenerateQR from '../pages/GenerateQR';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function onAuthStateChange(callback) {
@@ -39,6 +40,7 @@ const App = ({ signIn, isAuth }) => {
                 <Route exact path='/login' component={() => (!isAuth.loggedIn ? <Login /> : <Redirect to='/dashboard' />)} />
                 <Route exact path='/register' component={() => (!isAuth.loggedIn ? <Register /> : <Redirect to='/dashboard' />)} />
                 <Route exact path='/dashboard' component={() => (isAuth.loggedIn ? <Dashboard /> : <Redirect to='/login' />)} />
+                <Route exact path='/generateqr' component={() => (isAuth.loggedIn ? <GenerateQR /> : <Redirect to='/login' />)} />
               </Switch>
             </BrowserRouter>
           )
