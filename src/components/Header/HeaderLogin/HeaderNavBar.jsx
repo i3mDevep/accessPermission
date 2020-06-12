@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { BsTerminal, BsPeopleCircle, BsCompass } from 'react-icons/bs';
-import { Navbar, Nav} from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import logo from '../../../assets/img/brand/ardobot_logo.png';
 import './HeaderNavBar.scss';
-
 
 class HeaderNavBar extends React.Component {
   render() {
@@ -18,7 +17,7 @@ class HeaderNavBar extends React.Component {
                 <img
                   alt=''
                   src={logo}
-                  className='d-inline-block align-top'
+                  className='logo'
                 />
                 {' '}
               </Navbar.Brand>

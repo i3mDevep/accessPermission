@@ -6,41 +6,29 @@
   color: white;
 }
 
-.container {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-  height: 100%;
-}
-
-.Navbar {    
-    display: flex;
+.Navbar {
     background-color: #004876 ;
-    left: 0;
-    bottom: 0;
     justify-content: center;
-    align-items: center;
-    min-height: 130px;
-
+    div,img,button {
+      margin-top: 20px;
+    }
    button > span {
       color:white !important;
-      
   }
   button:focus {
     outline: none;
     color:white !important;
 }
     div > a {
-      color:white !important;
-      padding:2px;  }
+      color:#dae1e7 !important;
+      padding:2px;
+      font-size: 15px;
+    }
   }
 
   .Navbar__brand {
     color: #ffffff;
-    margin: 0 0 0 60%;
   }
-  
   .Navbar__brand:hover {
     color: #B92454;
     text-decoration: none;
@@ -55,5 +43,8 @@
 
   .icon {
     color: white;
-
+  }
+  .logo{
+    width: 190px;
+    object-fit: cover;
   }

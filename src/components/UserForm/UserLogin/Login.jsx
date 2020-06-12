@@ -20,22 +20,16 @@ const UserLogin = ({ onSubmit, error, loading }) => {
   return (
     <Background>
       <div className='main-content'>
-        <Row className='justify-content-center'>
-          <Col  lg='5' md='6'>
-            <h1 className='text-white'>Bienvenido!</h1>
-          </Col>
-        </Row>
-        <Card style={{ width: '29rem' }}>
-          <Card.Header className='bg-transparent pb-5'>
+        <Card style={{ width: '29rem', borderRadius:'10px' }}>
+          <Card.Header className='bg-transparent '>
+            <div style={{ color: 'blue' }} className='text-center'>
+              <IoMdQrScanner size={100} />
+            </div>
             <div className='text-muted text-center mt-2 mb-3'>
               <small>Inicie sesión para acceder a la Dashboard</small>
             </div>
-            <div style={{ color: 'blue' }} className='text-center'>
-              <IoMdQrScanner size={70} />
-            </div>
           </Card.Header>
           <Card.Body>
-            <Card.Title />
             <Form disabled={loading} onSubmit={handlerSubmit}>
               <Form.Group controlId='formBasicEmail'>
                 <Form.Label>Correo Electrónico</Form.Label>

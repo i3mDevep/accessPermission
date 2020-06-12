@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
     @import '~bootstrap/scss/bootstrap.scss';
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
     *::before,
     *::after {
      box-sizing: border-box; }
@@ -22,9 +23,12 @@ const GlobalStyle = createGlobalStyle`
     ul {
         list-style: none;
     }
-    label, h1{
+    label {
       font-family: 'Noto Sans JP', sans-serif;
     }
+    h1 {
+        font-family: 'Roboto Slab', serif;
+        }
     button {
         background: transparent;
         border: 0;
