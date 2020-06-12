@@ -1,13 +1,14 @@
 import React from 'react';
 import { Form, Col, Card, Button } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
-
+import { connect } from 'react-redux';
 import { RiQrCodeLine } from 'react-icons/ri';
+import { addUser } from '../../store/actions/addUsersAction';
 import HeaderPerfil from '../HeaderPerfil';
 import { WrapperFormQr, ContainerHeader } from './style';
 import useInputValue from '../../hooks/useInputValue';
 
-const FormQr = ({ onSubmit, loading, error }) => {
+const FormQr = ({ onSubmit, loading, error, addUser, isAuth }) => {
 
   const Name = useInputValue('');
   const Lastname = useInputValue('');
@@ -20,6 +21,17 @@ const FormQr = ({ onSubmit, loading, error }) => {
   const Locale = useInputValue('');
 
   const handlerDownload = () => {
+    addUser(isAuth.email, {
+      name: Name.value,
+      lastname: Lastname.value,
+      identification: Identification.value,
+      address: Address.value,
+      celphone: Celphone.value,
+      age: parseInt(Age.value, 10),
+      gender: Gender.value,
+      email: Email.value,
+      locale: Locale.value,
+    });
     const canvas = document.getElementById('qrid');
     const pngUrl = canvas
       .toDataURL('image/png')
@@ -44,7 +56,7 @@ const FormQr = ({ onSubmit, loading, error }) => {
             <Card style={{ width: '28rem' }}>
               <Card.Body>
                 <div className='text-center '>
-                  <QRCode size='200' id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
+                  <QRCode size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
                 </div>
               </Card.Body>
               <Card.Body>
@@ -156,4 +168,16 @@ const FormQr = ({ onSubmit, loading, error }) => {
 
   );
 };
-export default FormQr;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUser: (bussines, info) => dispatch(addUser(bussines, info)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FormQr);
