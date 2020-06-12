@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Form, Button, Card, InputGroup, Row, Col } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 import { BsFillEnvelopeFill, BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
 import { Rederict, Error, Background } from '../style';
@@ -121,14 +122,19 @@ const UserRegister = ({ onSubmit, loading, error }) => {
                         {...address}
                       />
                     </Form.Group>
+                    { error ? (
+                      <Alert variant='danger'>
+                        {' '}
+                        <Alert.Heading>Ya te encuentras registrado en nuestra base de datos, inicia Sesión</Alert.Heading>
+                        {' '}
+                      </Alert>
+                    ) : ''}
+  
                     { error && <Error>{ error }</Error> }
                     <div className='text-center'>
                       <Button type='submit' disabled={loading}>Completar Registro</Button>
                     </div>
-                    <Rederict disabled={loading}>
-                      Estas registrado?
-                      <Link style={{ color: '#fff' }} to='/login'> login</Link>
-                    </Rederict>
+
                   </Form>
                 </Card.Body>
               </Card>
@@ -138,5 +144,6 @@ const UserRegister = ({ onSubmit, loading, error }) => {
       </div>
     </Background>
   );
+
 };
 export default UserRegister;

@@ -10,6 +10,7 @@ import useInputValue from '../../hooks/useInputValue';
 
 const FormQr = ({ onSubmit, loading, error, addUser, isAuth }) => {
 
+
   const Name = useInputValue('');
   const Lastname = useInputValue('');
   const Identification = useInputValue('');
