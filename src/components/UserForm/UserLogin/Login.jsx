@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Card, InputGroup, Row, Col } from 'react-bootstrap';
+import { Form, Button, InputGroup, Row, Col, Card } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
+import { CardLogin } from './style';
 
 import useInputValue from '../../../hooks/useInputValue';
 import { Background } from '../style';
@@ -20,7 +21,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
   return (
     <Background>
       <div className='main-content'>
-        <Card style={{ width: '29rem', borderRadius:'10px' }}>
+        <CardLogin>
           <Card.Header className='bg-transparent '>
             <div style={{ color: 'blue' }} className='text-center'>
               <IoMdQrScanner size={100} />
@@ -97,7 +98,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
               </div>
             </Form>
           </Card.Body>
-        </Card>
+        </CardLogin>
         <Row className='mt-3'>
           <Col xs='6'>
             <Link
