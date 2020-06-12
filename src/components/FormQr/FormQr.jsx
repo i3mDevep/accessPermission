@@ -126,7 +126,7 @@ const FormQr = ({ onSubmit, loading, error }) => {
                     required
                     {...Gender}
                     as='select'
-                    //defaultValue='Seleccione un género...'
+                  //defaultValue='Seleccione un género...'
                   >
                     <option>Seleccione un género...</option>
                     <option>Hombre</option>
