@@ -1,15 +1,14 @@
 import React from 'react';
-import { Form, Col, Card, Button } from 'react-bootstrap';
+import { Form, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 import { connect } from 'react-redux';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { addUser } from '../../store/actions/addUsersAction';
 import HeaderPerfil from '../HeaderPerfil';
-import { WrapperFormQr, ContainerHeader } from './style';
+import { WrapperFormQr, ContainerHeader, MycustomeCard } from './style';
 import useInputValue from '../../hooks/useInputValue';
 
-const FormQr = ({ onSubmit, loading, error, addUser, isAuth }) => {
-
+const FormQr = ({ loading = false, error, addUser, isAuth }) => {
 
   const Name = useInputValue('');
   const Lastname = useInputValue('');
@@ -21,7 +20,8 @@ const FormQr = ({ onSubmit, loading, error, addUser, isAuth }) => {
   const Email = useInputValue('');
   const Locale = useInputValue('');
 
-  const handlerDownload = () => {
+  const handlerOnSubmit = (e) => {
+    e.preventDefault();
     addUser(isAuth.email, {
       name: Name.value,
       lastname: Lastname.value,
@@ -33,6 +33,9 @@ const FormQr = ({ onSubmit, loading, error, addUser, isAuth }) => {
       email: Email.value,
       locale: Locale.value,
     });
+    alert('registro completado');
+  };
+  const handlerDownload = () => {
     const canvas = document.getElementById('qrid');
     const pngUrl = canvas
       .toDataURL('image/png')
@@ -51,120 +54,134 @@ const FormQr = ({ onSubmit, loading, error, addUser, isAuth }) => {
           <RiQrCodeLine />
         </HeaderPerfil>
       </ContainerHeader>
-      <Card>
-        <Card.Body>
-          <WrapperFormQr>
-            <Card style={{ width: '28rem' }}>
-              <Card.Body>
-                <div className='text-center '>
-                  <QRCode size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
-                </div>
-              </Card.Body>
-              <Card.Body>
-                <Button onClick={handlerDownload} variant='primary'>Download</Button>
-              </Card.Body>
-            </Card>
-            <Form disabled={loading} className=' p-3 m-5'>
-              <Form.Group controlId='Name'>
-                <Form.Label>Nombre</Form.Label>
-                <Form.Control
-                  placeholder='Ingrese su nombre'
-                  {...Name}
-                  required
-                />
-              </Form.Group>
+      <WrapperFormQr>
+        <Form disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
+          <Form.Group controlId='Name'>
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control
+              placeholder='Ingrese su nombre'
+              {...Name}
+              required
+              disabled={loading}
+            />
+          </Form.Group>
 
-              <Form.Group controlId='Lastname'>
-                <Form.Label>Apellido</Form.Label>
-                <Form.Control
-                  placeholder='Ingrese su apellido'
-                  {...Lastname}
-                  required
-                />
-              </Form.Group>
+          <Form.Group controlId='Lastname'>
+            <Form.Label>Apellido</Form.Label>
+            <Form.Control
+              placeholder='Ingrese su apellido'
+              {...Lastname}
+              required
+              disabled={loading}
+            />
+          </Form.Group>
 
-              <Form.Group controlId='Identification'>
-                <Form.Label>Cedula o documento de indentificación</Form.Label>
-                <Form.Control
-                  placeholder='Ingrese su Documento de Indentificación'
-                  {...Identification}
-                  required
+          <Form.Group controlId='Identification'>
+            <Form.Label>Cedula o documento de indentificación</Form.Label>
+            <Form.Control
+              placeholder='Ingrese su Documento de Indentificación'
+              {...Identification}
+              required
+              disabled={loading}
+            />
+          </Form.Group>
 
-                />
-              </Form.Group>
+          <Form.Group controlId='Address'>
+            <Form.Label>Dirección Residencia</Form.Label>
+            <Form.Control
+              placeholder='Donde vives?'
+              {...Address}
+              required
+              disabled={loading}
+            />
+          </Form.Group>
 
-              <Form.Group controlId='Address'>
-                <Form.Label>Dirección Residencia</Form.Label>
-                <Form.Control
-                  placeholder='Donde vives?'
-                  {...Address}
-                  required
-                />
-              </Form.Group>
+          <Form.Group controlId='Celphone'>
+            <Form.Label>Número Telefónico</Form.Label>
+            <Form.Control
+              type='tel'
+              placeholder='Celular'
+              {...Celphone}
+              required
+              disabled={loading}
+            />
+          </Form.Group>
 
-              <Form.Group controlId='Celphone'>
-                <Form.Label>Número Telefónico</Form.Label>
-                <Form.Control
-                  type='tel'
-                  placeholder='Celular'
-                  {...Celphone}
-                  required
-                />
-              </Form.Group>
+          <Form.Group controlId='locale'>
+            <Form.Label>Sedé o lugar de trabajo</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Cual es su lugar de trabajo?'
+              {...Locale}
+              disabled={loading}
+            />
+          </Form.Group>
 
-              <Form.Group controlId='locale'>
-                <Form.Label>Sedé o lugar de trabajo</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='Cual es su lugar de trabajo?'
-                  {...Locale}
-                />
-              </Form.Group>
+          <Form.Row>
+            <Form.Group as={Col} controlId='Age'>
+              <Form.Label>Edad</Form.Label>
+              <Form.Control
+                type='number'
+                placeholder='Cuantos años tienes?'
+                {...Age}
+                required
+                disabled={loading}
+              />
+            </Form.Group>
 
-              <Form.Row>
-                <Form.Group as={Col} controlId='Age'>
-                  <Form.Label>Edad</Form.Label>
-                  <Form.Control
-                    type='number'
-                    placeholder='Cuantos años tienes?'
-                    {...Age}
-                    required
-                  />
-                </Form.Group>
+            <Form.Group as={Col} controlId='Gender'>
+              <Form.Label>Género</Form.Label>
+              <Form.Control
+                placeholder='Gender.'
+                required
+                {...Gender}
+                as='select'
+                disabled={loading}
+                //defaultValue='Seleccione un género...'
+              >
+                <option>Seleccione un género...</option>
+                <option>Hombre</option>
+                <option>Mujer</option>
+                <option>Otro</option>
+              </Form.Control>
+            </Form.Group>
 
-                <Form.Group as={Col} controlId='Gender'>
-                  <Form.Label>Género</Form.Label>
-                  <Form.Control
-                    placeholder='Gender.'
-                    required
-                    {...Gender}
-                    as='select'
-                  //defaultValue='Seleccione un género...'
-                  >
-                    <option>Seleccione un género...</option>
-                    <option>Hombre</option>
-                    <option>Mujer</option>
-                    <option>Otro</option>
-                  </Form.Control>
-                </Form.Group>
-
-                <Form.Group as={Col} controlId='Email'>
-                  <Form.Label>Corre electrónico</Form.Label>
-                  <Form.Control
-                    required
-                    placeholder='Email'
-                    type='email'
-                    {...Email}
-                  />
-                </Form.Group>
-              </Form.Row>
-              <div className='text-center'>
-                <Button type='submit' disabled={loading}>Guardar Usuario</Button>
-              </div>
-            </Form>
-          </WrapperFormQr>
-        </Card.Body>
-      </Card>
+            <Form.Group as={Col} controlId='Email'>
+              <Form.Label>Corre electrónico</Form.Label>
+              <Form.Control
+                required
+                placeholder='Email'
+                type='email'
+                {...Email}
+                disabled={loading}
+              />
+            </Form.Group>
+          </Form.Row>
+        </Form>
+        <MycustomeCard>
+          <Card.Body className='text-center w-100'>
+            <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
+          </Card.Body>
+          <Card.Body>
+            <Card.Title>Verifica tus datos!</Card.Title>
+            <ListGroup>
+              <ListGroup.Item className='p-1 text-secondary'>{Name.value || 'Name'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Lastname.value || 'Lastname'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Identification.value || 'C.C'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Address.value || 'Address'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Celphone.value || 'Celphone'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Locale.value || 'Sede'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Age.value || 'Name'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Gender.value || 'Gender'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Email.value || 'Email'}</ListGroup.Item>
+            </ListGroup>
+          </Card.Body>
+          <Card.Body className='m-auto'>
+            <Button variant='primary' type='submit' form='CreateForm' className='mr-2'>Registrar</Button>
+            <Button variant='info' onClick={handlerDownload}>Descargar QR</Button>
+          </Card.Body>
+        </MycustomeCard>
+      </WrapperFormQr>
     </div>
 
   );
