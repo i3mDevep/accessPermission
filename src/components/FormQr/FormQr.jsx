@@ -1,12 +1,14 @@
 import React from 'react';
 import { Form, Col, Card, Button } from 'react-bootstrap';
-import QRCode from 'react-qr-code';
+import QRCode from 'qrcode.react';
+
 import { RiQrCodeLine } from 'react-icons/ri';
 import HeaderPerfil from '../HeaderPerfil';
 import { WrapperFormQr, ContainerHeader } from './style';
 import useInputValue from '../../hooks/useInputValue';
 
 const FormQr = ({ onSubmit, loading, error }) => {
+
   const Name = useInputValue('');
   const Lastname = useInputValue('');
   const Identification = useInputValue('');
@@ -17,31 +19,18 @@ const FormQr = ({ onSubmit, loading, error }) => {
   const Email = useInputValue('');
   const Locale = useInputValue('');
 
-  function downloadPNGImage(linkElement) {
-    var myDiv = document.getElementById('download-area');
-    var myImage = myDiv.children[0];
-    let downloadLink = myImage.src + "&format=png";
-    linkElement.setAttribute('download', downloadLink);
-    linkElement.href = downloadLink;
-    linkElement.click();
-}
-
-  const handlerSubmit = (e) => {
-    e.preventDefault();
-    onSubmit({
-
-      name: Name.value,
-      lastname: Lastname.value,
-      Identification: Identification.value,
-      address: Address.value,
-      telphone: Celphone.value,
-      sede: Locale.value,
-      age: Age.value,
-      gender: Gender.value,
-      email: Email.value,
-    });
+  const handlerDownload = () => {
+    const canvas = document.getElementById('qrid');
+    const pngUrl = canvas
+      .toDataURL('image/png')
+      .replace('image/png', 'image/octet-stream');
+    const downloadLink = document.createElement('a');
+    downloadLink.href = pngUrl;
+    downloadLink.download = `qR${Identification.value}.png`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
   };
-
   return (
     <div>
       <ContainerHeader>
@@ -55,14 +44,14 @@ const FormQr = ({ onSubmit, loading, error }) => {
             <Card style={{ width: '28rem' }}>
               <Card.Body>
                 <div className='text-center '>
-                  <QRCode value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
+                  <QRCode size='200' id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
                 </div>
               </Card.Body>
               <Card.Body>
-                <Button variant='primary'>Download</Button>
+                <Button onClick={handlerDownload} variant='primary'>Download</Button>
               </Card.Body>
             </Card>
-            <Form disabled={loading} onSubmit={handlerSubmit} className=' p-3 m-5'>
+            <Form disabled={loading} className=' p-3 m-5'>
               <Form.Group controlId='Name'>
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -133,12 +122,13 @@ const FormQr = ({ onSubmit, loading, error }) => {
                 <Form.Group as={Col} controlId='Gender'>
                   <Form.Label>Género</Form.Label>
                   <Form.Control
-                    placeholder='Gender'
+                    placeholder='Gender.'
                     required
                     {...Gender}
                     as='select'
-                    defaultValue='Seleccione un género...'
+                    //defaultValue='Seleccione un género...'
                   >
+                    <option>Seleccione un género...</option>
                     <option>Hombre</option>
                     <option>Mujer</option>
                     <option>Otro</option>
