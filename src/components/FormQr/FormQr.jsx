@@ -165,15 +165,15 @@ const FormQr = ({ loading = false, error, addUser, isAuth }) => {
           <Card.Body>
             <Card.Title>Verifica tus datos!</Card.Title>
             <ListGroup>
-              <ListGroup.Item className='p-1 text-secondary'>{Name.value || 'Name'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Lastname.value || 'Lastname'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Identification.value || 'C.C'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Address.value || 'Address'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Celphone.value || 'Celphone'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Name.value || 'Nombre'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Lastname.value || 'Apellido'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Identification.value || 'Documento'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Address.value || 'Dirección'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Celphone.value || 'No telefónico'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Locale.value || 'Sede'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Age.value || 'Name'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Gender.value || 'Gender'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Email.value || 'Email'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Age.value || 'Edad'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Gender.value || 'Genero'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Email.value || 'Correo Electrónico'}</ListGroup.Item>
             </ListGroup>
           </Card.Body>
           <Card.Body className='m-auto'>

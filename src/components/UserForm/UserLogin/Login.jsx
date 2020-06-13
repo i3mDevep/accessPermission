@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { Form, Button, InputGroup, Row, Col, Card } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
-import { CardLogin } from './style';
+
 
 import useInputValue from '../../../hooks/useInputValue';
-import { Background } from '../style';
+import { Background, CardLogin } from '../style';
 
 const UserLogin = ({ onSubmit, error, loading }) => {
 
@@ -21,6 +21,13 @@ const UserLogin = ({ onSubmit, error, loading }) => {
   return (
     <Background>
       <div className='main-content'>
+
+        <Row className='justify-content-center'>
+          <Col lg='5' md='6'>
+            <h1 className='text-white'>Bienvenido!</h1>
+          </Col>
+        </Row>
+
         <CardLogin>
           <Card.Header className='bg-transparent '>
             <div style={{ color: 'blue' }} className='text-center'>

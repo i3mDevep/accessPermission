@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Card } from 'react-bootstrap';
 
 export const Rederict = styled.label`
   margin-top: 5px;
@@ -23,55 +24,15 @@ export const Background = styled.div`
   align-items: center;
   position: relative;
   padding-bottom: 3rem!important;
+  padding-top: 5rem!important;
 
 `;
 
-export const Formcustom = styled.form`
- background-color:transparent;
- position: relative;
- display: flex;
- flex-direction:column;
- border-radius: 20px;
- border: 4px solid white;
- align-items: center;
- width: 80%;
- min-height: 650px;
- max-width: 350px;
- color: white;
- &[disabled]{
-    opacity: .3;
- }
-`;
-export const Input = styled.input`
-background-color:transparent;
-border: 2px solid white;
-padding: 10px;
-width: 70%;
-margin: 5px;
-border-radius: 20px;
-color: white;
-outline: none;
-&::placeholder {
-    color: white;
-}
-`;
-export const Mylogo = styled.img`
- padding: 10px;
- max-height: 300px;
- object-fit: contain;
-`;
-export const Foother = styled.label`
- position: absolute;
- bottom: 10px;
- font-size: 10px;
-`;
-export const Button = styled.button`
- background-color: #fdc317;
- margin: 20px 0 10px;
- padding: 10px;
- font-size: 15px;
- font-weight: bold;
- color: #ffff;
- width: 30%;
- border-radius: 10px;
+export const CardLogin = styled(Card)`
+  width: 27rem;
+  display:flex;
+  @media (max-width: 508px) {
+    margin-top: 40px;
+    width: 90vw;
+  }
 `;

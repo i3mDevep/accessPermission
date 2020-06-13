@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { Form, Button, Card, InputGroup, Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Form, Button, Card, InputGroup, Row, Col, Container } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import { BsFillEnvelopeFill, BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
-import { Rederict, Error, Background } from '../style';
+import { connect } from 'react-redux';
+import { prueba, Error, Background } from '../style';
 import useInputValue from '../../../hooks/useInputValue';
+import { showAlert } from '../../../store/actions/sweetAlertActions';
 
-const UserRegister = ({ onSubmit, loading, error }) => {
+const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
   const company = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
@@ -22,6 +24,8 @@ const UserRegister = ({ onSubmit, loading, error }) => {
       cellphone: chellphone.value,
       address: address.value });
   };
+
+  console.log(showAlert);
   return (
 
     <Background>
@@ -37,6 +41,7 @@ const UserRegister = ({ onSubmit, loading, error }) => {
                   </Col>
                 </Row>
               </div>
+
               <Card style={{ width: '29rem' }}>
                 <Card.Header className='bg-transparent pb-5'>
                   <div className='text-muted text-center mt-2 mb-3'>
@@ -129,7 +134,7 @@ const UserRegister = ({ onSubmit, loading, error }) => {
                         {' '}
                       </Alert>
                     ) : ''}
-  
+
                     { error && <Error>{ error }</Error> }
                     <div className='text-center'>
                       <Button type='submit' disabled={loading}>Completar Registro</Button>
@@ -137,6 +142,19 @@ const UserRegister = ({ onSubmit, loading, error }) => {
 
                   </Form>
                 </Card.Body>
+                <div className='mt-5 text-center'>
+                  <Button
+                    variant='primary'
+                    onClick={() => showAlert({
+                      type: 'success',
+                      title: 'Woot!',
+                      content: 'You have clicked the button!',
+                      showCancel: true,
+                    })}
+                  >
+                    Show an Alert
+                  </Button>
+                </div>
               </Card>
             </div>
           </Row>
@@ -146,4 +164,14 @@ const UserRegister = ({ onSubmit, loading, error }) => {
   );
 
 };
-export default UserRegister;
+
+UserRegister.propTypes = {
+  showAlert: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+
+};
+
+export default connect(mapStateToProps, showAlert)(UserRegister);
+
