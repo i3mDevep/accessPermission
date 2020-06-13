@@ -42,7 +42,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
         </Card.Header>
         <Card.Body>
           <Form disabled={loading} onSubmit={handlerSubmit}>
-            <Form.Group controlId='formGridAddress2'>
+            <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
               <Form.Control
                 placeholder='Compañia'
@@ -53,7 +53,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
                 {...company}
               />
             </Form.Group>
-            <Form.Group controlId='formBasicEmail'>
+            <Form.Group controlId='formEmail'>
               <Form.Label>Correo Electrónico</Form.Label>
               <InputGroup className='mb-3'>
                 <InputGroup.Prepend>
@@ -90,7 +90,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
                 />
               </InputGroup>
             </Form.Group>
-            <Form.Group controlId='formGridAddress2'>
+            <Form.Group controlId='formTelphone'>
               <Form.Label>Teléfono</Form.Label>
               <Form.Control
                 disabled={loading}
@@ -100,12 +100,12 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
                 {...chellphone}
               />
             </Form.Group>
-            <Form.Group controlId='formGridAddress2'>
+            <Form.Group controlId='formCity'>
               <Form.Label>Ciudad</Form.Label>
               <Form.Control placeholder='En ?' />
             </Form.Group>
 
-            <Form.Group controlId='formGridAddress2'>
+            <Form.Group controlId='formAddress'>
               <Form.Label>Dirección</Form.Label>
               <Form.Control
                 placeholder='Dirección de tu compañia'
