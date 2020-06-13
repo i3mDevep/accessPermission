@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 import { BsFillEnvelopeFill, BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
 import { connect } from 'react-redux';
-import { prueba, Error, Background } from '../style';
+import { CardResponsive, Error, Background } from '../style';
 import useInputValue from '../../../hooks/useInputValue';
 import { showAlert } from '../../../store/actions/sweetAlertActions';
 
@@ -33,16 +33,14 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
         <Col className='container'>
           <Row className='col'>
             <div>
-              <div className='header-body text-center mb-7'>
-                <Row className='justify-content-center'>
+              <div>
+                <Row className='header-body text-center mb-7'>
                   <Col lg='5' md='6'>
                     <h1 className='text-white'>Registro</h1>
-                    {'/n '}
                   </Col>
                 </Row>
               </div>
-
-              <Card style={{ width: '29rem' }}>
+              <CardResponsive>
                 <Card.Header className='bg-transparent pb-5'>
                   <div className='text-muted text-center mt-2 mb-3'>
                     <small>Completa el registro de tu empresa, una vez registrado uno de nuestros agentes te contactará</small>
@@ -155,7 +153,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
                     Show an Alert
                   </Button>
                 </div>
-              </Card>
+              </CardResponsive>
             </div>
           </Row>
         </Col>

@@ -4,9 +4,8 @@ import { Form, Button, InputGroup, Row, Col, Card } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
 
-
 import useInputValue from '../../../hooks/useInputValue';
-import { Background, CardLogin } from '../style';
+import { Background, CardResponsive } from '../style';
 
 const UserLogin = ({ onSubmit, error, loading }) => {
 
@@ -21,14 +20,14 @@ const UserLogin = ({ onSubmit, error, loading }) => {
   return (
     <Background>
       <div className='main-content'>
-
-        <Row className='justify-content-center'>
-          <Col lg='5' md='6'>
-            <h1 className='text-white'>Bienvenido!</h1>
-          </Col>
-        </Row>
-
-        <CardLogin>
+        <div>
+          <Row className='header-body text-center mb-7'>
+            <Col lg='5' md='6'>
+              <h1 className='text-white'>Bienvenido</h1>
+            </Col>
+          </Row>
+        </div>
+        <CardResponsive>
           <Card.Header className='bg-transparent '>
             <div style={{ color: 'blue' }} className='text-center'>
               <IoMdQrScanner size={100} />
@@ -105,7 +104,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
               </div>
             </Form>
           </Card.Body>
-        </CardLogin>
+        </CardResponsive>
         <Row className='mt-3'>
           <Col xs='6'>
             <Link

@@ -28,7 +28,7 @@ export const Background = styled.div`
 
 `;
 
-export const CardLogin = styled(Card)`
+export const CardResponsive = styled(Card)`
   width: 27rem;
   display:flex;
   @media (max-width: 508px) {
