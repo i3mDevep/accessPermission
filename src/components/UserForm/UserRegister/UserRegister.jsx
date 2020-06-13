@@ -33,12 +33,13 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
       <FormHeader title='Registro' />
       <CardResponsive>
         <Card.Header className='bg-transparent pb-5'>
-          <div className='text-muted text-center mt-2 mb-3'>
-            <small>Completa el registro de tu empresa, una vez registrado uno de nuestros agentes te contactará</small>
-          </div>
           <div style={{ color: 'blue' }} className='text-center'>
             <BsReverseLayoutTextSidebarReverse size={40} />
           </div>
+          <div className='text-muted text-center mt-2 mb-3'>
+            <small>Completa el registro de tu empresa, una vez realizado uno de nuestros agentes te contactará</small>
+          </div>
+
         </Card.Header>
         <Card.Body>
           <Form disabled={loading} onSubmit={handlerSubmit}>

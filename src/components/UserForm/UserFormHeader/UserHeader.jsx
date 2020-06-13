@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 const FormHeader = ({ title }) => {
 
   return (
-    <Row>
+    <Row className='m-3'>
       <Col>
         <h1 className='text-white'>{title}</h1>
       </Col>

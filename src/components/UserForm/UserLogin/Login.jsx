@@ -100,7 +100,7 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
         </Card.Body>
       </CardResponsive>
       <Row className='mt-3'>
-        <Col xs='6'>
+        <Col>
           <Link
             tag={Link}
             className='text-light'
@@ -109,7 +109,7 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
             <small>Olvido su contraseña?</small>
           </Link>
         </Col>
-        <Col className='text-right' xs='6'>
+        <Col>
           <Link
             tag={Link}
             className='text-light'
