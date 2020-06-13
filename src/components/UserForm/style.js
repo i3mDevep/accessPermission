@@ -25,6 +25,7 @@ export const Background = styled.div`
   position: relative;
   padding-bottom: 3rem!important;
   padding-top: 5rem!important;
+  flex-direction: column;
 
 `;
 
