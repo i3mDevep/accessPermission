@@ -101,7 +101,6 @@ function UsersTableRow({ users = [] }) {
   );
 }
 const mapStateProps = (state) => {
-  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
