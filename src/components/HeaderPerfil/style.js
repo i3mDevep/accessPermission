@@ -1,5 +1,18 @@
 import styled from 'styled-components'
+import { Dropdown } from 'react-bootstrap';
 
+export const CustomeDropdown = styled(Dropdown)`
+  position: relative;
+`
+export const CustomeDropdownTogle = styled(Dropdown.Toggle)`
+  position: absolute;
+  border: none;
+  width: 10px;
+  display: flex;
+  justify-content: center;
+  bottom: -10px;
+  left: 12px;
+`
 export const Title = styled.label`
   padding: 0 0 0 40px;
   color: #8888;

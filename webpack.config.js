@@ -54,4 +54,9 @@ module.exports = {
       filename: 'assets/[name].css',
     }),
   ],
+  devServer: {
+    host: '192.168.0.21',
+    port: 8081,
+  },
 };
+
