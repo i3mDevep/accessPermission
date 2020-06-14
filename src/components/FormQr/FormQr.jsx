@@ -2,10 +2,8 @@ import React from 'react';
 import { Form, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 import { connect } from 'react-redux';
-import { RiQrCodeLine } from 'react-icons/ri';
 import { addUser } from '../../store/actions/addUsersAction';
-import HeaderPerfil from '../HeaderPerfil';
-import { WrapperFormQr, ContainerHeader, MycustomeCard } from './style';
+import { WrapperFormQr, MycustomeCard, CustomeForm } from './style';
 import useInputValue from '../../hooks/useInputValue';
 
 const FormQr = ({ loading = false, error, addUser, isAuth }) => {
@@ -49,13 +47,9 @@ const FormQr = ({ loading = false, error, addUser, isAuth }) => {
   };
   return (
     <div>
-      <ContainerHeader>
-        <HeaderPerfil title='GENERATE QR'>
-          <RiQrCodeLine />
-        </HeaderPerfil>
-      </ContainerHeader>
+
       <WrapperFormQr>
-        <Form disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
+        <CustomeForm disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
           <Form.Group controlId='Name'>
             <Form.Label>Nombre</Form.Label>
             <Form.Control
@@ -157,7 +151,7 @@ const FormQr = ({ loading = false, error, addUser, isAuth }) => {
               />
             </Form.Group>
           </Form.Row>
-        </Form>
+        </CustomeForm>
         <MycustomeCard>
           <Card.Body className='text-center w-100'>
             <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />

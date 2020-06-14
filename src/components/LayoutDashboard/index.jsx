@@ -1,0 +1,35 @@
+import React, { useState, useEffect } from 'react';
+import { RiQrCodeLine } from 'react-icons/ri';
+import { MdDashboard } from 'react-icons/md';
+import Toolbox from './Toolbox/Toolbox';
+import HeaderPerfil from './HeaderPerfil';
+
+const LayoutDashboard = ({ children }) => {
+  const [icon, setIcon] = useState();
+  const [title, setTitle] = useState('');
+  const url = window.location.pathname;
+  useEffect(() => {
+    switch (url) {
+      case '/generateqr':
+        setIcon(() => <RiQrCodeLine />);
+        setTitle('GENERATE QR');
+        break;
+      default:
+        setIcon(() => <MdDashboard />);
+        setTitle('DASHBOARD');
+    }
+  }, [url], [title]);
+
+  return (
+    <div>
+      <HeaderPerfil title={title}>
+        {
+          icon
+        }
+      </HeaderPerfil>
+      <Toolbox />
+      { children }
+    </div>
+  );
+};
+export default LayoutDashboard;

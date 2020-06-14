@@ -5,15 +5,15 @@ import { RiQrCodeLine } from 'react-icons/ri';
 import { ItemToolbox } from '../ItemToolbox';
 
 const icons = [FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaDatabase, RiQrCodeLine];
-const messages = ['DASHBOARD', 'PEOPLE', 'SETUP', 'TEMPERATURE', 'DATABASE', 'GENERATEQR'];
+const messages = ['Dashboard', 'People', 'Setup', 'Temperature', 'Database', 'Generate QR'];
 const links = ['/dashboard', '', '', '', '', '/generateqr'];
 
-const ListItemsToolbox = () => {
+const ListItemsToolbox = ({ onClick }) => {
   return (
     <>
       {
         icons.map((icon, index) => (
-          <Link key={`tolb-${index}`} to={links[index]}>
+          <Link key={`tolb-${index}`} to={links[index]} onClick={onClick}>
             <ItemToolbox message={messages[index]}>
               {
                 icon()

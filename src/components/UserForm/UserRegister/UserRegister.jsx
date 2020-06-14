@@ -28,7 +28,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
       address: address.value });
   };
 
-  console.log(showAlert);
+  console.log(visibleAlert);
   return (
 
     <Background>

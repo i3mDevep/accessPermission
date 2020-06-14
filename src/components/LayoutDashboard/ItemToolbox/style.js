@@ -8,7 +8,7 @@ export const Container = styled.div`
  padding: 20px;
  width: 100%;
  & label {
-    font-size: 10px;
+    font-size: 13px;
     margin: 0 0 0 10px;
  }
  &:hover{

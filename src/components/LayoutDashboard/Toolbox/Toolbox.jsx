@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ListItemsToolbox from '../ListItemsToolbox';
 import { HeaderToolbox } from '../HeaderToolbox';
-import useGetsize from '../../hooks/useGetsize';
+import useGetsize from '../../../hooks/useGetsize';
 import { ToolboxContainer, Menu, Wrapper } from './style';
 
 const Toolbox = () => {
@@ -19,7 +19,7 @@ const Toolbox = () => {
       <Menu color={showMenu ? '#fff' : '#0a97b0'} onClick={() => setShowMenu(!showMenu)} />
       <ToolboxContainer modeCellPhone={true} show={showMenu}>
         <HeaderToolbox />
-        <ListItemsToolbox />
+        <ListItemsToolbox onClick={() => setShowMenu(false)} />
         <Wrapper />
       </ToolboxContainer>
     </div>

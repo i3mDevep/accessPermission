@@ -1,39 +1,39 @@
 import * as types from '../constants/ActionTypes';
 
-const addAlert = alert => ({
+const addAlert = (alert) => ({
   type: types.ADD_ALERT,
-  alert
+  alert,
 });
 
-const removeAlert = id => ({
+const removeAlert = (id) => ({
   type: types.REMOVE_ALERT,
-  id
+  id,
 });
 
-export const showAlert = (alertProps) => dispatch => {
-  console.log(alertProps)
+export const showAlert = (alertProps) => (dispatch) => {
+
   if (!alertProps.id) {
-    alertProps.id = '' + Date.now() + Math.random() + Math.random();
+    alertProps.id = `${Date.now()}${Math.random()}${Math.random()}`;
   }
 
   // auto-close on confirm
   if (alertProps.onConfirm) {
-    const onConfirm = alertProps.onConfirm;
+    const { onConfirm } = alertProps;
     alertProps.onConfirm = (...args) => {
       onConfirm(...args);
       closeAlert(alertProps.id)(dispatch);
-    }
+    };
   } else {
     alertProps.onConfirm = () => closeAlert(alertProps.id)(dispatch);
   }
 
   // auto-close on cancel
   if (alertProps.onCancel) {
-    const onCancel = alertProps.onCancel;
+    const { onCancel } = alertProps;
     alertProps.onCancel = (...args) => {
       onCancel(...args);
       closeAlert(alertProps.id)(dispatch);
-    }
+    };
   } else {
     alertProps.onCancel = () => closeAlert(alertProps.id)(dispatch);
   }
@@ -41,6 +41,6 @@ export const showAlert = (alertProps) => dispatch => {
   dispatch(addAlert(alertProps));
 };
 
-export const closeAlert = (id) => dispatch => {
+export const closeAlert = (id) => (dispatch) => {
   dispatch(removeAlert(id));
 };

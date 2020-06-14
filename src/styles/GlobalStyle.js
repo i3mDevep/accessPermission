@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import myFontURL from '../assets/typegraphic/Pardal-Regular.otf';
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
@@ -7,7 +8,13 @@ const GlobalStyle = createGlobalStyle`
     *::before,
     *::after {
      box-sizing: border-box; }
-
+     @font-face {
+        font-family: "Colus-Regular";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(${myFontURL}) format('truetype');
+    }
     html {
         font-family: sans-serif;
         line-height: 1.15;
@@ -23,12 +30,9 @@ const GlobalStyle = createGlobalStyle`
     ul {
         list-style: none;
     }
-    label {
-      font-family: 'Noto Sans JP', sans-serif;
+    h1,a, label {
+        font-family: 'Colus-Regular';
     }
-    h1 {
-        font-family: 'Roboto Slab', serif;
-        }
     button {
         background: transparent;
         border: 0;

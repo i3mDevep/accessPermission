@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaAlignJustify } from 'react-icons/fa';
-import { Traslation } from '../../styles/Traslation';
-import { HiddenToolbox } from '../../styles/HiddenToolbox';
+import { Traslation } from '../../../styles/Traslation';
+import { HiddenToolbox } from '../../../styles/HiddenToolbox';
 
 export const ToolboxContainer = styled.nav`
   /*background-color: #0b4779;*/
@@ -26,6 +26,7 @@ export const Menu = styled(FaAlignJustify)`
   margin: 15px;
   font-size: 25px;
   position: fixed;
+  top: 0;
   z-index: 200;
 `;
 export const Wrapper = styled.div`

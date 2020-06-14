@@ -1,6 +1,12 @@
 import styled from 'styled-components'
 import { Dropdown } from 'react-bootstrap';
 
+export const ContainerHeader = styled.div`
+  padding-left: 170px;
+  @media (max-width: 508px) {
+    padding-left: 30px;
+  }
+`
 export const CustomeDropdown = styled(Dropdown)`
   position: relative;
 `
@@ -35,4 +41,5 @@ export const Image = styled.img`
   object-fit: cover;
   height: 50px;
   width: 50px;
+  margin-right: 20px;
 `

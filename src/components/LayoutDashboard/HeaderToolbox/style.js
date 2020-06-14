@@ -9,6 +9,6 @@ export const ImageWrapper = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100px;
+  width: 120px;
   object-fit: cover;
 `;
