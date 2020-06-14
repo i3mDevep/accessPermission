@@ -6,12 +6,14 @@ import Alert from 'react-bootstrap/Alert';
 import { BsFillEnvelopeFill, BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
 import { connect } from 'react-redux';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import { CardResponsive, Error, Background } from '../style';
 import useInputValue from '../../../hooks/useInputValue';
 import { showAlert } from '../../../store/actions/sweetAlertActions';
 import FormHeader from '../UserFormHeader/UserHeader';
+import { getVisibleAlert } from '../../../store/reducers/notificationRecucers';
 
-const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
+const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => {
   const company = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
@@ -42,6 +44,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
 
         </Card.Header>
         <Card.Body>
+          {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
           <Form disabled={loading} onSubmit={handlerSubmit}>
             <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
@@ -151,12 +154,12 @@ const UserRegister = ({ onSubmit, loading, error, showAlert }) => {
 };
 
 UserRegister.propTypes = {
-  showAlert: PropTypes.func.isRequired,
+  visibleAlert: PropTypes.any,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => ({
+  visibleAlert: getVisibleAlert(state.notifications),
+});
 
-};
-
-export default connect(mapStateToProps, showAlert)(UserRegister);
+export default connect(mapStateToProps, { showAlert })(UserRegister);
 

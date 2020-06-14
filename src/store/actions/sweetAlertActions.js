@@ -11,7 +11,7 @@ const removeAlert = id => ({
 });
 
 export const showAlert = (alertProps) => dispatch => {
-
+  console.log(alertProps)
   if (!alertProps.id) {
     alertProps.id = '' + Date.now() + Math.random() + Math.random();
   }
