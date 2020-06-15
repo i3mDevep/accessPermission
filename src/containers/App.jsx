@@ -39,7 +39,7 @@ const App = ({ signIn, isAuth }) => {
               <Switch>
                 <Route exact path='/' component={() => <Redirect to='/login' />} />
                 <Route exact path='/login' component={() => (!isAuth.loggedIn ? <Login /> : <Redirect to='/dashboard' />)} />
-                <Route exact path='/register' component={() => (!isAuth.loggedIn ? <Register /> : <Redirect to='/dashboard' />)} />
+                <Route exact path='/register' component={() => (<Register />)} />
                 <LayoutDashboard>
 
                   <Route

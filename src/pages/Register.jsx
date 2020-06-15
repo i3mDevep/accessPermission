@@ -8,6 +8,7 @@ import Layout from '../components/UserForm/Layout';
 const Register = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handlerOnsubmit = ({ email, password, company, cellphone, address }) => {
     setLoading(true);
@@ -22,13 +23,19 @@ const Register = () => {
           password,
         });
         setError('');
+        setSuccess(true);
       })
-      .catch((error) => setError(error.code))
+      .catch((error) => {
+        debugger;
+        setError(error.code);
+        setSuccess(false);
+      })
       .finally(() => setLoading(false));
   };
   return (
     <Layout>
       <UserRegister
+        success={success}
         error={error}
         loading={loading}
         onSubmit={handlerOnsubmit}

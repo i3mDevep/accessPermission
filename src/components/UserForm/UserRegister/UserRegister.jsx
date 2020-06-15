@@ -13,44 +13,27 @@ import { showAlert } from '../../../store/actions/sweetAlertActions';
 import FormHeader from '../UserFormHeader/UserHeader';
 import { getVisibleAlert } from '../../../store/reducers/notificationRecucers';
 
-const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => {
+const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert, success }) => {
   const company = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
   const chellphone = useInputValue('');
   const address = useInputValue('');
-  console.log(error);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    if (error === false ) {
-      console.log(error);
-      onSubmit({ email: email.value,
-        password: password.value,
-        company: company.value,
-        cellphone: chellphone.value,
-        address: address.value });
-      showAlert({
-        type: 'success',
-        title: 'Woot!',
-        content: 'You have clicked the button!',
-        showCancel: true,
-      });
-    }
+    onSubmit({ email: email.value,
+      password: password.value,
+      company: company.value,
+      cellphone: chellphone.value,
+      address: address.value });
+
   };
 
   return (
     <Background>
       <FormHeader title='Registro' />
       <CardResponsive>
-        <Card.Header className='bg-transparent pb-5'>
-          <div style={{ color: 'blue' }} className='text-center'>
-            <BsReverseLayoutTextSidebarReverse size={40} />
-          </div>
-          <div className='text-muted text-center mt-2 mb-3'>
-            <small>Completa el registro de tu empresa, una vez realizado uno de nuestros agentes te contactará</small>
-          </div>
-        </Card.Header>
         <Card.Body>
           {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
           <Form disabled={loading} onSubmit={handlerSubmit}>
@@ -128,32 +111,26 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
             </Form.Group>
             { error === 'auth/weak-password' ? (
               <Alert variant='danger'>
-                <p>Contraseña muy corta establece una mas segura.</p>
-              </Alert>
-            ) : error === 'auth/email-already-in-use' ? (
-              <Alert variant='danger'>
-                <p> Ya te encuentras registrado</p>
+                <small>Contraseña muy corta establece una mas segura.</small>
               </Alert>
             ) : ''}
+            { error === 'auth/email-already-in-use' ? (
+              <Alert variant='danger'>
+                <small> Ya te encuentras registrado</small>
+              </Alert>
+            ) : ''}
+            { success && showAlert({
+              type: 'success',
+              title: 'Exitoso!',
+              content: 'Registro exitoso',
+              showCancel: false,
+            })}
             <div className='text-center'>
               <Button type='submit' disabled={loading}>Completar Registro</Button>
             </div>
 
           </Form>
         </Card.Body>
-        <div className='mt-5 text-center'>
-          <Button
-            variant='primary'
-            onClick={() => showAlert({
-              type: 'success',
-              title: 'Woot!',
-              content: 'You have clicked the button!',
-              showCancel: true,
-            })}
-          >
-            Show an Alert
-          </Button>
-        </div>
       </CardResponsive>
     </Background>
   );

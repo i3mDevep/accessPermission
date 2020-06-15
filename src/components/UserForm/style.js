@@ -18,21 +18,19 @@ export const Background = styled.div`
   background: linear-gradient(to bottom, #0b4779, #1b6ca8);
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-bottom: 3rem!important;
-  padding-top: 5rem!important;
+  padding-bottom: 4rem!important;
+  padding-top: 3rem!important;
   flex-direction: column;
 
 `;
 
 export const AlertCunstom = styled(Alert)`
 font-size: 30px; 
-
-
 `;
 
 export const CardResponsive = styled(Card)`
