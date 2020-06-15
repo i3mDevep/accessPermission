@@ -1,29 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Form, Button, Card, InputGroup, Row, Col, Container } from 'react-bootstrap';
+import { Form, Button, Card, InputGroup } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import { BsFillEnvelopeFill, BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
 import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { CardResponsive, Error, Background } from '../style';
+import { CardResponsive, Background } from '../style';
 import useInputValue from '../../../hooks/useInputValue';
 import { showAlert } from '../../../store/actions/sweetAlertActions';
 import FormHeader from '../UserFormHeader/UserHeader';
 import { getVisibleAlert } from '../../../store/reducers/notificationRecucers';
 
-const UserRegister = ({ onSubmit, loading, error, msg, showAlert, visibleAlert }) => {
+const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => {
   const company = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
   const chellphone = useInputValue('');
   const address = useInputValue('');
-  console.log(error.msg);
+  console.log(error);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    if (!error) {
+    if (error === false ) {
+      console.log(error);
       onSubmit({ email: email.value,
         password: password.value,
         company: company.value,
@@ -52,7 +53,7 @@ const UserRegister = ({ onSubmit, loading, error, msg, showAlert, visibleAlert }
         </Card.Header>
         <Card.Body>
           {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
-          <Form disabled={loading} error={false} onSubmit={handlerSubmit}>
+          <Form disabled={loading} onSubmit={handlerSubmit}>
             <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
               <Form.Control
@@ -127,15 +128,11 @@ const UserRegister = ({ onSubmit, loading, error, msg, showAlert, visibleAlert }
             </Form.Group>
             { error === 'auth/weak-password' ? (
               <Alert variant='danger'>
-                {' '}
-                <Alert.Heading>Contraseña muy corta establece una mas segura.</Alert.Heading>
-                {' '}
+                <p>Contraseña muy corta establece una mas segura.</p>
               </Alert>
             ) : error === 'auth/email-already-in-use' ? (
               <Alert variant='danger'>
-                {' '}
-                <Alert.Heading> Ya te encuentras registrado</Alert.Heading>
-                {' '}
+                <p> Ya te encuentras registrado</p>
               </Alert>
             ) : ''}
             <div className='text-center'>

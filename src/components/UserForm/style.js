@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card } from 'react-bootstrap';
+import { Card, Alert } from 'react-bootstrap';
 
 export const Rederict = styled.label`
   margin-top: 5px;
@@ -26,6 +26,12 @@ export const Background = styled.div`
   padding-bottom: 3rem!important;
   padding-top: 5rem!important;
   flex-direction: column;
+
+`;
+
+export const AlertCunstom = styled(Alert)`
+font-size: 30px; 
+
 
 `;
 
