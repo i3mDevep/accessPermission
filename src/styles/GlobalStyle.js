@@ -1,22 +1,22 @@
 import { createGlobalStyle } from 'styled-components';
-import myFontURL from '../assets/typegraphic/Pardal-Regular.otf';
+import myFontURL from '../assets/typegraphic/Poppins-Regular.ttf';
 
 const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
     @import '~bootstrap/scss/bootstrap.scss';
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
     *::before,
     *::after {
      box-sizing: border-box; }
      @font-face {
-        font-family: "Colus-Regular";
+        font-family: "Poppins";
         font-style: normal;
         font-weight: 300;
         font-display: swap;
         src: url(${myFontURL}) format('truetype');
     }
     html {
-        font-family: sans-serif;
+        font-family: 'Poppins';
         line-height: 1.15;
         -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
@@ -30,9 +30,15 @@ const GlobalStyle = createGlobalStyle`
     ul {
         list-style: none;
     }
-    h1,a, label {
-        font-family: 'Colus-Regular';
+
+    th, td {
+
     }
+
+    span {
+
+    }
+
     button {
         background: transparent;
         border: 0;
@@ -43,6 +49,7 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         width: 100%;
         overflow-x: hidden;
+        font-family: 'Poppins';
         overscroll-behavior: none;
         background-color:#edf4f2;
     }

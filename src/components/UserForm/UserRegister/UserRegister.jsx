@@ -41,10 +41,9 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
           <div className='text-muted text-center mt-2 mb-3'>
             <small>Completa el registro de tu empresa, una vez realizado uno de nuestros agentes te contactará</small>
           </div>
-
         </Card.Header>
         <Card.Body>
-          {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
+          {visibleAlert && <SweetAlert { ...visibleAlert }>{visibleAlert.content}</SweetAlert>}
           <Form disabled={loading} onSubmit={handlerSubmit}>
             <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
@@ -108,7 +107,6 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
               <Form.Label>Ciudad</Form.Label>
               <Form.Control placeholder='En ?' />
             </Form.Group>
-
             <Form.Group controlId='formAddress'>
               <Form.Label>Dirección</Form.Label>
               <Form.Control

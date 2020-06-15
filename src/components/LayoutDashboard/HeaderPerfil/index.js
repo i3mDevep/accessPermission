@@ -12,6 +12,7 @@ const HeaderPerfil = ({ title = 'DASHBOARD', children }) => {
     firebase.auth().signOut();
   };
   return (
+
     <ContainerHeader>
       <Header>
         <Title>
@@ -22,7 +23,7 @@ const HeaderPerfil = ({ title = 'DASHBOARD', children }) => {
           <CustomeDropdown>
             <CustomeDropdownTogle variant='info' id='dropdown-basic' />
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => logout()}>logout</Dropdown.Item>
+              <Dropdown.Item onClick={() => logout()}>Logout</Dropdown.Item>
               <Dropdown.Item>Another action</Dropdown.Item>
               <Dropdown.Item>Something else</Dropdown.Item>
             </Dropdown.Menu>
