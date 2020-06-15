@@ -13,46 +13,30 @@ import { showAlert } from '../../../store/actions/sweetAlertActions';
 import FormHeader from '../UserFormHeader/UserHeader';
 import { getVisibleAlert } from '../../../store/reducers/notificationRecucers';
 
-const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => {
+const UserRegister = ({ onSubmit, loading, error, msg, showAlert, visibleAlert }) => {
   const company = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
   const chellphone = useInputValue('');
   const address = useInputValue('');
+  console.log(error.msg);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email: email.value,
-      password: password.value,
-      company: company.value,
-      cellphone: chellphone.value,
-      address: address.value });
-    if (typeof error === 'string' && error === "auth/weak-password") {
+    if (!error) {
+      onSubmit({ email: email.value,
+        password: password.value,
+        company: company.value,
+        cellphone: chellphone.value,
+        address: address.value });
       showAlert({
         type: 'success',
-        title: 'Constaseña!',
+        title: 'Woot!',
         content: 'You have clicked the button!',
         showCancel: true,
       });
-    } else if (error === 'auth/email-already-in-use') {
-      showAlert({
-        type: 'success',
-        title: 'Email!',
-        content: 'You have clicked the button!',
-        showCancel: true,
-      });
-    } else {
-      showAlert({
-        type: 'success',
-        title: 'PORFIN!',
-        content: 'You have clicked the button!',
-        showCancel: true,
-      });
-
     }
-
   };
-
 
   return (
     <Background>
@@ -68,7 +52,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
         </Card.Header>
         <Card.Body>
           {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
-          <Form disabled={loading} onSubmit={handlerSubmit}>
+          <Form disabled={loading} error={false} onSubmit={handlerSubmit}>
             <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
               <Form.Control
@@ -141,15 +125,19 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
                 {...address}
               />
             </Form.Group>
-            { error ? (
+            { error === 'auth/weak-password' ? (
               <Alert variant='danger'>
                 {' '}
-                <Alert.Heading>Ya te encuentras registrado en nuestra base de datos, inicia Sesión</Alert.Heading>
+                <Alert.Heading>Contraseña muy corta establece una mas segura.</Alert.Heading>
+                {' '}
+              </Alert>
+            ) : error === 'auth/email-already-in-use' ? (
+              <Alert variant='danger'>
+                {' '}
+                <Alert.Heading> Ya te encuentras registrado</Alert.Heading>
                 {' '}
               </Alert>
             ) : ''}
-
-            { error && <Error>{ error }</Error> }
             <div className='text-center'>
               <Button type='submit' disabled={loading}>Completar Registro</Button>
             </div>
