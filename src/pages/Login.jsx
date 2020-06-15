@@ -18,7 +18,10 @@ const Login = () => {
   };
   return (
     <Layout>
-      <UserLogin onSubmit={onSubmit} error={error} loading={loading} />
+      <UserLogin 
+        onSubmit={onSubmit}
+        error={error}
+        loading={loading} />
     </Layout>
   );
 };

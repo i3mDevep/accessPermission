@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, InputGroup, Row, Col, Card } from 'react-bootstrap';
+import { Form, Alert, Button, InputGroup, Row, Col, Card } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
 import FormHeader from '../UserFormHeader/UserHeader';
-
 import useInputValue from '../../../hooks/useInputValue';
-import { Background, CardResponsive } from '../style';
+import { Background, CardResponsive, Error } from '../style';
 
 const UserLogin = ({ onSubmit, error, loading, title }) => {
 
   const email = useInputValue('');
   const password = useInputValue('');
 
-  const handlerSubmit = (event) => {
-    event.preventDefault();
-    onSubmit({ email: email.value, password: password.value });
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({
+      email: email.value,
+      password: password.value });
   };
 
   return (
@@ -83,6 +84,16 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
                 </label>
               </div>
             </Form.Group>
+            { error === 'auth/wrong-password' ? (
+              <Alert variant='danger'>
+                <small>Contraseña Errada</small>
+              </Alert>
+            ) : ''}
+            { error === 'auth/user-not-found' ? (
+              <Alert variant='danger'>
+                <small>Usuario no registrado</small>
+              </Alert>
+            ) : ''}
             <div className='text-center'>
               <Button
                 disabled={loading}
@@ -92,7 +103,7 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
                 Sing in
               </Button>
             </div>
-            <span {...error && <Error>{error}</Error>} />
+
             <div className='text-center'>
               <small>developed by ardobot</small>
             </div>

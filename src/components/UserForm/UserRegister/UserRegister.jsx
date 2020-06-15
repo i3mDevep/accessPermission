@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, InputGroup } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
-import { BsFillEnvelopeFill, BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
+import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
 import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
