@@ -19,6 +19,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
   const password = useInputValue('');
   const chellphone = useInputValue('');
   const address = useInputValue('');
+
   const handlerSubmit = (e) => {
     e.preventDefault();
     onSubmit({ email: email.value,
@@ -26,11 +27,34 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
       company: company.value,
       cellphone: chellphone.value,
       address: address.value });
+    if (typeof error === 'string' && error === "auth/weak-password") {
+      showAlert({
+        type: 'success',
+        title: 'Constaseña!',
+        content: 'You have clicked the button!',
+        showCancel: true,
+      });
+    } else if (error === 'auth/email-already-in-use') {
+      showAlert({
+        type: 'success',
+        title: 'Email!',
+        content: 'You have clicked the button!',
+        showCancel: true,
+      });
+    } else {
+      showAlert({
+        type: 'success',
+        title: 'PORFIN!',
+        content: 'You have clicked the button!',
+        showCancel: true,
+      });
+
+    }
+
   };
 
-  console.log(visibleAlert);
-  return (
 
+  return (
     <Background>
       <FormHeader title='Registro' />
       <CardResponsive>
@@ -43,7 +67,7 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert }) => 
           </div>
         </Card.Header>
         <Card.Body>
-          {visibleAlert && <SweetAlert { ...visibleAlert }>{visibleAlert.content}</SweetAlert>}
+          {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
           <Form disabled={loading} onSubmit={handlerSubmit}>
             <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
