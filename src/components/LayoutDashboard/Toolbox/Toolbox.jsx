@@ -6,7 +6,7 @@ import { ToolboxContainer, Menu, Wrapper } from './style';
 
 const Toolbox = () => {
 
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const [width, height] = useGetsize(window.innerWidth, window.innerHeight);
 
   return (width > 508 ? (
@@ -19,7 +19,7 @@ const Toolbox = () => {
       <Menu color={showMenu ? '#fff' : '#0a97b0'} onClick={() => setShowMenu(!showMenu)} />
       <ToolboxContainer modeCellPhone={true} show={showMenu}>
         <HeaderToolbox />
-        <ListItemsToolbox />
+        <ListItemsToolbox onClick={() => setShowMenu(false)} />
         <Wrapper />
       </ToolboxContainer>
     </div>

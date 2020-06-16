@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, InputGroup } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
@@ -9,11 +8,10 @@ import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { CardResponsive, Background } from '../style';
 import useInputValue from '../../../hooks/useInputValue';
-import { showAlert } from '../../../store/actions/sweetAlertActions';
 import FormHeader from '../UserFormHeader/UserHeader';
 import { getVisibleAlert } from '../../../store/reducers/notificationRecucers';
 
-const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert, success }) => {
+const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
   const company = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
@@ -27,7 +25,6 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert, succe
       company: company.value,
       cellphone: chellphone.value,
       address: address.value });
-
   };
 
   return (
@@ -71,7 +68,6 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert, succe
               <InputGroup className='mb-3'>
                 <InputGroup.Prepend>
                   <InputGroup.Text id='basic-addon1'>
-                    {' '}
                     <IoIosKey />
                   </InputGroup.Text>
                 </InputGroup.Prepend>
@@ -119,12 +115,6 @@ const UserRegister = ({ onSubmit, loading, error, showAlert, visibleAlert, succe
                 <small> Ya te encuentras registrado</small>
               </Alert>
             ) : ''}
-            { success && showAlert({
-              type: 'success',
-              title: 'Exitoso!',
-              content: 'Registro exitoso',
-              showCancel: false,
-            })}
             <div className='text-center'>
               <Button type='submit' disabled={loading}>Completar Registro</Button>
             </div>
@@ -145,5 +135,5 @@ const mapStateToProps = (state) => ({
   visibleAlert: getVisibleAlert(state.notifications),
 });
 
-export default connect(mapStateToProps, { showAlert })(UserRegister);
+export default connect(mapStateToProps, null)(UserRegister);
 

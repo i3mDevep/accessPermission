@@ -19,7 +19,7 @@ export const MycustomeCard = styled(Card)`
 `;
 export const WrapperFormQr = styled.div`
   display: flex;
-  padding-left: 170px;
+  padding-left: 210px;
   flex-flow:nowrap;
   justify-content: center;
   flex-direction: row;

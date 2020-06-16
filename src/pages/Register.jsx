@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { connect } from 'react-redux';
 import UserRegister from '../components/UserForm/UserRegister/UserRegister';
 import Layout from '../components/UserForm/Layout';
+import { showAlert } from '../store/actions/sweetAlertActions';
 
-const Register = () => {
+const Register = ({ showAlert }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   const handlerOnsubmit = ({ email, password, company, cellphone, address }) => {
     setLoading(true);
@@ -23,19 +24,21 @@ const Register = () => {
           password,
         });
         setError('');
-        setSuccess(true);
+        showAlert({
+          type: 'success',
+          title: 'Exitoso!',
+          content: 'Registro exitoso',
+          showCancel: false,
+        });
       })
       .catch((error) => {
-        debugger;
         setError(error.code);
-        setSuccess(false);
       })
       .finally(() => setLoading(false));
   };
   return (
     <Layout>
       <UserRegister
-        success={success}
         error={error}
         loading={loading}
         onSubmit={handlerOnsubmit}
@@ -44,7 +47,7 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default connect(null, { showAlert })(Register);
 
 //const FirebaseRef = firebase.database().ref()
 //FirebaseRef.push().set('hola desde react')
