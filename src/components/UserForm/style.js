@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { Card, Form } from 'react-bootstrap';
 
 export const ControlForm = styled(Form.Control)`
-  font-size:calc(10px + .23vw);
+  font-size:calc(9px + .23vw);
+  @media (max-width: 508px) {
+    font-size:calc(11px + .23vw);
+  }
 `;
 
 export const CardResponsive = styled(Card)`
@@ -16,5 +19,8 @@ export const CardResponsive = styled(Card)`
 `;
 
 export const ContainerForm = styled.div`
-  font-size:calc(10px + .23vw);
+  font-size:calc(9px + .23vw);
+  @media (max-width: 508px) {
+    font-size:calc(11px + .23vw);
+  }
 `;

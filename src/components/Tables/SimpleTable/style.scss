@@ -1,0 +1,25 @@
+
+.MuiPaper-root {
+    @media (max-width: 508px) {
+        & table, tr, thead, tbody, th, tr, td{
+            font-size: 10px;
+            padding: 2px;
+        }
+        &td, th {
+            max-width: 100px !important;
+        }
+      }
+
+}
+.MuiInputBase-input{
+    @media (max-width: 508px) {
+        font-size: 8px !important;
+      }
+}
+.MuiTypography-h6{
+
+    @media (max-width: 508px) {
+        font-size: 10px !important;
+        width: 100% !important;
+      }
+}

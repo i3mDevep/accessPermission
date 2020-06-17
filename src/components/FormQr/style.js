@@ -4,7 +4,7 @@ import { Card, Form } from 'react-bootstrap';
 // eslint-disable-next-line import/prefer-default-export
 
 export const CustomeForm = styled(Form)`
-
+  background-color: 'red';
 `
 export const MycustomeCard = styled(Card)`
  width: 33%;

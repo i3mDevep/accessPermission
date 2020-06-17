@@ -18,6 +18,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import './style.scss';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -61,9 +62,10 @@ function UsersTableRow({ users = [] }) {
     });
   });
   return (
-    <div style={{ maxWidth: '100%' }}>
+    <div style={{ maxWidth: '100%'}}>
       <ThemeProvider theme={theme}>
         <MaterialTable
+          id='mytable'
           icons={tableIcons}
           title='Users'
           columns={[

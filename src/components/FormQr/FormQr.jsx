@@ -47,7 +47,6 @@ const FormQr = ({ loading = false, error, addUser, isAuth }) => {
   };
   return (
     <div>
-
       <WrapperFormQr>
         <CustomeForm disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
           <Form.Group controlId='Name'>
