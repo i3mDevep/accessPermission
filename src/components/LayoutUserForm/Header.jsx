@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { BsTerminal, BsPeopleCircle, BsCompass } from 'react-icons/bs';
 import { Navbar, Nav } from 'react-bootstrap';
@@ -21,18 +21,18 @@ class HeaderNavBar extends React.Component {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <Nav.Link href='/dashboard' tag={Link}>
+              <NavLink to='/dashboard' className='mr-3'>
                 <BsTerminal />
                 Dashboard
-              </Nav.Link>
-              <Nav.Link href='/' tag={Link}>
+              </NavLink>
+              <NavLink to='/' className='mr-3'>
                 <BsPeopleCircle />
                 Login
-              </Nav.Link>
-              <Nav.Link href='/register' tag={Link}>
+              </NavLink>
+              <NavLink to='/register'>
                 <BsCompass />
                 Registro
-              </Nav.Link>
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

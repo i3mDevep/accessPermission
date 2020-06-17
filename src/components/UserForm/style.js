@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Card, Form } from 'react-bootstrap';
 
 export const ControlForm = styled(Form.Control)`
-  font-size: 13px;
+  font-size:calc(10px + .23vw);
 `;
 
 export const CardResponsive = styled(Card)`
@@ -13,4 +13,8 @@ export const CardResponsive = styled(Card)`
     margin-top: 20px;
     width: 90vw;
   }
+`;
+
+export const ContainerForm = styled.div`
+  font-size:calc(10px + .23vw);
 `;

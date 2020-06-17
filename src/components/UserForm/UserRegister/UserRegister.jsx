@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Card, InputGroup, Row, Col } from 'react-bootstrap';
+import { Form, Button, Card, InputGroup, Col } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
 import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { CardResponsive, ControlForm } from '../style';
+import { CardResponsive, ControlForm, ContainerForm } from '../style';
 import useInputValue from '../../../hooks/useInputValue';
 import { getVisibleAlert } from '../../../store/reducers/notificationRecucers';
 
@@ -27,13 +27,12 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
   };
 
   return (
-    <div
+    <ContainerForm
       className='w-100'
       style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        fontSize: '13px',
       }}
     >
       <h1 className='text-white p-1'>
@@ -145,7 +144,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
           </Form>
         </Card.Body>
       </CardResponsive>
-    </div>
+    </ContainerForm>
   );
 
 };

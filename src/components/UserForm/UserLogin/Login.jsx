@@ -4,7 +4,7 @@ import { Form, Alert, Button, InputGroup, Row, Card } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
 import useInputValue from '../../../hooks/useInputValue';
-import { CardResponsive, ControlForm } from '../style';
+import { CardResponsive, ControlForm, ContainerForm } from '../style';
 
 const UserLogin = ({ onSubmit, error, loading, title }) => {
 
@@ -19,13 +19,12 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
   };
 
   return (
-    <div
+    <ContainerForm
       className='w-100'
       style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        fontSize: '13px',
       }}
     >
       <h1 className='text-white'>
@@ -138,7 +137,7 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
           <small>Crear una cuenta</small>
         </Link>
       </Row>
-    </div>
+    </ContainerForm>
   );
 };
 export default UserLogin;
