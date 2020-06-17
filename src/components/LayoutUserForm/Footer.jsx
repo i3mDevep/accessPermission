@@ -6,7 +6,7 @@ import './Footer.scss';
 class Footer extends React.Component {
   render() {
     return (
-      <footer className='p-2 footer_home' style={{ fontSize: '13px' }}>
+      <footer className='p-2 footer_home'>
         <Container>
           <Row className='align-items-center justify-content-xl-between'>
             <Col xl='6'>
