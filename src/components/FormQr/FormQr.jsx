@@ -6,7 +6,12 @@ import { addUser } from '../../store/actions/addUsersAction';
 import { WrapperFormQr, MycustomeCard, CustomeForm } from './style';
 import useInputValue from '../../hooks/useInputValue';
 
-const FormQr = ({ loading = false, error, addUser, isAuth }) => {
+import { showAlert } from '../../store/actions/sweetAlertActions';
+import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import PropTypes from 'prop-types';
+
+const FormQr = ({ loading = false, error, addUser, isAuth, visibleAlert, showAlert }) => {
 
   const Name = useInputValue('');
   const Lastname = useInputValue('');
@@ -48,6 +53,7 @@ const FormQr = ({ loading = false, error, addUser, isAuth }) => {
   return (
     <div>
       <WrapperFormQr>
+      {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
         <CustomeForm disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
           <Form.Group controlId='Name'>
             <Form.Label>Nombre</Form.Label>
@@ -170,7 +176,14 @@ const FormQr = ({ loading = false, error, addUser, isAuth }) => {
             </ListGroup>
           </Card.Body>
           <Card.Body className='m-auto'>
-            <Button variant='primary' type='submit' form='CreateForm' className='mr-2'>Registrar</Button>
+            <Button
+                onClick= {showAlert({
+                      type: 'success',
+                      title: 'Exitoso!',
+                      content: 'Registro exitoso',
+                      showCancel: false,
+                    })}
+               variant='primary' type='submit' form='CreateForm' className='mr-2'>Registrar</Button>
             <Button variant='info' onClick={handlerDownload}>Descargar QR</Button>
           </Card.Body>
         </MycustomeCard>
@@ -179,16 +192,21 @@ const FormQr = ({ loading = false, error, addUser, isAuth }) => {
 
   );
 };
+FormQr.propTypes = {
+  visibleAlert: PropTypes.any,
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addUser: (bussines, info) => dispatch(addUser(bussines, info)),
+    showAlert:(alertProps) => dispatch(showAlert(alertProps )),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
+    visibleAlert: getVisibleAlert(state.notifications),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FormQr);

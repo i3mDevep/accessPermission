@@ -136,6 +136,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                   width: '80%',
                 }}
                 disabled={loading}
+    
               >
                 Completar Registro
               </Button>
