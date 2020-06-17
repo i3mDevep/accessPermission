@@ -2,14 +2,14 @@ import React from 'react';
 import { Form, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 import { connect } from 'react-redux';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import PropTypes from 'prop-types';
 import { addUser } from '../../store/actions/addUsersAction';
 import { WrapperFormQr, MycustomeCard, CustomeForm } from './style';
 import useInputValue from '../../hooks/useInputValue';
 
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
-import SweetAlert from 'react-bootstrap-sweetalert';
-import PropTypes from 'prop-types';
 
 const FormQr = ({ loading = false, error, addUser, isAuth, visibleAlert, showAlert }) => {
 
@@ -36,7 +36,12 @@ const FormQr = ({ loading = false, error, addUser, isAuth, visibleAlert, showAle
       email: Email.value,
       locale: Locale.value,
     });
-    alert('registro completado');
+    showAlert({
+      type: 'success',
+      title: 'Exitoso!',
+      content: 'Registro exitoso',
+      showCancel: false,
+    });
   };
   const handlerDownload = () => {
     const canvas = document.getElementById('qrid');
@@ -53,7 +58,7 @@ const FormQr = ({ loading = false, error, addUser, isAuth, visibleAlert, showAle
   return (
     <div>
       <WrapperFormQr>
-      {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
+        {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
         <CustomeForm disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
           <Form.Group controlId='Name'>
             <Form.Label>Nombre</Form.Label>
@@ -177,13 +182,14 @@ const FormQr = ({ loading = false, error, addUser, isAuth, visibleAlert, showAle
           </Card.Body>
           <Card.Body className='m-auto'>
             <Button
-                onClick= {showAlert({
-                      type: 'success',
-                      title: 'Exitoso!',
-                      content: 'Registro exitoso',
-                      showCancel: false,
-                    })}
-               variant='primary' type='submit' form='CreateForm' className='mr-2'>Registrar</Button>
+
+              variant='primary'
+              type='submit'
+              form='CreateForm'
+              className='mr-2'
+            >
+              Registrar
+            </Button>
             <Button variant='info' onClick={handlerDownload}>Descargar QR</Button>
           </Card.Body>
         </MycustomeCard>
@@ -199,7 +205,7 @@ FormQr.propTypes = {
 const mapDispatchToProps = (dispatch) => {
   return {
     addUser: (bussines, info) => dispatch(addUser(bussines, info)),
-    showAlert:(alertProps) => dispatch(showAlert(alertProps )),
+    showAlert: (alertProps) => dispatch(showAlert(alertProps)),
   };
 };
 
