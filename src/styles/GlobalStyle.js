@@ -30,7 +30,6 @@ const GlobalStyle = createGlobalStyle`
     ul {
         list-style: none;
     }
-
     th, td {
 
     }

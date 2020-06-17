@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import UserLogin from '../components/UserForm/UserLogin/Login';
-import Layout from '../components/UserForm/Layout';
+import LayoutUserForm from '../components/LayoutUserForm';
 
 const Login = () => {
   const [error, setError] = useState('');
@@ -17,12 +17,13 @@ const Login = () => {
       .finally(() => setLoading(false));
   };
   return (
-    <Layout>
-      <UserLogin 
+    <LayoutUserForm>
+      <UserLogin
         onSubmit={onSubmit}
         error={error}
-        loading={loading} />
-    </Layout>
+        loading={loading}
+      />
+    </LayoutUserForm>
   );
 };
 

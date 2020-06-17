@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Alert, Button, InputGroup, Row, Col, Card } from 'react-bootstrap';
+import { Form, Alert, Button, InputGroup, Row, Card } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
-import FormHeader from '../UserFormHeader/UserHeader';
 import useInputValue from '../../../hooks/useInputValue';
-import { Background, CardResponsive, Error } from '../style';
+import { CardResponsive, ControlForm } from '../style';
 
 const UserLogin = ({ onSubmit, error, loading, title }) => {
 
@@ -20,14 +19,24 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
   };
 
   return (
-    <Background>
-      <FormHeader title='Bienvenidos' />
+    <div
+      className='w-100'
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        fontSize: '13px',
+      }}
+    >
+      <h1 className='text-white'>
+        <small>Bienvenidos</small>
+      </h1>
       <CardResponsive>
         <Card.Header className='bg-transparent '>
           <div style={{ color: 'blue' }} className='text-center'>
-            <IoMdQrScanner size={100} />
+            <IoMdQrScanner size={70} />
           </div>
-          <div className='text-muted text-center mt-2 mb-3'>
+          <div className='text-muted text-center mt-1 mb-1'>
             <small>Inicie sesión para acceder a la Dashboard</small>
           </div>
         </Card.Header>
@@ -38,11 +47,10 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
               <InputGroup className='mb-3'>
                 <InputGroup.Prepend>
                   <InputGroup.Text id='basic-addon1'>
-                    {' '}
                     <BsFillEnvelopeFill />
                   </InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control
+                <ControlForm
                   disabled={loading}
                   required={true}
                   type='email'
@@ -60,7 +68,7 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
                     <IoIosKey />
                   </InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control
+                <ControlForm
                   disabled={loading}
                   type='password'
                   required={true}
@@ -99,6 +107,10 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
                 disabled={loading}
                 variant='primary'
                 type='submit'
+                style={{
+                  borderRadius: '20px',
+                  width: '80%',
+                }}
               >
                 Sing in
               </Button>
@@ -110,27 +122,23 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
           </Form>
         </Card.Body>
       </CardResponsive>
-      <Row className='mt-3'>
-        <Col>
-          <Link
-            tag={Link}
-            className='text-light'
-            to='www.ardobot.co'
-          >
-            <small>Olvido su contraseña?</small>
-          </Link>
-        </Col>
-        <Col>
-          <Link
-            tag={Link}
-            className='text-light'
-            to='/register'
-          >
-            <small>Crear una cuenta</small>
-          </Link>
-        </Col>
+      <Row className='p-3'>
+        <a
+          tag={Link}
+          className='text-light mr-3'
+          to='www.ardobot.co'
+        >
+          <small>Olvido su contraseña?</small>
+        </a>
+        <Link
+          tag={Link}
+          className='text-light ml-3'
+          to='/register'
+        >
+          <small>Crear una cuenta</small>
+        </Link>
       </Row>
-    </Background>
+    </div>
   );
 };
 export default UserLogin;

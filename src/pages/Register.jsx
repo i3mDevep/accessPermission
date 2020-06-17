@@ -4,7 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { connect } from 'react-redux';
 import UserRegister from '../components/UserForm/UserRegister/UserRegister';
-import Layout from '../components/UserForm/Layout';
+import LayoutUserForm from '../components/LayoutUserForm';
 import { showAlert } from '../store/actions/sweetAlertActions';
 
 const Register = ({ showAlert }) => {
@@ -37,13 +37,13 @@ const Register = ({ showAlert }) => {
       .finally(() => setLoading(false));
   };
   return (
-    <Layout>
+    <LayoutUserForm>
       <UserRegister
         error={error}
         loading={loading}
         onSubmit={handlerOnsubmit}
       />
-    </Layout>
+    </LayoutUserForm>
   );
 };
 
