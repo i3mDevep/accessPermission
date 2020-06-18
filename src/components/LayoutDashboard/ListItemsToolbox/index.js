@@ -5,7 +5,7 @@ import { RiQrCodeLine } from 'react-icons/ri';
 import { ItemToolbox } from '../ItemToolbox';
 
 const icons = [FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaDatabase, RiQrCodeLine];
-const messages = ['Dashboard', 'People', 'Setup', 'Temperature', 'Database', 'Generate QR'];
+const messages = ['Dashboard', 'Empleados', 'Clientes', 'Informes', 'Alertas', 'Generador QR'];
 const links = ['/dashboard', '', '', '', '', '/generateqr'];
 
 const ListItemsToolbox = ({ onClick }) => {
