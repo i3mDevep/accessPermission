@@ -21,26 +21,26 @@ const CardInfo = ({ inforcards }) => {
       </Row>
     );
   }
-  const { totalUsers, totalMen, totalWomen, totalChildren, totalTracking } = inforcards;
+  const { Users, Men, Women, Children, Tracking } = inforcards;
   return (
 
     <CardDeck>
-      <Target title='Users' value={totalUsers.value} text={moment(totalUsers.time.toDate().toISOString()).calendar()}>
+      <Target title='Users' value={Users.value} text={moment(Users.time.toDate().toISOString()).calendar()}>
         <FiUsers size='30px' />
       </Target>
-      <Target title='Women' value={totalWomen.value} porcentage='3.48%' text={moment(totalWomen.time.toDate().toISOString()).calendar()} typetext='text-danger'>
+      <Target title='Women' value={Women.value} porcentage='3.48%' text={moment(Women.time.toDate().toISOString()).calendar()} typetext='text-danger'>
         <AiOutlineWoman size='30px' />
       </Target>
-      <Target title='Men' value={totalMen.value} porcentage='1.10%' text={moment(totalMen.time.toDate().toISOString()).calendar()} typetext='text-warning'>
+      <Target title='Men' value={Men.value} porcentage='1.10%' text={moment(Men.time.toDate().toISOString()).calendar()} typetext='text-warning'>
         <AiOutlineMan size='30px' />
       </Target>
-      <Target title='Children' value={totalChildren.value} porcentage='12%' text={moment(totalChildren.time.toDate().toISOString()).calendar()} typetext='text-info'>
+      <Target title='Children' value={Children.value} porcentage='12%' text={moment(Children.time.toDate().toISOString()).calendar()} typetext='text-info'>
         <IoMdHappy size='30px' />
       </Target>
-      <Target title='Entries' value={totalTracking.input} porcentage='12%' text='00:00' typetext='text-info'>
+      <Target title='Entries' value={Tracking.input} porcentage='12%' text='00:00' typetext='text-info'>
         <GiEntryDoor size='30px' />
       </Target>
-      <Target title='Exits' value={totalTracking.output} porcentage='12%' text='00:00' typetext='text-info'>
+      <Target title='Exits' value={Tracking.output} porcentage='12%' text='00:00' typetext='text-info'>
         <IoMdExit size='30px' />
       </Target>
     </CardDeck>
@@ -50,7 +50,7 @@ const CardInfo = ({ inforcards }) => {
 
 const mapToProps = (state) => {
   return {
-    inforcards: state.firestore.data.total,
+    inforcards: state.firestore.data.totals,
     isAuth: state.auth.isAuth,
   };
 };

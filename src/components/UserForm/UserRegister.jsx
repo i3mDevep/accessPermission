@@ -6,9 +6,9 @@ import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey } from 'react-icons/io';
 import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { CardResponsive, ControlForm, ContainerForm } from '../style';
-import useInputValue from '../../../hooks/useInputValue';
-import { getVisibleAlert } from '../../../store/reducers/notificationRecucers';
+import { CardResponsive, ControlForm, ContainerForm } from './style';
+import useInputValue from '../../hooks/useInputValue';
+import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 
 const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
   const company = useInputValue('');
@@ -16,14 +16,17 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
   const password = useInputValue('');
   const chellphone = useInputValue('');
   const address = useInputValue('');
+  const city = useInputValue('');
 
   const handlerSubmit = (e) => {
     e.preventDefault();
     onSubmit({ email: email.value,
       password: password.value,
       company: company.value,
-      cellphone: chellphone.value,
-      address: address.value });
+      celphone: chellphone.value,
+      address: address.value,
+      city: city.value,
+    });
   };
 
   return (
@@ -40,7 +43,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
       </h1>
       <CardResponsive>
         <Card.Body>
-          {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
+          {visibleAlert && <SweetAlert timeout={3000} style={{ width: '300px', fontSize: '13px' }} {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
           <Form disabled={loading} onSubmit={handlerSubmit}>
             <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
@@ -104,7 +107,13 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
               <Col>
                 <Form.Group controlId='formCity'>
                   <Form.Label>Ciudad</Form.Label>
-                  <ControlForm placeholder='Tu ciudad actual' />
+                  <ControlForm
+                    placeholder='Tu ciudad actual'
+                    disabled={loading}
+                    type='text'
+                    required={true}
+                    {...city}
+                  />
                 </Form.Group>
               </Col>
             </Form.Row>
@@ -118,16 +127,11 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 {...address}
               />
             </Form.Group>
-            { error === 'auth/weak-password' ? (
+            { error && (
               <Alert variant='danger'>
-                <small>Contraseña muy corta establece una mas segura.</small>
+                <small>{error}</small>
               </Alert>
-            ) : ''}
-            { error === 'auth/email-already-in-use' ? (
-              <Alert variant='danger'>
-                <small> Ya te encuentras registrado</small>
-              </Alert>
-            ) : ''}
+            )}
             <div className='text-center'>
               <Button
                 type='submit'
@@ -136,7 +140,6 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                   width: '80%',
                 }}
                 disabled={loading}
-    
               >
                 Completar Registro
               </Button>

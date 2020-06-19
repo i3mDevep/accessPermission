@@ -18,18 +18,18 @@ export default compose(
   connect(mapStateProps, null),
   firestoreConnect((props) => {
     return [
-      { collection: 'business_collection',
-        doc: props.isAuth.email,
+      { collection: 'business',
+        doc: props.isAuth.uid,
         subcollections: [
           {
-            collection: 'data',
-            doc: 'total',
+            collection: 'resum',
+            doc: 'totals',
           },
         ],
-        storeAs: 'total',
+        storeAs: 'totals',
       },
-      { collection: 'business_collection',
-        doc: props.isAuth.email,
+      { collection: 'business',
+        doc: props.isAuth.uid,
         subcollections: [
           {
             collection: 'users',

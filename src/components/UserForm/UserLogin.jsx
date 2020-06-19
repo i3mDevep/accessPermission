@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { Form, Alert, Button, InputGroup, Row, Card } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { IoIosKey, IoMdQrScanner } from 'react-icons/io';
-import useInputValue from '../../../hooks/useInputValue';
-import { CardResponsive, ControlForm, ContainerForm } from '../style';
+import useInputValue from '../../hooks/useInputValue';
+import { CardResponsive, ControlForm, ContainerForm } from './style';
 
-const UserLogin = ({ onSubmit, error, loading, title }) => {
+const UserLogin = ({ onSubmit, error, loading }) => {
 
   const email = useInputValue('');
   const password = useInputValue('');
@@ -63,7 +63,6 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
               <InputGroup className='mb-3'>
                 <InputGroup.Prepend>
                   <InputGroup.Text id='basic-addon1'>
-                    {' '}
                     <IoIosKey />
                   </InputGroup.Text>
                 </InputGroup.Prepend>
@@ -91,16 +90,16 @@ const UserLogin = ({ onSubmit, error, loading, title }) => {
                 </label>
               </div>
             </Form.Group>
-            { error === 'auth/wrong-password' ? (
+            { error === 'auth/wrong-password' && (
               <Alert variant='danger'>
                 <small>Contraseña Errada</small>
               </Alert>
-            ) : ''}
-            { error === 'auth/user-not-found' ? (
+            )}
+            { error === 'auth/user-not-found' && (
               <Alert variant='danger'>
                 <small>Usuario no registrado</small>
               </Alert>
-            ) : ''}
+            )}
             <div className='text-center'>
               <Button
                 disabled={loading}
