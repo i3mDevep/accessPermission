@@ -14,10 +14,11 @@ const LoginContainer = () => {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         setError('');
-        console.log('loginresult');
-        console.log(result);
       })
-      .catch((error) => setError(error.code))
+      .catch((error) => {
+        console.error(error);
+        setError(error.code);
+      })
       .finally(() => setLoading(false));
   };
   return (

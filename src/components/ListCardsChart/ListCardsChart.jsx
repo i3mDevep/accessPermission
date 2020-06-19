@@ -5,9 +5,9 @@ import CardChart from '../CardChart/CardChart';
 
 import { MyChartBar, MyChartRadar, MyChartMix } from '../Charts/Charts';
 
-const ListCardsChart = ({ total }) => {
+const ListCardsChart = ({ totals }) => {
 
-  if (!total) {
+  if (!totals) {
     return (
       <Row>
         <CardChart />
@@ -16,12 +16,12 @@ const ListCardsChart = ({ total }) => {
       </Row>
     );
   }
-  const { totalMen, totalWomen } = total;
+  const { Men, Women } = totals;
   const dataChartRadar = {
     labels: ['Men', 'Women'],
     datasets: [
       {
-        data: [totalMen.value, totalWomen.value],
+        data: [Men.value, Women.value],
         backgroundColor: ['#f40552', '#ffd31d'],
         hoverBackgroundColor: ['#f40552', '#ffd31d'],
       },
@@ -44,7 +44,7 @@ const ListCardsChart = ({ total }) => {
 
 const mapToProps = (state) => {
   return {
-    total: state.firestore.data.total,
+    totals: state.firestore.data.totals,
     isAuth: state.auth.isAuth,
   };
 };

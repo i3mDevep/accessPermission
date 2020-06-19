@@ -36,7 +36,6 @@ const RegisterContainer = ({ showAlert }) => {
           showCancel: false,
         });
       }
-      console.log(res);
     } catch (error) {
       console.error(error);
     } finally {
