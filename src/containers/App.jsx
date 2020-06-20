@@ -37,6 +37,7 @@ const LoggedInRoutesWithbusiness = [
 ];
 const LoggedInRoutesWithOutbusiness = [
   <Route path='/dashboardsedes' component={SedesPage} />,
+  <Route path='/' component={() => <Redirect to='/login' />} />,
   <Route path='/login' component={() => <Redirect to='/dashboardsedes' />} />,
   <Route path='/register' component={() => <Redirect to='/dashboardsedes' />} />,
   <Route path='/generateqr' component={() => <Redirect to='/dashboardsedes' />} />,
@@ -48,9 +49,9 @@ const LoggedOut = [
   <Route path='/login' component={Login} />,
   <Route path='/' component={() => <Redirect to='/login' />} />,
   <Route path='/dashboard' component={() => <Redirect to='/login' />} />,
-  <Route path='/dashboardsedes' component={<Route path='/login' component={Login} />} />,
-  <Route path='/generateqr' component={<Route path='/login' component={Login} />} />,
-  <Route path='/sedes' component={<Route path='/login' component={Login} />} />,
+  <Route path='/dashboardsedes' component={Login} />,
+  <Route path='/generateqr' component={Login} />,
+  <Route path='/sedes' component={Login} />,
 ];
 const App = ({ signIn, isAuth }) => {
   useEffect(() => {
