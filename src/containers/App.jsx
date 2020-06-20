@@ -15,13 +15,14 @@ import LayoutDashboard from '../components/LayoutDashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/functions';
 
 const onAuthStateChange = (callback) => {
   return firebase.auth().onAuthStateChanged(async (user) => {
     try {
       const idTokenResult = await user.getIdTokenResult();
       console.log(idTokenResult);
-      callback({ loggedIn: true, uid: user.uid, update: false, businness: idTokenResult.claims.business });
+      callback({ loggedIn: true, displayName: user.displayName, uid: user.uid, update: false, businness: idTokenResult.claims.business });
     } catch (error) {
       callback({ loggedIn: false, update: false, uid: '' });
     }
@@ -37,7 +38,7 @@ const LoggedInRoutesWithbusiness = [
 ];
 const LoggedInRoutesWithOutbusiness = [
   <Route path='/dashboardsedes' component={SedesPage} />,
-  <Route path='/' component={() => <Redirect to='/login' />} />,
+  <Route path='/' component={() => <Redirect to='/dashboardsedes' />} />,
   <Route path='/login' component={() => <Redirect to='/dashboardsedes' />} />,
   <Route path='/register' component={() => <Redirect to='/dashboardsedes' />} />,
   <Route path='/generateqr' component={() => <Redirect to='/dashboardsedes' />} />,

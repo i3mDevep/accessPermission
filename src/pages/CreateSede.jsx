@@ -1,17 +1,13 @@
 import React from 'react';
 import * as firebase from 'firebase/app';
+import { connect } from 'react-redux';
 import { Card, Container, Row, Button, Modal, Form } from 'react-bootstrap';
 import { IoIosAdd } from 'react-icons/io';
 
 function MyVerticallyCenteredModal(props) {
   const handlerOnSubmit = (e) => {
     e.preventDefault();
-    firebase.auth()
-      .createUserWithEmailAndPassword('prueba@gmail.com', 'camilofeo9')
-      .then((result) => {
-        alert('puto');
-      })
-      .catch((error) => console.error(error));
+
   };
   return (
     <Modal
@@ -53,9 +49,21 @@ function MyVerticallyCenteredModal(props) {
     </Modal>
   );
 }
-const CreateSede = () => {
+const CreateSede = ({ isAuth }) => {
   const [modalShow, setModalShow] = React.useState(false);
-
+  const handlerAddSedes = () => {
+    alert('create subcompany');
+    const dataSubCompany = {
+      company: isAuth.uid,
+      content: {
+        name: 'subempresa', email: `emaildesaad@${isAuth.displayName.trim()}.com`, password: 'camilofeo9',
+      },
+    };
+    const createSubCompany = firebase.functions().httpsCallable('createSubCompany');
+    createSubCompany(dataSubCompany)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
   return (
     <Container style={{ paddingLeft: '200px' }}>
       <Row>
@@ -68,7 +76,7 @@ const CreateSede = () => {
               Crear nueva sede
             </Card.Title>
 
-            <Button style={{ padding: '3px' }}><IoIosAdd size='30' /></Button>
+            <Button onClick={handlerAddSedes} style={{ padding: '3px' }}><IoIosAdd size='30' /></Button>
           </Card.Body>
         </Card>
         {
@@ -115,4 +123,9 @@ const CreateSede = () => {
     </Container>
   );
 };
-export default CreateSede;
+const mapStateProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth,
+  };
+};
+export default connect(mapStateProps, null)(CreateSede);
