@@ -3,52 +3,9 @@ import * as firebase from 'firebase/app';
 import { connect } from 'react-redux';
 import { Card, Container, Row, Button, Modal, Form } from 'react-bootstrap';
 import { IoIosAdd } from 'react-icons/io';
+import PoindOfSale from '../components/PoinOfSale/PoinofSale';
 
-function MyVerticallyCenteredModal(props) {
-  const handlerOnSubmit = (e) => {
-    e.preventDefault();
 
-  };
-  return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id='contained-modal-title-vcenter'>
-          Crear Nueva Sede
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handlerOnSubmit}>
-          <Form.Group controlId='formBasicEmail'>
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type='email' placeholder='Enter email' />
-            <Form.Text className='text-muted'>
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId='formBasicPassword'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control type='password' placeholder='Password' />
-          </Form.Group>
-          <Form.Group controlId='formBasicCheckbox'>
-            <Form.Check type='checkbox' label='Check me out' />
-          </Form.Group>
-          <Button variant='primary' type='submit'>
-            Submit
-          </Button>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
 const CreateSede = ({ isAuth }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const handlerAddSedes = () => {
@@ -115,7 +72,7 @@ const CreateSede = ({ isAuth }) => {
           Launch vertically centered modal
         </Button>
 
-        <MyVerticallyCenteredModal
+        <PoindOfSale
           show={modalShow}
           onHide={() => setModalShow(false)}
         />
@@ -123,6 +80,7 @@ const CreateSede = ({ isAuth }) => {
     </Container>
   );
 };
+
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
