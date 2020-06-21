@@ -4,13 +4,13 @@ import firebase from 'firebase/app';
 import { connect } from 'react-redux';
 import { signIn } from '../store/actions/authActions';
 import GlobalStyle from '../styles/GlobalStyle';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/company/Dashboard';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import ScreenLoading from '../components/ScreenLoading';
-import GenerateQR from '../pages/GenerateQR';
-import CreateSede from '../pages/CreateSede';
-import SedesPage from '../pages/SedesPage';
+import GenerateQR from '../pages/company/GenerateQR';
+import CreateSede from '../pages/company/CreateSede';
+import SedesPage from '../pages/subcompany/SedesPage';
 import LayoutDashboard from '../components/LayoutDashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
@@ -29,30 +29,32 @@ const onAuthStateChange = (callback) => {
   });
 };
 const LoggedInRoutesWithbusiness = [
-  <Route path='/register' component={() => <Redirect to='/dashboard' />} />,
-  <Route path='/' component={() => <Redirect to='/dashboard' />} />,
-  <Route path='/dashboard' component={Dashboard} />,
-  <Route path='/dashboardsedes' component={() => <Redirect to='/dashboard' />} />,
-  <Route path='/generateqr' component={GenerateQR} />,
-  <Route path='/sedes' component={CreateSede} />,
+  <Route path='/register' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route path='/login' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route path='/' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route path='/dashboard' exact={true} component={Dashboard} />,
+  <Route path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route path='/generateqr' exact={true} component={GenerateQR} />,
+  <Route path='/sedes' exact={true} component={CreateSede} />,
 ];
 const LoggedInRoutesWithOutbusiness = [
-  <Route path='/dashboardsedes' component={SedesPage} />,
-  <Route path='/' component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/login' component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/register' component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/generateqr' component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/dashboard' component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/sedes' component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route path='/dashboardsedes' exact={true} component={SedesPage} />,
+  <Route path='/' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route path='/login' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route path='/register' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route path='/generateqr' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route path='/dashboard' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route path='/sedes' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
 ];
 const LoggedOut = [
-  <Route path='/register' component={Register} />,
-  <Route path='/login' component={Login} />,
-  <Route path='/' component={() => <Redirect to='/login' />} />,
-  <Route path='/dashboard' component={() => <Redirect to='/login' />} />,
-  <Route path='/dashboardsedes' component={Login} />,
-  <Route path='/generateqr' component={Login} />,
-  <Route path='/sedes' component={Login} />,
+  <Route path='/register' exact={true} component={Register} />,
+  <Route path='/login' exact={true} component={Login} />,
+  <Route path='/' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route path='/dashboard' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route path='/dashboardsedes' exact={true} component={Login} />,
+  <Route path='/generateqr' exact={true} component={Login} />,
+  <Route path='/sedes' exact={true} component={Login} />,
+  <Route path='*' exact={true} component={() => <Redirect to='/login' />} />,
 ];
 const App = ({ signIn, isAuth }) => {
   useEffect(() => {

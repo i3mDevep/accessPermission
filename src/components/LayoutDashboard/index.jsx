@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { MdDashboard } from 'react-icons/md';
+import { Container } from 'react-bootstrap';
 import Toolbox from './Toolbox/Toolbox';
 import HeaderPerfil from './HeaderPerfil';
+import { Responsive } from './responsive';
 
 const LayoutDashboard = ({ children }) => {
   const [icon, setIcon] = useState();
@@ -21,15 +23,19 @@ const LayoutDashboard = ({ children }) => {
   }, [url], [title]);
 
   return (
-    <div>
-      <HeaderPerfil title={title}>
-        {
-          icon
-        }
-      </HeaderPerfil>
+    <>
       <Toolbox />
-      { children }
-    </div>
+      <Responsive>
+        <HeaderPerfil title={title}>
+          {
+            icon
+          }
+        </HeaderPerfil>
+        <Container fluid>
+          { children }
+        </Container>
+      </Responsive>
+    </>
   );
 };
 export default LayoutDashboard;

@@ -11,8 +11,8 @@ export const ToolboxContainer = styled.nav`
   background-size: cover;
   object-fit: cover;
   height: 100vh;
-  max-width: 200px;
-  padding: 20px;
+  min-width: 200px;
+  width: 14vw;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
@@ -33,7 +33,7 @@ export const Wrapper = styled.div`
  background:rgba(0,0,0,.3);
  position: absolute;
  top: 0;
- margin-left: 158px;
+ margin-left: 200px;
  height:100vh;
  width: 500px;
 `;

@@ -11,19 +11,21 @@ const links = ['/dashboard', '', '', '', '', '/generateqr', '/sedes'];
 
 const ListItemsToolbox = ({ onClick }) => {
   return (
-    <>
-      {
-        icons.map((icon, index) => (
-          <Link key={`tolb-${index}`} to={links[index]} onClick={onClick}>
-            <ItemToolbox message={messages[index]}>
-              {
-                icon()
-              }
-            </ItemToolbox>
-          </Link>
-        ))
-      }
-    </>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ display: 'inline-block' }}>
+        {
+          icons.map((icon, index) => (
+            <Link key={`tolb-${index}`} to={links[index]} onClick={onClick}>
+              <ItemToolbox message={messages[index]}>
+                {
+                  icon()
+                }
+              </ItemToolbox>
+            </Link>
+          ))
+        }
+      </div>
+    </div>
   );
 };
 export default ListItemsToolbox;

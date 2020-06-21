@@ -2,7 +2,7 @@ import React from 'react';
 import { MdDashboard } from 'react-icons/md';
 import firebase from 'firebase/app';
 import { Dropdown, Row } from 'react-bootstrap';
-import { Header, Image, Title, CustomeDropdownTogle, CustomeDropdown, ContainerHeader } from './style';
+import { Header, Image, Title, CustomeDropdownTogle, CustomeDropdown } from './style';
 
 const DEFAULT_IMAGE =
   'https://cdn2.iconfinder.com/data/icons/scenarium-vol-4/128/015_avatar_astronaut_space_gagarin_cosmonaut_discover_cosmos-512.png';
@@ -12,8 +12,7 @@ const HeaderPerfil = ({ title = 'DASHBOARD', children }) => {
     firebase.auth().signOut();
   };
   return (
-
-    <ContainerHeader>
+    <>
       <Header>
         <Title>
           {children || <MdDashboard />}
@@ -29,12 +28,10 @@ const HeaderPerfil = ({ title = 'DASHBOARD', children }) => {
             </Dropdown.Menu>
           </CustomeDropdown>
           <Image src={DEFAULT_IMAGE} />
-
         </Row>
-
       </Header>
       <hr />
-    </ContainerHeader>
+    </>
   );
 };
 export default HeaderPerfil;

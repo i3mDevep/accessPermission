@@ -1,11 +1,10 @@
 import React from 'react';
-import { Form, Col, Card, Button, ListGroup } from 'react-bootstrap';
+import { Form, Col, Card, Button, ListGroup, Row, Container } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import PropTypes from 'prop-types';
 import { addUser } from '../../store/actions/addUsersAction';
-import { WrapperFormQr, MycustomeCard, CustomeForm } from './style';
 import useInputValue from '../../hooks/useInputValue';
 
 import { showAlert } from '../../store/actions/sweetAlertActions';
@@ -56,113 +55,115 @@ const FormQr = ({ loading = false, error, addUser, isAuth, visibleAlert, showAle
     document.body.removeChild(downloadLink);
   };
   return (
-    <div>
-      <WrapperFormQr>
+    <Container fluid>
+      <Row>
         {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
-        <CustomeForm disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
-          <Form.Group controlId='Name'>
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control
-              placeholder='Ingrese su nombre'
-              {...Name}
-              required
-              disabled={loading}
-            />
-          </Form.Group>
-
-          <Form.Group controlId='Lastname'>
-            <Form.Label>Apellido</Form.Label>
-            <Form.Control
-              placeholder='Ingrese su apellido'
-              {...Lastname}
-              required
-              disabled={loading}
-            />
-          </Form.Group>
-
-          <Form.Group controlId='Identification'>
-            <Form.Label>Cedula o documento de indentificación</Form.Label>
-            <Form.Control
-              placeholder='Ingrese su Documento de Indentificación'
-              {...Identification}
-              required
-              disabled={loading}
-            />
-          </Form.Group>
-
-          <Form.Group controlId='Address'>
-            <Form.Label>Dirección Residencia</Form.Label>
-            <Form.Control
-              placeholder='Donde vives?'
-              {...Address}
-              required
-              disabled={loading}
-            />
-          </Form.Group>
-
-          <Form.Group controlId='Celphone'>
-            <Form.Label>Número Telefónico</Form.Label>
-            <Form.Control
-              type='tel'
-              placeholder='Celular'
-              {...Celphone}
-              required
-              disabled={loading}
-            />
-          </Form.Group>
-
-          <Form.Group controlId='locale'>
-            <Form.Label>Sedé o lugar de trabajo</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Cual es su lugar de trabajo?'
-              {...Locale}
-              disabled={loading}
-            />
-          </Form.Group>
-
-          <Form.Row>
-            <Form.Group as={Col} controlId='Age'>
-              <Form.Label>Edad</Form.Label>
+        <Col xs={12} sm={5} md={7} style={{backgroundColor:'white', padding:'25px'}}>
+          <Form disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
+            <Form.Group controlId='Name'>
+              <Form.Label>Nombre</Form.Label>
               <Form.Control
-                type='number'
-                placeholder='Cuantos años tienes?'
-                {...Age}
+                placeholder='Ingrese su nombre'
+                {...Name}
                 required
                 disabled={loading}
               />
             </Form.Group>
 
-            <Form.Group as={Col} controlId='Gender'>
-              <Form.Label>Género</Form.Label>
+            <Form.Group controlId='Lastname'>
+              <Form.Label>Apellido</Form.Label>
               <Form.Control
-                placeholder='Gender.'
+                placeholder='Ingrese su apellido'
+                {...Lastname}
                 required
-                {...Gender}
-                as='select'
-                disabled={loading}
-                //defaultValue='Seleccione un género...'
-              >
-                <option>Seleccione un género...</option>
-                <option>Hombre</option>
-                <option>Mujer</option>
-                <option>Otro</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId='Email'>
-              <Form.Label>Corre electrónico</Form.Label>
-              <Form.Control
-                required
-                placeholder='Email'
-                type='email'
-                {...Email}
                 disabled={loading}
               />
             </Form.Group>
-          </Form.Row>
-        </CustomeForm>
-        <MycustomeCard>
+
+            <Form.Group controlId='Identification'>
+              <Form.Label>Cedula o documento de indentificación</Form.Label>
+              <Form.Control
+                placeholder='Ingrese su Documento de Indentificación'
+                {...Identification}
+                required
+                disabled={loading}
+              />
+            </Form.Group>
+
+            <Form.Group controlId='Address'>
+              <Form.Label>Dirección Residencia</Form.Label>
+              <Form.Control
+                placeholder='Donde vives?'
+                {...Address}
+                required
+                disabled={loading}
+              />
+            </Form.Group>
+
+            <Form.Group controlId='Celphone'>
+              <Form.Label>Número Telefónico</Form.Label>
+              <Form.Control
+                type='tel'
+                placeholder='Celular'
+                {...Celphone}
+                required
+                disabled={loading}
+              />
+            </Form.Group>
+
+            <Form.Group controlId='locale'>
+              <Form.Label>Sedé o lugar de trabajo</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Cual es su lugar de trabajo?'
+                {...Locale}
+                disabled={loading}
+              />
+            </Form.Group>
+
+            <Form.Row>
+              <Form.Group as={Col} controlId='Age'>
+                <Form.Label>Edad</Form.Label>
+                <Form.Control
+                  type='number'
+                  placeholder='Cuantos años tienes?'
+                  {...Age}
+                  required
+                  disabled={loading}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId='Gender'>
+                <Form.Label>Género</Form.Label>
+                <Form.Control
+                  placeholder='Gender.'
+                  required
+                  {...Gender}
+                  as='select'
+                  disabled={loading}
+                  //defaultValue='Seleccione un género...'
+                >
+                  <option>Seleccione un género...</option>
+                  <option>Hombre</option>
+                  <option>Mujer</option>
+                  <option>Otro</option>
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group as={Col} controlId='Email'>
+                <Form.Label>Corre electrónico</Form.Label>
+                <Form.Control
+                  required
+                  placeholder='Email'
+                  type='email'
+                  {...Email}
+                  disabled={loading}
+                />
+              </Form.Group>
+            </Form.Row>
+          </Form>
+        </Col>
+        <Col xs={12} sm={6} md={4} style={{backgroundColor:'white', margin:'0 auto'}}>
           <Card.Body className='text-center w-100'>
             <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
           </Card.Body>
@@ -192,10 +193,9 @@ const FormQr = ({ loading = false, error, addUser, isAuth, visibleAlert, showAle
             </Button>
             <Button variant='info' onClick={handlerDownload}>Descargar QR</Button>
           </Card.Body>
-        </MycustomeCard>
-      </WrapperFormQr>
-    </div>
-
+        </Col>
+      </Row>
+    </Container>
   );
 };
 FormQr.propTypes = {

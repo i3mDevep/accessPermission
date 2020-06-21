@@ -65,7 +65,7 @@ const CreateSede = ({ isAuth }) => {
       .catch((error) => console.log(error));
   };
   return (
-    <Container style={{ paddingLeft: '200px' }}>
+    <Container>
       <Row>
         <Card
           style={{ width: '18rem' }}

@@ -1,12 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { Dropdown } from 'react-bootstrap';
 
-export const ContainerHeader = styled.div`
-  padding-left: 170px;
-  @media (max-width: 508px) {
-    padding-left: 30px;
-  }
-`
 export const CustomeDropdown = styled(Dropdown)`
   position: relative;
 `
