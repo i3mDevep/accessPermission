@@ -6,7 +6,7 @@ import { showAlert } from '../store/actions/sweetAlertActions';
 
 const RegisterContainer = ({ showAlert }) => {
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState('');
 
   const handlerOnsubmit = async ({ email, password, company, celphone, address, city }) => {
     setLoading(true);
