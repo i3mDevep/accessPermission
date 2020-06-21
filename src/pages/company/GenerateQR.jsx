@@ -1,10 +1,7 @@
 import React from 'react';
-import FormQr from '../../components/FormQr/FormQr';
+import GenerateQRContainer from '../../containers/GenerateQRContainer';
 
 const GenerateQR = () => (
-  <div>
-    <FormQr />
-  </div>
-
+  <GenerateQRContainer />
 );
 export default GenerateQR;
