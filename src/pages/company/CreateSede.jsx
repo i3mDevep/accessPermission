@@ -21,8 +21,6 @@ const CreateSede = ({ isAuth }) => {
     nameperson,
     estate,
     identification,
-
-
   }) => {
     alert('create subcompany');
     const dataSubCompany = {
@@ -49,6 +47,7 @@ const CreateSede = ({ isAuth }) => {
         setError(error.code);
       });
   };
+
   return (
 
     <Container fluid>

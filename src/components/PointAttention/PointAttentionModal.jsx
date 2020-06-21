@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, Form, Col, Alert } from 'react-bootstrap';
+import { BsFillInboxesFill } from 'react-icons/bs';
 import useInputValue from '../../hooks/useInputValue';
 
 const PointAttentionModal = (props, { onSubmit, loading, error }) => {
@@ -15,7 +16,7 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    onSubmit({
+    props.onSubmit({
       email: email.value,
       password: password.value,
       namesubcompany: namesubcompany.value,
@@ -27,7 +28,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
       identification: identification.value,
     });
   };
-
   return (
     <Modal
       {...props}
@@ -36,7 +36,10 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>Crear Sede o Punto de venta</Modal.Title>
+        <Modal.Title>
+          <BsFillInboxesFill size='30' colot='red' />
+          Crear Sede o Punto de venta
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form disabled={loading} onSubmit={handlerSubmit}>
@@ -55,7 +58,7 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
             <Form.Group as={Col} controlId='formGridPassword'>
               <Form.Label>Contaseña</Form.Label>
               <Form.Control
-                type='password'
+                type='current-password'
                 placeholder='Administre una contraseña'
                 required={true}
                 disabled={loading}
