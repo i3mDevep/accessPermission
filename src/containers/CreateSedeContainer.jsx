@@ -3,13 +3,13 @@ import * as firebase from 'firebase/app';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { Card, Container, CardDeck, Button } from 'react-bootstrap';
+import { Card, Container, CardDeck, Button, Row } from 'react-bootstrap';
 import { IoIosAdd } from 'react-icons/io';
 import PointAttentionModal from '../components/PointAttention/PointAttentionModal';
 import PointAttentionCard from '../components/PointAttention/PointAttentionCard';
 import PointAttentionConector from '../components/PointAttention/PointAttentionConector';
 
-const CreateSedeContainer = ({ isAuth, subCompanies=[] }) => {
+const CreateSedeContainer = ({ isAuth, subCompanies = [] }) => {
   const [modalShow, setModalShow] = useState(false);
   const [response, setResponse] = useState('');
 
@@ -47,37 +47,40 @@ const CreateSedeContainer = ({ isAuth, subCompanies=[] }) => {
   };
 
   return (
+
     <Container fluid>
-      <Card>
+      <Card style={{ width: '18%' }}>
         <Card.Header>
           <Button onClick={() => setModalShow(true)} style={{ padding: '3px' }}>
             <IoIosAdd size='30' />
             Crear Nueva Sede
           </Button>
         </Card.Header>
-      </Card>
-      <CardDeck>
-        {
-          subCompanies.map((subCompany) => (
-            <PointAttentionCard
-              key={subCompany.id}
-              {...subCompany}
-            />
-          ))
-        }
-
         <PointAttentionModal
           onSubmit={handlerOnSubmit}
           show={modalShow}
           res={response}
           onHide={() => setModalShow(false)}
         />
+      </Card>
+      <CardDeck>
+        <Row>
+          {
+            subCompanies.map((subCompany) => (
+              <PointAttentionCard
+                key={subCompany.id}
+                {...subCompany}
+              />
+            ))
+          }
+        </Row> 
       </CardDeck>
     </Container>
+
   );
 };
 const mapStateProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     subCompanies: state.firestore.ordered.subcompanycreate,
