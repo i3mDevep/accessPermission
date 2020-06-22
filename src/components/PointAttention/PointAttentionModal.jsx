@@ -3,7 +3,7 @@ import { Button, Modal, Form, Col, Alert } from 'react-bootstrap';
 import { BsFillInboxesFill } from 'react-icons/bs';
 import useInputValue from '../../hooks/useInputValue';
 
-const PointAttentionModal = (props, { onSubmit, loading, error }) => {
+const PointAttentionModal = (props, { onSubmit, result, error }) => {
   const namesubcompany = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
@@ -13,6 +13,8 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
   const nameperson = useInputValue('');
   const estate = useInputValue('');
   const identification = useInputValue('');
+
+  console.log(onSubmit);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
       identification: identification.value,
     });
   };
+
   return (
     <Modal
       {...props}
@@ -42,14 +45,13 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form disabled={loading} onSubmit={handlerSubmit}>
+        <Form onSubmit={handlerSubmit}>
           <Form.Row>
             <Form.Group as={Col} controlId='formGridEmail'>
               <Form.Label>Corre Electrónico</Form.Label>
               <Form.Control
                 type='email'
                 required={true}
-                disabled={loading}
                 {...email}
                 placeholder='Enter email'
               />
@@ -61,7 +63,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
                 type='current-password'
                 placeholder='Administre una contraseña'
                 required={true}
-                disabled={loading}
                 {...password}
               />
             </Form.Group>
@@ -72,7 +73,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
               placeholder='AV / Calle '
               type='text'
               required={true}
-              disabled={loading}
               {...namesubcompany}
 
             />
@@ -83,7 +83,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
               placeholder='AV / Calle '
               type='text'
               required={true}
-              disabled={loading}
               {...address}
 
             />
@@ -94,7 +93,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
               placeholder=' Administrador de la Tienda'
               type='text'
               required={true}
-              disabled={loading}
               {...nameperson}
             />
           </Form.Group>
@@ -105,7 +103,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
               placeholder='..'
               type='text'
               required={true}
-              disabled={loading}
               {...cellphone}
 
             />
@@ -114,7 +111,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
             <Form.Group as={Col} controlId='formGridCity'>
               <Form.Label>Ciudad</Form.Label>
               <Form.Control
-                disabled={loading}
                 type='text'
                 required={true}
                 {...city}
@@ -124,7 +120,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
             <Form.Group as={Col} controlId='formGridEstate'>
               <Form.Label>Estado</Form.Label>
               <Form.Control
-                disabled={loading}
                 type='text'
                 required={true}
                 {...estate}
@@ -134,7 +129,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
             <Form.Group as={Col} controlId='formGridZip'>
               <Form.Label>Identificación</Form.Label>
               <Form.Control
-                disabled={loading}
                 type='text'
                 required={true}
                 {...identification}
@@ -147,7 +141,6 @@ const PointAttentionModal = (props, { onSubmit, loading, error }) => {
             </Alert>
           )}
           <Button
-            disabled={loading}
             variant='primary'
             type='submit'
           >

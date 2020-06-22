@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { connect } from 'react-redux';
 import { Card, Container, CardDeck, Button } from 'react-bootstrap';
 import { IoIosAdd } from 'react-icons/io';
@@ -8,8 +10,7 @@ import PointAttentionCard from '../../components/PointAttention/PointAttentionCa
 
 const CreateSede = ({ isAuth }) => {
   const [modalShow, setModalShow] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [res, setResponse] = useState();
 
   const handlerOnSubmit = ({
     namesubcompany,
@@ -22,7 +23,7 @@ const CreateSede = ({ isAuth }) => {
     estate,
     identification,
   }) => {
-    alert('create subcompany');
+
     const dataSubCompany = {
       company: isAuth.uid,
       content: {
@@ -37,19 +38,18 @@ const CreateSede = ({ isAuth }) => {
         identification,
       },
     };
-    const createSubCompany = firebase.functions().httpsCallable('createSubCompany');
+
+    const createSubCompany = firebase
+      .functions().httpsCallable('createSubCompany');
     createSubCompany(dataSubCompany)
-      .then((result) => {
-        setError('');
-      })
-      .catch((error) => {
-        console.error(error);
-        setError(error.code);
+      .then((res) => {
+        setResponse(res);
       });
+
   };
 
-  return (
 
+  return (
     <Container fluid>
       <Card>
         <Card.Header>
@@ -76,8 +76,7 @@ const CreateSede = ({ isAuth }) => {
         <PointAttentionModal
           onSubmit={handlerOnSubmit}
           show={modalShow}
-          error={error}
-          loading={loading}
+          res={res}
           onHide={() => setModalShow(false)}
         />
       </CardDeck>
