@@ -29,7 +29,6 @@ const PointAttentionModal = (props) => {
       identification: identification.value,
     });
   };
- 
 
   return (
     <Modal

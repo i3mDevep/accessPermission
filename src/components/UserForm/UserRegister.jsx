@@ -140,8 +140,9 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                   width: '80%',
                 }}
                 disabled={loading}
+                onClick={!loading ? handlerSubmit : null}
               >
-                Completar Registro
+                {loading ? 'Guardando' : 'Completar Registro'}
               </Button>
             </div>
 
