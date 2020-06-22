@@ -57,7 +57,6 @@ const CreateSede = ({ isAuth }) => {
           </Button>
         </Card.Header>
       </Card>
-
       <CardDeck>
         <PointAttentionCard
           name='prueba'

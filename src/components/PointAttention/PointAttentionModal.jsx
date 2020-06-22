@@ -3,7 +3,8 @@ import { Button, Modal, Form, Col, Alert } from 'react-bootstrap';
 import { BsFillInboxesFill } from 'react-icons/bs';
 import useInputValue from '../../hooks/useInputValue';
 
-const PointAttentionModal = (props, { onSubmit, result, error }) => {
+const PointAttentionModal = (props) => {
+  console.log(props.res);
   const namesubcompany = useInputValue('');
   const email = useInputValue('');
   const password = useInputValue('');
@@ -13,8 +14,6 @@ const PointAttentionModal = (props, { onSubmit, result, error }) => {
   const nameperson = useInputValue('');
   const estate = useInputValue('');
   const identification = useInputValue('');
-
-  console.log(onSubmit);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -30,10 +29,12 @@ const PointAttentionModal = (props, { onSubmit, result, error }) => {
       identification: identification.value,
     });
   };
+ 
 
   return (
     <Modal
       {...props}
+
       size='lg'
       aria-labelledby='contained-modal-title-vcenter'
       centered
@@ -135,9 +136,9 @@ const PointAttentionModal = (props, { onSubmit, result, error }) => {
               />
             </Form.Group>
           </Form.Row>
-          { error && (
+          { props.res && (
             <Alert variant='danger'>
-              <small>{error}</small>
+              <small>{props.res.data.message}</small>
             </Alert>
           )}
           <Button
