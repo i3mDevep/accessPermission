@@ -47,17 +47,13 @@ const CreateSede = ({ isAuth }) => {
       });
 
   };
-
-
   return (
     <Container fluid>
       <Card>
         <Card.Header>
           <Button onClick={() => setModalShow(true)} style={{ padding: '3px' }}>
             <IoIosAdd size='30' />
-            {' '}
             Crear Nueva Sede
-            {' '}
           </Button>
         </Card.Header>
       </Card>

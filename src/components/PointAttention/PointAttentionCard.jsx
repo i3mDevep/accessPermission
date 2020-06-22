@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoIosAdd } from 'react-icons/io';
-import { Card, Button} from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 const PointAttentionCard = ({ name, city, telphone }) => {
 
