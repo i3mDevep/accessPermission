@@ -9,7 +9,7 @@ import useInputValue from '../../hooks/useInputValue';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 
-const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sedes = [] }) => {
+const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sedes = [] }) => {
 
   const Name = useInputValue('');
   const Lastname = useInputValue('');
@@ -24,7 +24,6 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
-    console.log(Sede)
     if (Gender.value !== '' && Sede.id !== '') {
       worker(isAuth.uid,
         { name: Name.value,
@@ -65,9 +64,9 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
       <Row>
         {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
         <Col xs={12} sm={5} md={7} style={{ backgroundColor: 'white', padding: '25px' }}>
-          <Form disabled={loading} id='CreateForm' onSubmit={handlerOnSubmit}>
+          <Form disabled={blocked} id='CreateForm' onSubmit={handlerOnSubmit}>
             <Form.Group controlId='exampleForm.ControlSelect1'>
-              { loading && !sedes.length && (
+              { blocked && !sedes.length && (
                 <Alert variant='danger' className='w-100'>
                   <small>
                     <MdErrorOutline size='20' />
@@ -83,7 +82,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                   const index = e.target.selectedIndex;
                   setSede({ value: e.target.value, id: e.target.options[index].id });
                 }}
-                disabled={loading}
+                disabled={blocked}
               >
                 <option>Seleccione SEDE</option>
                 {
@@ -97,7 +96,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                 placeholder='Ingrese su nombre'
                 {...Name}
                 required
-                disabled={loading}
+                disabled={blocked}
               />
             </Form.Group>
 
@@ -107,7 +106,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                 placeholder='Ingrese su apellido'
                 {...Lastname}
                 required
-                disabled={loading}
+                disabled={blocked}
               />
             </Form.Group>
 
@@ -117,7 +116,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                 placeholder='Ingrese su Documento de Indentificación'
                 {...Identification}
                 required
-                disabled={loading}
+                disabled={blocked}
               />
             </Form.Group>
 
@@ -127,7 +126,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                 placeholder='Donde vives?'
                 {...Address}
                 required
-                disabled={loading}
+                disabled={blocked}
               />
             </Form.Group>
 
@@ -138,7 +137,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                 placeholder='Celular'
                 {...Celphone}
                 required
-                disabled={loading}
+                disabled={blocked}
               />
             </Form.Group>
 
@@ -148,7 +147,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                 type='text'
                 placeholder='Cual es su lugar de trabajo?'
                 {...Locale}
-                disabled={loading}
+                disabled={blocked}
               />
             </Form.Group>
 
@@ -160,7 +159,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                   placeholder='Cuantos años tienes?'
                   {...Age}
                   required
-                  disabled={loading}
+                  disabled={blocked}
                 />
               </Form.Group>
 
@@ -171,7 +170,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                   required
                   {...Gender}
                   as='select'
-                  disabled={loading}
+                  disabled={blocked}
                   //defaultValue='Seleccione un género...'
                 >
                   <option>Seleccione un género...</option>
@@ -188,7 +187,7 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                   placeholder='Email'
                   type='email'
                   {...Email}
-                  disabled={loading}
+                  disabled={blocked}
                 />
               </Form.Group>
             </Form.Row>
@@ -219,11 +218,11 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
               type='submit'
               form='CreateForm'
               className='mr-2'
-              disabled={loading}
+              disabled={blocked}
             >
               Registrar
             </Button>
-            <Button variant='info' disabled={loading} onClick={handlerDownload}>Descargar QR</Button>
+            <Button variant='info' disabled={blocked} onClick={handlerDownload}>Descargar QR</Button>
           </Card.Body>
         </Col>
       </Row>
@@ -236,7 +235,6 @@ FormQr.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // addUser: (bussines, info) => dispatch(addUser(bussines, info)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
   };
 };

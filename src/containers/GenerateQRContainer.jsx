@@ -2,11 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import { LoopCircleLoading } from 'react-loadingg';
 import { addWorker } from '../store/actions/addWorkerAction';
 import { showAlert } from '../store/actions/sweetAlertActions';
 import FormQr from '../components/FormQr';
 
-const GenerateQRContainer = ({ subCompanies, addWorker, resultAddWorker, showAlert }) => {
+const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, showAlert, requesting }) => {
+  if (requesting) {
+    return <LoopCircleLoading />;
+  }
   const handlerWorker = (uid, content) => {
     addWorker(uid, content.sede.id, content);
     if (!resultAddWorker.error) {
@@ -28,7 +32,7 @@ const GenerateQRContainer = ({ subCompanies, addWorker, resultAddWorker, showAle
     }
   };
   return (
-    <FormQr worker={handlerWorker} sedes={subCompanies} loading={false} />
+    <FormQr worker={handlerWorker} sedes={subCompanies} blocked={subCompanies.length <= 0} />
   );
 };
 
@@ -37,6 +41,7 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     subCompanies: state.firestore.ordered.subcompany,
     resultAddWorker: state.resultAddWorker,
+    requesting: state.firestore.status.requesting.subcompany,
   };
 };
 
