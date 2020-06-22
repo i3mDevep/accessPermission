@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Col, Card, Button, ListGroup, Row, Container, Alert } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import PropTypes from 'prop-types';
 import { MdErrorOutline } from 'react-icons/md';
-import { addUser } from '../../store/actions/addUsersAction';
 import useInputValue from '../../hooks/useInputValue';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 
-const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sedes = [1] }) => {
+const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sedes = [] }) => {
 
   const Name = useInputValue('');
   const Lastname = useInputValue('');
@@ -21,11 +20,12 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
   const Gender = useInputValue('');
   const Email = useInputValue('');
   const Locale = useInputValue('');
-  const Sede = useInputValue('');
+  const [Sede, setSede] = useState({ value: '', id: '' });
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
-    if (Gender.value !== '' && Sede.value !== '') {
+    console.log(Sede)
+    if (Gender.value !== '' && Sede.id !== '') {
       worker(isAuth.uid,
         { name: Name.value,
           lastname: Lastname.value,
@@ -36,14 +36,8 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
           gender: Gender.value,
           email: Email.value,
           locale: Locale.value,
-          sede: Sede.value,
+          sede: Sede,
         });
-      showAlert({
-        type: 'success',
-        title: 'Exitoso!',
-        content: 'Registro exitoso',
-        showCancel: false,
-      });
     } else {
       showAlert({
         type: 'error',
@@ -82,10 +76,18 @@ const FormQr = ({ loading = false, worker, isAuth, visibleAlert, showAlert, sede
                 </Alert>
               )}
               <Form.Label>Sede</Form.Label>
-              <Form.Control as='select' {...Sede} disabled={loading}>
+              <Form.Control
+                as='select'
+                value={Sede.value}
+                onChange={(e) => {
+                  const index = e.target.selectedIndex;
+                  setSede({ value: e.target.value, id: e.target.options[index].id });
+                }}
+                disabled={loading}
+              >
                 <option>Seleccione SEDE</option>
                 {
-                  sedes.map((subCompany) => <option key={`id-${subCompany.id}`}>{subCompany.name}</option>)
+                  sedes.map((subCompany) => <option id={subCompany.id} key={`id-${subCompany.id}`}>{subCompany.namesubcompany}</option>)
                 }
               </Form.Control>
             </Form.Group>

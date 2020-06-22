@@ -40,6 +40,7 @@ const CreateSede = ({ isAuth }) => {
     const createSubCompany = firebase.functions().httpsCallable('createSubCompany');
     createSubCompany(dataSubCompany)
       .then((result) => {
+        console.log(result);
         setError('');
       })
       .catch((error) => {
@@ -55,9 +56,7 @@ const CreateSede = ({ isAuth }) => {
         <Card.Header>
           <Button onClick={() => setModalShow(true)} style={{ padding: '3px' }}>
             <IoIosAdd size='30' />
-            {' '}
             Crear Nueva Sede
-            {' '}
           </Button>
         </Card.Header>
       </Card>

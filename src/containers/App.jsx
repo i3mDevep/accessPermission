@@ -21,7 +21,6 @@ const onAuthStateChange = (callback) => {
   return firebase.auth().onAuthStateChanged(async (user) => {
     try {
       const idTokenResult = await user.getIdTokenResult();
-      console.log(idTokenResult);
       callback({ loggedIn: true, displayName: user.displayName, uid: user.uid, update: false, businness: idTokenResult.claims.business });
     } catch (error) {
       callback({ loggedIn: false, update: false, uid: '' });
