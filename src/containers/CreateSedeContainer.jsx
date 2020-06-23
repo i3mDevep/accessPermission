@@ -3,8 +3,8 @@ import * as firebase from 'firebase/app';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { Card, Container, Alert, Button, Row } from 'react-bootstrap';
-import { IoIosAlert, IoIosAdd } from 'react-icons/io';
+import { Card, Container, Alert, Row } from 'react-bootstrap';
+import { IoIosAlert } from 'react-icons/io';
 import { LoopCircleLoading } from 'react-loadingg';
 import PointAttentionModal from '../components/PointAttention/PointAttentionModal';
 import PointAttentionCard from '../components/PointAttention/PointAttentionCard';
@@ -55,7 +55,8 @@ const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
     <Container fluid>
       {!subCompanies.length ? (
         <Alert variant='info' className='w-100'>
-          <IoIosAlert size='30' />{' '}
+          <IoIosAlert size='30' />
+          {' '}
           <small>
             Registra una sede o punto de venta
           </small>
