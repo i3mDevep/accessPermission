@@ -3,12 +3,8 @@ import * as firebase from 'firebase/app';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-<<<<<<< HEAD
-import { Card, Container, Row } from 'react-bootstrap';
-=======
 import { Card, Container, Alert, Button, Row } from 'react-bootstrap';
 import { IoIosAlert, IoIosAdd } from 'react-icons/io';
->>>>>>> 17711126b83c0a7dad5b8bb35424be034eb0a8c9
 import { LoopCircleLoading } from 'react-loadingg';
 import PointAttentionModal from '../components/PointAttention/PointAttentionModal';
 import PointAttentionCard from '../components/PointAttention/PointAttentionCard';
