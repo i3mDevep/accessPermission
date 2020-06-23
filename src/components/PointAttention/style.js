@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { Card, Container, CardDeck, Button, Row, Col } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
+// eslint-disable-next-line import/prefer-default-export
 export const CustomeCard = styled(Card)`
     padding: 1rem 1rem;
     color: #303f9f;
-    width: 30%;
+    width: 23%;
     min-width: 300px;
     margin:10px;
     text-align: justify;
@@ -21,10 +22,7 @@ export const CustomeCard = styled(Card)`
     }
     & ul {
         padding: 5px;
-        font-size:calc(11px + .38vw);
-        color: #888;
     }
-
     & li {
         margin-left: 2px;
     }
@@ -35,11 +33,7 @@ export const CustomeCard = styled(Card)`
 
 export const CustomeCardCreate = styled.div`
     color: #888;
-    width: 30%;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    flex-direction: column;
+    width: 23%;
     min-width: 300px;
     margin:10px;
     text-align: center;
@@ -62,4 +56,4 @@ export const CustomeCardCreate = styled.div`
     font-weight: bold;
     }
 }
-`
+` 
