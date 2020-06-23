@@ -195,7 +195,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
         </Col>
         <Col xs={12} sm={6} md={4} style={{ backgroundColor: 'white', margin: '0 auto' }}>
           <Card.Body className='text-center w-100'>
-            <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},`} />
+            <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},${Sede.value},`} />
           </Card.Body>
           <Card.Body>
             <Card.Title>Verifica tus datos!</Card.Title>
