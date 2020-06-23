@@ -7,10 +7,10 @@ const deleteSubcompany = (state = intitState, action) => {
       return {
         ...state,
         error: false,
-        msg: 'worker_created',
+        msg: 'subcompany_delete',
       };
-    case 'DELETE_WORKER_ERROR':
-      console.log('DELETE_WORKER_ERROR');
+    case 'DELETE_SUBCOMPANY_ERROR':
+      console.log('DELETE_SUBCOMPANY_ERROR');
       return {
         ...state,
         error: true,

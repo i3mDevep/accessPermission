@@ -1,18 +1,19 @@
 import React from 'react';
 import { BsInfoCircleFill, BsEnvelope, BsPencilSquare, BsFillTrashFill, BsMicFill, BsPersonFill, BsServer } from 'react-icons/bs';
 import { Button } from 'react-bootstrap';
-import { CustomeCard } from './style';
-import { connect } from 'react-redux';
-import SweetAlert from 'react-bootstrap-sweetalert';
-import PropTypes from 'prop-types';
-import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
-import { showAlert } from '../../store/actions/sweetAlertActions';
 
-const PointAttentionCard = ({ email, namesubcompany, city, cellphone, address, nameperson, time }) => {
+import { firestoreConnect } from 'react-redux-firebase';
+import { LoopCircleLoading } from 'react-loadingg';
+import { connect } from 'react-redux';
+import { deleteSubcompany } from '../../store/actions/deleteSubcompanyAction';
+import { CustomeCard } from './style';
+
+const PointAttentionCard = ({ email, namesubcompany, city, cellphone, address, nameperson, subCompid, isAuth, deleteSubcompany }) => {
 
   const handlerClick = (e) => {
     e.preventDefault();
-    alert('hol2a');
+    deleteSubcompany(isAuth.uid, subCompid);
+    alert('hol2222a');
   };
 
   return (
@@ -61,22 +62,18 @@ const PointAttentionCard = ({ email, namesubcompany, city, cellphone, address, n
 
 };
 
-PointAttentionCard.propTypes = {
-  visibleAlert: PropTypes.any,
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    deleteSubcompany: (idBusiness, idSubcompany) => dispatch(deleteSubcompany(idBusiness, idSubcompany)),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
+    resultDelete: state.resultAddWorker,
 
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PointAttentionCard);
-
 

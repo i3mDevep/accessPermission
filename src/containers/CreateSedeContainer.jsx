@@ -84,6 +84,7 @@ const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
           subCompanies.map((subCompany) => (
             <PointAttentionCard
               key={subCompany.id}
+              subCompid={subCompany.id}
               {...subCompany}
             />
           ))

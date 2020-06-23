@@ -5,14 +5,12 @@ export const deleteSubcompany = (idBusiness, idSubcompany) => {
   return (dispatch) => {
     const db = firebase.firestore();
     db.collection('business').doc(idBusiness).collection('subcompanies').doc(idSubcompany)
-      .delete({
-        ...content,
-      })
+      .delete()
       .then(() => {
-        dispatch({ type: 'DELETE_WORKER_SUCCESS' });
+        dispatch({ type: 'DELETE_SUBCOMPANY_SUCCESS' });
       })
       .catch((err) => {
-        dispatch({ type: 'DELETE_WORKER_ERROR' }, err);
+        dispatch({ type: 'DELETE_SUBCOMPANY_ERROR' }, err);
       });
   };
 };
