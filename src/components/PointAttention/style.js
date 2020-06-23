@@ -28,7 +28,9 @@ export const CustomeCard = styled(Card)`
     & li {
         margin-left: 2px;
     }
-
+    & footer {
+        text-align: right;
+    }
 }`
 
 export const CustomeCardCreate = styled.div`
