@@ -8,10 +8,7 @@ import { IoIosAlert, IoIosAdd } from 'react-icons/io';
 import { LoopCircleLoading } from 'react-loadingg';
 import PointAttentionModal from '../components/PointAttention/PointAttentionModal';
 import PointAttentionCard from '../components/PointAttention/PointAttentionCard';
-<<<<<<< HEAD
-=======
 import PointCreateNewCard from '../components/PointAttention/PointCreateNewCard';
->>>>>>> 02fc61ac20735a6dd87d032091d999fc84a2807f
 
 const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
   if (requesting) {

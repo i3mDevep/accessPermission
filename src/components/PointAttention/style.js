@@ -30,3 +30,31 @@ export const CustomeCard = styled(Card)`
         text-align: right;
     }
 }`
+
+export const CustomeCardCreate = styled.div`
+    padding: 1.6rem 1rem;
+    color: #888;
+    width: 30%;
+    min-width: 300px;
+    margin:10px;
+    text-align: center;
+    border-radius: .25rem;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    background: linear-gradient(40deg, #fff, #fff);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    z-index: 2;
+    & h2{
+    margin-top:0;
+    display: block;
+    font-size: 1.6em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    }
+}
+` 
