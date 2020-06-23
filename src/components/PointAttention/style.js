@@ -5,7 +5,7 @@ import { Card } from 'react-bootstrap';
 export const CustomeCard = styled(Card)`
     padding: 1rem 1rem;
     color: #303f9f;
-    width: 30%;
+    width: 23%;
     min-width: 300px;
     margin:10px;
     text-align: justify;
@@ -34,7 +34,7 @@ export const CustomeCard = styled(Card)`
 export const CustomeCardCreate = styled.div`
     padding: 1.6rem 1rem;
     color: #888;
-    width: 30%;
+    width: 23%;
     min-width: 300px;
     margin:10px;
     text-align: center;
