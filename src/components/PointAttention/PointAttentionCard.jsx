@@ -48,7 +48,6 @@ const PointAttentionCard = ({ email, namesubcompany, city, cellphone, address, n
         </Button>
       </footer>
     </CustomeCard>
-
   );
 
 };

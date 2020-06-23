@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { Card, Container, CardDeck, Button, Row, Col } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
+// eslint-disable-next-line import/prefer-default-export
 export const CustomeCard = styled(Card)`
     padding: 1rem 1rem;
     color: #303f9f;
@@ -21,15 +22,11 @@ export const CustomeCard = styled(Card)`
     }
     & ul {
         padding: 5px;
-    } 
-
+    }
     & li {
         margin-left: 2px;
     }
-
     & footer {
         text-align: right;
-    
     }
-
 }`
