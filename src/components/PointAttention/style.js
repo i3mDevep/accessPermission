@@ -6,7 +6,7 @@ export const CustomeCard = styled(Card)`
     padding: 1rem 1rem;
     color: #303f9f;
     width: 23%;
-    min-width: 300px;
+    min-width: 250px;
     margin:10px;
     text-align: justify;
     border-radius: .25rem;
@@ -22,6 +22,7 @@ export const CustomeCard = styled(Card)`
     }
     & ul {
         padding: 5px;
+        font-size: 1em;
     }
     & li {
         margin-left: 2px;
@@ -29,16 +30,25 @@ export const CustomeCard = styled(Card)`
     & footer {
         text-align: right;
     }
+    @media (max-width: 1309px) {
+    width: 30%;
+  }
+    @media (max-width: 1060px) {
+    width: 45%;
+  }
+  @media (max-width: 790px) {
+    width: 100%;
+  }
 }`
 
 export const CustomeCardCreate = styled.div`
     color: #888;
     width: 23%;
+    min-width: 250px;
     display: flex;
     align-items:center;
     justify-content: center;
     flex-direction: column;
-    min-width: 300px;
     margin:10px;
     text-align: center;
     border-radius: .25rem;
@@ -59,5 +69,14 @@ export const CustomeCardCreate = styled.div`
     margin-inline-end: 0px;
     font-weight: bold;
     }
+    @media (max-width: 1309px) {
+    width: 30%;
+  }
+    @media (max-width: 1060px) {
+    width: 45%;
+  }
+  @media (max-width: 790px) {
+    width: 100%;
+  }
 }
-` 
+`;
