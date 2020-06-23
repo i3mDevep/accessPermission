@@ -27,4 +27,9 @@ export const CustomeCard = styled(Card)`
         margin-left: 2px;
     }
 
+    & footer {
+        text-align: right;
+    
+    }
+
 }`
