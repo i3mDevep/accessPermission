@@ -34,9 +34,12 @@ export const CustomeCard = styled(Card)`
 }`
 
 export const CustomeCardCreate = styled.div`
-    padding: 1.6rem 1rem;
     color: #888;
     width: 30%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
     min-width: 300px;
     margin:10px;
     text-align: center;

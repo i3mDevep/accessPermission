@@ -6,8 +6,10 @@ const PointCreateNewCard = ({ onClick }) => {
 
   return (
     <CustomeCardCreate>
-      <h2>Crear Nueva Sede</h2>
-      <IoIosCreate onClick={onClick} size='40' />
+      <div style={{display:'inline-block'}}>
+        <h2>Crear Nueva Sede</h2>
+        <IoIosCreate onClick={onClick} size='40' />
+      </div>
     </CustomeCardCreate>
   );
 

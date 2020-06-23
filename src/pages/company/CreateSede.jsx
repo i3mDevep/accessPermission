@@ -4,7 +4,6 @@ import CreateSedeContainer from '../../containers/CreateSedeContainer';
 const CreateSede = () => {
   return (
     <CreateSedeContainer />
-
   );
 };
 
