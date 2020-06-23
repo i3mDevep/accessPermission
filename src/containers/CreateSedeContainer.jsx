@@ -8,7 +8,7 @@ import { IoIosAdd } from 'react-icons/io';
 import { LoopCircleLoading } from 'react-loadingg';
 import PointAttentionModal from '../components/PointAttention/PointAttentionModal';
 import PointAttentionCard from '../components/PointAttention/PointAttentionCard';
-
+import PointCreateNewCard from '../components/PointAttention/PointCreateNewCard';
 
 const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
   if (requesting) {
@@ -54,12 +54,6 @@ const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
 
     <Container fluid>
       <Card style={{ width: '18%' }}>
-        <Card.Header>
-          <Button onClick={() => setModalShow(true)} style={{ padding: '3px' }}>
-            <IoIosAdd size='30' />
-            Crear Nueva Sede
-          </Button>
-        </Card.Header>
         <PointAttentionModal
           onSubmit={handlerOnSubmit}
           show={modalShow}
@@ -68,6 +62,7 @@ const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
         />
       </Card>
       <Row>
+        <PointCreateNewCard onClick={() => setModalShow(true)} />
         {
           subCompanies.map((subCompany) => (
             <PointAttentionCard
