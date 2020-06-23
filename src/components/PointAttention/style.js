@@ -5,10 +5,10 @@ import { Card } from 'react-bootstrap';
 export const CustomeCard = styled(Card)`
     padding: 1rem 1rem;
     color: #303f9f;
-    width: 20%;
+    width: 30%;
     min-width: 300px;
-    margin:20px;
-    text-align: justify; 
+    margin:10px;
+    text-align: justify;
     border-radius: .25rem;
     -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
     position: relative;
@@ -16,7 +16,7 @@ export const CustomeCard = styled(Card)`
     cursor: default;
     z-index: 2;
     & div {
-        text-align: center; 
+        text-align: center;
         color: #ffff;
         background: linear-gradient(40deg, #111d5e, #303f9f);
     }

@@ -9,33 +9,27 @@ const PointAttentionCard = ({ email, namesubcompany, city, cellphone, address, n
   return (
     <CustomeCard>
       <CustomeCard.Header>
-        {' ' }
         {namesubcompany}
       </CustomeCard.Header>
       <ul>
         <li>
           <BsEnvelope />
-          {' ' }
           {email}
         </li>
         <li>
           <BsInfoCircleFill />
-          {' ' }
           {city}
         </li>
         <li>
           <BsMicFill />
-          {' ' }
           {cellphone}
         </li>
         <li>
           <BsServer />
-          {' ' }
           {address}
         </li>
         <li>
           <BsPersonFill />
-          {' ' }
           {nameperson}
         </li>
       </ul>
