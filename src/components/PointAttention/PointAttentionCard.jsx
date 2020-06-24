@@ -1,4 +1,5 @@
 import React from 'react';
+import * as firebase from 'firebase/app';
 import { BsInfoCircleFill, BsEnvelope, BsPencilSquare, BsFillTrashFill, BsMicFill, BsPersonFill, BsServer } from 'react-icons/bs';
 import { Button } from 'react-bootstrap';
 
@@ -12,7 +13,12 @@ const PointAttentionCard = ({ email, namesubcompany, city, cellphone, address, n
 
   const handlerClick = (e) => {
     e.preventDefault();
-    deleteSubcompany(isAuth.uid, subCompid);
+    //deleteSubcompany(isAuth.uid, subCompid);
+    const deteleSubCompany = firebase.functions().httpsCallable('deteleSubCompany');
+    deteleSubCompany({ subCompanyId: subCompid, companyId: isAuth.uid })
+      .then((response) => {
+        console.log(response);
+      }).catch((err) => console.log(err));
     alert('hol2222a');
   };
 

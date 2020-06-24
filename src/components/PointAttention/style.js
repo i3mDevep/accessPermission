@@ -44,6 +44,7 @@ export const CustomeCard = styled(Card)`
 export const CustomeCardCreate = styled.div`
     color: #888;
     width: 23%;
+    padding: 10px;
     min-width: 250px;
     display: flex;
     align-items:center;
