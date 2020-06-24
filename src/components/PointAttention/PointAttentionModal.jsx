@@ -40,6 +40,7 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
       <Modal.Header closeButton>
         <Modal.Title>
           <BsFillInboxesFill size='30' colot='red' />
+          {' '}
           Crear Sede o Punto de venta
         </Modal.Title>
       </Modal.Header>
