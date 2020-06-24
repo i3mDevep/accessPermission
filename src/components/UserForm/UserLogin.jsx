@@ -92,12 +92,22 @@ const UserLogin = ({ onSubmit, error, loading }) => {
             </Form.Group>
             { error === 'auth/wrong-password' && (
               <Alert variant='danger'>
-                <small>Contraseña Errada</small>
+                <small>Contraseña Errada.</small>
               </Alert>
             )}
             { error === 'auth/user-not-found' && (
               <Alert variant='danger'>
-                <small>Usuario no registrado</small>
+                <small>Usuario no registrado.</small>
+              </Alert>
+            )}
+            { error === 'auth/invalid-email' && (
+              <Alert variant='danger'>
+                <small>Email invalido.</small>
+              </Alert>
+            )}
+            { error === 'auth/user-disabled' && (
+              <Alert variant='danger'>
+                <small>Cuenta inhabilitada, porfavor contacte al administrador.</small>
               </Alert>
             )}
             <div className='text-center'>
