@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, Form, Col, Alert } from 'react-bootstrap';
 import { BsFillInboxesFill } from 'react-icons/bs';
+import { LoopCircleLoading } from 'react-loadingg';
 import useInputValue from '../../hooks/useInputValue';
 
 const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
@@ -42,6 +43,14 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
           <BsFillInboxesFill size='30' colot='red' />
           Crear Sede o Punto de venta
         </Modal.Title>
+        {
+          loading && (
+            <div style={{ zIndex: '1000' }}>
+              <LoopCircleLoading />
+            </div>
+          )
+        }
+
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handlerSubmit}>
@@ -144,9 +153,11 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
             </Form.Group>
           </Form.Row>
           { response && (
-            <Alert variant={response.data.result ? 'success' : 'danger'}>
-              <small>{response.data.message}</small>
-            </Alert>
+            !response.data.result && (
+              <Alert variant='danger'>
+                <small>{response.data.message}</small>
+              </Alert>
+            )
           )}
           <Button
             disabled={loading}
