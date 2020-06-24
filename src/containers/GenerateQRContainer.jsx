@@ -8,28 +8,11 @@ import { showAlert } from '../store/actions/sweetAlertActions';
 import FormQr from '../components/FormQr';
 
 const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, showAlert, requesting }) => {
-  if (requesting) {
+  if (requesting || resultAddWorker.loading) {
     return <LoopCircleLoading />;
   }
   const handlerWorker = (uid, content) => {
     addWorker(uid, content.sede.id, content);
-    if (!resultAddWorker.error) {
-      showAlert({
-        type: 'success',
-        timeout: 2500,
-        title: 'Exitoso!',
-        content: 'Empleado Registrado !!!',
-        showCancel: false,
-      });
-    } else {
-      showAlert({
-        type: 'error',
-        timeout: 2500,
-        title: 'Opss!',
-        content: resultAddWorker.msg,
-        showCancel: false,
-      });
-    }
   };
   return (
     <FormQr worker={handlerWorker} sedes={subCompanies} blocked={subCompanies.length <= 0} />

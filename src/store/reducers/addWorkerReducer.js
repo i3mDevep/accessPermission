@@ -1,19 +1,23 @@
-const intitState = { error: false, msg: '' };
+const intitState = { error: false, msg: '', loading: false };
 
 const addWorkerReducer = (state = intitState, action) => {
   switch (action.type) {
-    case 'CREATE_WORKER_SUCCESS':
-      console.log('CREATE_WORKER_SUCCESS');
+    case 'REQUEST_WORKER':
       return {
         ...state,
+        loading: true,
+      };
+    case 'CREATE_WORKER_SUCCESS':
+      return {
+        ...state,
+        loading: false,
         error: false,
         msg: 'worker_created',
       };
     case 'CREATE_WORKER_ERROR':
-      console.log('CREATE_WORKER_ERROR');
-      console.log(action);
       return {
         ...state,
+        loading: false,
         error: true,
         msg: action.err.message,
       };

@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app';
+import { showAlert } from './sweetAlertActions';
 
 export const addWorker = (idBusiness, idSubcompany, content) => {
   return (dispatch) => {
+    dispatch({ type: 'REQUEST_WORKER' });
     const db = firebase.firestore();
     const docRef = `business/${idBusiness}/worker/${content.identification}`;
     return db.doc(docRef).get()
@@ -15,7 +17,7 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
               ...content,
             });
         }
-        throw new Error('Not allow overwritten!');
+        throw new Error('Esta persona ya se encuentra registrado!');
       })
       .then(() => {
         return db.collection('business').doc(idBusiness).collection('worker').doc(content.identification)
@@ -58,10 +60,24 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
         });
       })
       .then(() => {
+        showAlert({
+          type: 'success',
+          timeout: 2500,
+          title: 'Exitoso!',
+          content: 'Empleado Registrado !!!',
+          showCancel: false,
+        })(dispatch);
         dispatch({ type: 'CREATE_WORKER_SUCCESS' });
       })
       .catch((err) => {
         console.log(err);
+        showAlert({
+          type: 'error',
+          timeout: 2500,
+          title: 'Opss!',
+          content: err.message,
+          showCancel: false,
+        })(dispatch);
         dispatch({ type: 'CREATE_WORKER_ERROR', err });
       });
   };

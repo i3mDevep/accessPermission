@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 // eslint-disable-next-line import/prefer-default-export
 export const CustomeCard = styled(Card)`
     padding: 1rem 1rem;
-    color: #303f9f;
+    color: #4a3f35;
     width: 23%;
     min-width: 250px;
     margin:10px;
@@ -42,7 +42,7 @@ export const CustomeCard = styled(Card)`
 }`
 
 export const CustomeCardCreate = styled.div`
-    color: #888;
+    color: #332f2e;
     width: 23%;
     padding: 10px;
     min-width: 250px;
