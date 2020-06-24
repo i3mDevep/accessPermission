@@ -11,10 +11,11 @@ const addWorkerReducer = (state = intitState, action) => {
       };
     case 'CREATE_WORKER_ERROR':
       console.log('CREATE_WORKER_ERROR');
+      console.log(action);
       return {
         ...state,
         error: true,
-        msg: action.err,
+        msg: action.err.message,
       };
     default:
       return state;

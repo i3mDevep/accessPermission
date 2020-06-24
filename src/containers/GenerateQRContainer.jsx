@@ -26,7 +26,7 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
         type: 'error',
         timeout: 2500,
         title: 'Opss!',
-        content: resultAddWorker.error,
+        content: resultAddWorker.msg,
         showCancel: false,
       });
     }

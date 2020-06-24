@@ -82,7 +82,7 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
             <Form.Label>Nombre del punto de venta</Form.Label>
             <Form.Control
               disabled={loading}
-              placeholder='AV / Calle '
+              placeholder='Nombre de la Tienda '
               type='text'
               required={true}
               {...namesubcompany}

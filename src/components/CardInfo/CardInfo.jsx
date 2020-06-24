@@ -8,7 +8,7 @@ import { GiEntryDoor } from 'react-icons/gi';
 import { Row, CardDeck } from 'react-bootstrap';
 import Target from './Target';
 
-const CardInfo = ({ inforcards }) => {
+const CardInfoUsers = ({ inforcards }) => {
   if (!inforcards) {
     return (
       <Row>
@@ -48,11 +48,41 @@ const CardInfo = ({ inforcards }) => {
   );
 };
 
+const CardInfoWorker = ({ inforcardsWorker }) => {
+  if (!inforcardsWorker) {
+    return (
+      <Row>
+        <Target />
+        <Target />
+        <Target />
+      </Row>
+    );
+  }
+  const { Worker, Men, Women } = inforcardsWorker;
+  return (
+    <CardDeck>
+      <Target title='Worker' value={Worker.value} text={moment(Worker.time.toDate().toISOString()).calendar()}>
+        <FiUsers size='30px' />
+      </Target>
+      <Target title='Women' value={Women.value} porcentage='3.48%' text={moment(Women.time.toDate().toISOString()).calendar()} typetext='text-danger'>
+        <AiOutlineWoman size='30px' />
+      </Target>
+      <Target title='Men' value={Men.value} porcentage='1.10%' text={moment(Men.time.toDate().toISOString()).calendar()} typetext='text-warning'>
+        <AiOutlineMan size='30px' />
+      </Target>
+    </CardDeck>
+
+  );
+};
 const mapToProps = (state) => {
   return {
     inforcards: state.firestore.data.totals,
+    inforcardsWorker: state.firestore.data.totalsWorker,
     isAuth: state.auth.isAuth,
   };
 };
 
-export default connect(mapToProps, null)(CardInfo);
+export default {
+  CardInfoUsers: connect(mapToProps, null)(CardInfoUsers),
+  CardInfoWorker: connect(mapToProps, null)(CardInfoWorker),
+};

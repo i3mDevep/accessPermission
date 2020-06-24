@@ -11,6 +11,7 @@ import ScreenLoading from '../components/ScreenLoading';
 import GenerateQR from '../pages/company/GenerateQR';
 import Sedes from '../pages/company/Sedes';
 import SedesPage from '../pages/subcompany/SedesPage';
+import WorkerPage from '../pages/company/WorkerPage';
 import LayoutDashboard from '../components/LayoutDashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
@@ -34,6 +35,7 @@ const LoggedInRoutesWithbusiness = [
   <Route path='/dashboard' exact={true} component={Dashboard} />,
   <Route path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route path='/generateqr' exact={true} component={GenerateQR} />,
+  <Route path='/worker' exact={true} component={WorkerPage} />,
   <Route path='/sedes' exact={true} component={Sedes} />,
 ];
 const LoggedInRoutesWithOutbusiness = [
@@ -50,9 +52,10 @@ const LoggedOut = [
   <Route path='/login' exact={true} component={Login} />,
   <Route path='/' exact={true} component={() => <Redirect to='/login' />} />,
   <Route path='/dashboard' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route path='/dashboardsedes' exact={true} component={Login} />,
-  <Route path='/generateqr' exact={true} component={Login} />,
-  <Route path='/sedes' exact={true} component={Login} />,
+  <Route path='/dashboardsedes' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route path='/generateqr' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route path='/worker' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route path='/sedes' exact={true} component={() => <Redirect to='/login' />} />,
   <Route path='*' exact={true} component={() => <Redirect to='/login' />} />,
 ];
 const App = ({ signIn, isAuth }) => {

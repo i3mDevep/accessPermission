@@ -7,7 +7,7 @@ import CardInfo from '../CardInfo/CardInfo';
 const Workspace = () => {
   return (
     <Container fluid>
-      <CardInfo />
+      <CardInfo.CardInfoUsers />
       <ListCardsChart />
       <UsersTableRow />
     </Container>

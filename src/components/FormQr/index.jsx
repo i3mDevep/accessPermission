@@ -63,7 +63,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
     <Container fluid>
       <Row>
         {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
-        <Col xs={12} sm={5} md={7} style={{ backgroundColor: 'white', padding: '25px' }}>
+        <Col sm={12} md={7} style={{ backgroundColor: 'white', padding: '25px', marginBottom: '10px' }}>
           <Form disabled={blocked} id='CreateForm' onSubmit={handlerOnSubmit}>
             <Form.Group controlId='exampleForm.ControlSelect1'>
               { blocked && !sedes.length && (
@@ -176,7 +176,6 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                   <option>Seleccione un género...</option>
                   <option>Hombre</option>
                   <option>Mujer</option>
-                  <option>Otro</option>
                 </Form.Control>
               </Form.Group>
 
@@ -193,7 +192,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
             </Form.Row>
           </Form>
         </Col>
-        <Col xs={12} sm={6} md={4} style={{ backgroundColor: 'white', margin: '0 auto' }}>
+        <Col sm={12} md={4} style={{ backgroundColor: 'white', margin: '0 auto' }}>
           <Card.Body className='text-center w-100'>
             <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},${Sede.value},`} />
           </Card.Body>

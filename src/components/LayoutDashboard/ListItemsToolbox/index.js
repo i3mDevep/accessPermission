@@ -7,7 +7,7 @@ import { ItemToolbox } from '../ItemToolbox';
 
 const icons = [FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaDatabase, RiQrCodeLine, MdFiberNew];
 const messages = ['Dashboard', 'Empleados', 'Clientes', 'Informes', 'Alertas', 'Generador QR', 'Sedes'];
-const links = ['/dashboard', '', '', '', '', '/generateqr', '/sedes'];
+const links = ['/dashboard', '/worker', '', '', '', '/generateqr', '/sedes'];
 
 const ListItemsToolbox = ({ onClick }) => {
   return (
