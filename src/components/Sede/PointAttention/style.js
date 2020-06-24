@@ -22,7 +22,7 @@ export const CustomeCard = styled(Card)`
     }
     & ul {
         padding: 5px;
-        font-size: 1em;
+        font-size: calc(11px + .3vw);
     }
     & li {
         margin-left: 2px;
@@ -63,7 +63,7 @@ export const CustomeCardCreate = styled.div`
     & h2{
     margin-top:0;
     display: block;
-    font-size: 1.6em;
+    font-size: calc(1em + .5vw);
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
     margin-inline-start: 0px;

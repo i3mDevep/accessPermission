@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal, Form, Col, Alert } from 'react-bootstrap';
 import { BsFillInboxesFill } from 'react-icons/bs';
 import { LoopCircleLoading } from 'react-loadingg';
-import useInputValue from '../../hooks/useInputValue';
+import useInputValue from '../../../hooks/useInputValue';
 
 const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
 

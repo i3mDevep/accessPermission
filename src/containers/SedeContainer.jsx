@@ -3,14 +3,11 @@ import * as firebase from 'firebase/app';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { Card, Container, Alert, Row } from 'react-bootstrap';
-import { IoIosAlert } from 'react-icons/io';
 import { LoopCircleLoading } from 'react-loadingg';
-import PointAttentionModal from '../components/PointAttention/PointAttentionModal';
-import PointAttentionCard from '../components/PointAttention/PointAttentionCard';
-import PointCreateNewCard from '../components/PointAttention/PointCreateNewCard';
+import { showAlert } from '../store/actions/sweetAlertActions';
+import SedeComponent from '../components/Sede/index';
 
-const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
+const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
@@ -18,7 +15,7 @@ const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState('');
 
-  const handlerOnSubmit = ({
+  const handlerOnCreateSubCompany = ({
     namesubcompany,
     email,
     password,
@@ -56,42 +53,33 @@ const CreateSedeContainer = ({ isAuth, subCompanies = [], requesting }) => {
       }).finally(() => setLoading(false));
   };
 
+  const handlerOnDeletedSubCompany = (subCompid) => {
+    const deteleSubCompany = firebase.functions().httpsCallable('deteleSubCompany');
+    showAlert({
+      type: 'warning',
+      title: 'Estas seguro?',
+      content: 'Estas a punto de Eliminar toda la información!',
+      showCancel: true,
+      confirmBtnText: 'Yes, delete it!',
+      confirmBtnBsStyle: 'danger',
+      onConfirm: () => deteleSubCompany({ subCompanyId: subCompid, companyId: isAuth.uid })
+        .then((response) => {
+          console.log(response);
+        }).catch((err) => console.log(err)),
+      onCancel: null,
+    });
+  };
   return (
-
-    <Container fluid>
-      {!subCompanies.length ? (
-        <Alert variant='info' className='w-100'>
-          <IoIosAlert size='30' />
-          {' '}
-          <small>
-            Registra una sede o punto de venta
-          </small>
-        </Alert>
-      ) : ''}
-      <Card style={{ width: '18%' }}>
-        <PointAttentionModal
-          submit={handlerOnSubmit}
-          show={modalShow}
-          response={response}
-          loading={loading}
-          onHide={() => setModalShow(false)}
-        />
-      </Card>
-
-      <Row>
-        <PointCreateNewCard onClick={() => setModalShow(true)} />
-        {
-          subCompanies.map((subCompany) => (
-            <PointAttentionCard
-              key={subCompany.id}
-              subCompid={subCompany.id}
-              {...subCompany}
-            />
-          ))
-        }
-      </Row>
-    </Container>
-
+    <SedeComponent
+      subCompanies={subCompanies}
+      submit={handlerOnCreateSubCompany}
+      modalShow={modalShow}
+      loading={loading}
+      response={response}
+      onHide={() => setModalShow(false)}
+      onClickNewSede={() => setModalShow(true)}
+      onClickDeleted={handlerOnDeletedSubCompany}
+    />
   );
 };
 const mapStateProps = (state) => {
@@ -102,8 +90,15 @@ const mapStateProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //deleteSubcompany: (idBusiness, idSubcompany) => dispatch(deleteSubcompany(idBusiness, idSubcompany)),
+    showAlert: (alertProps) => dispatch(showAlert(alertProps)),
+  };
+};
+
 export default compose(
-  connect(mapStateProps, null),
+  connect(mapStateProps, mapDispatchToProps),
   firestoreConnect((props) => {
     return [
       { collection: 'business',
@@ -117,4 +112,4 @@ export default compose(
       },
     ];
   }),
-)(CreateSedeContainer);
+)(SedeContainer);

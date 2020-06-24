@@ -1,14 +1,14 @@
 import React from 'react';
-import { IoIosCreate } from 'react-icons/io';
+import { MdCreateNewFolder } from 'react-icons/md';
 import { CustomeCardCreate } from './style';
 
 const PointCreateNewCard = ({ onClick }) => {
 
   return (
     <CustomeCardCreate>
-      <div style={{display:'inline-block'}}>
+      <div style={{ display: 'inline-block' }}>
         <h2>Crear Nueva Sede</h2>
-        <IoIosCreate onClick={onClick} size='40' />
+        <MdCreateNewFolder onClick={onClick} size='40' />
       </div>
     </CustomeCardCreate>
   );

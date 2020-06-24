@@ -9,7 +9,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import ScreenLoading from '../components/ScreenLoading';
 import GenerateQR from '../pages/company/GenerateQR';
-import CreateSede from '../pages/company/CreateSede';
+import Sedes from '../pages/company/Sedes';
 import SedesPage from '../pages/subcompany/SedesPage';
 import LayoutDashboard from '../components/LayoutDashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,7 +34,7 @@ const LoggedInRoutesWithbusiness = [
   <Route path='/dashboard' exact={true} component={Dashboard} />,
   <Route path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route path='/generateqr' exact={true} component={GenerateQR} />,
-  <Route path='/sedes' exact={true} component={CreateSede} />,
+  <Route path='/sedes' exact={true} component={Sedes} />,
 ];
 const LoggedInRoutesWithOutbusiness = [
   <Route path='/dashboardsedes' exact={true} component={SedesPage} />,
