@@ -18,8 +18,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-const drawerWidth = 240;
-
 function FooterPointAttention({ useStyles, children }) {
   const classes = useStyles();
   const theme = useTheme();
@@ -35,8 +33,11 @@ function FooterPointAttention({ useStyles, children }) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      <CssBaseline 
+ 
+      />
       <AppBar
+        color='primary'
         position='fixed'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -55,7 +56,7 @@ function FooterPointAttention({ useStyles, children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
-            Mini variant drawer
+            Punto de venta
           </Typography>
         </Toolbar>
       </AppBar>
@@ -98,7 +99,7 @@ function FooterPointAttention({ useStyles, children }) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {children}
+        { children }
       </main>
     </div>
   );

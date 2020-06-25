@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import LayoutPointAttention from './LayoutPointAttention/LayoutPointAttention';
+import WorkSpacePointAttention from './WorkSepacePointAttention/WorkSpacePointAttention';
 
 const drawerWidth = 240;
 const HeaderContainer = () => {
@@ -56,6 +57,7 @@ const HeaderContainer = () => {
       },
     },
     toolbar: {
+      color: 'red',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
@@ -72,7 +74,9 @@ const HeaderContainer = () => {
   return (
     <LayoutPointAttention
       useStyles={useStyles}
-    />
+    >
+      <WorkSpacePointAttention />
+    </LayoutPointAttention>
   );
 
 };
