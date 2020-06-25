@@ -174,11 +174,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
             {
               icon: () => <DeleteIcon />,
               tooltip: 'Delete Worker',
-<<<<<<< HEAD
               onClick: onClickDeleteWorker,
-=======
-              onClick: (event, rowData) => confirm(`You want to delete ${rowData.name}`),
->>>>>>> b00146ab5f11bb6727ba04c08a0968c5f4d65474
             },
           ]}
         />
