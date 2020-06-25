@@ -99,7 +99,7 @@ function UsersTableRow({ users = [] }) {
   );
 }
 
-function WorkerTableRow({ worker = [] }) {
+function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
   const data = [];
   worker.forEach((worker) => {
     data.push({
@@ -110,6 +110,7 @@ function WorkerTableRow({ worker = [] }) {
       address: worker.address,
       celphone: worker.celphone,
       sede: worker.sede.value,
+      idsede: worker.sede.id,
       time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
     });
   });
@@ -144,6 +145,7 @@ function WorkerTableRow({ worker = [] }) {
             { title: 'Address', field: 'address' },
             { title: 'Celphone', field: 'celphone' },
             { title: 'Sede', field: 'sede' },
+            { title: 'Id', field: 'idsede', hidden: true },
             { title: 'Register', field: 'time' },
           ]}
           data={data}
@@ -165,7 +167,7 @@ function WorkerTableRow({ worker = [] }) {
             {
               icon: () => <DeleteIcon />,
               tooltip: 'Delete Worker',
-              onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
+              onClick: onClickDeleteWorker,
             },
           ]}
         />
