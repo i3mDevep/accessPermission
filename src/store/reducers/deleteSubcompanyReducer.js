@@ -1,24 +1,29 @@
-const intitState = { error: false, msg: '' };
+const intitState = { error: false, msg: '', loading: false };
 
-const deleteSubcompany = (state = intitState, action) => {
+const deleteSubCompany = (state = intitState, action) => {
   switch (action.type) {
-    case 'DELETE':
-      console.log('DELETE');
+    case 'REQUEST_SUBCOMPANY_DELETE':
       return {
         ...state,
+        loading: true,
+      };
+    case 'DELETE_SUBCOMPANY_SUCCESS':
+      return {
+        ...state,
+        loading: false,
         error: false,
-        msg: 'subcompany_delete',
+        msg: 'subcompany deleted!',
       };
     case 'DELETE_SUBCOMPANY_ERROR':
-      console.log('DELETE_SUBCOMPANY_ERROR');
       return {
         ...state,
+        loading: false,
         error: true,
-        msg: action.err,
+        msg: action.err.message,
       };
     default:
       return state;
   }
 };
 
-export default deleteSubcompany;
+export default deleteSubCompany;

@@ -5,10 +5,11 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
 import { showAlert } from '../store/actions/sweetAlertActions';
+import { deleteSubCompany } from '../store/actions/deleteSubcompanyAction';
 import SedeComponent from '../components/Sede/index';
 
-const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert }) => {
-  if (requesting) {
+const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, deleteSubCompany, loadingDeleted }) => {
+  if (requesting || loadingDeleted.loading) {
     return <LoopCircleLoading />;
   }
   const [modalShow, setModalShow] = useState(false);
@@ -54,7 +55,7 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert }) => 
   };
 
   const handlerOnDeletedSubCompany = (subCompid) => {
-    const deteleSubCompany = firebase.functions().httpsCallable('deteleSubCompany');
+    //const deteleSubCompany = firebase.functions().httpsCallable('deteleSubCompany');
     showAlert({
       type: 'warning',
       title: 'Estas seguro?',
@@ -62,10 +63,7 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert }) => 
       showCancel: true,
       confirmBtnText: 'Yes, delete it!',
       confirmBtnBsStyle: 'danger',
-      onConfirm: () => deteleSubCompany({ subCompanyId: subCompid, companyId: isAuth.uid })
-        .then((response) => {
-          console.log(response);
-        }).catch((err) => console.log(err)),
+      onConfirm: () => deleteSubCompany({ subCompanyId: subCompid, companyId: isAuth.uid }),
       onCancel: null,
     });
   };
@@ -87,12 +85,13 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     subCompanies: state.firestore.ordered.subcompanycreate,
     requesting: state.firestore.status.requesting.subcompanycreate,
+    loadingDeleted: state.resultDelete,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //deleteSubcompany: (idBusiness, idSubcompany) => dispatch(deleteSubcompany(idBusiness, idSubcompany)),
+    deleteSubCompany: (data) => dispatch(deleteSubCompany(data)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
   };
 };

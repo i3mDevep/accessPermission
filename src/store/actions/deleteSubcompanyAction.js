@@ -2,15 +2,17 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-export const deleteSubcompany = (idBusiness, idSubcompany) => {
+export const deleteSubCompany = (data) => {
   return (dispatch) => {
+    dispatch({ type: 'REQUEST_SUBCOMPANY_DELETE' });
     const deteleSubCompany = firebase.functions().httpsCallable('deteleSubCompany');
-    deteleSubCompany(dataSubCompany)
+    deteleSubCompany(data)
       .then((response) => {
-        
-        if (response.data.result === true) {
-          setModalShow(false);
-        }
-      }).finally(() => setLoading(false));
+        console.log(response);
+        dispatch({ type: 'DELETE_SUBCOMPANY_SUCCESS' });
+      })
+      .catch((err) => {
+        dispatch({ type: 'DELETE_SUBCOMPANY_ERROR', err: err.message });
+      });
   };
 };

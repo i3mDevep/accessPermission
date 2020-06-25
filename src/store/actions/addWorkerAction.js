@@ -34,14 +34,17 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
           return transaction.get(documentRef)
             .then((mdoc) => {
               const { gender } = content;
+              const Worker = mdoc.get('Worker.value') + 1;
+              const Men = mdoc.get('Men.value') + 1;
+              const Women = mdoc.get('Women.value') + 1;
               switch (gender) {
                 case 'Hombre':
                   transaction.update(documentRef, {
                     Worker: {
-                      value: mdoc.get('Worker.value') + 1,
+                      value: Worker,
                       time: currentTime },
                     Men: {
-                      value: mdoc.get('Men.value') + 1,
+                      value: Men,
                       time: currentTime,
                     },
                   });
@@ -49,10 +52,10 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
                 case 'Mujer':
                   transaction.update(documentRef, {
                     Worker: {
-                      value: mdoc.get('Worker.value') + 1,
+                      value: Worker,
                       time: currentTime },
                     Women: {
-                      value: mdoc.get('Women.value') + 1,
+                      value: Women,
                       time: currentTime,
                     },
                   });
