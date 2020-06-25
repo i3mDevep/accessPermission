@@ -21,6 +21,8 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { red } from '@material-ui/core/colors';
+
 import './style.scss';
 
 const tableIcons = {
@@ -74,13 +76,13 @@ function UsersTableRow({ users = [] }) {
           icons={tableIcons}
           title='Users'
           columns={[
-            { title: 'Name', field: 'name' },
-            { title: 'Identification', field: 'identification' },
-            { title: 'Gender', field: 'gender' },
-            { title: 'Age', field: 'age' },
-            { title: 'Address', field: 'address' },
-            { title: 'Telphone', field: 'telphone' },
-            { title: 'Sede', field: 'sede' },
+            { title: 'Name', field: 'Nombre' },
+            { title: 'Identification', field: 'Identificación' },
+            { title: 'Gender', field: 'Género' },
+            { title: 'Age', field: 'Edad' },
+            { title: 'Address', field: 'Dirección' },
+            { title: 'Telphone', field: 'Teléfono' },
+            { title: 'Sede', field: 'Sede' },
             { title: 'Time', field: 'time' },
           ]}
           data={data}
@@ -126,7 +128,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
               nRowsSelected: '{0} row(s) selected',
             },
             header: {
-              actions: 'Tracking',
+              actions: 'Acción',
             },
             body: {
               emptyDataSourceMessage: 'No records to display',
@@ -138,12 +140,12 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
           icons={tableIcons}
           title='Worker'
           columns={[
-            { title: 'Name', field: 'name' },
-            { title: 'Identification', field: 'identification' },
-            { title: 'Gender', field: 'gender' },
-            { title: 'Age', field: 'age' },
-            { title: 'Address', field: 'address' },
-            { title: 'Celphone', field: 'celphone' },
+            { title: 'Nombre', field: 'name' },
+            { title: 'Identificación', field: 'identification' },
+            { title: 'Género', field: 'gender' },
+            { title: 'Edad', field: 'age' },
+            { title: 'Dirección', field: 'address' },
+            { title: 'Teléfono', field: 'celphone' },
             { title: 'Sede', field: 'sede' },
             { title: 'Id', field: 'idsede', hidden: true },
             { title: 'Register', field: 'time' },
@@ -165,9 +167,18 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
               onClick: (event, rowData) => alert(`info ${rowData.name}`),
             },
             {
+              icon: () => <Edit style={{ color: red[900], fontSize: 20 }} />,
+              tooltip: 'Edit Worker',
+              onClick: (event, rowData) => alert(`info ${rowData.name}`),
+            },
+            {
               icon: () => <DeleteIcon />,
               tooltip: 'Delete Worker',
+<<<<<<< HEAD
               onClick: onClickDeleteWorker,
+=======
+              onClick: (event, rowData) => confirm(`You want to delete ${rowData.name}`),
+>>>>>>> b00146ab5f11bb6727ba04c08a0968c5f4d65474
             },
           ]}
         />

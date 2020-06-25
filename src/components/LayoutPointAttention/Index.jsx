@@ -1,68 +1,80 @@
 import React from 'react';
-import { Navbar } from 'react-bootstrap';
+
 import { connect } from 'react-redux';
-import HeaderPointAttention from './HeaderPointAttention/HeaderPointAttention';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import LayoutPointAttention from './LayoutPointAttention/LayoutPointAttention';
 
-class HeaderContainer extends React.Component {
+const drawerWidth = 240;
+const HeaderContainer = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = { navExpanded: false };
-  }
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+    },
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    appBarShift: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    menuButton: {
+      marginRight: 36,
+    },
+    hide: {
+      display: 'none',
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+      whiteSpace: 'nowrap',
+    },
+    drawerOpen: {
+      width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerClose: {
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: 'hidden',
+      width: theme.spacing(7) + 1,
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9) + 1,
+      },
+    },
+    toolbar: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+  }));
 
-  componentDidMount() {
-    document.addEventListener('click', this.onClickOutside);
-  }
+  return (
+    <LayoutPointAttention
+      useStyles={useStyles}
+    />
+  );
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.onClickOutside);
-  }
-
-  onClickOutside = (event) => {
-    const closestCollapse = event.target.closest('.navbar-collapse');
-    const closestToggler = event.target.closest('.navbar-toggler');
-
-    if (closestCollapse || closestToggler) return;
-
-    if (this.state.navExpanded) {
-      this.setNavExpanded(false);
-    }
-  };
-
-  setNavExpanded = (expanded) => {
-    this.setState({ navExpanded: expanded });
-  };
-
-  closeNav = () => {
-    this.setNavExpanded(false);
-  };
-
-  render() {
-
-    return (
-      <Navbar
-        bg='primary'
-        variant='dark'
-        expand='lg'
-        sticky='top'
-        onToggle={this.setNavExpanded}
-        expanded={this.state.navExpanded}
-      >
-        <Navbar.Brand href='/'>
-          <div>
-            Example
-          </div>
-        </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls='header-nav' />
-
-        <HeaderPointAttention {...this.props} onSelect={this.closeNav} />
-      </Navbar>
-    );
-  }
-}
-
-HeaderContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
