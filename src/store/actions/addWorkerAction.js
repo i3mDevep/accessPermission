@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import { showAlert } from './sweetAlertActions';
 
 export const addWorker = (idBusiness, idSubcompany, content) => {
+  const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   return (dispatch) => {
     dispatch({ type: 'REQUEST_WORKER' });
     const db = firebase.firestore();
@@ -15,6 +16,7 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
             .doc(content.identification)
             .set({
               ...content,
+              time: currentTime,
             });
         }
         throw new Error('Esta persona ya se encuentra registrado!');
@@ -23,6 +25,7 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
         return db.collection('business').doc(idBusiness).collection('worker').doc(content.identification)
           .set({
             ...content,
+            time: currentTime,
           });
       })
       .then(() => {
@@ -30,7 +33,6 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
           const documentRef = db.doc(`business/${idBusiness}/resum/totalsWorker`);
           return transaction.get(documentRef)
             .then((mdoc) => {
-              const currentTime = firebase.firestore.FieldValue.serverTimestamp();
               const { gender } = content;
               switch (gender) {
                 case 'Hombre':

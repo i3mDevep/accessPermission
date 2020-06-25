@@ -18,6 +18,9 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import SaveIcon from '@material-ui/icons/Save';
+import GpsFixedIcon from '@material-ui/icons/GpsFixed';
+import DeleteIcon from '@material-ui/icons/Delete';
 import './style.scss';
 
 const tableIcons = {
@@ -38,6 +41,7 @@ const tableIcons = {
   SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
+  SaveIcon: forwardRef((props, ref) => <SaveIcon {...props} ref={ref} />),
 };
 
 const theme = createMuiTheme({
@@ -47,6 +51,7 @@ const theme = createMuiTheme({
     ].join(','),
   },
 });
+
 function UsersTableRow({ users = [] }) {
   const data = [];
   users.forEach((user) => {
@@ -62,7 +67,7 @@ function UsersTableRow({ users = [] }) {
     });
   });
   return (
-    <div style={{ maxWidth: '100%'}}>
+    <div style={{ maxWidth: '100%' }}>
       <ThemeProvider theme={theme}>
         <MaterialTable
           id='mytable'
@@ -93,11 +98,90 @@ function UsersTableRow({ users = [] }) {
     </div>
   );
 }
+
+function WorkerTableRow({ worker = [] }) {
+  const data = [];
+  worker.forEach((worker) => {
+    data.push({
+      name: `${worker.name} ${worker.lastname}`,
+      identification: worker.identification,
+      gender: worker.gender,
+      age: worker.age,
+      address: worker.address,
+      celphone: worker.celphone,
+      sede: worker.sede.value,
+      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+    });
+  });
+  return (
+    <div style={{ maxWidth: '100%' }}>
+      <ThemeProvider theme={theme}>
+        <MaterialTable
+          localization={{
+            pagination: {
+              labelDisplayedRows: '{from}-{to} of {count}',
+            },
+            toolbar: {
+              nRowsSelected: '{0} row(s) selected',
+            },
+            header: {
+              actions: 'Tracking',
+            },
+            body: {
+              emptyDataSourceMessage: 'No records to display',
+              filterRow: {
+                filterTooltip: 'Filter',
+              },
+            },
+          }}
+          icons={tableIcons}
+          title='Worker'
+          columns={[
+            { title: 'Name', field: 'name' },
+            { title: 'Identification', field: 'identification' },
+            { title: 'Gender', field: 'gender' },
+            { title: 'Age', field: 'age' },
+            { title: 'Address', field: 'address' },
+            { title: 'Celphone', field: 'celphone' },
+            { title: 'Sede', field: 'sede' },
+            { title: 'Register', field: 'time' },
+          ]}
+          data={data}
+          options={{
+            draggable: false,
+            filtering: false,
+            search: true,
+            headerStyle: {
+              backgroundColor: '#01579b',
+              color: '#FFF',
+            },
+          }}
+          actions={[
+            {
+              icon: () => <GpsFixedIcon />,
+              tooltip: 'Info Worker',
+              onClick: (event, rowData) => alert(`info ${rowData.name}`),
+            },
+            {
+              icon: () => <DeleteIcon />,
+              tooltip: 'Delete Worker',
+              onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
+            },
+          ]}
+        />
+      </ThemeProvider>
+    </div>
+  );
+}
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
+    worker: state.firestore.ordered.worker,
   };
 };
-export default
-connect(mapStateProps, null)(UsersTableRow);
+export default {
+  UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
+  WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
+};
+

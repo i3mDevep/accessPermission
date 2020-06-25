@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ListItemsToolbox from '../ListItemsToolbox';
 import { HeaderToolbox } from '../HeaderToolbox';
 import useGetsize from '../../../hooks/useGetsize';
+import Footer from '../Footer';
 import { ToolboxContainer, Menu, Wrapper } from './style';
 
 const Toolbox = () => {
@@ -13,6 +14,7 @@ const Toolbox = () => {
     <ToolboxContainer show={true}>
       <HeaderToolbox />
       <ListItemsToolbox />
+      <Footer />
     </ToolboxContainer>
   ) : (
     <div>
@@ -21,6 +23,7 @@ const Toolbox = () => {
         <HeaderToolbox />
         <ListItemsToolbox onClick={() => setShowMenu(false)} />
         <Wrapper />
+        <Footer />
       </ToolboxContainer>
     </div>
   )

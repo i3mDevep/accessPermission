@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 import ListCardsChart from '../ListCardsChart/ListCardsChart';
-import UsersTableRow from '../Tables/SimpleTable/UsersTableRow';
+import Tables from '../Tables/LayoutTable/Tables';
 import CardInfo from '../CardInfo/CardInfo';
 
 const Workspace = () => {
@@ -9,7 +9,7 @@ const Workspace = () => {
     <Container fluid>
       <CardInfo.CardInfoUsers />
       <ListCardsChart />
-      <UsersTableRow />
+      <Tables.UsersTableRow />
     </Container>
   );
 };

@@ -23,3 +23,13 @@
         width: 100% !important;
       }
 }
+button:focus{
+    outline: none !important;
+}
+.MuiTableSortLabel-root.MuiTableSortLabel-active {
+    color: white !important;
+}
+.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon {
+    color: rgba(253, 249, 22, 0.959) !important;
+    opacity: 1 !important;
+}

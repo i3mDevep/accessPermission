@@ -30,6 +30,16 @@ export default compose(
         ],
         storeAs: 'totalsWorker',
       },
+      { collection: 'business',
+        doc: props.isAuth.uid,
+        subcollections: [
+          {
+            collection: 'worker',
+          },
+        ],
+        storeAs: 'worker',
+      //limit: 10,
+      },
     ];
   }),
 )(WorkerContainer);

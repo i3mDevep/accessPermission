@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { MdDashboard, MdFiberNew } from 'react-icons/md';
+import { GrUserWorker } from 'react-icons/gr';
 import { Container } from 'react-bootstrap';
 import Toolbox from './Toolbox/Toolbox';
 import HeaderPerfil from './HeaderPerfil';
@@ -15,6 +16,10 @@ const LayoutDashboard = ({ children }) => {
       case '/generateqr':
         setIcon(() => <RiQrCodeLine />);
         setTitle('GENERADOR QR');
+        break;
+      case '/worker':
+        setIcon(() => <GrUserWorker />);
+        setTitle('WORKER');
         break;
       case '/sedes':
         setIcon(() => <MdFiberNew />);

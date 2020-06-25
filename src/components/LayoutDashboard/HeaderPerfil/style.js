@@ -15,7 +15,7 @@ export const CustomeDropdownTogle = styled(Dropdown.Toggle)`
 `
 export const Title = styled.label`
   padding: 0 0 0 40px;
-  color: #8888;
+  color: #332f2e;
   font-size: 20px;
 `
 export const Header = styled.nav`
