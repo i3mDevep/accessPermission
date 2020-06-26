@@ -47,8 +47,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  selected: {
+    backgroundColor: 'red',
+  },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: 1,
     backgroundImage: 'url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_960_720.png)',
     backgroundPosition: 'left',
     backgroundSize: 'cover',
@@ -89,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   drawerClose: {
+    zIndex: 0,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

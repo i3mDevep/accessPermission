@@ -34,7 +34,7 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
   return (
     <Modal
       {...rest}
-      size='lg'
+      size='md'
       aria-labelledby='contained-modal-title-vcenter'
       centered
     >
