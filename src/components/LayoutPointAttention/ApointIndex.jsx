@@ -2,14 +2,22 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+
 import LayoutPointAttention from './LayoutPointAttention/LayoutPointAttention';
 import WorkSpacePointAttention from './WorkSepacePointAttention/WorkSpacePointAttention';
 import './style.scss';
 
 const drawerWidth = 240;
-const HeaderContainer = () => {
+const ApointIndex = () => {
 
   const useStyles = makeStyles((theme) => ({
+
+    typography: {
+      fontFamily: [
+        'poppins',
+      ].join(','),
+    },
+
     root: {
       display: 'flex',
       //color: 'red', // Color text container
@@ -77,12 +85,17 @@ const HeaderContainer = () => {
       flexGrow: 1,
       padding: theme.spacing(3),
     },
+    sectionMobile: {
+      display: 'flex',
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
+    },
   }));
 
   return (
     <LayoutPointAttention
       useStyles={useStyles}
-      onClick={''}
     >
       <WorkSpacePointAttention />
     </LayoutPointAttention>
@@ -96,4 +109,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {},
-)(HeaderContainer);
+)(ApointIndex);

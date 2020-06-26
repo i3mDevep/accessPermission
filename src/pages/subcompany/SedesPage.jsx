@@ -1,17 +1,11 @@
 import React from 'react';
 import firebase from 'firebase/app';
-import HeaderContainer from '../../components/LayoutPointAttention/Index'
+import ApointIndex from '../../components/LayoutPointAttention/ApointIndex';
 
 const SedesPage = () => {
   const logout = () => {
     firebase.auth().signOut();
   };
-  return (
-    <div>
-     < HeaderContainer />
-      <h1>this page is when sedes sing in</h1>
-      <button onClick={logout}>LogOUT</button>
-    </div>
-  );
+  return <ApointIndex />;
 };
 export default SedesPage;

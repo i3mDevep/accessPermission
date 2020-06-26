@@ -1,7 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
+import Badge from '@material-ui/core/Badge';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,13 +21,15 @@ import Fingerprint from '@material-ui/icons/Fingerprint';
 import FaceIcon from '@material-ui/icons/Face';
 import MailIcon from '@material-ui/icons/Mail';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import DescriptionIcon from '@material-ui/icons/Description';
 import '../style.scss';
 
-const icons = [<Fingerprint />, <PeopleAltIcon />, <FaceIcon />, <MailIcon />, <DescriptionIcon />, <SettingsApplicationsIcon />];
-const items = ['Control Acceso', 'Empleados ', 'Clientes', 'Notificaciones', 'Informes'];
-const links = ['/control', '/empleados ', '/clientes', '/notificaciones', '/informes'];
+const icons = [<HomeIcon />, <Fingerprint />, <PeopleAltIcon />, <FaceIcon />, <MailIcon />, <DescriptionIcon />, <SettingsApplicationsIcon />, <ExitToAppIcon />];
+const items = ['Home', 'Control Acceso', 'Empleados ', 'Clientes', 'Notificaciones', 'Informes'];
+const links = ['/home', '/control', '/empleados ', '/clientes', '/notificaciones', '/informes'];
 
 function FooterPointAttention({ useStyles, children, onClick }) {
   const classes = useStyles();
@@ -62,6 +65,13 @@ function FooterPointAttention({ useStyles, children, onClick }) {
           >
             <MenuIcon />
           </IconButton>
+      
+            <IconButton aria-label='show 17 new notifications' color='inherit'>
+              <Badge badgeContent={17} color='secondary'>
+                <NotificationImportantIcon />
+              </Badge>
+            </IconButton>
+   ¿
           <Typography variant='h6' noWrap>
             Punto de venta
           </Typography>
@@ -81,6 +91,7 @@ function FooterPointAttention({ useStyles, children, onClick }) {
         }}
       >
         <div className={classes.toolbar}>
+          .  Aplicacion
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -96,9 +107,9 @@ function FooterPointAttention({ useStyles, children, onClick }) {
         </List>
         <Divider />
         <List>
-          {['Ayuda'].map((text, index) => (
-            <ListItem button to={links[5]} onClick={onClick} key={text}>
-              <ListItemIcon>{icons[5]}</ListItemIcon>
+          {['Ayuda', 'Salir'].map((text, index) => (
+            <ListItem button to={links[6]} onClick={onClick} key={text}>
+              <ListItemIcon>{index % 6 === 0 ? icons[6] : icons[7]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

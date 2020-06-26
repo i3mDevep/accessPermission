@@ -182,6 +182,67 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
     </div>
   );
 }
+
+function ApointUserAuthTableRow() {
+  const [state, setState] = React.useState({
+    columns:[
+      { title: 'Nombre', field: 'name' },
+      { title: 'Identificación', field: 'identification' },
+      { title: 'Género', field: 'gender' },
+      { title: 'Edad', field: 'age' },
+      { title: 'Dirección', field: 'address' },
+      { title: 'Teléfono', field: 'celphone' },
+      { title: 'Ingreso', field: 'celphone' },
+      { title: 'Salida', field: 'celphone' },
+
+    ],
+    data: [
+      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+      {
+        name: 'Zerya Betül',
+        surname: 'Baran',
+        birthYear: 2017,
+        birthCity: 34,
+      },
+    ],
+  });
+  return (
+    <div style={{ maxWidth: '100%' }}>
+      <ThemeProvider theme={theme}>
+        <MaterialTable
+          title='Control de Ingreso'
+          columns={state.columns}
+          data={state.data}
+          localization={{
+            pagination: {
+              labelDisplayedRows: '{from}-{to} of {count}',
+            },
+            toolbar: {
+              nRowsSelected: '{0} row(s) selected',
+            },
+            header: {
+              actions: 'Acción',
+            },
+            body: {
+              emptyDataSourceMessage: 'No records to display',
+              filterRow: {
+                filterTooltip: 'Filter',
+              },
+            },
+          }}
+          options={{
+            draggable: false,
+            filtering: false,
+            search: true,
+          }}
+
+        />
+
+      </ThemeProvider>
+    </div>
+  );
+}
+
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
@@ -192,5 +253,6 @@ const mapStateProps = (state) => {
 export default {
   UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
   WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
+  ApointUserAuthTableRow: connect(mapStateProps, null)(ApointUserAuthTableRow)
 };
 
