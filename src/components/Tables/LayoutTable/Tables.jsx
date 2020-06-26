@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { connect } from 'react-redux';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
@@ -20,33 +20,10 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { red } from '@material-ui/core/colors';
-import Card from '@material-ui/core/Card';
 
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
 
 import './style.scss';
-
-const useStyles = makeStyles(({ spacing }) => ({
-  card: {
-    marginTop: 40,
-    borderRadius: spacing(0.5),
-    transition: '0.3s',
-    width: '90%',
-    overflow: 'initial',
-    background: '#ffffff',
-  },
-  content: {
-    paddingTop: 0,
-    textAlign: 'left',
-    overflowX: 'auto',
-    '& table': {
-      marginBottom: 0,
-    },
-  },
-}));
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -124,8 +101,32 @@ function UsersTableRow({ users = [] }) {
   );
 }
 
-function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
+function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
   const data = [];
+  const [selectedRow, setSelectedRow] = useState(null);  
+  const [columns, setColumns] = useState([
+    {
+      title: 'Name',
+      field: 'name',
+      editComponent: (props) => (
+        <input
+          type='text'
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+        />
+      ),
+    },
+    { title: 'Nombre', field: 'name' },
+    { title: 'Identificación', field: 'identification' },
+    { title: 'Género', field: 'gender' },
+    { title: 'Edad', field: 'age' },
+    { title: 'Dirección', field: 'address' },
+    { title: 'Teléfono', field: 'celphone' },
+    { title: 'Sede', field: 'sede' },
+    { title: 'Id', field: 'idsede', hidden: true },
+    { title: 'Register', field: 'time' },
+  ]);
+
   worker.forEach((worker) => {
     data.push({
       name: `${worker.name} ${worker.lastname}`,
@@ -139,6 +140,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
       time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
     });
   });
+
   return (
     <div style={{ maxWidth: '100%' }}>
       <ThemeProvider theme={theme}>
@@ -162,19 +164,38 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
           }}
           icons={tableIcons}
           title='Worker'
-          columns={[
-            { title: 'Nombre', field: 'name' },
-            { title: 'Identificación', field: 'identification' },
-            { title: 'Género', field: 'gender' },
-            { title: 'Edad', field: 'age' },
-            { title: 'Dirección', field: 'address' },
-            { title: 'Teléfono', field: 'celphone' },
-            { title: 'Sede', field: 'sede' },
-            { title: 'Id', field: 'idsede', hidden: true },
-            { title: 'Register', field: 'time' },
-          ]}
+          columns={columns}
           data={data}
+          editable={{
+            onRowAdd: (newData) => new Promise((resolve, reject) => {
+              setTimeout(() => {
+                setData([...data, newData]);
+                resolve();
+              }, 1000);
+            }),
+            onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataUpdate = [...data];
+                const index = oldData.tableData.id;
+                dataUpdate[index] = newData;
+                setData([...dataUpdate]);
+                resolve();
+              }, 1000);
+            }),
+            onRowDelete: (oldData) => new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataDelete = [...data];
+                const index = oldData.tableData.id;
+                dataDelete.splice(index, 1);
+                setData([...dataDelete]);
+                resolve();
+              }, 1000);
+            }),
+          }}
+          onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
           options={{
+            actionsColumnIndex: -1,
+            exportButton: true,
             draggable: false,
             filtering: false,
             search: true,
@@ -182,22 +203,15 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
               backgroundColor: '#01579b',
               color: '#FFF',
             },
+            rowStyle: rowData => ({
+              backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+            }),
           }}
           actions={[
             {
-              icon: () => <GpsFixedIcon />,
-              tooltip: 'Info Worker',
+              icon: () => <GpsFixedIcon stylecolor='red' />,
+              tooltip: 'status',
               onClick: (event, rowData) => alert(`info ${rowData.name}`),
-            },
-            {
-              icon: () => <Edit style={{ color: red[900], fontSize: 20 }} />,
-              tooltip: 'Edit Worker',
-              onClick: (event, rowData) => alert(`info ${rowData.name}`),
-            },
-            {
-              icon: () => <DeleteIcon />,
-              tooltip: 'Delete Worker',
-              onClick: onClickDeleteWorker,
             },
           ]}
         />
@@ -207,39 +221,40 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
 }
 
 function ApointUserAuthTableRow({ worker = [] }) {
-  const data = [];
-  worker.forEach((worker) => {
-    data.push({
-      name: `${worker.name} ${worker.lastname}`,
-      identification: worker.identification,
-      gender: worker.gender,
-      age: worker.age,
-      address: worker.address,
-      celphone: worker.celphone,
-      sede: worker.sede.value,
-      idsede: worker.sede.id,
-      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-    });
-  });
 
+  const [state, setState] = React.useState({
+    columns: [
+      { title: 'Nombre', field: 'name' },
+      { title: 'Identificación', field: 'identification' },
+      { title: 'Género', field: 'gender' },
+      { title: 'Edad', field: 'age' },
+      { title: 'Entrada', field: 'inpoint' },
+      { title: 'Salida', field: 'outpoint' },
+      { title: 'Horas Laborales', field: 'hrs' },
+      { title: 'Novedad', field: 'status' },
+
+    ],
+    data: [
+      { name: 'Andres Bermúdez', identification: '1018430535', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
+      { name: 'Andres Bermúdez', identification: '2033232322', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
+      { name: 'Andres Bermúdez', identification: '1511651651', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
+      { name: 'Andres Bermúdez', identification: '5616516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
+      { name: 'Andres Bermúdez', identification: '9661313512', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
+      { name: 'Andres Bermúdez', identification: '6516516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
+      { name: 'Andres Bermúdez', identification: '1018430535', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
+      { name: 'Andres Bermúdez', identification: '6516516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
+      { name: 'Andres Bermúdez', identification: '6511651616', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
+      { name: 'Andres Bermúdez', identification: '9849849849', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
+    ],
+  });
   return (
     <div style={{ maxWidth: '100%' }}>
       <ThemeProvider theme={theme}>
         <MaterialTable
           icons={tableIcons}
           title='Control de Ingreso'
-          columns={[
-            { title: 'Nombre', field: 'name' },
-            { title: 'Identificación', field: 'identification' },
-            { title: 'Género', field: 'gender' },
-            { title: 'Edad', field: 'age' },
-            { title: 'Dirección', field: 'address' },
-            { title: 'Teléfono', field: 'celphone' },
-            { title: 'Sede', field: 'sede' },
-            { title: 'Id', field: 'idsede', hidden: true },
-            { title: 'Register', field: 'time' },
-          ]}
-          data={data}
+          columns={state.columns}
+          data={state.data}
           localization={{
             pagination: {
               labelDisplayedRows: '{from}-{to} of {count}',
@@ -261,8 +276,15 @@ function ApointUserAuthTableRow({ worker = [] }) {
             draggable: false,
             filtering: false,
             search: true,
+            actionsColumnIndex: -1,
           }}
-
+          actions={[
+            {
+              icon: () => <GpsFixedIcon stylecolor='red' />,
+              tooltip: 'status',
+              onClick: (event, rowData) => alert(`info ${rowData.name}`),
+            },
+          ]}
         />
       </ThemeProvider>
     </div>

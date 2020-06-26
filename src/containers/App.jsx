@@ -28,36 +28,40 @@ const onAuthStateChange = (callback) => {
     }
   });
 };
+
 const LoggedInRoutesWithbusiness = [
-  <Route path='/register' exact={true} component={() => <Redirect to='/dashboard' />} />,
-  <Route path='/login' exact={true} component={() => <Redirect to='/dashboard' />} />,
-  <Route path='/' exact={true} component={() => <Redirect to='/dashboard' />} />,
-  <Route path='/dashboard' exact={true} component={Dashboard} />,
-  <Route path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
-  <Route path='/generateqr' exact={true} component={GenerateQR} />,
-  <Route path='/worker' exact={true} component={WorkerPage} />,
-  <Route path='/sedes' exact={true} component={Sedes} />,
+  <Route key='register' path='/register' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route key='login' path='/login' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route key='/' path='/' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route key='dashboard' path='/dashboard' exact={true} component={Dashboard} />,
+  <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route key='generateqr' path='/generateqr' exact={true} component={GenerateQR} />,
+  <Route key='worker' path='/worker' exact={true} component={WorkerPage} />,
+  <Route key='sedes' path='/sedes' exact={true} component={Sedes} />,
 ];
+
 const LoggedInRoutesWithOutbusiness = [
-  <Route path='/dashboardsedes' exact={true} component={SedesPage} />,
-  <Route path='/' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/login' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/register' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/generateqr' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/dashboard' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route path='/sedes' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={SedesPage} />,
+  <Route key='/' path='/' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route key='login' path='/login' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route key='register' path='/register' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
 ];
+
 const LoggedOut = [
-  <Route path='/register' exact={true} component={Register} />,
-  <Route path='/login' exact={true} component={Login} />,
-  <Route path='/' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route path='/dashboard' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route path='/dashboardsedes' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route path='/generateqr' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route path='/worker' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route path='/sedes' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route path='*' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route key='register' path='/register' exact={true} component={Register} />,
+  <Route key='login' path='/login' exact={true} component={Login} />,
+  <Route key='/' path='/' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route key='worker' path='/worker' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/login' />} />,
+  <Route key='sedes2' path='*' exact={true} component={() => <Redirect to='/c' />} />,
 ];
+
 const App = ({ signIn, isAuth }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChange(signIn);
@@ -91,9 +95,11 @@ const mapDispatchToProps = (dispatch) => {
     signIn: (info) => dispatch(signIn(info)),
   };
 };
+
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
   };
 };
+
 export default connect(mapStateProps, mapDispatchToProps)(App);
