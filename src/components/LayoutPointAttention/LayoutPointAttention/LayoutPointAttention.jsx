@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
+import Badge from '@material-ui/core/Badge';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,10 +17,21 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import Fingerprint from '@material-ui/icons/Fingerprint';
+import FaceIcon from '@material-ui/icons/Face';
 import MailIcon from '@material-ui/icons/Mail';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import DescriptionIcon from '@material-ui/icons/Description';
+import '../style.scss';
 
-function FooterPointAttention({ useStyles, children }) {
+const icons = [<HomeIcon />, <Fingerprint />, <PeopleAltIcon />, <FaceIcon />, <MailIcon />, <DescriptionIcon />, <SettingsApplicationsIcon />, <ExitToAppIcon />];
+const items = ['Home', 'Control Acceso', 'Empleados ', 'Clientes', 'Notificaciones', 'Informes'];
+const links = ['/home', '/control', '/empleados ', '/clientes', '/notificaciones', '/informes'];
+
+function FooterPointAttention({ useStyles, children, onClick }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -33,11 +46,8 @@ function FooterPointAttention({ useStyles, children }) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline 
- 
-      />
+      <CssBaseline />
       <AppBar
-        color='primary'
         position='fixed'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -55,6 +65,13 @@ function FooterPointAttention({ useStyles, children }) {
           >
             <MenuIcon />
           </IconButton>
+      
+            <IconButton aria-label='show 17 new notifications' color='inherit'>
+              <Badge badgeContent={17} color='secondary'>
+                <NotificationImportantIcon />
+              </Badge>
+            </IconButton>
+   ¿
           <Typography variant='h6' noWrap>
             Punto de venta
           </Typography>
@@ -74,24 +91,25 @@ function FooterPointAttention({ useStyles, children }) {
         }}
       >
         <div className={classes.toolbar}>
+          .  Aplicacion
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {items.map((text, index) => (
+            <ListItem button to={links[index]} onClick={onClick} key={text}>
+              <ListItemIcon>{icons[index]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {['Ayuda', 'Salir'].map((text, index) => (
+            <ListItem button to={links[6]} onClick={onClick} key={text}>
+              <ListItemIcon>{index % 6 === 0 ? icons[6] : icons[7]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

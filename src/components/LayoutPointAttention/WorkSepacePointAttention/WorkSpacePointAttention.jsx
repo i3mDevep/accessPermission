@@ -1,21 +1,16 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Tables from '../../Tables/LayoutTable/Tables'
+
 
 const WorkSpacePointAttention = () => (
   <>
-    <Typography paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-      facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-      gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-      donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-      adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+    <Typography>
+      Control de Acceso
     </Typography>
-    <Typography paragraph>
-      Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-      facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-      tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus.
-    </Typography>
+    <Tables.ApointUserAuthTableRow />
+
+
   </>
 );
 
