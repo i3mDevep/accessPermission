@@ -208,8 +208,8 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
             }),
           }}
           actions={[
-            {
-              icon: () => <GpsFixedIcon stylecolor='red' />,
+            { 
+              icon: () => <GpsFixedIcon />,
               tooltip: 'status',
               onClick: (event, rowData) => alert(`info ${rowData.name}`),
             },
