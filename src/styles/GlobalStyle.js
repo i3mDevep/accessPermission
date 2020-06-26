@@ -53,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     #app {
-        overflow-x: hidden;
+        overflow-x: auto;
     }
     .container-fluid {
         width: 100%;

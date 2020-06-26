@@ -114,6 +114,10 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    '@media (max-width: 508px)': {
+      padding: '24px 0',
+      width: '90% !important',
+    },
   },
 }));
 
@@ -173,7 +177,7 @@ export default function ToolboxCustome({ children }) {
                 onClick={handleMenu}
                 color='inherit'
               >
-                <AccountCircle style={{fontSize:'2.8rem'}}/>
+                <AccountCircle style={{ fontSize: '2.8rem' }} />
               </IconButton>
               <Menu
                 id='menu-appbar'
@@ -227,7 +231,7 @@ export default function ToolboxCustome({ children }) {
             ))}
           </List>
         </Drawer>
-        <main className={classes.content} style={{width: '-webkit-fill-available'}}>
+        <main className={classes.content} style={{ width: '-webkit-fill-available' }}>
           <div className={classes.toolbar} />
           { children }
         </main>
