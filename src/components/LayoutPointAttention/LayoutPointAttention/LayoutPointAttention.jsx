@@ -25,7 +25,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import DescriptionIcon from '@material-ui/icons/Description';
-import '../style.scss';
+
 
 const icons = [<HomeIcon />, <Fingerprint />, <PeopleAltIcon />, <FaceIcon />, <MailIcon />, <DescriptionIcon />, <SettingsApplicationsIcon />, <ExitToAppIcon />];
 const items = ['Home', 'Control Acceso', 'Empleados ', 'Clientes', 'Notificaciones', 'Informes'];
@@ -65,16 +65,16 @@ function FooterPointAttention({ useStyles, children, onClick }) {
           >
             <MenuIcon />
           </IconButton>
-      
-            <IconButton aria-label='show 17 new notifications' color='inherit'>
-              <Badge badgeContent={17} color='secondary'>
-                <NotificationImportantIcon />
-              </Badge>
-            </IconButton>
-   ¿
-          <Typography variant='h6' noWrap>
-            Punto de venta
-          </Typography>
+          <div style={{ marginRight: 'auto' }}>
+            <Typography edge='start' style={{ marginRight: 'auto' }} variant='h6' noWrap>
+              Punto de venta
+            </Typography>
+          </div>
+          <IconButton aria-label='show 17 new notifications' color='inherit'>
+            <Badge badgeContent={17} color='secondary'>
+              <NotificationImportantIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -99,7 +99,13 @@ function FooterPointAttention({ useStyles, children, onClick }) {
         <Divider />
         <List>
           {items.map((text, index) => (
-            <ListItem button to={links[index]} onClick={onClick} key={text}>
+            <ListItem
+              button
+              disableTouchRipple
+              to={links[index]}
+              onClick={onClick}
+              key={text}
+            >
               <ListItemIcon>{icons[index]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

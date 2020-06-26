@@ -1,11 +1,11 @@
 import React from 'react';
 import firebase from 'firebase/app';
-import ApointIndex from '../../components/LayoutPointAttention/ApointIndex';
+import ApointAttentionContainer from '../../containers/ApointAttentionContainer'
 
 const SedesPage = () => {
   const logout = () => {
     firebase.auth().signOut();
   };
-  return <ApointIndex />;
+  return <ApointAttentionContainer />;
 };
 export default SedesPage;

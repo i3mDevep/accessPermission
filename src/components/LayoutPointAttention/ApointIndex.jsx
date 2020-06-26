@@ -1,5 +1,5 @@
 import React from 'react';
-
+import cx from 'clsx';
 import { connect } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -8,8 +8,8 @@ import WorkSpacePointAttention from './WorkSepacePointAttention/WorkSpacePointAt
 import './style.scss';
 
 const drawerWidth = 240;
-const ApointIndex = () => {
 
+const ApointIndex = ({ subCompanies, response }) => {
   const useStyles = makeStyles((theme) => ({
 
     typography: {
@@ -44,6 +44,7 @@ const ApointIndex = () => {
       background: '#004876',
       marginRight: 36,
     },
+
     hide: {
       display: 'none',
     },
@@ -55,7 +56,7 @@ const ApointIndex = () => {
     drawerOpen: {
       //color: '#ffff',
       //icon: '#ffff',
-     // background: '#004876',
+      // background: '#004876',
       width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,

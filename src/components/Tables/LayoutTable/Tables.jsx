@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { connect } from 'react-redux';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -22,8 +22,31 @@ import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { red } from '@material-ui/core/colors';
+import Card from '@material-ui/core/Card';
+
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
 
 import './style.scss';
+
+const useStyles = makeStyles(({ spacing }) => ({
+  card: {
+    marginTop: 40,
+    borderRadius: spacing(0.5),
+    transition: '0.3s',
+    width: '90%',
+    overflow: 'initial',
+    background: '#ffffff',
+  },
+  content: {
+    paddingTop: 0,
+    textAlign: 'left',
+    overflowX: 'auto',
+    '& table': {
+      marginBottom: 0,
+    },
+  },
+}));
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -183,36 +206,40 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
   );
 }
 
-function ApointUserAuthTableRow() {
-  const [state, setState] = React.useState({
-    columns:[
-      { title: 'Nombre', field: 'name' },
-      { title: 'Identificación', field: 'identification' },
-      { title: 'Género', field: 'gender' },
-      { title: 'Edad', field: 'age' },
-      { title: 'Dirección', field: 'address' },
-      { title: 'Teléfono', field: 'celphone' },
-      { title: 'Ingreso', field: 'celphone' },
-      { title: 'Salida', field: 'celphone' },
-
-    ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
+function ApointUserAuthTableRow({ worker = [] }) {
+  const data = [];
+  worker.forEach((worker) => {
+    data.push({
+      name: `${worker.name} ${worker.lastname}`,
+      identification: worker.identification,
+      gender: worker.gender,
+      age: worker.age,
+      address: worker.address,
+      celphone: worker.celphone,
+      sede: worker.sede.value,
+      idsede: worker.sede.id,
+      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+    });
   });
+
   return (
     <div style={{ maxWidth: '100%' }}>
       <ThemeProvider theme={theme}>
         <MaterialTable
+          icons={tableIcons}
           title='Control de Ingreso'
-          columns={state.columns}
-          data={state.data}
+          columns={[
+            { title: 'Nombre', field: 'name' },
+            { title: 'Identificación', field: 'identification' },
+            { title: 'Género', field: 'gender' },
+            { title: 'Edad', field: 'age' },
+            { title: 'Dirección', field: 'address' },
+            { title: 'Teléfono', field: 'celphone' },
+            { title: 'Sede', field: 'sede' },
+            { title: 'Id', field: 'idsede', hidden: true },
+            { title: 'Register', field: 'time' },
+          ]}
+          data={data}
           localization={{
             pagination: {
               labelDisplayedRows: '{from}-{to} of {count}',
@@ -237,7 +264,6 @@ function ApointUserAuthTableRow() {
           }}
 
         />
-
       </ThemeProvider>
     </div>
   );
@@ -253,6 +279,6 @@ const mapStateProps = (state) => {
 export default {
   UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
   WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
-  ApointUserAuthTableRow: connect(mapStateProps, null)(ApointUserAuthTableRow)
+  ApointUserAuthTableRow: connect(mapStateProps, null)(ApointUserAuthTableRow),
 };
 
