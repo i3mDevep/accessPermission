@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
+import { ScreenLoading2 } from '../components/ScreenLoading';
 import { addWorker } from '../store/actions/addWorkerAction';
 import { showAlert } from '../store/actions/sweetAlertActions';
 import FormQr from '../components/FormQr';
 
 const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, showAlert, requesting }) => {
-  if (requesting || resultAddWorker.loading) {
+  if (requesting) {
     return <LoopCircleLoading />;
   }
   const handlerWorker = (uid, content) => {
     addWorker(uid, content.sede.id, content);
   };
   return (
-    <FormQr worker={handlerWorker} sedes={subCompanies} blocked={subCompanies.length <= 0} />
+    <>
+      <FormQr worker={handlerWorker} sedes={subCompanies} blocked={subCompanies.length <= 0} />
+      { resultAddWorker.loading && <ScreenLoading2 /> }
+    </>
   );
 };
 

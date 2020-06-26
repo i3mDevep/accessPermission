@@ -4,6 +4,7 @@ import { MdDashboard, MdFiberNew } from 'react-icons/md';
 import { GrUserWorker } from 'react-icons/gr';
 import { Container } from 'react-bootstrap';
 import Toolbox from './Toolbox/Toolbox';
+import ToolboxCustome from './Toolbox/ToolboxCustome';
 import HeaderPerfil from './HeaderPerfil';
 import { Responsive } from './responsive';
 
@@ -33,7 +34,7 @@ const LayoutDashboard = ({ children }) => {
 
   return (
     <>
-      <Toolbox />
+      {/* <Toolbox />
       <Responsive>
         <HeaderPerfil title={title}>
           {
@@ -43,7 +44,10 @@ const LayoutDashboard = ({ children }) => {
         <Container fluid>
           { children }
         </Container>
-      </Responsive>
+      </Responsive> */}
+      <ToolboxCustome>
+        { children }
+      </ToolboxCustome>
     </>
   );
 };

@@ -19,7 +19,6 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   const Age = useInputValue('');
   const Gender = useInputValue('');
   const Email = useInputValue('');
-  const Locale = useInputValue('');
   const [Sede, setSede] = useState({ value: '', id: '' });
 
   const handlerOnSubmit = (e) => {
@@ -34,7 +33,6 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           age: parseInt(Age.value, 10),
           gender: Gender.value,
           email: Email.value,
-          locale: Locale.value,
           sede: Sede,
         });
     } else {
@@ -141,16 +139,6 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
               />
             </Form.Group>
 
-            <Form.Group controlId='locale'>
-              <Form.Label>Sedé o lugar de trabajo</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Cual es su lugar de trabajo?'
-                {...Locale}
-                disabled={blocked}
-              />
-            </Form.Group>
-
             <Form.Row>
               <Form.Group as={Col} controlId='Age'>
                 <Form.Label>Edad</Form.Label>
@@ -194,7 +182,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
         </Col>
         <Col sm={12} md={4} style={{ backgroundColor: 'white', margin: '0 auto' }}>
           <Card.Body className='text-center w-100'>
-            <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Locale.value},${Age.value},${Gender.value},${Sede.value},`} />
+            <QRCode includeMargin={false} size={200} id='qrid' value={`,,qrardobot,,${Name.value},${Lastname.value},${Identification.value},${Address.value},${Celphone.value},${Age.value},${Gender.value},${Sede.value},`} />
           </Card.Body>
           <Card.Body>
             <Card.Title>Verifica tus datos!</Card.Title>
@@ -204,7 +192,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
               <ListGroup.Item className='p-1 text-secondary'>{Identification.value || 'Documento'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Address.value || 'Dirección'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Celphone.value || 'No telefónico'}</ListGroup.Item>
-              <ListGroup.Item className='p-1 text-secondary'>{Locale.value || 'Sede'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Sede.value || 'Sede'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Age.value || 'Edad'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Gender.value || 'Genero'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Email.value || 'Correo Electrónico'}</ListGroup.Item>

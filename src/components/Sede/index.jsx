@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, Container, Alert, Row } from 'react-bootstrap';
+import { Container, Alert, Row } from 'react-bootstrap';
 import { IoIosAlert } from 'react-icons/io';
 import PointAttentionModal from './PointAttention/PointAttentionModal';
-import PointAttentionCard from './PointAttention/PointAttentionCard';
 import PointCreateNewCard from './PointAttention/PointCreateNewCard';
+import PointAttentionCardSedes from './PointAttention/PointAttentionCardSedes';
 
 const SedeComponent = ({ subCompanies, submit, modalShow, response, loading, onHide, onClickNewSede, onClickDeleted }) => {
   return (
@@ -17,21 +17,19 @@ const SedeComponent = ({ subCompanies, submit, modalShow, response, loading, onH
           </small>
         </Alert>
       ) : ''}
-      <Card style={{ width: '18%' }}>
-        <PointAttentionModal
-          submit={submit}
-          show={modalShow}
-          response={response}
-          loading={loading}
-          onHide={onHide}
-        />
-      </Card>
+      <PointAttentionModal
+        submit={submit}
+        show={modalShow}
+        response={response}
+        loading={loading}
+        onHide={onHide}
+      />
 
       <Row>
         <PointCreateNewCard onClick={onClickNewSede} />
         {
           subCompanies.map((subCompany) => (
-            <PointAttentionCard
+            <PointAttentionCardSedes
               key={subCompany.id}
               subCompid={subCompany.id}
               onClickDeleted={onClickDeleted}

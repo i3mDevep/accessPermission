@@ -6,10 +6,11 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
 import { showAlert } from '../store/actions/sweetAlertActions';
 import { deleteSubCompany } from '../store/actions/deleteSubcompanyAction';
+import { ScreenLoading2 } from '../components/ScreenLoading';
 import SedeComponent from '../components/Sede/index';
 
 const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, deleteSubCompany, loadingDeleted }) => {
-  if (requesting || loadingDeleted.loading) {
+  if (requesting) {
     return <LoopCircleLoading />;
   }
   const [modalShow, setModalShow] = useState(false);
@@ -55,7 +56,6 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
   };
 
   const handlerOnDeletedSubCompany = (subCompid) => {
-    //const deteleSubCompany = firebase.functions().httpsCallable('deteleSubCompany');
     showAlert({
       type: 'warning',
       title: 'Estas seguro?',
@@ -68,16 +68,19 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
     });
   };
   return (
-    <SedeComponent
-      subCompanies={subCompanies}
-      submit={handlerOnCreateSubCompany}
-      modalShow={modalShow}
-      loading={loading}
-      response={response}
-      onHide={() => setModalShow(false)}
-      onClickNewSede={() => setModalShow(true)}
-      onClickDeleted={handlerOnDeletedSubCompany}
-    />
+    <>
+      <SedeComponent
+        subCompanies={subCompanies}
+        submit={handlerOnCreateSubCompany}
+        modalShow={modalShow}
+        loading={loading}
+        response={response}
+        onHide={() => setModalShow(false)}
+        onClickNewSede={() => setModalShow(true)}
+        onClickDeleted={handlerOnDeletedSubCompany}
+      />
+      {loadingDeleted.loading && <ScreenLoading2 />}
+    </>
   );
 };
 const mapStateProps = (state) => {

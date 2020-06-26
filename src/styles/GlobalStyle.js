@@ -4,7 +4,6 @@ import myFontURL from '../assets/typegraphic/Poppins-Regular.ttf';
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
     @import '~bootstrap/scss/bootstrap.scss';
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
     *::before,
     *::after {
      box-sizing: border-box; }
@@ -50,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
         overflow-x: hidden;
         font-family: 'Poppins';
         overscroll-behavior: none;
-        background-color:#edf4f2;
+        background-color:#f6f5f8;
     }
 
     #app {
