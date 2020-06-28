@@ -21,7 +21,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../../public/ardobot_logo.png';
 
 const drawerWidth = 240;
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'red',
   },
   appBar: {
-    zIndex: 1,
+    zIndex: 100,
     backgroundImage: 'url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_960_720.png)',
     backgroundPosition: 'left',
     backgroundSize: 'cover',
@@ -226,11 +226,14 @@ export default function ToolboxCustome({ children }) {
           <Divider />
           <List>
             { messages.map((text, index) => (
-              <ListItem button key={text}>
-                <Link to={links[index]} style={{ display: 'contents', textDecoration: 'none', color: 'white' }}>
-                  <ListItemIcon>{ myicons[index] }</ListItemIcon>
-                  <ListItemText primary={text} />
-                </Link>
+              <ListItem
+                button
+                key={text}
+                component={NavLink}
+                to={`${links[index]}`}
+              >
+                <ListItemIcon>{ myicons[index] }</ListItemIcon>
+                <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
