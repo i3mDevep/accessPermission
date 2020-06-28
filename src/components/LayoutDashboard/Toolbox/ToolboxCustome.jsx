@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase/app';
 import { FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaDatabase } from 'react-icons/fa';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { MdFiberNew } from 'react-icons/md';
@@ -148,6 +149,10 @@ export default function ToolboxCustome({ children }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleCloseSession = () => {
+    setAnchorEl(null);
+    firebase.auth().signOut();
+  };
   return (
     <ThemeProvider theme={themer}>
       <div className={classes.root}>
@@ -199,7 +204,7 @@ export default function ToolboxCustome({ children }) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleCloseSession}>Logout</MenuItem>
               </Menu>
             </div>
           </Toolbar>

@@ -21,8 +21,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { red } from '@material-ui/core/colors';
-
-
 import './style.scss';
 
 const tableIcons = {
@@ -103,19 +101,8 @@ function UsersTableRow({ users = [] }) {
 
 function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
   const data = [];
-  const [selectedRow, setSelectedRow] = useState(null);  
+  const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
-    {
-      title: 'Name',
-      field: 'name',
-      editComponent: (props) => (
-        <input
-          type='text'
-          value={props.value}
-          onChange={(e) => props.onChange(e.target.value)}
-        />
-      ),
-    },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Género', field: 'gender' },
@@ -182,15 +169,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
                 resolve();
               }, 1000);
             }),
-            onRowDelete: (oldData) => new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
-                resolve();
-              }, 1000);
-            }),
+            onRowDelete: onClickDeleteWorker,
           }}
           onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
           options={{
@@ -208,7 +187,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
             }),
           }}
           actions={[
-            { 
+            {
               icon: () => <GpsFixedIcon />,
               tooltip: 'status',
               onClick: (event, rowData) => alert(`info ${rowData.name}`),

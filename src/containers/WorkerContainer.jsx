@@ -6,9 +6,13 @@ import { deleteWorker } from '../store/actions/deleteWorkerAction';
 import Worker from '../components/Worker/Worker';
 
 const WorkerContainer = ({ deleteWorker, isAuth }) => {
-  const handlerDeleteWorker = (event, rowData) => {
-    confirm(`You want to delete ${rowData.idsede}`);
-    deleteWorker({ companyId: isAuth.uid, subCompanyId: rowData.idsede, identification: rowData.identification, gender: rowData.gender });
+  const handlerDeleteWorker = (rowData) => {
+    return new Promise((resolve, reject) => {
+      deleteWorker({ companyId: isAuth.uid, subCompanyId: rowData.idsede, identification: rowData.identification, gender: rowData.gender })
+        .then(() => resolve())
+        .catch((err) => reject(err));
+    });
+
   };
   return (
     <Worker onClickDeleteWorker={handlerDeleteWorker} />
