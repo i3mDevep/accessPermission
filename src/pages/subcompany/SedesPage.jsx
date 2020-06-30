@@ -1,11 +1,8 @@
 import React from 'react';
-import firebase from 'firebase/app';
-import ApointAttentionContainer from '../../containers/ApointAttentionContainer'
+import WorkSpacePointAttention from '../../containers/ApointAttentionContainer';
 
 const SedesPage = () => {
-  const logout = () => {
-    firebase.auth().signOut();
-  };
-  return <ApointAttentionContainer />;
+
+  return <WorkSpacePointAttention />;
 };
 export default SedesPage;

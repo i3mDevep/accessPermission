@@ -34,6 +34,7 @@ const myicons = [
   <FaTemperatureHigh color='white' size='20' />,
   <FaDatabase color='white' size='20' />, <RiQrCodeLine color='white' size='20' />,
   <MdFiberNew color='white' size='20' />];
+
 const messages = ['Dashboard', 'Empleados', 'Clientes', 'Informes', 'Alertas', 'Generador QR', 'Sedes'];
 const links = ['/dashboard', '/worker', '', '', '', '/generateqr', '/sedes'];
 
