@@ -12,8 +12,9 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
   if (requesting) {
     return <LoopCircleLoading />;
   }
-  const handlerWorker = (uid, content) => {
-    addWorker(uid, content.sede.id, content);
+  const handlerWorker = (uid, content, data64) => {
+    //console.log(data64);
+    addWorker(uid, content.sede.id, content, data64);
   };
   return (
     <>
@@ -34,7 +35,7 @@ const mapStateProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addWorker: (idBusiness, idSubcompany, content) => dispatch(addWorker(idBusiness, idSubcompany, content)),
+    addWorker: (idBusiness, idSubcompany, content, data64) => dispatch(addWorker(idBusiness, idSubcompany, content, data64)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
   };
 };

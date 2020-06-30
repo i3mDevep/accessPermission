@@ -2,7 +2,8 @@
 import firebase from 'firebase/app';
 import { showAlert } from './sweetAlertActions';
 
-export const addWorker = (idBusiness, idSubcompany, content) => {
+export const addWorker = (idBusiness, idSubcompany, content, data64) => {
+  //console.log(`entre addwork ${data64}`);
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   return (dispatch) => {
     dispatch({ type: 'REQUEST_WORKER' });
@@ -63,6 +64,20 @@ export const addWorker = (idBusiness, idSubcompany, content) => {
               }
             });
         });
+      })
+      .then(() => {
+        const config = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: content.name, email: content.email, img: data64 }),
+        };
+        fetch(
+          'https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/createWorker',
+          config,
+        );
       })
       .then(() => {
         showAlert({
