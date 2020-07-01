@@ -33,7 +33,6 @@ export default compose(
             doc: props.isAuth.uid,
             subcollections: [
               { collection: 'worker' },
-  
             ],
           },
         ],
@@ -47,11 +46,10 @@ export default compose(
             doc: props.isAuth.uid,
             subcollections: [
               { collection: 'trakingworker' },
-  
             ],
           },
         ],
-        storeAs: 'workerSubcompanyFilter2',
+        storeAs: 'trakingworker',
       },
     ];
     // return [

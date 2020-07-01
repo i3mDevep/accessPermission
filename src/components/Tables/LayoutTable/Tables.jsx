@@ -291,7 +291,8 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
-    workerSubcompanyFilter: state.firestore.ordered.workerSubcompanyFilter,
+    workerSubcompanyFilter: state.firestore.data.workerSubcompanyFilter,
+    trakingworker: state.firestore.ordered.trakingworker,
   };
 };
 export default {
