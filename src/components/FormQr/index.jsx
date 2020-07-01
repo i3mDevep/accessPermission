@@ -5,11 +5,17 @@ import { connect } from 'react-redux';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import PropTypes from 'prop-types';
 import { MdErrorOutline } from 'react-icons/md';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useInputValue from '../../hooks/useInputValue';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 
 const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sedes = [] }) => {
+
+  const [state, setState] = useState({
+    checkedA: true,
+  });
 
   const Name = useInputValue('');
   const Lastname = useInputValue('');
@@ -40,7 +46,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           salary: Salary.value,
           contrate: Contrate.value,
           cargo: Cargo.value,
-          status: Status.value,
+          status: state.checkedA,
           sede: Sede,
         }, document.getElementById('qrid').toDataURL('image/png'));
     } else {
@@ -65,6 +71,10 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+  };
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
   };
   return (
     <Container fluid>
@@ -223,11 +233,15 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
               </Form.Group>
               <Form.Group as={Col} controlId='status'>
                 <Form.Label>Estado del trabajador</Form.Label>
-                <Form.Control
-                  placeholder='Activo  Inactivo'
-                  type='boolean'
-                  {...Status}
-                  disabled={blocked}
+                <FormControlLabel
+                  control={(
+                    <Switch
+                      checked={state.checkedA}
+                      onChange={handleChange}
+                      name='checkedA'
+                    />
+                  )}
+
                 />
               </Form.Group>
             </Form.Row>

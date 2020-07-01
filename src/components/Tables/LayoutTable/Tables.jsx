@@ -116,8 +116,10 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
     { title: 'Dirección', field: 'address' },
     { title: 'Teléfono', field: 'celphone' },
     { title: 'Sede', field: 'sede' },
+    { title: 'Contrato', field: 'contrate' },
+    { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
-    { title: 'Ingreso', field: 'time' },
+    { title: 'Fecha de Ingreso', field: 'time' },
   ]);
 
   worker.forEach((worker) => {
@@ -128,6 +130,8 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
       age: worker.age,
       address: worker.address,
       celphone: worker.celphone,
+      contrate: worker.contrate,
+      cargo: worker.cargo,
       sede: worker.sede.value,
       idsede: worker.sede.id,
       time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
