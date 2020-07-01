@@ -10,11 +10,11 @@ import Register from '../pages/Register';
 import ScreenLoading from '../components/ScreenLoading';
 import GenerateQR from '../pages/company/GenerateQR';
 import Sedes from '../pages/company/Sedes';
-import SedesPage from '../pages/subcompany/SedesPage';
+import ApointWorkerPage from '../pages/subcompany/ApointWorkerPage';
 import WorkerPage from '../pages/company/WorkerPage';
 import LayoutDashboard from '../components/LayoutDashboard';
 import AuthPage from '../pages/subcompany/AuthPage';
-import ApointIndex from '../components/LayoutPointAttention/ApointIndex';
+import LayoutApointIndex from '../components/LayoutPointAttention/ApointIndex';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -24,7 +24,6 @@ const onAuthStateChange = (callback) => {
   return firebase.auth().onAuthStateChanged(async (user) => {
     try {
       const idTokenResult = await user.getIdTokenResult();
-      console.log(idTokenResult);
       {
         idTokenResult.claims.business && callback({ loggedIn: true, displayName: user.displayName, uid: user.uid, update: false, businness: true });
         !idTokenResult.claims.business && callback({ loggedIn: true, displayName: user.displayName, uid: user.uid, update: false, businness: false, companyId: idTokenResult.claims.companyId });
@@ -48,7 +47,7 @@ const LoggedInRoutesWithbusiness = [
 ];
 
 const LoggedInRoutesWithOutbusiness = [
-  <Route key='home' path='/home' exact={true} component={SedesPage} />,
+  <Route key='home' path='/home' exact={true} component={ApointWorkerPage} />,
   <Route key='control' path='/control' exact={true} component={AuthPage} />,
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/home' />} />,
   <Route key='register' path='/register' exact={true} component={() => <Redirect to='/home' />} />,
@@ -66,7 +65,7 @@ const LoggedOut = [
   <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/login' />} />,
   <Route key='worker' path='/worker' exact={true} component={() => <Redirect to='/login' />} />,
   <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route key='sedes2' path='*' exact={true} component={() => <Redirect to='/c' />} />,
+  <Route key='sedes2' path='*' exact={true} component={() => <Redirect to='/login' />} />,
 ];
 
 const App = ({ signIn, isAuth }) => {
@@ -87,9 +86,9 @@ const App = ({ signIn, isAuth }) => {
                 {[
                   isAuth.loggedIn && isAuth.businness === true && <LayoutDashboard>{LoggedInRoutesWithbusiness}</LayoutDashboard>,
                   isAuth.loggedIn && isAuth.businness === false && (
-                    <ApointIndex>
+                    <LayoutApointIndex>
                       { LoggedInRoutesWithOutbusiness }
-                    </ApointIndex>
+                    </LayoutApointIndex>
                   ),
                   !isAuth.loggedIn && LoggedOut,
                 ]}

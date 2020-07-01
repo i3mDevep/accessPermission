@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkerContainer from '../../containers/WorkerContainer';
+import WorkerContainer from '../../containers/CompanyContainers/WorkerContainer';
 
 const WorkerPage = () => {
   return (

@@ -57,6 +57,7 @@ const AuthPointAttention = () => {
           </CardActions>
           {imgSrc && (
             <img
+              alt='webcam'
               text='name'
               className={classes.media}
               src={imgSrc}

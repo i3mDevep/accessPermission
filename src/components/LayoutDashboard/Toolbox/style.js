@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 import { FaAlignJustify } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 import { Traslation } from '../../../styles/Traslation';
 import { HiddenToolbox } from '../../../styles/HiddenToolbox';
+
+export const CustomNavLink = styled(NavLink)`
+&:hover {
+  color: #e5e5e5 !important;
+}
+`;
 
 export const ToolboxContainer = styled.nav`
   /*background-color: #0b4779;*/

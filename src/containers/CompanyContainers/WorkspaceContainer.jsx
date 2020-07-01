@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import Workspace from '../components/Workspace/WorkSpace';
+import Workspace from '../../components/Workspace/WorkSpace';
 
 const WorkspaceContainer = () => (
   <Workspace />

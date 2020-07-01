@@ -1,5 +1,5 @@
 import React from 'react';
-import SedeContainer from '../../containers/SedeContainer';
+import SedeContainer from '../../containers/CompanyContainers/SedeContainer';
 
 const Sedes = () => {
   return (

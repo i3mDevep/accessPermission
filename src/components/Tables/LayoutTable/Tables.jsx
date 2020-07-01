@@ -68,33 +68,31 @@ function UsersTableRow({ users = [] }) {
   });
   return (
     <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          id='mytable'
-          icons={tableIcons}
-          title='Users'
-          columns={[
-            { title: 'Name', field: 'Nombre' },
-            { title: 'Identification', field: 'Identificación' },
-            { title: 'Gender', field: 'Género' },
-            { title: 'Age', field: 'Edad' },
-            { title: 'Address', field: 'Dirección' },
-            { title: 'Telphone', field: 'Teléfono' },
-            { title: 'Sede', field: 'Sede' },
-            { title: 'Time', field: 'time' },
-          ]}
-          data={data}
-          options={{
-            draggable: false,
-            filtering: false,
-            search: true,
-            headerStyle: {
-              backgroundColor: '#01579b',
-              color: '#FFF',
-            },
-          }}
-        />
-      </ThemeProvider>
+      <MaterialTable
+        id='mytable'
+        icons={tableIcons}
+        title='Users'
+        columns={[
+          { title: 'Name', field: 'Nombre' },
+          { title: 'Identification', field: 'Identificación' },
+          { title: 'Gender', field: 'Género' },
+          { title: 'Age', field: 'Edad' },
+          { title: 'Address', field: 'Dirección' },
+          { title: 'Telphone', field: 'Teléfono' },
+          { title: 'Sede', field: 'Sede' },
+          { title: 'Time', field: 'time' },
+        ]}
+        data={data}
+        options={{
+          draggable: false,
+          filtering: false,
+          search: true,
+          headerStyle: {
+            backgroundColor: '#01579b',
+            color: '#FFF',
+          },
+        }}
+      />
     </div>
   );
 }
@@ -130,142 +128,140 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
 
   return (
     <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          localization={{
-            pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
+      <MaterialTable
+        localization={{
+          pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}',
+          },
+          toolbar: {
+            nRowsSelected: '{0} row(s) selected',
+          },
+          header: {
+            actions: 'Acción',
+          },
+          body: {
+            emptyDataSourceMessage: 'No records to display',
+            filterRow: {
+              filterTooltip: 'Filter',
             },
-            toolbar: {
-              nRowsSelected: '{0} row(s) selected',
-            },
-            header: {
-              actions: 'Acción',
-            },
-            body: {
-              emptyDataSourceMessage: 'No records to display',
-              filterRow: {
-                filterTooltip: 'Filter',
-              },
-            },
-          }}
-          icons={tableIcons}
-          title='Worker'
-          columns={columns}
-          data={data}
-          editable={{
-            onRowAdd: (newData) => new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setData([...data, newData]);
-                resolve();
-              }, 1000);
-            }),
-            onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-                resolve();
-              }, 1000);
-            }),
-            onRowDelete: onClickDeleteWorker,
-          }}
-          onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-          options={{
-            actionsColumnIndex: -1,
-            exportButton: true,
-            draggable: false,
-            filtering: false,
-            search: true,
-            headerStyle: {
-              backgroundColor: '#01579b',
-              color: '#FFF',
-            },
-            rowStyle: rowData => ({
-              backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
-            }),
-          }}
-          actions={[
-            {
-              icon: () => <GpsFixedIcon />,
-              tooltip: 'status',
-              onClick: (event, rowData) => alert(`info ${rowData.name}`),
-            },
-          ]}
-        />
-      </ThemeProvider>
+          },
+        }}
+        icons={tableIcons}
+        title='Worker'
+        columns={columns}
+        data={data}
+        editable={{
+          // onRowAdd: (newData) => new Promise((resolve, reject) => {
+          //   setTimeout(() => {
+          //     setData([...data, newData]);
+          //     resolve();
+          //   }, 1000);
+          // }),
+          onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+            setTimeout(() => {
+              const dataUpdate = [...data];
+              const index = oldData.tableData.id;
+              dataUpdate[index] = newData;
+              setData([...dataUpdate]);
+              resolve();
+            }, 1000);
+          }),
+          onRowDelete: onClickDeleteWorker,
+        }}
+        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+        options={{
+          actionsColumnIndex: -1,
+          exportButton: true,
+          draggable: false,
+          filtering: false,
+          search: true,
+          headerStyle: {
+            backgroundColor: '#01579b',
+            color: '#FFF',
+          },
+          rowStyle: (rowData) => ({
+            backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+          }),
+        }}
+        actions={[
+          {
+            icon: () => <GpsFixedIcon />,
+            tooltip: 'status',
+            onClick: (event, rowData) => alert(`info ${rowData.name}`),
+          },
+        ]}
+      />
     </div>
   );
 }
 
-function ApointUserAuthTableRow({ worker = [] }) {
-
+function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
+  const data = [];
   const [state, setState] = React.useState({
     columns: [
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
       { title: 'Género', field: 'gender' },
       { title: 'Edad', field: 'age' },
-      { title: 'Entrada', field: 'inpoint' },
-      { title: 'Salida', field: 'outpoint' },
-      { title: 'Horas Laborales', field: 'hrs' },
-      { title: 'Novedad', field: 'status' },
+      { title: 'Dirección', field: 'address' },
+      { title: 'Teléfono', field: 'celphone' },
+      { title: 'Sede', field: 'sede' },
+      { title: 'Id', field: 'idsede', hidden: true },
+      { title: 'Register', field: 'time' },
 
     ],
-    data: [
-      { name: 'Andres Bermúdez', identification: '1018430535', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '2033232322', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '1511651651', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
-      { name: 'Andres Bermúdez', identification: '5616516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '9661313512', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
-      { name: 'Andres Bermúdez', identification: '6516516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '1018430535', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
-      { name: 'Andres Bermúdez', identification: '6516516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '6511651616', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '9849849849', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-    ],
+  });
+  workerSubcompanyFilter.forEach((worker) => {
+    data.push({
+      name: `${worker.name} ${worker.lastname}`,
+      identification: worker.identification,
+      gender: worker.gender,
+      age: worker.age,
+      address: worker.address,
+      celphone: worker.celphone,
+      sede: worker.sede.value,
+      idsede: worker.sede.id,
+      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+    });
   });
   return (
     <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          icons={tableIcons}
-          title='Control de Ingreso'
-          columns={state.columns}
-          data={state.data}
-          localization={{
-            pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
+      <MaterialTable
+        icons={tableIcons}
+        title='Control de Ingreso'
+        columns={state.columns}
+        data={data}
+        localization={{
+          pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}',
+          },
+          toolbar: {
+            nRowsSelected: '{0} row(s) selected',
+          },
+          header: {
+            actions: 'Acción',
+          },
+          body: {
+            emptyDataSourceMessage: 'No records to display',
+            filterRow: {
+              filterTooltip: 'Filter',
             },
-            toolbar: {
-              nRowsSelected: '{0} row(s) selected',
-            },
-            header: {
-              actions: 'Acción',
-            },
-            body: {
-              emptyDataSourceMessage: 'No records to display',
-              filterRow: {
-                filterTooltip: 'Filter',
-              },
-            },
-          }}
-          options={{
-            draggable: false,
-            filtering: false,
-            search: true,
-            actionsColumnIndex: -1,
-          }}
-          actions={[
-            {
-              icon: () => <GpsFixedIcon stylecolor='red' />,
-              tooltip: 'status',
-              onClick: (event, rowData) => alert(`info ${rowData.name}`),
-            },
-          ]}
-        />
-      </ThemeProvider>
+          },
+        }}
+        options={{
+          draggable: false,
+          filtering: false,
+          search: true,
+          actionsColumnIndex: -1,
+        }}
+        actions={[
+          {
+            icon: () => <GpsFixedIcon stylecolor='red' />,
+            tooltip: 'status',
+            onClick: (event, rowData) => alert(`info ${rowData.name}`),
+          },
+        ]}
+      />
     </div>
   );
 }
@@ -275,11 +271,12 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
+    workerSubcompanyFilter: state.firestore.ordered.workerSubcompanyFilter,
   };
 };
 export default {
   UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
   WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
-  ApointUserAuthTableRow: connect(mapStateProps, null)(ApointUserAuthTableRow),
+  ApointWorkerTableRow: connect(mapStateProps, null)(ApointWorkerTableRow),
 };
 

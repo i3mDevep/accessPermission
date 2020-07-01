@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase/app';
 import clsx from 'clsx';
 import Badge from '@material-ui/core/Badge';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -23,7 +24,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import DescriptionIcon from '@material-ui/icons/Description';
 
@@ -198,7 +199,12 @@ function FooterPointAttention({ children, onClick }) {
         <Divider />
         <List>
           {['Ayuda', 'Salir'].map((text, index) => (
-            <ListItem button to={links[6]} onClick={onClick} key={text}>
+            <ListItem
+              button
+              to={links[6]}
+              onClick={() => firebase.auth().signOut()}
+              key={text}
+            >
               <ListItemIcon>{index % 6 === 0 ? icons[6] : icons[7]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
-import { showAlert } from '../store/actions/sweetAlertActions';
-import { deleteSubCompany } from '../store/actions/deleteSubcompanyAction';
-import { ScreenLoading2 } from '../components/ScreenLoading';
-import SedeComponent from '../components/Sede/index';
+import { showAlert } from '../../store/actions/sweetAlertActions';
+import { deleteSubCompany } from '../../store/actions/deleteSubcompanyAction';
+import { ScreenLoading2 } from '../../components/ScreenLoading';
+import SedeComponent from '../../components/Sede/index';
 
 const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, deleteSubCompany, loadingDeleted }) => {
   if (requesting) {
