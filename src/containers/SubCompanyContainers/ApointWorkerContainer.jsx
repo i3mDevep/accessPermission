@@ -52,20 +52,5 @@ export default compose(
         storeAs: 'trakingworker',
       },
     ];
-    // return [
-    //   { collection: 'business',
-    //     doc: props.isAuth.companyId,
-    //     subcollections: [
-    //       {
-    //         collection: 'subcompanies',
-    //         doc: props.isAuth.uid,
-    //         subcollections: [
-    //           { collection: 'worker' },
-    //         ],
-    //       },
-    //     ],
-    //     storeAs: 'workerSubcompanyFilter',
-    //   },
-    // ];
   }),
 )(ApointWorkerContainer);
