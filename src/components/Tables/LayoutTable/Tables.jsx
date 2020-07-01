@@ -201,8 +201,6 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
     columns: [
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
-      { title: 'Género', field: 'gender' },
-      { title: 'Edad', field: 'age' },
       { title: 'Dirección', field: 'address' },
       { title: 'Teléfono', field: 'celphone' },
       { title: 'Sede', field: 'sede' },
@@ -216,8 +214,6 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
     data.push({
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
-      gender: worker.gender,
-      age: worker.age,
       address: worker.address,
       celphone: worker.celphone,
       sede: worker.sede.value,
