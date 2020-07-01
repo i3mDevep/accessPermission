@@ -195,7 +195,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
   );
 }
 
-function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
+function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] }) {
   const data = [];
   const [state, setState] = React.useState({
     columns: [
@@ -208,10 +208,11 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
       { title: 'Sede', field: 'sede' },
       { title: 'Id', field: 'idsede', hidden: true },
       { title: 'Register', field: 'time' },
-
+      { title: 'Tipo', field: 'type' },
     ],
   });
-  workerSubcompanyFilter.forEach((worker) => {
+  trakingworker.forEach((trakingperson) => {
+    const worker = workerSubcompanyFilter[trakingperson.identification];
     data.push({
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
@@ -221,7 +222,8 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
       celphone: worker.celphone,
       sede: worker.sede.value,
       idsede: worker.sede.id,
-      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+      time: typeof trakingperson.date === 'object' ? moment(trakingperson.date.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+      type: trakingperson.action,
     });
   });
   return (
@@ -271,7 +273,8 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
-    workerSubcompanyFilter: state.firestore.ordered.workerSubcompanyFilter,
+    workerSubcompanyFilter: state.firestore.data.workerSubcompanyFilter,
+    trakingworker: state.firestore.ordered.trakingworker,
   };
 };
 export default {
