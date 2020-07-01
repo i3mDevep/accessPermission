@@ -117,7 +117,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
     { title: 'Teléfono', field: 'celphone' },
     { title: 'Sede', field: 'sede' },
     { title: 'Id', field: 'idsede', hidden: true },
-    { title: 'Register', field: 'time' },
+    { title: 'Ingreso', field: 'time' },
   ]);
 
   worker.forEach((worker) => {
@@ -211,7 +211,7 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
       { title: 'Identificación', field: 'identification' },
       { title: 'Dirección', field: 'address' },
       { title: 'Teléfono', field: 'celphone' },
-      { title: 'Sede', field: 'sede' },
+      { title: 'Posición', field: 'position' },
       { title: 'Id', field: 'idsede', hidden: true },
       { title: 'Regitro', field: 'time' },
       { title: 'Track', field: 'type' },
@@ -225,13 +225,13 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
       identification: worker.identification,
       address: worker.address,
       celphone: worker.celphone,
-      sede: worker.sede.value,
       idsede: worker.sede.id,
+      position: `${trakingperson.position.longitude} ${trakingperson.position.latitude}`,
       time: typeof trakingperson.date === 'object' ? moment(trakingperson.date.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      type: trakingperson.action,
+      type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' /> : <GpsFixedIcon color='secondary' />,
     });
   });
-  console.log(workerSubcompanyFilter);
+  console.log(trakingworker);
   return (
 
     <div style={{ maxWidth: '100%' }}>
@@ -261,7 +261,7 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
               actions: 'Acción',
             },
             body: {
-              emptyDataSourceMessage: 'No records to display',
+              emptyDataSourceMessage: 'No hay registros',
               filterRow: {
                 filterTooltip: 'Filter',
               },
@@ -273,13 +273,6 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
             search: true,
             actionsColumnIndex: -1,
           }}
-          actions={[
-            {
-              icon: () => <GpsFixedIcon />,
-              tooltip: 'status',
-              onClick: (event, rowData) => alert(`info ${rowData.name}`),
-            },
-          ]}
         />
       </ThemeProvider>
     </div>

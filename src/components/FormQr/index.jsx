@@ -19,6 +19,10 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   const Age = useInputValue('');
   const Gender = useInputValue('');
   const Email = useInputValue('');
+  const Salary = useInputValue('');
+  const Contrate = useInputValue('');
+  const Cargo = useInputValue('');
+  const Status = useInputValue('');
   const [Sede, setSede] = useState({ value: '', id: '' });
 
   const handlerOnSubmit = (e) => {
@@ -33,6 +37,10 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           age: parseInt(Age.value, 10),
           gender: Gender.value,
           email: Email.value,
+          salary: Salary.value,
+          contrate: Contrate.value,
+          cargo: Cargo.value,
+          status: Status.value,
           sede: Sede,
         }, document.getElementById('qrid').toDataURL('image/png'));
     } else {
@@ -83,36 +91,37 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                 }}
                 disabled={blocked}
               >
-                <option>Seleccione SEDE</option>
+                <option>Seleccione una sede o Lugar de trabajo</option>
                 {
                   sedes.map((subCompany) => <option id={subCompany.id} key={`id-${subCompany.id}`}>{subCompany.namesubcompany}</option>)
                 }
               </Form.Control>
             </Form.Group>
-            <Form.Group controlId='Name'>
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
-                placeholder='Ingrese su nombre'
-                {...Name}
-                required
-                disabled={blocked}
-              />
-            </Form.Group>
-
-            <Form.Group controlId='Lastname'>
-              <Form.Label>Apellido</Form.Label>
-              <Form.Control
-                placeholder='Ingrese su apellido'
-                {...Lastname}
-                required
-                disabled={blocked}
-              />
-            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId='Name'>
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  placeholder='Ingrese nombre'
+                  {...Name}
+                  required
+                  disabled={blocked}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId='Lastname'>
+                <Form.Label>Apellido</Form.Label>
+                <Form.Control
+                  placeholder='Ingrese un apellido'
+                  {...Lastname}
+                  required
+                  disabled={blocked}
+                />
+              </Form.Group>
+            </Form.Row>
 
             <Form.Group controlId='Identification'>
               <Form.Label>Cedula o documento de indentificación</Form.Label>
               <Form.Control
-                placeholder='Ingrese su Documento de Indentificación'
+                placeholder='Documento del empleado'
                 {...Identification}
                 required
                 disabled={blocked}
@@ -122,30 +131,41 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
             <Form.Group controlId='Address'>
               <Form.Label>Dirección Residencia</Form.Label>
               <Form.Control
-                placeholder='Donde vives?'
+                placeholder='Dirección de residencia el empleado'
                 {...Address}
                 required
                 disabled={blocked}
               />
             </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId='Celphone'>
+                <Form.Label>Número Telefónico</Form.Label>
+                <Form.Control
+                  type='tel'
+                  placeholder='Celular'
+                  {...Celphone}
+                  required
+                  disabled={blocked}
+                />
+              </Form.Group>
 
-            <Form.Group controlId='Celphone'>
-              <Form.Label>Número Telefónico</Form.Label>
-              <Form.Control
-                type='tel'
-                placeholder='Celular'
-                {...Celphone}
-                required
-                disabled={blocked}
-              />
-            </Form.Group>
-
+              <Form.Group as={Col} controlId='Email'>
+                <Form.Label>Corre electrónico</Form.Label>
+                <Form.Control
+                  required
+                  placeholder='Email'
+                  type='email'
+                  {...Email}
+                  disabled={blocked}
+                />
+              </Form.Group>
+            </Form.Row>
             <Form.Row>
               <Form.Group as={Col} controlId='Age'>
                 <Form.Label>Edad</Form.Label>
                 <Form.Control
                   type='number'
-                  placeholder='Cuantos años tienes?'
+                  placeholder='Edad del empleado'
                   {...Age}
                   required
                   disabled={blocked}
@@ -168,13 +188,45 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                 </Form.Control>
               </Form.Group>
 
-              <Form.Group as={Col} controlId='Email'>
-                <Form.Label>Corre electrónico</Form.Label>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col} controlId='contrate'>
+                <Form.Label>Tipo de Contrato</Form.Label>
                 <Form.Control
+                  type='text'
+                  placeholder='Indefinido / Fijo'
+                  {...Contrate}
                   required
-                  placeholder='Email'
-                  type='email'
-                  {...Email}
+                  disabled={blocked}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId='salary'>
+                <Form.Label>Salario básico</Form.Label>
+                <Form.Control
+                  placeholder='$ 000.000'
+                  type='money'
+                  {...Salary}
+                  disabled={blocked}
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col} controlId='cargo'>
+                <Form.Label>Cargo </Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Cargo a desempeñar'
+                  {...Cargo}
+                  required
+                  disabled={blocked}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId='status'>
+                <Form.Label>Estado del trabajador</Form.Label>
+                <Form.Control
+                  placeholder='Activo  Inactivo'
+                  type='boolean'
+                  {...Status}
                   disabled={blocked}
                 />
               </Form.Group>
@@ -196,7 +248,9 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
               <ListGroup.Item className='p-1 text-secondary'>{Sede.value || 'Sede'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Age.value || 'Edad'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Gender.value || 'Genero'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Contrate.value || 'Tipo de contrato'}</ListGroup.Item>
               <ListGroup.Item className='p-1 text-secondary'>{Email.value || 'Correo Electrónico'}</ListGroup.Item>
+              <ListGroup.Item className='p-1 text-secondary'>{Cargo.value || 'Cargo'}</ListGroup.Item>
             </ListGroup>
           </Card.Body>
           <Card.Body className='m-auto'>
