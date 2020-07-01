@@ -22,7 +22,12 @@ const onAuthStateChange = (callback) => {
   return firebase.auth().onAuthStateChanged(async (user) => {
     try {
       const idTokenResult = await user.getIdTokenResult();
-      callback({ loggedIn: true, displayName: user.displayName, uid: user.uid, update: false, businness: idTokenResult.claims.business });
+      console.log(idTokenResult);
+      {
+        idTokenResult.claims.business && callback({ loggedIn: true, displayName: user.displayName, uid: user.uid, update: false, businness: true });
+        !idTokenResult.claims.business && callback({ loggedIn: true, displayName: user.displayName, uid: user.uid, update: false, businness: false, companyId: idTokenResult.claims.companyId });
+
+      }
     } catch (error) {
       callback({ loggedIn: false, update: false, uid: '' });
     }
@@ -79,7 +84,7 @@ const App = ({ signIn, isAuth }) => {
               <Switch>
                 {[
                   isAuth.loggedIn && isAuth.businness === true && <LayoutDashboard>{LoggedInRoutesWithbusiness}</LayoutDashboard>,
-                  isAuth.loggedIn && isAuth.businness === undefined && LoggedInRoutesWithOutbusiness,
+                  isAuth.loggedIn && isAuth.businness === false && LoggedInRoutesWithOutbusiness,
                   !isAuth.loggedIn && LoggedOut,
                 ]}
               </Switch>
