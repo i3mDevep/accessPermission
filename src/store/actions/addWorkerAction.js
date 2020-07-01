@@ -18,52 +18,104 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
             .set({
               ...content,
               time: currentTime,
+            })
+            .then(() => {
+              return db.collection('business').doc(idBusiness).collection('worker').doc(content.identification)
+                .set({
+                  ...content,
+                  time: currentTime,
+                });
+            })
+            .then(() => {
+              return db.runTransaction((transaction) => {
+                const documentRef = db.doc(`business/${idBusiness}/resum/totalsWorker`);
+                return transaction.get(documentRef)
+                  .then((mdoc) => {
+                    const { gender } = content;
+                    const Worker = mdoc.get('Worker.value') + 1;
+                    const Men = mdoc.get('Men.value') + 1;
+                    const Women = mdoc.get('Women.value') + 1;
+                    switch (gender) {
+                      case 'Hombre':
+                        transaction.update(documentRef, {
+                          Worker: {
+                            value: Worker,
+                            time: currentTime },
+                          Men: {
+                            value: Men,
+                            time: currentTime,
+                          },
+                        });
+                        break;
+                      case 'Mujer':
+                        transaction.update(documentRef, {
+                          Worker: {
+                            value: Worker,
+                            time: currentTime },
+                          Women: {
+                            value: Women,
+                            time: currentTime,
+                          },
+                        });
+                        break;
+                    }
+                  });
+              });
             });
+        } if (doc.data().sede.value === 'Not Assigned') {
+          return db.collection('business').doc(idBusiness).collection('subcompanies').doc(idSubcompany)
+            .collection('worker')
+            .doc(content.identification)
+            .set({
+              ...content,
+              time: currentTime,
+            })
+            .then(() => {
+              return db.collection('business').doc(idBusiness).collection('worker').doc(content.identification)
+                .set({
+                  ...content,
+                  time: currentTime,
+                });
+            })
+            .then(() => {
+              return db.runTransaction((transaction) => {
+                const documentRef = db.doc(`business/${idBusiness}/resum/totalsWorker`);
+                return transaction.get(documentRef)
+                  .then((mdoc) => {
+                    const { gender } = content;
+                    const Men = mdoc.get('Men.value');
+                    const Women = mdoc.get('Women.value');
+
+                    if (doc.data().gender === 'Mujer' && gender === 'Hombre') {
+                      transaction.update(documentRef, {
+                        Men: {
+                          value: Men + 1,
+                          time: currentTime,
+                        },
+                        Women: {
+                          value: Women - 1,
+                          time: currentTime,
+                        },
+                      });
+                    }
+                    if (doc.data().gender === 'Hombre' && gender === 'Mujer') {
+                      transaction.update(documentRef, {
+                        Men: {
+                          value: Men - 1,
+                          time: currentTime,
+                        },
+                        Women: {
+                          value: Women + 1,
+                          time: currentTime,
+                        },
+                      });
+                    }
+                  });
+              });
+            });
+          //throw new Error('persona existente sins ede');
         }
         throw new Error('Esta persona ya se encuentra registrado!');
-      })
-      .then(() => {
-        return db.collection('business').doc(idBusiness).collection('worker').doc(content.identification)
-          .set({
-            ...content,
-            time: currentTime,
-          });
-      })
-      .then(() => {
-        return db.runTransaction((transaction) => {
-          const documentRef = db.doc(`business/${idBusiness}/resum/totalsWorker`);
-          return transaction.get(documentRef)
-            .then((mdoc) => {
-              const { gender } = content;
-              const Worker = mdoc.get('Worker.value') + 1;
-              const Men = mdoc.get('Men.value') + 1;
-              const Women = mdoc.get('Women.value') + 1;
-              switch (gender) {
-                case 'Hombre':
-                  transaction.update(documentRef, {
-                    Worker: {
-                      value: Worker,
-                      time: currentTime },
-                    Men: {
-                      value: Men,
-                      time: currentTime,
-                    },
-                  });
-                  break;
-                case 'Mujer':
-                  transaction.update(documentRef, {
-                    Worker: {
-                      value: Worker,
-                      time: currentTime },
-                    Women: {
-                      value: Women,
-                      time: currentTime,
-                    },
-                  });
-                  break;
-              }
-            });
-        });
       })
       .then(() => {
         const config = {
