@@ -152,9 +152,7 @@ function FooterPointAttention({ children, onClick }) {
             <MenuIcon />
           </IconButton>
           <div style={{ marginRight: 'auto' }}>
-            <Typography edge='start' style={{ marginRight: 'auto' }} variant='h6' noWrap>
-              { window.location.pathname.slice(1).toUpperCase() }
-            </Typography>
+            <Typography edge='start' style={{ marginRight: 'auto' }} variant='h6' noWrap />
           </div>
           <IconButton aria-label='show 17 new notifications' color='inherit'>
             <Badge badgeContent={17} color='secondary'>

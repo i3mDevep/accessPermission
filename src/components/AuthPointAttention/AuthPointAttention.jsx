@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Webcam from 'react-webcam';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Moment from 'react-moment';
-import 'moment-timezone';
+
 
 const AuthPointAttention = () => {
-  const dateToFormat = '1976-04-19T12:59-0500';
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
   const [value, setValue] = useState(new Date());
@@ -65,7 +62,7 @@ const AuthPointAttention = () => {
               src={imgSrc}
             />
           )}
-          <h1>
+          <h3>
             {h % 12}
             :
             {(m < 10 ? `0${m}` : m)}
@@ -73,7 +70,7 @@ const AuthPointAttention = () => {
             {(s < 10 ? `0${s}` : s)}
             {' '}
             {h < 12 ? 'am' : 'pm'}
-          </h1>
+          </h3>
         </CardContent>
       </Card>
     </>
