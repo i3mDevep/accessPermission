@@ -32,10 +32,25 @@ export default compose(
             doc: props.isAuth.uid,
             subcollections: [
               { collection: 'worker' },
+  
             ],
           },
         ],
         storeAs: 'workerSubcompanyFilter',
+      },
+      { collection: 'business',
+        doc: props.isAuth.companyId,
+        subcollections: [
+          {
+            collection: 'subcompanies',
+            doc: props.isAuth.uid,
+            subcollections: [
+              { collection: 'trakingworker' },
+  
+            ],
+          },
+        ],
+        storeAs: 'workerSubcompanyFilter2',
       },
     ];
   }),

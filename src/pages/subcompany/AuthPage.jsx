@@ -3,7 +3,9 @@ import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAtt
 
 const AuthPage = () => {
 
-  return <AuthPointAttention />;
+  return (
+
+  <AuthPointAttention />)
 
 };
 
