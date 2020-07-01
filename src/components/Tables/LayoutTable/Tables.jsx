@@ -203,7 +203,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
   );
 }
 
-function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
+function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] }) {
   const data = [];
   const [state, setState] = React.useState({
     columns: [
@@ -212,15 +212,14 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
       { title: 'Dirección', field: 'address' },
       { title: 'Teléfono', field: 'celphone' },
       { title: 'Sede', field: 'sede' },
-      { title: 'Entrada', field: 'inworking' },
-      { title: 'Salida', field: 'out' },
       { title: 'Id', field: 'idsede', hidden: true },
       { title: 'Regitro', field: 'time' },
-      { title: 'Track', field: 'track' },
+      { title: 'Track', field: 'type' },
 
     ],
   });
-  workerSubcompanyFilter.forEach((worker) => {
+  trakingworker.forEach((trakingperson) => {
+    const worker = workerSubcompanyFilter[trakingperson.identification];
     data.push({
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
@@ -228,8 +227,8 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
       celphone: worker.celphone,
       sede: worker.sede.value,
       idsede: worker.sede.id,
-      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      track: worker.track === true ? <GpsFixedIcon color='primary' alt='IN' /> : <GpsFixedIcon color='secondary' alt='OUT'/>,
+      time: typeof trakingperson.date === 'object' ? moment(trakingperson.date.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+      type: trakingperson.action,
     });
   });
   console.log(workerSubcompanyFilter);
@@ -293,7 +292,6 @@ const mapStateProps = (state) => {
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
     workerSubcompanyFilter: state.firestore.ordered.workerSubcompanyFilter,
-  
   };
 };
 export default {

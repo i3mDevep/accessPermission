@@ -14,6 +14,7 @@ const ApointWorkerContainer = ({ requesting }) => {
   );
 };
 const mapStateProps = (state) => {
+  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.workerSubcompanyFilter,
@@ -53,5 +54,20 @@ export default compose(
         storeAs: 'workerSubcompanyFilter2',
       },
     ];
+    // return [
+    //   { collection: 'business',
+    //     doc: props.isAuth.companyId,
+    //     subcollections: [
+    //       {
+    //         collection: 'subcompanies',
+    //         doc: props.isAuth.uid,
+    //         subcollections: [
+    //           { collection: 'worker' },
+    //         ],
+    //       },
+    //     ],
+    //     storeAs: 'workerSubcompanyFilter',
+    //   },
+    // ];
   }),
 )(ApointWorkerContainer);
