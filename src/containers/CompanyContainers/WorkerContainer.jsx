@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { deleteWorker } from '../store/actions/deleteWorkerAction';
-import Worker from '../components/Worker/Worker';
+import { deleteWorker } from '../../store/actions/deleteWorkerAction';
+import Worker from '../../components/Worker/Worker';
 
 const WorkerContainer = ({ deleteWorker, isAuth }) => {
   const handlerDeleteWorker = (rowData) => {

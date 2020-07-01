@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
-import { ScreenLoading2 } from '../components/ScreenLoading';
-import { addWorker } from '../store/actions/addWorkerAction';
-import { showAlert } from '../store/actions/sweetAlertActions';
-import FormQr from '../components/FormQr';
+import { ScreenLoading2 } from '../../components/ScreenLoading';
+import { addWorker } from '../../store/actions/addWorkerAction';
+import { showAlert } from '../../store/actions/sweetAlertActions';
+import FormQr from '../../components/FormQr';
 
 const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, showAlert, requesting }) => {
   if (requesting) {

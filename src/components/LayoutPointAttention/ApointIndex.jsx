@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { MdDashboard, MdFiberNew } from 'react-icons/md';
 import { GrUserWorker } from 'react-icons/gr';
@@ -39,10 +38,4 @@ const ApointIndex = ({ subCompanies, response, children }) => {
 
 };
 
-const mapStateToProps = (state) => ({
-});
-
-export default connect(
-  mapStateToProps,
-  {},
-)(ApointIndex);
+export default ApointIndex;

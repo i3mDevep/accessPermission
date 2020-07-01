@@ -199,32 +199,34 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
   );
 }
 
-function ApointUserAuthTableRow({ worker = [] }) {
-
+function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
+  const data = [];
   const [state, setState] = React.useState({
     columns: [
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
       { title: 'Género', field: 'gender' },
       { title: 'Edad', field: 'age' },
-      { title: 'Entrada', field: 'inpoint' },
-      { title: 'Salida', field: 'outpoint' },
-      { title: 'Horas Laborales', field: 'hrs' },
-      { title: 'Novedad', field: 'status' },
+      { title: 'Dirección', field: 'address' },
+      { title: 'Teléfono', field: 'celphone' },
+      { title: 'Sede', field: 'sede' },
+      { title: 'Id', field: 'idsede', hidden: true },
+      { title: 'Register', field: 'time' },
 
     ],
-    data: [
-      { name: 'Andres Bermúdez', identification: '1018430535', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '2033232322', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '1511651651', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
-      { name: 'Andres Bermúdez', identification: '5616516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '9661313512', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
-      { name: 'Andres Bermúdez', identification: '6516516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '1018430535', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: false },
-      { name: 'Andres Bermúdez', identification: '6516516516', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '6511651616', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-      { name: 'Andres Bermúdez', identification: '9849849849', gender: 'Hombre', age: '30', inpoint: ' 8:00 AM', outpoint: '6:00 PM', hrs: '8', status: true },
-    ],
+  });
+  workerSubcompanyFilter.forEach((worker) => {
+    data.push({
+      name: `${worker.name} ${worker.lastname}`,
+      identification: worker.identification,
+      gender: worker.gender,
+      age: worker.age,
+      address: worker.address,
+      celphone: worker.celphone,
+      sede: worker.sede.value,
+      idsede: worker.sede.id,
+      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+    });
   });
   return (
     <div style={{ maxWidth: '100%' }}>
@@ -233,7 +235,7 @@ function ApointUserAuthTableRow({ worker = [] }) {
           icons={tableIcons}
           title='Control de Ingreso'
           columns={state.columns}
-          data={state.data}
+          data={data}
           localization={{
             pagination: {
               labelDisplayedRows: '{from}-{to} of {count}',
@@ -275,11 +277,12 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
+    workerSubcompanyFilter: state.firestore.ordered.workerSubcompanyFilter,
   };
 };
 export default {
   UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
   WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
-  ApointUserAuthTableRow: connect(mapStateProps, null)(ApointUserAuthTableRow),
+  ApointWorkerTableRow: connect(mapStateProps, null)(ApointWorkerTableRow),
 };
 
