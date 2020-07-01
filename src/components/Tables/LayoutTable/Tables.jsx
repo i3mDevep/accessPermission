@@ -20,7 +20,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
-import { red } from '@material-ui/core/colors';
+import { green, orange, red } from '@material-ui/core/colors';
 import './style.scss';
 
 const tableIcons = {
@@ -49,6 +49,14 @@ const theme = createMuiTheme({
     fontFamily: [
       'poppins',
     ].join(','),
+  },
+  palette: {
+    secondary: {
+      main: red[500],
+    },
+    primary: {
+      main: green[500],
+    },
   },
 });
 
@@ -205,8 +213,9 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
       { title: 'Teléfono', field: 'celphone' },
       { title: 'Sede', field: 'sede' },
       { title: 'Id', field: 'idsede', hidden: true },
-      { title: 'Register', field: 'time' },
-      { title: 'Tipo', field: 'type' },
+      { title: 'Regitro', field: 'time' },
+      { title: 'Track', field: 'type' },
+
     ],
   });
   trakingworker.forEach((trakingperson) => {
@@ -222,44 +231,57 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
       type: trakingperson.action,
     });
   });
+  console.log(workerSubcompanyFilter);
   return (
+
     <div style={{ maxWidth: '100%' }}>
-      <MaterialTable
-        icons={tableIcons}
-        title='Control de Ingreso'
-        columns={state.columns}
-        data={data}
-        localization={{
-          pagination: {
-            labelDisplayedRows: '{from}-{to} of {count}',
-          },
-          toolbar: {
-            nRowsSelected: '{0} row(s) selected',
-          },
-          header: {
-            actions: 'Acción',
-          },
-          body: {
-            emptyDataSourceMessage: 'No records to display',
-            filterRow: {
-              filterTooltip: 'Filter',
+      <ThemeProvider theme={theme}>
+        <MaterialTable
+          theme={(theme) => createMuiTheme({
+            ...theme,
+            palette: {
+              ...theme.palette,
+              primary: {
+                main: green[500],
+              },
             },
-          },
-        }}
-        options={{
-          draggable: false,
-          filtering: false,
-          search: true,
-          actionsColumnIndex: -1,
-        }}
-        actions={[
-          {
-            icon: () => <GpsFixedIcon stylecolor='red' />,
-            tooltip: 'status',
-            onClick: (event, rowData) => alert(`info ${rowData.name}`),
-          },
-        ]}
-      />
+          })}
+          icons={tableIcons}
+          title='Control de Ingreso'
+          columns={state.columns}
+          data={data}
+          localization={{
+            pagination: {
+              labelDisplayedRows: '{from}-{to} of {count}',
+            },
+            toolbar: {
+              nRowsSelected: '{0} row(s) selected',
+            },
+            header: {
+              actions: 'Acción',
+            },
+            body: {
+              emptyDataSourceMessage: 'No records to display',
+              filterRow: {
+                filterTooltip: 'Filter',
+              },
+            },
+          }}
+          options={{
+            draggable: false,
+            filtering: false,
+            search: true,
+            actionsColumnIndex: -1,
+          }}
+          actions={[
+            {
+              icon: () => <GpsFixedIcon />,
+              tooltip: 'status',
+              onClick: (event, rowData) => alert(`info ${rowData.name}`),
+            },
+          ]}
+        />
+      </ThemeProvider>
     </div>
   );
 }
@@ -269,8 +291,7 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
-    workerSubcompanyFilter: state.firestore.data.workerSubcompanyFilter,
-    trakingworker: state.firestore.ordered.trakingworker,
+    workerSubcompanyFilter: state.firestore.ordered.workerSubcompanyFilter,
   };
 };
 export default {

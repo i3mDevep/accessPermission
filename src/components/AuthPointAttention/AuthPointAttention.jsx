@@ -46,7 +46,7 @@ const AuthPointAttention = () => {
       <Card className={classes.root}>
         <CardContent>
           <Webcam
-            width='500'
+            width='600'
             height='600'
             audio={false}
             ref={webcamRef}
