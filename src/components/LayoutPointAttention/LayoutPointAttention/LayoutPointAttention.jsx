@@ -23,15 +23,101 @@ import MailIcon from '@material-ui/icons/Mail';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
+import { Link, NavLink } from 'react-router-dom';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import DescriptionIcon from '@material-ui/icons/Description';
 
+const drawerWidth = 240;
 
 const icons = [<HomeIcon />, <Fingerprint />, <PeopleAltIcon />, <FaceIcon />, <MailIcon />, <DescriptionIcon />, <SettingsApplicationsIcon />, <ExitToAppIcon />];
 const items = ['Home', 'Control Acceso', 'Empleados ', 'Clientes', 'Notificaciones', 'Informes'];
-const links = ['/home', '/control', '/empleados ', '/clientes', '/notificaciones', '/informes'];
+const links = ['/home', '/control', '/empleadospoint', '/clientpoint', '/notificationpoint', '/infor'];
 
-function FooterPointAttention({ useStyles, children, onClick }) {
+const useStyles = makeStyles((theme) => ({
+
+  typography: {
+    fontFamily: [
+      'poppins',
+    ].join(','),
+  },
+
+  root: {
+    display: 'flex',
+    //color: 'red', // Color text container
+  },
+  appBar: {
+    //color: 'red', color text
+    background: '#004876',
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    background: '#004876',
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    background: '#004876',
+    marginRight: 36,
+  },
+
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    //color: '#ffff',
+    //icon: '#ffff',
+    // background: '#004876',
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9) + 1,
+    },
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+}));
+
+function FooterPointAttention({ children, onClick }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -67,7 +153,7 @@ function FooterPointAttention({ useStyles, children, onClick }) {
           </IconButton>
           <div style={{ marginRight: 'auto' }}>
             <Typography edge='start' style={{ marginRight: 'auto' }} variant='h6' noWrap>
-              Punto de venta
+              { window.location.pathname.slice(1).toUpperCase() }
             </Typography>
           </div>
           <IconButton aria-label='show 17 new notifications' color='inherit'>
@@ -103,7 +189,7 @@ function FooterPointAttention({ useStyles, children, onClick }) {
               button
               disableTouchRipple
               to={links[index]}
-              onClick={onClick}
+              component={NavLink}
               key={text}
             >
               <ListItemIcon>{icons[index]}</ListItemIcon>

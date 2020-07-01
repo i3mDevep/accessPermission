@@ -13,6 +13,8 @@ import Sedes from '../pages/company/Sedes';
 import SedesPage from '../pages/subcompany/SedesPage';
 import WorkerPage from '../pages/company/WorkerPage';
 import LayoutDashboard from '../components/LayoutDashboard';
+import AuthPage from '../pages/subcompany/AuthPage';
+import ApointIndex from '../components/LayoutPointAttention/ApointIndex';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -46,13 +48,13 @@ const LoggedInRoutesWithbusiness = [
 ];
 
 const LoggedInRoutesWithOutbusiness = [
-  <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={SedesPage} />,
-  <Route key='/' path='/' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route key='login' path='/login' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route key='register' path='/register' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
-  <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/dashboardsedes' />} />,
+  <Route key='home' path='/home' exact={true} component={SedesPage} />,
+  <Route key='control' path='/control' exact={true} component={AuthPage} />,
+  <Route key='login' path='/login' exact={true} component={() => <Redirect to='/home' />} />,
+  <Route key='register' path='/register' exact={true} component={() => <Redirect to='/home' />} />,
+  <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/home' />} />,
+  <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/home' />} />,
+  <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/home' />} />,
 ];
 
 const LoggedOut = [
@@ -84,7 +86,11 @@ const App = ({ signIn, isAuth }) => {
               <Switch>
                 {[
                   isAuth.loggedIn && isAuth.businness === true && <LayoutDashboard>{LoggedInRoutesWithbusiness}</LayoutDashboard>,
-                  isAuth.loggedIn && isAuth.businness === false && LoggedInRoutesWithOutbusiness,
+                  isAuth.loggedIn && isAuth.businness === false && (
+                    <ApointIndex>
+                      { LoggedInRoutesWithOutbusiness }
+                    </ApointIndex>
+                  ),
                   !isAuth.loggedIn && LoggedOut,
                 ]}
               </Switch>
