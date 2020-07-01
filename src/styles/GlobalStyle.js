@@ -2,8 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 import myFontURL from '../assets/typegraphic/Poppins-Regular.ttf';
 
 const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
-    @import '~bootstrap/scss/bootstrap.scss';
+    /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');*/
+    /* @import '~bootstrap/scss/bootstrap.scss'; */
     *::before,
     *::after {
      box-sizing: border-box; }

@@ -68,33 +68,31 @@ function UsersTableRow({ users = [] }) {
   });
   return (
     <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          id='mytable'
-          icons={tableIcons}
-          title='Users'
-          columns={[
-            { title: 'Name', field: 'Nombre' },
-            { title: 'Identification', field: 'Identificación' },
-            { title: 'Gender', field: 'Género' },
-            { title: 'Age', field: 'Edad' },
-            { title: 'Address', field: 'Dirección' },
-            { title: 'Telphone', field: 'Teléfono' },
-            { title: 'Sede', field: 'Sede' },
-            { title: 'Time', field: 'time' },
-          ]}
-          data={data}
-          options={{
-            draggable: false,
-            filtering: false,
-            search: true,
-            headerStyle: {
-              backgroundColor: '#01579b',
-              color: '#FFF',
-            },
-          }}
-        />
-      </ThemeProvider>
+      <MaterialTable
+        id='mytable'
+        icons={tableIcons}
+        title='Users'
+        columns={[
+          { title: 'Name', field: 'Nombre' },
+          { title: 'Identification', field: 'Identificación' },
+          { title: 'Gender', field: 'Género' },
+          { title: 'Age', field: 'Edad' },
+          { title: 'Address', field: 'Dirección' },
+          { title: 'Telphone', field: 'Teléfono' },
+          { title: 'Sede', field: 'Sede' },
+          { title: 'Time', field: 'time' },
+        ]}
+        data={data}
+        options={{
+          draggable: false,
+          filtering: false,
+          search: true,
+          headerStyle: {
+            backgroundColor: '#01579b',
+            color: '#FFF',
+          },
+        }}
+      />
     </div>
   );
 }
@@ -130,71 +128,69 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
 
   return (
     <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          localization={{
-            pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
+      <MaterialTable
+        localization={{
+          pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}',
+          },
+          toolbar: {
+            nRowsSelected: '{0} row(s) selected',
+          },
+          header: {
+            actions: 'Acción',
+          },
+          body: {
+            emptyDataSourceMessage: 'No records to display',
+            filterRow: {
+              filterTooltip: 'Filter',
             },
-            toolbar: {
-              nRowsSelected: '{0} row(s) selected',
-            },
-            header: {
-              actions: 'Acción',
-            },
-            body: {
-              emptyDataSourceMessage: 'No records to display',
-              filterRow: {
-                filterTooltip: 'Filter',
-              },
-            },
-          }}
-          icons={tableIcons}
-          title='Worker'
-          columns={columns}
-          data={data}
-          editable={{
-            onRowAdd: (newData) => new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setData([...data, newData]);
-                resolve();
-              }, 1000);
-            }),
-            onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-                resolve();
-              }, 1000);
-            }),
-            onRowDelete: onClickDeleteWorker,
-          }}
-          onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-          options={{
-            actionsColumnIndex: -1,
-            exportButton: true,
-            draggable: false,
-            filtering: false,
-            search: true,
-            headerStyle: {
-              backgroundColor: '#01579b',
-              color: '#FFF',
-            },
-            rowStyle: rowData => ({
-              backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
-            }),
-          }}
-          actions={[
-            {
-              icon: () => <GpsFixedIcon />,
-              tooltip: 'status',
-              onClick: (event, rowData) => alert(`info ${rowData.name}`),
-            },
-          ]}
-        />
-      </ThemeProvider>
+          },
+        }}
+        icons={tableIcons}
+        title='Worker'
+        columns={columns}
+        data={data}
+        editable={{
+          // onRowAdd: (newData) => new Promise((resolve, reject) => {
+          //   setTimeout(() => {
+          //     setData([...data, newData]);
+          //     resolve();
+          //   }, 1000);
+          // }),
+          onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+            setTimeout(() => {
+              const dataUpdate = [...data];
+              const index = oldData.tableData.id;
+              dataUpdate[index] = newData;
+              setData([...dataUpdate]);
+              resolve();
+            }, 1000);
+          }),
+          onRowDelete: onClickDeleteWorker,
+        }}
+        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+        options={{
+          actionsColumnIndex: -1,
+          exportButton: true,
+          draggable: false,
+          filtering: false,
+          search: true,
+          headerStyle: {
+            backgroundColor: '#01579b',
+            color: '#FFF',
+          },
+          rowStyle: (rowData) => ({
+            backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+          }),
+        }}
+        actions={[
+          {
+            icon: () => <GpsFixedIcon />,
+            tooltip: 'status',
+            onClick: (event, rowData) => alert(`info ${rowData.name}`),
+          },
+        ]}
+      />
     </div>
   );
 }
@@ -230,44 +226,42 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [] }) {
   });
   return (
     <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          icons={tableIcons}
-          title='Control de Ingreso'
-          columns={state.columns}
-          data={data}
-          localization={{
-            pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
+      <MaterialTable
+        icons={tableIcons}
+        title='Control de Ingreso'
+        columns={state.columns}
+        data={data}
+        localization={{
+          pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}',
+          },
+          toolbar: {
+            nRowsSelected: '{0} row(s) selected',
+          },
+          header: {
+            actions: 'Acción',
+          },
+          body: {
+            emptyDataSourceMessage: 'No records to display',
+            filterRow: {
+              filterTooltip: 'Filter',
             },
-            toolbar: {
-              nRowsSelected: '{0} row(s) selected',
-            },
-            header: {
-              actions: 'Acción',
-            },
-            body: {
-              emptyDataSourceMessage: 'No records to display',
-              filterRow: {
-                filterTooltip: 'Filter',
-              },
-            },
-          }}
-          options={{
-            draggable: false,
-            filtering: false,
-            search: true,
-            actionsColumnIndex: -1,
-          }}
-          actions={[
-            {
-              icon: () => <GpsFixedIcon stylecolor='red' />,
-              tooltip: 'status',
-              onClick: (event, rowData) => alert(`info ${rowData.name}`),
-            },
-          ]}
-        />
-      </ThemeProvider>
+          },
+        }}
+        options={{
+          draggable: false,
+          filtering: false,
+          search: true,
+          actionsColumnIndex: -1,
+        }}
+        actions={[
+          {
+            icon: () => <GpsFixedIcon stylecolor='red' />,
+            tooltip: 'status',
+            onClick: (event, rowData) => alert(`info ${rowData.name}`),
+          },
+        ]}
+      />
     </div>
   );
 }

@@ -23,6 +23,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { NavLink } from 'react-router-dom';
+import { CustomNavLink } from './style';
 import logo from '../../../../public/ardobot_logo.png';
 
 const drawerWidth = 240;
@@ -235,7 +236,7 @@ export default function ToolboxCustome({ children }) {
               <ListItem
                 button
                 key={text}
-                component={NavLink}
+                component={CustomNavLink}
                 to={`${links[index]}`}
               >
                 <ListItemIcon>{ myicons[index] }</ListItemIcon>
