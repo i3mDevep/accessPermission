@@ -246,6 +246,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                 </div>
               </Form.Group>
             </Form.Row>
+            {state.checkedA === true ? <Alert variant="success">Activo</Alert> : <Alert variant="danger">Inactivo</Alert>}
           </Form>
         </Col>
         <Col sm={12} md={4} style={{ backgroundColor: 'white', margin: '0 auto' }}>

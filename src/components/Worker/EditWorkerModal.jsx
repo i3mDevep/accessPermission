@@ -195,8 +195,17 @@ const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) =>
               </div>
             </Form.Group>
           </Form.Row>
-          {state.checkedA === true ? <Alert variant="success">Activo</Alert> : <Alert variant="danger">Inactivo</Alert>}
+          {state.checkedA === true ? <Alert variant='success'>Activo</Alert> : <Alert variant='danger'>Inactivo</Alert>}
         </Form>
+        <Button
+          variant='primary'
+          type='submit'
+          form='CreateForm'
+          className='mr-2'
+          disabled={blocked}
+        >
+          Actualizar
+        </Button>
       </Modal.Body>
     </Modal>
   );
