@@ -5,12 +5,12 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
 import Table from '../../components/Tables/LayoutTable/Tables';
 
-const PayrollContainer = ({ requesting }) => {
+const PayrollContainer = ({ requesting, onClickDeleteWorker }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
   return (
-    <Table.ApointWorkerTableRow />
+    <Table.WorkerTableRow onClickDeleteWorker={onClickDeleteWorker} />
   );
 };
 const mapStateProps = (state) => {
@@ -27,15 +27,6 @@ export default compose(
     return [
       { collection: 'business',
         doc: props.isAuth.companyId,
-        subcollections: [
-          {
-            collection: 'subcompanies',
-            doc: props.isAuth.uid,
-            subcollections: [
-              { collection: 'worker' },
-            ],
-          },
-        ],
         storeAs: 'payroll',
       },
 
