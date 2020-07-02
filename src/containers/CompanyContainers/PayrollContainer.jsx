@@ -5,19 +5,18 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
 import Table from '../../components/Tables/LayoutTable/Tables';
 
-const PayrollContainer = ({ requesting, onClickDeleteWorker }) => {
+const PayrollContainer = ({ requesting }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
   return (
-    <Table.WorkerTableRow onClickDeleteWorker={onClickDeleteWorker} />
+    <Table.PayRollTable />
   );
 };
 const mapStateProps = (state) => {
   console.log(state);
   return {
     isAuth: state.auth.isAuth,
-    requesting: state.firestore.status.requesting.workerSubcompanyFilter,
   };
 };
 
@@ -26,10 +25,23 @@ export default compose(
   firestoreConnect((props) => {
     return [
       { collection: 'business',
-        doc: props.isAuth.companyId,
+        doc: props.isAuth.uid,
+        subcollections: [
+          {
+            collection: 'worker',
+          },
+        ],
         storeAs: 'payroll',
       },
-
+      { collection: 'business',
+        doc: props.isAuth.uid,
+        subcollections: [
+          {
+            collection: 'trakingworker',
+          },
+        ],
+        storeAs: 'payrolltraking',
+      },
     ];
   }),
 )(PayrollContainer);

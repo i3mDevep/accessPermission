@@ -112,7 +112,6 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
   const data = [];
   const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
-    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2.5rem' }} color={rowData.status} /> },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Género', field: 'gender' },
@@ -124,6 +123,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'F.ingreso', field: 'time' },
+    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon fontSize='small' color={rowData.status} /> },
   ]);
 
   worker.forEach((worker) => {
@@ -177,13 +177,104 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
             },
           }}
           icons={tableIcons}
-          title='Worker'
+          title='Lista de Empleados'
           columns={columns}
           data={data}
           editable={{
             onRowDelete: onClickDeleteWorker,
           }}
           onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+          options={{
+            actionsColumnIndex: -1,
+            exportButton: true,
+            draggable: false,
+            filtering: false,
+            search: true,
+            headerStyle: {
+              backgroundColor: '#01579b',
+              color: '#FFF',
+            },
+            rowStyle: (rowData) => ({
+              backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+            }),
+          }}
+        />
+      </ThemeProvider>
+    </div>
+  );
+}
+
+function PayRollTable({ payroll = [], payrolltraking = [] }) {
+  const data = [];
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [columns, setColumns] = useState([
+    { title: 'Nombre', field: 'name' },
+    { title: 'Identificación', field: 'identification' },
+    { title: 'Teléfono', field: 'celphone' },
+    { title: 'Sede', field: 'sede' },
+    { title: 'Cargo', field: 'cargo' },
+    { title: 'Id', field: 'idsede', hidden: true },
+    { title: 'Fecha', field: 'time' },
+    { title: 'Hora', field: 'hour' },
+    { title: 'Posición', field: 'position' },
+    { title: 'Evento', field: 'event' },
+    { title: 'Track', field: 'type' },
+  ]);
+
+  payrolltraking.forEach((paytraking) => {
+    const payrollData = payroll[paytraking.identification];
+    data.push({
+      name: `${payrollData.name} ${payrollData.lastname}`,
+      identification: payrollData.identification,
+      celphone: payrollData.celphone,
+      cargo: payrollData.cargo,
+      sede: payrollData.sede.value,
+      idsede: payrollData.sede.id,
+      position: `${paytraking.position.longitude} ${paytraking.position.latitude}`,
+      time: typeof paytraking.date === 'object' ? moment(paytraking.date.toDate().toISOString()).format('D MMM YYYY') : 'null',
+      hour: typeof paytraking.date === 'object' ? moment(paytraking.date.toDate().toISOString()).format('h:mm:ss a') : 'null',
+      event: paytraking.action === 'in' ? <a>Entrada</a>: <a>Salida</a>,
+      type: paytraking.action === 'in' ? <GpsFixedIcon color='primary'  /> : <GpsFixedIcon style={{ color: 'red' }} />,
+    });
+  });
+
+  return (
+    <div style={{ maxWidth: '100%' }}>
+      <ThemeProvider theme={theme}>
+        <MaterialTable
+          theme={(theme) => createMuiTheme({
+            ...theme,
+            palette: {
+              ...theme.palette,
+              primary: {
+                main: green[500],
+              },
+              secondary: {
+                main: grey[500],
+              },
+            },
+          })}
+          localization={{
+            pagination: {
+              labelDisplayedRows: '{from}-{to} of {count}',
+            },
+            toolbar: {
+              nRowsSelected: '{0} row(s) selected',
+            },
+            header: {
+              actions: 'Acción',
+            },
+            body: {
+              emptyDataSourceMessage: 'No records to display',
+              filterRow: {
+                filterTooltip: 'Filter',
+              },
+            },
+          }}
+          icons={tableIcons}
+          title='Nómina '
+          columns={columns}
+          data={data}
           options={{
             actionsColumnIndex: -1,
             exportButton: true,
@@ -232,7 +323,7 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
       type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
     });
   });
-  console.log(trakingworker);
+
   return (
 
     <div style={{ maxWidth: '100%' }}>
@@ -285,13 +376,16 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
+    payroll: state.firestore.data.payroll,
     workerSubcompanyFilter: state.firestore.data.workerSubcompanyFilter,
     trakingworker: state.firestore.ordered.trakingworker,
+    payrolltraking: state.firestore.ordered.payrolltraking,
   };
 };
 export default {
   UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
   WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
   ApointWorkerTableRow: connect(mapStateProps, null)(ApointWorkerTableRow),
+  PayRollTable: connect(mapStateProps, null)(PayRollTable),
 };
 
