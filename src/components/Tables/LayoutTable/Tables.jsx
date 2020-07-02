@@ -43,6 +43,7 @@ const tableIcons = {
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   SaveIcon: forwardRef((props, ref) => <SaveIcon {...props} ref={ref} />),
+  AccountCircleIcon: forwardRef((props, ref) => <AccountCircleIcon {...props} ref={red} />),
 };
 
 const theme = createMuiTheme({
@@ -106,10 +107,11 @@ function UsersTableRow({ users = [] }) {
   );
 }
 
-function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
+function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
   const data = [];
   const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
+    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2.5rem' }} color={rowData.status} /> },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Género', field: 'gender' },
@@ -120,8 +122,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
     { title: 'Contrato', field: 'contrate' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
-    { title: 'Fecha de Ingreso', field: 'time' },
-    { title: 'Estado', field: 'status' },
+    { title: 'F.ingreso', field: 'time' },
   ]);
 
   worker.forEach((worker) => {
@@ -137,7 +138,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
       sede: worker.sede.value,
       idsede: worker.sede.id,
       time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      status: worker.status === true ? <AccountCircleIcon color='primary' /> : <AccountCircleIcon color='secondary' />,
+      status: worker.status === true ? 'primary' : 'secondary',
     });
   });
 
@@ -182,21 +183,6 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
           columns={columns}
           data={data}
           editable={{
-          // onRowAdd: (newData) => new Promise((resolve, reject) => {
-          //   setTimeout(() => {
-          //     setData([...data, newData]);
-          //     resolve();
-          //   }, 1000);
-          // }),
-            onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-                resolve();
-              }, 1000);
-            }),
             onRowDelete: onClickDeleteWorker,
           }}
           onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}

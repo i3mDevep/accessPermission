@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import { showAlert } from './sweetAlertActions';
 
 export const addWorker = (idBusiness, idSubcompany, content, data64) => {
-  //console.log(`entre addwork ${data64}`);
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   return (dispatch) => {
     dispatch({ type: 'REQUEST_WORKER' });
@@ -63,6 +62,49 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
               });
             });
         } if (doc.data().sede.value === 'Not Assigned') {
+          throw new Error('Esta persona ya se encuentra registra, sin embargo, no tiene ninguna sede asiganda')
+        }
+        throw new Error('Esta persona ya se encuentra registrado!');
+      })
+      // .then(() => {
+      //   const config = {
+      //     method: 'POST',
+      //     headers: {
+      //       Accept: 'application/json',
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({ name: content.name, email: content.email, img: data64 }),
+      //   };
+      //   fetch(
+      //     'https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/createWorker',
+      //     config,
+      //   );
+      // })
+      .then(() => {
+        showAlert({
+          type: 'success',
+          timeout: 2500,
+          title: 'Exitoso!',
+          content: 'Empleado Registrado !!!',
+          showCancel: false,
+        })(dispatch);
+        dispatch({ type: 'CREATE_WORKER_SUCCESS' });
+      })
+      .catch((err) => {
+        console.log(err);
+        showAlert({
+          type: 'error',
+          timeout: 4500,
+          title: 'Opss!',
+          content: err.message,
+          showCancel: false,
+        })(dispatch);
+        dispatch({ type: 'CREATE_WORKER_ERROR', err });
+      });
+  };
+};
+/*
+
           return db.collection('business').doc(idBusiness).collection('subcompanies').doc(idSubcompany)
             .collection('worker')
             .doc(content.identification)
@@ -113,44 +155,4 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
                   });
               });
             });
-          //throw new Error('persona existente sins ede');
-        }
-        throw new Error('Esta persona ya se encuentra registrado!');
-      })
-      .then(() => {
-        const config = {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name: content.name, email: content.email, img: data64 }),
-        };
-        fetch(
-          'https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/createWorker',
-          config,
-        );
-      })
-      .then(() => {
-        showAlert({
-          type: 'success',
-          timeout: 2500,
-          title: 'Exitoso!',
-          content: 'Empleado Registrado !!!',
-          showCancel: false,
-        })(dispatch);
-        dispatch({ type: 'CREATE_WORKER_SUCCESS' });
-      })
-      .catch((err) => {
-        console.log(err);
-        showAlert({
-          type: 'error',
-          timeout: 2500,
-          title: 'Opss!',
-          content: err.message,
-          showCancel: false,
-        })(dispatch);
-        dispatch({ type: 'CREATE_WORKER_ERROR', err });
-      });
-  };
-};
+*/

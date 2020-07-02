@@ -22,7 +22,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { NavLink } from 'react-router-dom';
 import { CustomNavLink } from './style';
 import logo from '../../../../public/ardobot_logo.png';
 
@@ -95,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   drawerClose: {
-    zIndex: 0,
+    zIndex: 50,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

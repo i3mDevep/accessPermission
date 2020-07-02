@@ -7,6 +7,7 @@ import Worker from '../../components/Worker/Worker';
 
 const WorkerContainer = ({ deleteWorker, isAuth }) => {
   const handlerDeleteWorker = (rowData) => {
+    alert(rowData);
     return new Promise((resolve, reject) => {
       deleteWorker({ companyId: isAuth.uid, subCompanyId: rowData.idsede, identification: rowData.identification, gender: rowData.gender })
         .then(() => resolve())
