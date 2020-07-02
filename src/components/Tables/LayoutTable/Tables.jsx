@@ -20,7 +20,8 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
-import { green, orange, red } from '@material-ui/core/colors';
+import { green, grey, red, purple } from '@material-ui/core/colors';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './style.scss';
 
 const tableIcons = {
@@ -52,10 +53,10 @@ const theme = createMuiTheme({
   },
   palette: {
     secondary: {
-      main: red[500],
+      main: grey[500],
     },
     primary: {
-      main: green[500],
+      main: '#43a047',
     },
   },
 });
@@ -120,6 +121,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'Fecha de Ingreso', field: 'time' },
+    { title: 'Estado', field: 'status' },
   ]);
 
   worker.forEach((worker) => {
@@ -135,74 +137,85 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
       sede: worker.sede.value,
       idsede: worker.sede.id,
       time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+      status: worker.status === true ? <AccountCircleIcon color='primary' /> : <AccountCircleIcon color='secondary' />,
     });
   });
 
   return (
     <div style={{ maxWidth: '100%' }}>
-      <MaterialTable
-        localization={{
-          pagination: {
-            labelDisplayedRows: '{from}-{to} of {count}',
-          },
-          toolbar: {
-            nRowsSelected: '{0} row(s) selected',
-          },
-          header: {
-            actions: 'Acción',
-          },
-          body: {
-            emptyDataSourceMessage: 'No records to display',
-            filterRow: {
-              filterTooltip: 'Filter',
+      <ThemeProvider theme={theme}>
+        <MaterialTable
+          theme={(theme) => createMuiTheme({
+            ...theme,
+            palette: {
+              ...theme.palette,
+              primary: {
+                main: green[500],
+              },
+              secondary: {
+                main: grey[500],
+              },
+              custom: {
+                main: red[500],
+              },
             },
-          },
-        }}
-        icons={tableIcons}
-        title='Worker'
-        columns={columns}
-        data={data}
-        editable={{
+          })}
+          localization={{
+            pagination: {
+              labelDisplayedRows: '{from}-{to} of {count}',
+            },
+            toolbar: {
+              nRowsSelected: '{0} row(s) selected',
+            },
+            header: {
+              actions: 'Acción',
+            },
+            body: {
+              emptyDataSourceMessage: 'No records to display',
+              filterRow: {
+                filterTooltip: 'Filter',
+              },
+            },
+          }}
+          icons={tableIcons}
+          title='Worker'
+          columns={columns}
+          data={data}
+          editable={{
           // onRowAdd: (newData) => new Promise((resolve, reject) => {
           //   setTimeout(() => {
           //     setData([...data, newData]);
           //     resolve();
           //   }, 1000);
           // }),
-          onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataUpdate = [...data];
-              const index = oldData.tableData.id;
-              dataUpdate[index] = newData;
-              setData([...dataUpdate]);
-              resolve();
-            }, 1000);
-          }),
-          onRowDelete: onClickDeleteWorker,
-        }}
-        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-        options={{
-          actionsColumnIndex: -1,
-          exportButton: true,
-          draggable: false,
-          filtering: false,
-          search: true,
-          headerStyle: {
-            backgroundColor: '#01579b',
-            color: '#FFF',
-          },
-          rowStyle: (rowData) => ({
-            backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
-          }),
-        }}
-        actions={[
-          {
-            icon: () => <GpsFixedIcon />,
-            tooltip: 'status',
-            onClick: (event, rowData) => alert(`info ${rowData.name}`),
-          },
-        ]}
-      />
+            onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataUpdate = [...data];
+                const index = oldData.tableData.id;
+                dataUpdate[index] = newData;
+                setData([...dataUpdate]);
+                resolve();
+              }, 1000);
+            }),
+            onRowDelete: onClickDeleteWorker,
+          }}
+          onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+          options={{
+            actionsColumnIndex: -1,
+            exportButton: true,
+            draggable: false,
+            filtering: false,
+            search: true,
+            headerStyle: {
+              backgroundColor: '#01579b',
+              color: '#FFF',
+            },
+            rowStyle: (rowData) => ({
+              backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+            }),
+          }}
+        />
+      </ThemeProvider>
     </div>
   );
 }
