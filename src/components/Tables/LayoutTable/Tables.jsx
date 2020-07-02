@@ -108,11 +108,11 @@ function UsersTableRow({ users = [] }) {
   );
 }
 
-function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
+function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker }) {
   const data = [];
   const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
-    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2.5rem' }} color={rowData.status} /> },
+    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2.5rem', color: `${rowData.status}` }} /> },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Género', field: 'gender' },
@@ -139,67 +139,60 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker }) {
       sede: worker.sede.value,
       idsede: worker.sede.id,
       time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      status: worker.status === true ? 'primary' : 'secondary',
+      status: worker.status === true ? '#43a047' : '#8888',
     });
   });
 
   return (
     <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          theme={(theme) => createMuiTheme({
-            ...theme,
-            palette: {
-              ...theme.palette,
-              primary: {
-                main: green[500],
-              },
-              secondary: {
-                main: grey[500],
-              },
+      <MaterialTable
+        localization={{
+          pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}',
+          },
+          toolbar: {
+            nRowsSelected: '{0} row(s) selected',
+          },
+          header: {
+            actions: 'Acción',
+          },
+          body: {
+            emptyDataSourceMessage: 'No records to display',
+            filterRow: {
+              filterTooltip: 'Filter',
             },
-          })}
-          localization={{
-            pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
-            },
-            toolbar: {
-              nRowsSelected: '{0} row(s) selected',
-            },
-            header: {
-              actions: 'Acción',
-            },
-            body: {
-              emptyDataSourceMessage: 'No records to display',
-              filterRow: {
-                filterTooltip: 'Filter',
-              },
-            },
-          }}
-          icons={tableIcons}
-          title='Worker'
-          columns={columns}
-          data={data}
-          editable={{
-            onRowDelete: onClickDeleteWorker,
-          }}
-          onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-          options={{
-            actionsColumnIndex: -1,
-            exportButton: true,
-            draggable: false,
-            filtering: false,
-            search: true,
-            headerStyle: {
-              backgroundColor: '#01579b',
-              color: '#FFF',
-            },
-            rowStyle: (rowData) => ({
-              backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
-            }),
-          }}
-        />
-      </ThemeProvider>
+          },
+        }}
+        icons={tableIcons}
+        title='Worker'
+        columns={columns}
+        data={data}
+        editable={{
+          onRowDelete: onClickDeleteWorker,
+        }}
+        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+        options={{
+          actionsColumnIndex: -1,
+          exportButton: true,
+          draggable: false,
+          filtering: false,
+          search: true,
+          headerStyle: {
+            backgroundColor: '#01579b',
+            color: '#FFF',
+          },
+          rowStyle: (rowData) => ({
+            backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+          }),
+        }}
+        actions={[
+          {
+            icon: () => <Edit />,
+            tooltip: 'status',
+            onClick: onClickEditWorker,
+          },
+        ]}
+      />
     </div>
   );
 }

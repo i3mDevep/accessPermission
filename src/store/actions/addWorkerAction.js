@@ -62,9 +62,9 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
               });
             });
         } if (doc.data().sede.value === 'Not Assigned') {
-          throw new Error('Esta persona ya se encuentra registra, sin embargo, no tiene ninguna sede asiganda')
+          throw new Error('Esta persona ya se encuentra registra, sin embargo, no tiene ninguna sede asiganda, si desea asignarle vaya a la pagina generador qr y seleccione editar sobre el empleado deseado');
         }
-        throw new Error('Esta persona ya se encuentra registrado!');
+        throw new Error('Esta persona ya se encuentra registrada!');
       })
       // .then(() => {
       //   const config = {
@@ -94,7 +94,7 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
         console.log(err);
         showAlert({
           type: 'error',
-          timeout: 4500,
+          timeout: 9500,
           title: 'Opss!',
           content: err.message,
           showCancel: false,

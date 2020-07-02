@@ -7,7 +7,6 @@ import Worker from '../../components/Worker/Worker';
 
 const WorkerContainer = ({ deleteWorker, isAuth }) => {
   const handlerDeleteWorker = (rowData) => {
-    alert(rowData);
     return new Promise((resolve, reject) => {
       deleteWorker({ companyId: isAuth.uid, subCompanyId: rowData.idsede, identification: rowData.identification, gender: rowData.gender })
         .then(() => resolve())
@@ -15,8 +14,11 @@ const WorkerContainer = ({ deleteWorker, isAuth }) => {
     });
 
   };
+  const handlerEditWorker = (rowData) => {
+    alert(rowData);
+  };
   return (
-    <Worker onClickDeleteWorker={handlerDeleteWorker} />
+    <Worker onClickDeleteWorker={handlerDeleteWorker} onClickEditWorker={handlerEditWorker} />
   );
 };
 
@@ -54,7 +56,6 @@ export default compose(
           },
         ],
         storeAs: 'worker',
-      //limit: 10,
       },
     ];
   }),

@@ -28,7 +28,6 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   const Salary = useInputValue('');
   const Contrate = useInputValue('');
   const Cargo = useInputValue('');
-  const Status = useInputValue('');
   const [Sede, setSede] = useState({ value: '', id: '' });
 
   const handlerOnSubmit = (e) => {
