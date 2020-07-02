@@ -36,7 +36,7 @@ export default compose(
             ],
           },
         ],
-        storeAs: 'workerSubcompanyFilter',
+        storeAs: 'workerSubCompany',
       },
       { collection: 'business',
         doc: props.isAuth.companyId,
@@ -49,7 +49,7 @@ export default compose(
             ],
           },
         ],
-        storeAs: 'trakingworker',
+        storeAs: 'workerTrakingSubCompany',
       },
     ];
   }),

@@ -124,6 +124,10 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'F.ingreso', field: 'time' },
+    { title: 'singlename', field: 'singlename', hidden: true },
+    { title: 'singlelastname', field: 'singlename', hidden: true },
+    { title: 'Salario', field: 'salary', hidden: true },
+    { title: 'Email', field: 'email', hidden: true },
   ]);
 
   worker.forEach((worker) => {
@@ -138,6 +142,10 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
       cargo: worker.cargo,
       sede: worker.sede.value,
       idsede: worker.sede.id,
+      singlename: worker.name,
+      singlelastname: worker.lastname,
+      email: worker.email,
+      salary: worker.salary,
       time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
       status: worker.status === true ? '#43a047' : '#8888',
     });
@@ -189,7 +197,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
           {
             icon: () => <Edit />,
             tooltip: 'status',
-            onClick: onClickEditWorker,
+            onClick: (event, rowData) => onClickEditWorker(rowData),
           },
         ]}
       />
@@ -197,7 +205,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
   );
 }
 
-function PayRollTable({ payroll = [], payrolltraking = [] }) {
+function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
   const data = [];
   const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
@@ -214,8 +222,8 @@ function PayRollTable({ payroll = [], payrolltraking = [] }) {
     { title: 'Track', field: 'type' },
   ]);
 
-  payrolltraking.forEach((paytraking) => {
-    const payrollData = payroll[paytraking.identification];
+  workerTrakingCompany.forEach((paytraking) => {
+    const payrollData = workerdata[paytraking.identification];
     data.push({
       name: `${payrollData.name} ${payrollData.lastname}`,
       identification: payrollData.identification,
@@ -226,8 +234,8 @@ function PayRollTable({ payroll = [], payrolltraking = [] }) {
       position: `${paytraking.position.longitude} ${paytraking.position.latitude}`,
       time: typeof paytraking.date === 'object' ? moment(paytraking.date.toDate().toISOString()).format('D MMM YYYY') : 'null',
       hour: typeof paytraking.date === 'object' ? moment(paytraking.date.toDate().toISOString()).format('h:mm:ss a') : 'null',
-      event: paytraking.action === 'in' ? <a>Entrada</a>: <a>Salida</a>,
-      type: paytraking.action === 'in' ? <GpsFixedIcon color='primary'  /> : <GpsFixedIcon style={{ color: 'red' }} />,
+      event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
+      type: paytraking.action === 'in' ? <GpsFixedIcon color='primary' /> : <GpsFixedIcon style={{ color: 'red' }} />,
     });
   });
 
@@ -288,7 +296,7 @@ function PayRollTable({ payroll = [], payrolltraking = [] }) {
   );
 }
 
-function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] }) {
+function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany = [] }) {
   const data = [];
   const [state, setState] = React.useState({
     columns: [
@@ -303,8 +311,8 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
 
     ],
   });
-  trakingworker.forEach((trakingperson) => {
-    const worker = workerSubcompanyFilter[trakingperson.identification];
+  workerTrakingSubCompany.forEach((trakingperson) => {
+    const worker = workerSubCompany[trakingperson.identification];
     data.push({
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
@@ -369,10 +377,10 @@ const mapStateProps = (state) => {
     isAuth: state.auth.isAuth,
     users: state.firestore.ordered.users,
     worker: state.firestore.ordered.worker,
-    payroll: state.firestore.data.payroll,
-    workerSubcompanyFilter: state.firestore.data.workerSubcompanyFilter,
-    trakingworker: state.firestore.ordered.trakingworker,
-    payrolltraking: state.firestore.ordered.payrolltraking,
+    workerdata: state.firestore.data.worker,
+    workerSubCompany: state.firestore.data.workerSubCompany,
+    workerTrakingSubCompany: state.firestore.ordered.workerTrakingSubCompany,
+    workerTrakingCompany: state.firestore.ordered.workerTrakingCompany,
   };
 };
 export default {

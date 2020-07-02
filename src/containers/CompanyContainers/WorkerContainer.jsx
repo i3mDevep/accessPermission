@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -6,6 +6,9 @@ import { deleteWorker } from '../../store/actions/deleteWorkerAction';
 import Worker from '../../components/Worker/Worker';
 
 const WorkerContainer = ({ deleteWorker, isAuth }) => {
+  const [show, setShow] = useState(false);
+  const [init, setInit] = useState('');
+
   const handlerDeleteWorker = (rowData) => {
     return new Promise((resolve, reject) => {
       deleteWorker({ companyId: isAuth.uid, subCompanyId: rowData.idsede, identification: rowData.identification, gender: rowData.gender })
@@ -15,10 +18,11 @@ const WorkerContainer = ({ deleteWorker, isAuth }) => {
 
   };
   const handlerEditWorker = (rowData) => {
-    alert(rowData);
+    setShow(true);
+    setInit(rowData);
   };
   return (
-    <Worker onClickDeleteWorker={handlerDeleteWorker} onClickEditWorker={handlerEditWorker} />
+    <Worker init={init} show={show} onHide={() => setShow(false)} onClickDeleteWorker={handlerDeleteWorker} onClickEditWorker={handlerEditWorker} />
   );
 };
 

@@ -231,17 +231,19 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                 />
               </Form.Group>
               <Form.Group as={Col} controlId='status'>
-                <Form.Label>Estado del trabajador</Form.Label>
-                <FormControlLabel
-                  control={(
-                    <Switch
-                      checked={state.checkedA}
-                      onChange={handleChange}
-                      name='checkedA'
-                    />
-                  )}
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <Form.Label>Estado del trabajador</Form.Label>
+                  <FormControlLabel
+                    control={(
+                      <Switch
+                        checked={state.checkedA}
+                        onChange={handleChange}
+                        name='checkedA'
+                      />
+                    )}
 
-                />
+                  />
+                </div>
               </Form.Group>
             </Form.Row>
           </Form>

@@ -31,7 +31,7 @@ export default compose(
             collection: 'worker',
           },
         ],
-        storeAs: 'payroll',
+        storeAs: 'worker',
       },
       { collection: 'business',
         doc: props.isAuth.uid,
@@ -40,7 +40,7 @@ export default compose(
             collection: 'trakingworker',
           },
         ],
-        storeAs: 'payrolltraking',
+        storeAs: 'workerTrakingCompany',
       },
     ];
   }),

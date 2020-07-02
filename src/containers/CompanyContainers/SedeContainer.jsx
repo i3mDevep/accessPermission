@@ -48,7 +48,6 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
     createSubCompany(dataSubCompany)
       .then((response) => {
         setResponse(response);
-        console.log(response);
         if (response.data.result === true) {
           setModalShow(false);
         }
@@ -86,8 +85,8 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
-    subCompanies: state.firestore.ordered.subcompanycreate,
-    requesting: state.firestore.status.requesting.subcompanycreate,
+    subCompanies: state.firestore.ordered.subcompany,
+    requesting: state.firestore.status.requesting.subcompany,
     loadingDeleted: state.resultDelete,
   };
 };
@@ -110,7 +109,7 @@ export default compose(
             collection: 'subcompanies',
           },
         ],
-        storeAs: 'subcompanycreate',
+        storeAs: 'subcompany',
       },
     ];
   }),
