@@ -7,7 +7,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useInputValue from '../../hooks/useInputValue';
 
 const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) => {
-  console.log(init);
   const Name = useInputValue(init.singlename);
   const Lastname = useInputValue(init.singlelastname);
   const Identification = useInputValue(init.identification);
@@ -21,10 +20,18 @@ const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) =>
   const Cargo = useInputValue(init.cargo);
   const [Sede, setSede] = useState({ value: '', id: '' });
 
+  const [state, setState] = useState({
+    checkedA: true,
+  });
+
+  console.log(state);
+
   const handlerOnSubmit = (e) => {
     e.preventDefault();
   };
-
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
   return (
     <Modal
       {...rest}
@@ -174,13 +181,13 @@ const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) =>
               />
             </Form.Group>
             <Form.Group as={Col} controlId='status'>
-              <div style={{display: 'flex', flexDirection:'column' }}>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <Form.Label>Estado del trabajador</Form.Label>
                 <FormControlLabel
                   control={(
                     <Switch
-                      checked={true}
-                      //onChange={handleChange}
+                      checked={state.checkedA}
+                      onChange={handleChange}
                       name='checkedA'
                     />
                   )}
@@ -188,6 +195,7 @@ const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) =>
               </div>
             </Form.Group>
           </Form.Row>
+          {state.checkedA === true ? <Alert variant="success">Activo</Alert> : <Alert variant="danger">Inactivo</Alert>}
         </Form>
       </Modal.Body>
     </Modal>
