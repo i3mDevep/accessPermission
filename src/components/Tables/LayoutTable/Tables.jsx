@@ -54,6 +54,7 @@ const theme = createMuiTheme({
   palette: {
     secondary: {
       main: grey[500],
+      dark: red[500],
     },
     primary: {
       main: '#43a047',
@@ -155,9 +156,6 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, props }) {
               secondary: {
                 main: grey[500],
               },
-              custom: {
-                main: red[500],
-              },
             },
           })}
           localization={{
@@ -245,7 +243,7 @@ function ApointWorkerTableRow({ workerSubcompanyFilter = [], trakingworker = [] 
       idsede: worker.sede.id,
       position: `${trakingperson.position.longitude} ${trakingperson.position.latitude}`,
       time: typeof trakingperson.date === 'object' ? moment(trakingperson.date.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' /> : <GpsFixedIcon color='secondary' />,
+      type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
     });
   });
   console.log(trakingworker);
