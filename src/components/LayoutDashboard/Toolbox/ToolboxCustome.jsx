@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase/app';
-import { FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaDatabase } from 'react-icons/fa';
+import { FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaMoneyCheck, FaDatabase } from 'react-icons/fa';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { MdFiberNew } from 'react-icons/md';
 import clsx from 'clsx';
@@ -30,13 +30,15 @@ const drawerWidth = 240;
 const myicons = [
   <FaUserAstronaut color='white' size='20' />,
   <FaChild color='white' size='20' />,
-  <FaCog color='white' size='20' />,
+  <FaMoneyCheck color='white' size='20' />,
+  <FaCog color='white' size='20' />,  
   <FaTemperatureHigh color='white' size='20' />,
-  <FaDatabase color='white' size='20' />, <RiQrCodeLine color='white' size='20' />,
+  <FaDatabase color='white' size='20' />,
+  <RiQrCodeLine color='white' size='20' />,
   <MdFiberNew color='white' size='20' />];
 
-const messages = ['Dashboard', 'Empleados', 'Clientes', 'Informes', 'Alertas', 'Generador QR', 'Sedes'];
-const links = ['/dashboard', '/worker', '', '', '', '/generateqr', '/sedes'];
+const messages = ['Dashboard', 'Empleados', 'Nomina', 'Clientes', 'Informes', 'Alertas', 'Generador QR', 'Sedes'];
+const links = ['/dashboard', '/worker', '/payroll', '', '', '', '/generateqr', '/sedes'];
 
 const themer = createMuiTheme({
   typography: {

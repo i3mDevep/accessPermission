@@ -12,6 +12,7 @@ import GenerateQR from '../pages/company/GenerateQR';
 import Sedes from '../pages/company/Sedes';
 import ApointWorkerPage from '../pages/subcompany/ApointWorkerPage';
 import WorkerPage from '../pages/company/WorkerPage';
+import Payroll from '../pages/company/Payroll';
 import LayoutDashboard from '../components/LayoutDashboard';
 import AuthPage from '../pages/subcompany/AuthPage';
 import LayoutApointIndex from '../components/LayoutPointAttention/ApointIndex';
@@ -44,6 +45,7 @@ const LoggedInRoutesWithbusiness = [
   <Route key='generateqr' path='/generateqr' exact={true} component={GenerateQR} />,
   <Route key='worker' path='/worker' exact={true} component={WorkerPage} />,
   <Route key='sedes' path='/sedes' exact={true} component={Sedes} />,
+  <Route key='payroll' path='/payroll' exact={true} component={Payroll} />,
 ];
 
 const LoggedInRoutesWithOutbusiness = [
