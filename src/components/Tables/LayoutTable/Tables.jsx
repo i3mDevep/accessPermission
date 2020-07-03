@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
@@ -112,7 +112,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
   const data = [];
   const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
-    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2.5rem', color: `${rowData.status}` }} /> },
+    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2.5rem', color: `${rowData.status.color}` }} /> },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Género', field: 'gender' },
@@ -129,7 +129,6 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
     { title: 'Salario', field: 'salary', hidden: true },
     { title: 'Email', field: 'email', hidden: true },
   ]);
-
   worker.forEach((worker) => {
     data.push({
       name: `${worker.name} ${worker.lastname}`,
@@ -146,8 +145,8 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
       singlelastname: worker.lastname,
       email: worker.email,
       salary: worker.salary,
-      time: typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      status: worker.status === true ? '#43a047' : '#8888',
+      time: worker.time && typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+      status: worker.status === true ? { color: '#43a047', value: true } : { color: '#8888', value: false },
     });
   });
 

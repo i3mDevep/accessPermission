@@ -4,7 +4,7 @@ import Tables from '../Tables/LayoutTable/Tables';
 import CardInfo from '../CardInfo/CardInfo';
 import EditWorkerModal from './EditWorkerModal';
 
-const Worker = ({ onClickDeleteWorker, onClickEditWorker, show, onHide, init }) => {
+const Worker = ({ onClickDeleteWorker, onClickEditWorker, show, onHide, init, sedes, onSubmit }) => {
   return (
     <Container fluid>
       <CardInfo.CardInfoWorker />
@@ -12,7 +12,7 @@ const Worker = ({ onClickDeleteWorker, onClickEditWorker, show, onHide, init }) 
         onClickEditWorker={onClickEditWorker}
         onClickDeleteWorker={onClickDeleteWorker}
       />
-      { show && <EditWorkerModal init={init} show={show} onHide={onHide} /> }
+      { show && <EditWorkerModal onSubmit={onSubmit} sedes={sedes} init={init} show={show} onHide={onHide} /> }
     </Container>
   );
 };

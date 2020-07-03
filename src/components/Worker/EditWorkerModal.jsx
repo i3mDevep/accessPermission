@@ -6,7 +6,7 @@ import { LoopCircleLoading } from 'react-loadingg';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useInputValue from '../../hooks/useInputValue';
 
-const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) => {
+const EditWorkerModal = ({ onSubmit, init, loading = false, blocked = false, sedes = [], ...rest }) => {
   const Name = useInputValue(init.singlename);
   const Lastname = useInputValue(init.singlelastname);
   const Identification = useInputValue(init.identification);
@@ -18,20 +18,34 @@ const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) =>
   const Salary = useInputValue(init.salary);
   const Contrate = useInputValue(init.contrate);
   const Cargo = useInputValue(init.cargo);
-  const [Sede, setSede] = useState({ value: '', id: '' });
+  const [Sede, setSede] = useState({ value: init.sede, id: init.idsede });
 
   const [state, setState] = useState({
-    checkedA: true,
+    checkedA: init.status.value,
   });
-
-  console.log(state);
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
+    onSubmit(init,
+      { name: Name.value,
+        lastname: Lastname.value,
+        identification: Identification.value,
+        address: Address.value,
+        celphone: Celphone.value,
+        age: parseInt(Age.value, 10),
+        gender: Gender.value,
+        email: Email.value,
+        salary: Salary.value,
+        contrate: Contrate.value,
+        cargo: Cargo.value,
+        status: state.checkedA,
+        sede: Sede,
+      });
   };
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
   return (
     <Modal
       {...rest}
@@ -56,6 +70,23 @@ const EditWorkerModal = ({ init, loading = false, blocked = false, ...rest }) =>
       </Modal.Header>
       <Modal.Body>
         <Form disabled={blocked} id='CreateForm' onSubmit={handlerOnSubmit}>
+          <Form.Group controlId='exampleForm.ControlSelect1'>
+            <Form.Label>Sede</Form.Label>
+            <Form.Control
+              as='select'
+              value={Sede.value}
+              onChange={(e) => {
+                const index = e.target.selectedIndex;
+                setSede({ value: e.target.value, id: e.target.options[index].id });
+              }}
+              disabled={blocked}
+            >
+              <option>Seleccione lugar de trabajo</option>
+              {
+                sedes.map((subCompany) => <option id={subCompany.id} key={`id-${subCompany.id}`}>{subCompany.namesubcompany}</option>)
+              }
+            </Form.Control>
+          </Form.Group>
           <Form.Row>
             <Form.Group as={Col} controlId='Name'>
               <Form.Label>Nombre</Form.Label>

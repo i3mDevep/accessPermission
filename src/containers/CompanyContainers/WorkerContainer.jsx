@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { deleteWorker } from '../../store/actions/deleteWorkerAction';
+import { editWorker } from '../../store/actions/editWorkerAction';
 import Worker from '../../components/Worker/Worker';
 
-const WorkerContainer = ({ deleteWorker, isAuth }) => {
+const WorkerContainer = ({ deleteWorker, editWorker, isAuth, subCompanies }) => {
   const [show, setShow] = useState(false);
   const [init, setInit] = useState('');
 
@@ -21,20 +22,28 @@ const WorkerContainer = ({ deleteWorker, isAuth }) => {
     setShow(true);
     setInit(rowData);
   };
+  const handlerEditOnSubmit = (init, content) => {
+    // console.log(init);
+    // console.log(content);
+    setShow(false);
+    editWorker(isAuth.uid, content, init);
+  };
   return (
-    <Worker init={init} show={show} onHide={() => setShow(false)} onClickDeleteWorker={handlerDeleteWorker} onClickEditWorker={handlerEditWorker} />
+    <Worker onSubmit={handlerEditOnSubmit} sedes={subCompanies} init={init} show={show} onHide={() => setShow(false)} onClickDeleteWorker={handlerDeleteWorker} onClickEditWorker={handlerEditWorker} />
   );
 };
 
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
+    subCompanies: state.firestore.ordered.subcompany,
   };
 };
 
 const mapDispatchToPros = (dispatch) => {
   return {
     deleteWorker: (data) => dispatch(deleteWorker(data)),
+    editWorker: (idBusiness, currentContent, passContent) => dispatch(editWorker(idBusiness, currentContent, passContent)),
   };
 };
 
@@ -60,6 +69,15 @@ export default compose(
           },
         ],
         storeAs: 'worker',
+      },
+      { collection: 'business',
+        doc: props.isAuth.uid,
+        subcollections: [
+          {
+            collection: 'subcompanies',
+          },
+        ],
+        storeAs: 'subcompany',
       },
     ];
   }),
