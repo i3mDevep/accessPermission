@@ -1,11 +1,11 @@
 import React from 'react';
-import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAttention';
+import AuthContainer from '../../containers/SubCompanyContainers/AuthContainer';
 
 const AuthPage = () => {
 
   return (
 
-  <AuthPointAttention />)
+    <AuthContainer />);
 
 };
 
