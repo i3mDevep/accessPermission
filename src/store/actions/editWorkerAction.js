@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app';
-import { showAlert } from './sweetAlertActions';
 
 const updateTotalsWorker = (currentTime, idBusiness, currentContent, passContent) => {
   const db = firebase.firestore();
@@ -47,7 +46,7 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
   return (dispatch) => {
     dispatch({ type: 'UPDATE_REQUEST_WORKER' });
     const db = firebase.firestore();
-    if (currentContent.sede.value !== 'Not Assigned') {
+    if (passContent.idsede !== 'Not Assigned') {
       if (currentContent.sede.id === passContent.idsede) {
         return db.doc(`business/${idBusiness}/subcompanies/${currentContent.sede.id}/worker/${currentContent.identification}`).set({
           ...currentContent,
@@ -73,7 +72,56 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
             dispatch({ type: 'UPDATE_WORKER_ERROR', err });
           });
       }
+
+      return db.doc(`business/${idBusiness}/subcompanies/${passContent.idsede}/worker/${currentContent.identification}`).delete()
+        .then(() => {
+          return db.doc(`business/${idBusiness}/subcompanies/${currentContent.sede.id}/worker/${currentContent.identification}`).set({
+            ...currentContent,
+            time: currentTime,
+          });
+        })
+        .then(() => {
+          return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).set({
+            ...currentContent,
+            time: currentTime,
+          });
+        })
+        .then(() => {
+          if (currentContent.gender !== passContent.gender) {
+            return updateTotalsWorker(currentTime, idBusiness, currentContent, passContent);
+          }
+          return 0;
+        })
+        .then(() => {
+          dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
+        })
+        .catch((err) => {
+          dispatch({ type: 'UPDATE_WORKER_ERROR', err });
+        });
     }
-    return 0;
+    return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).set({
+      ...currentContent,
+      time: currentTime,
+    })
+      .then(() => {
+        if (currentContent.sede.id !== 'Not Assigned') {
+          return db.doc(`business/${idBusiness}/subcompanies/${currentContent.sede.id}/worker/${currentContent.identification}`).set({
+            ...currentContent,
+            time: currentTime,
+          });
+        }
+        return 0;
+      }).then(() => {
+        if (currentContent.gender !== passContent.gender) {
+          return updateTotalsWorker(currentTime, idBusiness, currentContent, passContent);
+        }
+        return 0;
+      })
+      .then(() => {
+        dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
+      })
+      .catch((err) => {
+        dispatch({ type: 'UPDATE_WORKER_ERROR', err });
+      });
   };
 };
