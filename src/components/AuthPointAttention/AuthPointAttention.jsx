@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import { Button, Card, Container, Modal, Form, Row, Col, Alert, CardDeck } from 'react-bootstrap';
+import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
 
-const AuthPointAttention = ({ init, visibleAlert, worker, isAuth, showAlert, sedes = [] }) => {
+const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert }) => {
 
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
@@ -46,9 +46,6 @@ const AuthPointAttention = ({ init, visibleAlert, worker, isAuth, showAlert, sed
   }, [webcamRef, setImgSrc]);
 
   const useStyles = makeStyles({
-    root: {
-
-    },
     media: {
       height: 140,
     },
@@ -110,7 +107,15 @@ const AuthPointAttention = ({ init, visibleAlert, worker, isAuth, showAlert, sed
                   >
                     <option>Seleccione una sede o Lugar de trabajo</option>
                     {
-                      sedes.map((subCompany) => <option id={subCompany.id} key={`id-${subCompany.id}`}>{subCompany.namesubcompany}</option>)
+                      worker.map((workerSubCompany) => (
+                        <option id={workerSubCompany.id} key={`id-${workerSubCompany.id}`}>
+                          {workerSubCompany.id}
+                          {' '}
+                          {workerSubCompany.name}
+                          {' '}
+                          {workerSubCompany.lastname}
+                        </option>
+                      ))
                     }
                   </Form.Control>
                 </Form.Group>

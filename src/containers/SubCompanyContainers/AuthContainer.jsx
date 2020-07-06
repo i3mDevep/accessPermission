@@ -5,18 +5,18 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
 import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAttention';
 
-const AuthContainer = ({ workerList, requesting }) => {
+const AuthContainer = ({ workersubcompany, requesting }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
   return (
-    <AuthPointAttention workers={workerList} />
+    <AuthPointAttention worker={workersubcompany} />
   );
 };
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
-    workerList: state.firestore.ordered.subcompany,
+    workersubcompany: state.firestore.ordered.workersubcompany,
   };
 };
 
@@ -25,13 +25,17 @@ export default compose(
   firestoreConnect((props) => {
     return [
       { collection: 'business',
-        doc: props.isAuth.uid,
+        doc: props.isAuth.companyId,
         subcollections: [
           {
-            collection: 'worker',
+            collection: 'subcompanies',
+            doc: props.isAuth.uid,
+            subcollections: [
+              { collection: 'worker' },
+            ],
           },
         ],
-        storeAs: 'workerList',
+        storeAs: 'workersubcompany',
       },
     ];
   }),
