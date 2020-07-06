@@ -9,7 +9,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { getVisibleAlert } from '../../../../store/reducers/notificationRecucers';
 import { CardSede, WrapperImg, CurrentTime, Options, Btndelete, Btnedit } from './style';
 
-const PointAttentionCardSedes = ({ email, namesubcompany, city, cellphone, address, nameperson, subCompid, onClickDeleted, visibleAlert, time }) => (
+const PointAttentionCardSedes = ({ email, namesubcompany, estate, city, cellphone, address, nameperson, subCompid, status, onClickDeleted, onClickEdit, visibleAlert, time }) => (
   <CardSede>
     {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
     <div className='w-100 h-100'>
@@ -46,7 +46,7 @@ const PointAttentionCardSedes = ({ email, namesubcompany, city, cellphone, addre
           </ul>
         </div>
         <Options>
-          <Btnedit>
+          <Btnedit onClick={() => onClickEdit({ email, namesubcompany, city, cellphone, address, nameperson, subCompid, status, estate })}>
             <BsPencilSquare size='20' />
           </Btnedit>
           <Btndelete onClick={() => onClickDeleted(subCompid)}>

@@ -4,8 +4,9 @@ import { IoIosAlert } from 'react-icons/io';
 import PointAttentionModal from './PointAttention/PointAttentionModal';
 import PointCreateNewCard from './PointAttention/PointCreateNewCard';
 import PointAttentionCardSedes from './PointAttention/PointAttentionCardSedes';
+import EditModalPointAttention from './EditPointAttention/EditModalPointAttention';
 
-const SedeComponent = ({ subCompanies, submit, modalShow, response, loading, onHide, onClickNewSede, onClickDeleted }) => {
+const SedeComponent = ({ workers, subCompanies, submit, modalShow, response, loading, initEditModalShow, onHide, onClickNewSede, onClickDeleted, onClickEdit, modalEditShow, onHideEdit }) => {
   return (
     <Container fluid>
       {!subCompanies.length ? (
@@ -23,8 +24,9 @@ const SedeComponent = ({ subCompanies, submit, modalShow, response, loading, onH
         response={response}
         loading={loading}
         onHide={onHide}
+        listWorker={workers}
       />
-
+      {modalEditShow && <EditModalPointAttention show={modalEditShow} onHide={onHideEdit} init={initEditModalShow} />}
       <Row>
         <PointCreateNewCard onClick={onClickNewSede} />
         {
@@ -33,6 +35,7 @@ const SedeComponent = ({ subCompanies, submit, modalShow, response, loading, onH
               key={subCompany.id}
               subCompid={subCompany.id}
               onClickDeleted={onClickDeleted}
+              onClickEdit={onClickEdit}
               {...subCompany}
             />
           ))

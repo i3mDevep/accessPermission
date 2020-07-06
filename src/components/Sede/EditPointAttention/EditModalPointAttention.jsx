@@ -1,40 +1,26 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form, Col, Alert } from 'react-bootstrap';
-import { BsFillInboxesFill } from 'react-icons/bs';
-import { LoopCircleLoading } from 'react-loadingg';
+import { Button, Modal, Form, Col } from 'react-bootstrap';
+import { FiEdit } from 'react-icons/fi';
 import Switch from '@material-ui/core/Switch';
+import { LoopCircleLoading } from 'react-loadingg';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useInputValue from '../../../hooks/useInputValue';
 
-const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
-
-  const namesubcompany = useInputValue('');
-  const email = useInputValue('');
-  const password = useInputValue('');
-  const cellphone = useInputValue('');
-  const address = useInputValue('');
-  const city = useInputValue('');
-  const nameperson = useInputValue('');
-  const estate = useInputValue('');
-  const identification = useInputValue('');
-  const checkedA = true;
-
-  const handlerSubmit = (e) => {
-    e.preventDefault();
-    submit({
-      email: email.value,
-      password: password.value,
-      namesubcompany: namesubcompany.value,
-      cellphone: cellphone.value,
-      address: address.value,
-      city: city.value,
-      nameperson: nameperson.value,
-      estate: estate.value,
-      identification: identification.value,
-      status: checkedA,
-    });
+const EditModalPointAttention = ({ onSubmit, init, loading = false, ...rest }) => {
+  const namesubcompany = useInputValue(init.namesubcompany);
+  const email = useInputValue(init.email);
+  const password = useInputValue('*********');
+  const cellphone = useInputValue(init.cellphone);
+  const address = useInputValue(init.address);
+  const city = useInputValue(init.city);
+  const nameperson = useInputValue(init.nameperson);
+  const estate = useInputValue(init.estate);
+  const [state, setState] = useState({
+    checkedA: init.status,
+  });
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
   };
-
   return (
     <Modal
       {...rest}
@@ -44,9 +30,9 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
     >
       <Modal.Header closeButton>
         <Modal.Title>
-          <BsFillInboxesFill size='30' colot='red' />
+          <FiEdit size='30' colot='red' />
           {' '}
-          Crear Sede o Punto de venta
+          Editar Sede o Punto de venta
         </Modal.Title>
         {
           loading && (
@@ -58,12 +44,12 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
 
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handlerSubmit}>
+        <Form onSubmit={onSubmit}>
           <Form.Row>
             <Form.Group as={Col} controlId='formGridEmail'>
               <Form.Label>Corre Electrónico</Form.Label>
               <Form.Control
-                disabled={loading}
+                disabled={true}
                 type='email'
                 required={true}
                 {...email}
@@ -74,7 +60,7 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
             <Form.Group as={Col} controlId='formGridPassword'>
               <Form.Label>Contaseña</Form.Label>
               <Form.Control
-                disabled={loading}
+                disabled={true}
                 type='current-password'
                 placeholder='Administre una contraseña'
                 required={true}
@@ -85,12 +71,11 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
           <Form.Group controlId='formGridName'>
             <Form.Label>Nombre del punto de venta</Form.Label>
             <Form.Control
-              disabled={loading}
+              disabled={true}
               placeholder='Nombre de la Tienda '
               type='text'
               required={true}
               {...namesubcompany}
-
             />
           </Form.Group>
           <Form.Group controlId='formGridAddress1'>
@@ -101,7 +86,6 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
               type='text'
               required={true}
               {...address}
-
             />
           </Form.Group>
           <Form.Group controlId='formGridAdmin'>
@@ -123,7 +107,6 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
               type='text'
               required={true}
               {...cellphone}
-
             />
           </Form.Group>
           <Form.Row>
@@ -147,37 +130,20 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
               />
             </Form.Group>
           </Form.Row>
-          <Form.Row>
-            <Form.Group as={Col} controlId='formGridZip'>
-              <Form.Label>Identificación</Form.Label>
-              <Form.Control
-                disabled={loading}
-                type='text'
-                required={true}
-                {...identification}
+          <Form.Group as={Col} controlId='status'>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Form.Label>Estado de la sede</Form.Label>
+              <FormControlLabel
+                control={(
+                  <Switch
+                    checked={state.checkedA}
+                    onChange={handleChange}
+                    name='checkedA'
+                  />
+                )}
               />
-            </Form.Group>
-            <Form.Group as={Col} controlId='status'>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Form.Label>Estado de la sede</Form.Label>
-                <FormControlLabel
-                  control={(
-                    <Switch
-                      checked={checkedA}
-                      name='checkedA'
-                    />
-                  )}
-                />
-              </div>
-            </Form.Group>
-          </Form.Row>
-          { response && (
-            !response.data.result && (
-              <Alert variant='danger'>
-                <small>{response.data.message}</small>
-              </Alert>
-            )
-          )}
+            </div>
+          </Form.Group>
           <Button
             disabled={loading}
             variant='primary'
@@ -191,4 +157,4 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
   );
 };
 
-export default PointAttentionModal;
+export default EditModalPointAttention;
