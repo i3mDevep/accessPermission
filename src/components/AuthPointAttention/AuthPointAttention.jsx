@@ -97,27 +97,7 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
               <Form>
                 <Form.Group controlId='Identification'>
                   <Form.Label>Seleccione su documento</Form.Label>
-                  <Form.Control
-                    as='select'
-                    value={Sede.value}
-                    onChange={(e) => {
-                      const index = e.target.selectedIndex;
-                      setSede({ value: e.target.value, id: e.target.options[index].id });
-                    }}
-                  >
-                    <option>Seleccione una sede o Lugar de trabajo</option>
-                    {
-                      worker.map((workerSubCompany) => (
-                        <option id={workerSubCompany.id} key={`id-${workerSubCompany.id}`}>
-                          {workerSubCompany.id}
-                          {' '}
-                          {workerSubCompany.name}
-                          {' '}
-                          {workerSubCompany.lastname}
-                        </option>
-                      ))
-                    }
-                  </Form.Control>
+                  <SearchWorker info={worker} />
                 </Form.Group>
               </Form>
             </CardContent>
@@ -131,6 +111,7 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
                   <Form.Control
                     placeholder='Nombre'
                     required
+                    value={worker.name}
                     disabled={true}
                   />
                 </Form.Group>
@@ -165,6 +146,53 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
     </Container>
   );
 };
+
+function SearchWorker({ info = [] }) {
+  const [query, setQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  useEffect(() => {
+    const results = info.filter((info) => info.id.includes(query));
+    setSearchResults(results);
+  }, [query]);
+
+  return (
+    <>
+      <Form.Control
+        type='text'
+        placeholder='Digite su No de documento'
+        value={query}
+        onChange={handleChange}
+      />
+      <ul>
+        {info.length === 0 ? '' : searchResults.map((item) => (
+          <li key={item.id}>
+            {' '}
+            {item.identification}
+            {' '}
+            {item.name}
+            {' '}
+            {item.lastname}
+          </li>
+        ))}
+      </ul>
+      <Form.Group controlId='Name'>
+        <Form.Label>Nombre</Form.Label>
+        <Form.Control
+          placeholder='Nombre'
+          required
+          value={name}
+          disabled={true}
+        />
+      </Form.Group>
+    </>
+  );
+
+}
 
 AuthPointAttention.propTypes = {
   visibleAlert: PropTypes.any,
