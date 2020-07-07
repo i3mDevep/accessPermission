@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
@@ -96,7 +98,6 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
             <CardContent>
               <Form>
                 <Form.Group controlId='Identification'>
-                  <Form.Label>Seleccione su documento</Form.Label>
                   <SearchWorker info={worker} />
                 </Form.Group>
               </Form>
@@ -148,47 +149,16 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
 };
 
 function SearchWorker({ info = [] }) {
-  const [query, setQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-
-  const handleChange = (event) => {
-    setQuery(event.target.value);
-  };
-
-  useEffect(() => {
-    const results = info.filter((info) => info.id.includes(query));
-    setSearchResults(results);
-  }, [query]);
 
   return (
-    <>
-      <Form.Control
-        type='text'
-        placeholder='Digite su No de documento'
-        value={query}
-        onChange={handleChange}
+    <>  
+      <Autocomplete
+        id='combo-box-demo'
+        options={info}
+        getOptionLabel={(option) => option.id}
+        style={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label='Ingrese su No de Cédula' variant='outlined' />}
       />
-      <ul>
-        {info.length === 0 ? '' : searchResults.map((item) => (
-          <li key={item.id}>
-            {' '}
-            {item.identification}
-            {' '}
-            {item.name}
-            {' '}
-            {item.lastname}
-          </li>
-        ))}
-      </ul>
-      <Form.Group controlId='Name'>
-        <Form.Label>Nombre</Form.Label>
-        <Form.Control
-          placeholder='Nombre'
-          required
-          value={name}
-          disabled={true}
-        />
-      </Form.Group>
     </>
   );
 
