@@ -20,6 +20,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
+import TablePagination from '@material-ui/core/TablePagination';
 import { green, grey, red, purple } from '@material-ui/core/colors';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './style.scss';
@@ -206,6 +207,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
 
 function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
   const data = [];
+  console.log(data);
   const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
     { title: 'Nombre', field: 'name' },
@@ -217,22 +219,24 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
     { title: 'Fecha', field: 'time' },
     { title: 'Hora', field: 'hour' },
     { title: 'Posición', field: 'position' },
-    { title: 'Evento', field: 'event' },
+    { title: 'Temperatura', field: 'temperature' },
+    { title: 'Evento' , field: 'event' },
     { title: 'Track', field: 'type' },
   ]);
 
   workerTrakingCompany.forEach((paytraking) => {
     const payrollData = workerdata[paytraking.identification];
     data.push({
-      name: `${payrollData.name} ${payrollData.lastname}`,
-      identification: payrollData.identification,
-      celphone: payrollData.celphone,
-      cargo: payrollData.cargo,
-      sede: payrollData.sede.value,
+      name: payrollData.name.length && payrollData.lastname.length > 0 ? `${payrollData.name} ${payrollData.lastname}` : 'null',
+      identification: payrollData.identification.length > 0 ? payrollData.identification : 'null',
+      celphone: payrollData.celphone.length > 0 ? payrollData.celphone : 'null',
+      cargo: payrollData.cargo.length > 0 ? payrollData.cargo : 'null',
+      sede: payrollData.sede.value.length > 0 ? payrollData.sede.value : 'null',
       idsede: payrollData.sede.id,
-      position: `${paytraking.position.longitude} ${paytraking.position.latitude}`,
-      time: typeof paytraking.date === 'object' ? moment(paytraking.date.toDate().toISOString()).format('D MMM YYYY') : 'null',
-      hour: typeof paytraking.date === 'object' ? moment(paytraking.date.toDate().toISOString()).format('h:mm:ss a') : 'null',
+      position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : 'null',
+      time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('D MMM YYYY') : 'null',
+      hour: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('h:mm:ss a') : 'null',
+      temperature: paytraking.temperature,
       event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
       type: paytraking.action === 'in' ? <GpsFixedIcon color='primary' /> : <GpsFixedIcon style={{ color: 'red' }} />,
     });
@@ -257,6 +261,7 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
           localization={{
             pagination: {
               labelDisplayedRows: '{from}-{to} of {count}',
+              labelRowsPerPage: '{20}',
             },
             toolbar: {
               nRowsSelected: '{0} row(s) selected',
@@ -278,7 +283,7 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
           options={{
             actionsColumnIndex: -1,
             exportButton: true,
-            draggable: false,
+            draggable: true,
             filtering: false,
             search: true,
             headerStyle: {
@@ -306,6 +311,7 @@ function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany =
       { title: 'Posición', field: 'position' },
       { title: 'Id', field: 'idsede', hidden: true },
       { title: 'Regitro', field: 'time' },
+      { title: 'Temperatura', field: 'temperature' },
       { title: 'Track', field: 'type' },
 
     ],
@@ -315,11 +321,12 @@ function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany =
     data.push({
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
-      address: worker.address,
-      celphone: worker.celphone,
-      idsede: worker.sede.id,
-      position: `${trakingperson.position.longitude} ${trakingperson.position.latitude}`,
-      time: typeof trakingperson.date === 'object' ? moment(trakingperson.date.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+      address: worker.address.length > 0 ? worker.address : 'null',
+      celphone: worker.celphone.length > 0 ? worker.celphone : 'null',
+      idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
+      temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
+      position: typeof trakingperson.position === 'object' ? `${trakingperson.position.longitude} ${trakingperson.position.latitude}` : 'null',
+      time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
       type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
     });
   });

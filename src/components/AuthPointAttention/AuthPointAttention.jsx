@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Button, Card, Container, Form, Row, Col, ListGroup } from 'react-bootstrap';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
+import Autocomplete from '../SearchAutocomplete/SearchAutocomplete';
+import './AuthPoint.css';
 
 const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert }) => {
 
@@ -149,16 +149,37 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
 };
 
 function SearchWorker({ info = [] }) {
+  const [query, setQuery] = useState({ value: '', id: '' });
+  const [searchResults, setSearchResults] = useState([]);
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  useEffect(() => {
+    const results = info.filter((info) => info.id.includes(query));
+    setSearchResults(results);
+  }, [query]);
 
   return (
-    <>  
-      <Autocomplete
-        id='combo-box-demo'
-        options={info}
-        getOptionLabel={(option) => option.id}
-        style={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label='Ingrese su No de Cédula' variant='outlined' />}
+    <>
+      <Form.Control
+        type='text'
+        placeholder='Digite su No de documento'
+        value={query}
+        onChange={handleChange}
       />
+      <ListGroup as='ul' className='AutocompleteText'>
+        {info.length === 0 ? null : searchResults.map((item) => (
+          <ListGroup.Item as='li' variant='light' id={item.id} key={item.id}>
+            {' '}
+            {item.identification}
+            {' '}
+            {item.name}
+            {' '}
+            {item.lastname}
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
     </>
   );
 
