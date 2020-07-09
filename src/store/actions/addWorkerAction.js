@@ -66,20 +66,20 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
         }
         throw new Error('Esta persona ya se encuentra registrada!');
       })
-      // .then(() => {
-      //   const config = {
-      //     method: 'POST',
-      //     headers: {
-      //       Accept: 'application/json',
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({ name: content.name, email: content.email, img: data64 }),
-      //   };
-      //   fetch(
-      //     'https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/createWorker',
-      //     config,
-      //   );
-      // })
+      .then(() => {
+        const config = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: content.name, email: content.email, img: data64 }),
+        };
+        fetch(
+          'https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/createWorker',
+          config,
+        );
+      })
       .then(() => {
         showAlert({
           type: 'success',
