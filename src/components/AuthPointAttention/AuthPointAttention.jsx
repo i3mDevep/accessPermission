@@ -10,16 +10,21 @@ import CardContent from '@material-ui/core/CardContent';
 import { Button, Card, Container, Form, Row, Col, ListGroup } from 'react-bootstrap';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
-import useInputValue from '../../hooks/useInputValue';
-import Autocomplete from '../SearchAutocomplete/SearchAutocomplete';
-import './AuthPoint.css';
 
-const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert }) => {
+const AuthPointAttention = ({ visibleAlert, worker = [], isAuth, showAlert }) => {
 
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
   const [value, setValue] = useState(new Date());
   const [name, setName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [identification, setIdentification] = useState('');
+  const [action, setAction] = useState('');
+
+  const options = [
+    { value: 'in', label: 'Entrada' },
+    { value: 'out', label: 'Salida' },
+  ];
 
   useEffect(() => {
     const interval = setInterval(
@@ -38,13 +43,7 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-    showAlert({
-      type: 'success',
-      title: 'Good!',
-      content: 'Registro Exitoso',
-      timeout: 3000,
-      showCancel: false,
-    });
+
   }, [webcamRef, setImgSrc]);
 
   const useStyles = makeStyles({
@@ -54,10 +53,25 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
   });
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const handleChangeSelect = (event) => {
+    setAction(event.currentTarget.value);
   };
 
+  const handlerOnSubmit = (e) => {
+    e.preventDefault();
+    if (action && identification) {
+      alert('aca estoy');
+
+    } else {
+      showAlert({
+        type: 'error',
+        title: 'Opss!',
+        content: 'Revisa tus campos de identificación o evento',
+        timeout: 3000,
+        showCancel: false,
+      });
+    }
+  };
   return (
 
     <Container fluid>
@@ -68,12 +82,30 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
             <CardContent>
               <Form>
                 <Form.Group controlId='Identification'>
+                  <Form.Label>No de Documento</Form.Label>
                   <SearchWorker
                     info={worker}
                     sendData={(data) => {
                       setName(data.name);
+                      setLastName(data.lastname);
+                      setIdentification(data.identification);
                     }}
                   />
+                </Form.Group>
+                <Form.Group controlId='action'>
+                  <Form.Control
+                    required
+                    {...action}
+                    as='select'
+                    onChange={handleChangeSelect}
+                  >
+                    <option>Seleccione un evento</option>
+                    {options.map(({ label, value }, i) => (
+                      <option key={value[i]} value={value}>
+                        {label}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
               </Form>
             </CardContent>
@@ -81,33 +113,56 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
           <br />
           <Card>
             <CardContent>
-              <Form>
+              <Form id='CreateForm' onSubmit={handlerOnSubmit}>
                 <Form.Group controlId='Name'>
                   <Form.Label>Nombre</Form.Label>
                   <Form.Control
                     placeholder='Nombre'
-                    required
-                    value={name}
                     disabled={true}
+                    value={name}
                   />
                 </Form.Group>
                 <Form.Group controlId='LastName'>
                   <Form.Label>Apellido</Form.Label>
                   <Form.Control
                     placeholder='Apellido'
-                    required
                     disabled={true}
+                    value={lastname}
+                  />
+                </Form.Group>
+                <Form.Group controlId='Identification'>
+                  <Form.Label>Cedula o documento de indentificación</Form.Label>
+                  <Form.Control
+                    placeholder='Documento del empleado'
+                    disabled={true}
+                    value={identification}
+                  />
+                </Form.Group>
+                <Form.Group controlId='Identification'>
+                  <Form.Label>Evento registrado</Form.Label>
+                  <Form.Control
+                    placeholder=' '
+                    disabled={true}
+                    value={action}
                   />
                 </Form.Group>
               </Form>
+              <Button
+                variant='primary'
+                type='submit'
+                form='CreateForm'
+                className='mr-2'
+              >
+                Registrar
+              </Button>
             </CardContent>
           </Card>
           <br />
-
           {imgSrc && (
             <Card className='text-center'>
               <Card.Body>
                 <img
+                  id='qrid'
                   alt='webcam'
                   text='name'
                   className={classes.media}
@@ -157,7 +212,7 @@ function SearchWorker({ info = [], sendData }) {
   const [searchResults, setSearchResults] = useState([]);
   const [aux, setAux] = useState(true);
 
-  // Recibo los eventos del input en setQuery 
+  // Recibo los eventos del input en setQuery
   // y habilito la bandera True para permitir la busqueda de nuevo
   const handleChange = (event) => {
     setQuery(event.target.value);
@@ -174,12 +229,12 @@ function SearchWorker({ info = [], sendData }) {
     }
   }, [query]);
 
-
   const handlerSelect = (item) => {
     setAux(false);
     setQuery(item.identification);
     setSearchResults([]);
-    sendData({ name: item.name, lastname: item.lastname });
+    sendData({ name: item.name, lastname: item.lastname, identification: item.identification });
+    console.log(item);
   };
   return (
     <>
@@ -190,7 +245,7 @@ function SearchWorker({ info = [], sendData }) {
         onChange={(handleChange)}
       />
       <ListGroup as='ul' className='AutocompleteText'>
-        {info.length > 0 ? searchResults.map((item) => (
+        {query.length > 0 ? searchResults.map((item) => (
           <ListGroup.Item onClick={() => handlerSelect(item)} as='li' variant='light' id={item.id} key={item.id}>
             {' '}
             {item.identification}
@@ -199,7 +254,7 @@ function SearchWorker({ info = [], sendData }) {
             {' '}
             {item.lastname}
           </ListGroup.Item>
-        )) : <li id="prodId" name="prodId" type="hidden" />}
+        )) : ' '}
       </ListGroup>
     </>
   );
