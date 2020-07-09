@@ -19,7 +19,7 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
   const [value, setValue] = useState(new Date());
-  const [Sede, setSede] = useState({ value: '', id: '' });
+  const [name, setName] = useState('');
 
   useEffect(() => {
     const interval = setInterval(
@@ -66,39 +66,14 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
         <Col sm={10} md={6} style={{ margin: '0 auto' }}>
           <Card>
             <CardContent>
-              <Typography gutterBottom variant='h5' component='h2'>
-                Hora de Registro
-              </Typography>
-              <Webcam
-                className='embed-responsive embed-responsive-16by9'
-                audio={false}
-                ref={webcamRef}
-                screenshotFormat='image/jpeg'
-                text='img'
-                controls
-              />
-              <Typography variant='body2' color='textSecondary' component='p'>
-                {h % 12}
-                :
-                {(m < 10 ? `0${m}` : m)}
-                :
-                {(s < 10 ? `0${s}` : s)}
-                {' '}
-                {h < 12 ? 'am' : 'pm'}
-              </Typography>
-              <br />
-              <Button className='primary' onClick={capture}>Registrar</Button>
-            </CardContent>
-          </Card>
-          <br />
-        </Col>
-        <br />
-        <Col sm={10} md={6} style={{ margin: '0 auto' }}>
-          <Card>
-            <CardContent>
               <Form>
                 <Form.Group controlId='Identification'>
-                  <SearchWorker info={worker} />
+                  <SearchWorker
+                    info={worker}
+                    sendData={(data) => {
+                      setName(data.name);
+                    }}
+                  />
                 </Form.Group>
               </Form>
             </CardContent>
@@ -112,7 +87,7 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
                   <Form.Control
                     placeholder='Nombre'
                     required
-                    value={worker.name}
+                    value={name}
                     disabled={true}
                   />
                 </Form.Group>
@@ -141,36 +116,82 @@ const AuthPointAttention = ({ init, visibleAlert, worker = [], isAuth, showAlert
               </Card.Body>
             </Card>
           )}
-
+          <br />
+        </Col>
+        <Col sm={10} md={6} style={{ margin: '0 auto' }}>
+          <Card>
+            <CardContent>
+              <Typography gutterBottom variant='h5' component='h2'>
+                Hora de Registro
+              </Typography>
+              <Webcam
+                className='embed-responsive embed-responsive-16by9'
+                audio={false}
+                ref={webcamRef}
+                screenshotFormat='image/jpeg'
+                text='img'
+                controls
+              />
+              <Typography variant='body2' color='textSecondary' component='p'>
+                {h % 12}
+                :
+                {(m < 10 ? `0${m}` : m)}
+                :
+                {(s < 10 ? `0${s}` : s)}
+                {' '}
+                {h < 12 ? 'am' : 'pm'}
+              </Typography>
+              <br />
+              <Button className='primary' onClick={capture}>Registrar</Button>
+            </CardContent>
+          </Card>
+          <br />
         </Col>
       </Row>
     </Container>
   );
 };
 
-function SearchWorker({ info = [] }) {
-  const [query, setQuery] = useState({ value: '', id: '' });
+function SearchWorker({ info = [], sendData }) {
+  const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [aux, setAux] = useState(true);
+
+  // Recibo los eventos del input en setQuery 
+  // y habilito la bandera True para permitir la busqueda de nuevo
   const handleChange = (event) => {
     setQuery(event.target.value);
+    setAux(true);
   };
 
+  //if aux = true entonces almacene en la variable result
+  // los datos filtrados de info={workers} que llegan en el query del evento setQuery
+
   useEffect(() => {
-    const results = info.filter((info) => info.id.includes(query));
-    setSearchResults(results);
+    if (aux) {
+      const results = info.filter((info) => info.id.includes(query));
+      setSearchResults(results);
+    }
   }, [query]);
 
+
+  const handlerSelect = (item) => {
+    setAux(false);
+    setQuery(item.identification);
+    setSearchResults([]);
+    sendData({ name: item.name, lastname: item.lastname });
+  };
   return (
     <>
       <Form.Control
-        type='text'
         placeholder='Digite su No de documento'
         value={query}
-        onChange={handleChange}
+        autoComplete='off'
+        onChange={(handleChange)}
       />
       <ListGroup as='ul' className='AutocompleteText'>
-        {info.length === 0 ? null : searchResults.map((item) => (
-          <ListGroup.Item as='li' variant='light' id={item.id} key={item.id}>
+        {info.length > 0 ? searchResults.map((item) => (
+          <ListGroup.Item onClick={() => handlerSelect(item)} as='li' variant='light' id={item.id} key={item.id}>
             {' '}
             {item.identification}
             {' '}
@@ -178,7 +199,7 @@ function SearchWorker({ info = [] }) {
             {' '}
             {item.lastname}
           </ListGroup.Item>
-        ))}
+        )) : <li id="prodId" name="prodId" type="hidden" />}
       </ListGroup>
     </>
   );

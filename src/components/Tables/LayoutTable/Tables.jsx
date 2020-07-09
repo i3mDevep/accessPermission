@@ -281,6 +281,8 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
           columns={columns}
           data={data}
           options={{
+            pageSize: 10,
+            sorting: true,
             actionsColumnIndex: -1,
             exportButton: true,
             draggable: true,
