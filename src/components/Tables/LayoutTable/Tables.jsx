@@ -244,7 +244,7 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWo
       hour: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('h:mm:ss a') : 'null',
       temperature: paytraking.temperature,
       event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
-      type: paytraking.action === 'in' ? <GpsFixedIcon color='primary' /> : <GpsFixedIcon style={{ color: 'red' }} />,
+      type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#00b8a9' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
     });
   });
 
@@ -286,6 +286,8 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWo
         columns={columns}
         data={data}
         options={{
+          pageSize: 10,
+          sorting: true,
           actionsColumnIndex: -1,
           exportButton: true,
           draggable: true,
