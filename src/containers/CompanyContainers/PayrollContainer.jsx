@@ -28,19 +28,19 @@ export default compose(
         doc: props.isAuth.uid,
         subcollections: [
           {
-            collection: 'worker',
+            collection: 'trakingworker',
           },
         ],
-        storeAs: 'worker',
+        storeAs: 'workerTrakingCompany',
       },
       { collection: 'business',
         doc: props.isAuth.uid,
         subcollections: [
           {
-            collection: 'trakingworker',
+            collection: 'worker',
           },
         ],
-        storeAs: 'workerTrakingCompany',
+        storeAs: 'worker',
       },
     ];
   }),

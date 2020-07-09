@@ -23,6 +23,7 @@ import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import TablePagination from '@material-ui/core/TablePagination';
 import { green, grey, red, purple } from '@material-ui/core/colors';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { LoopCircleLoading } from 'react-loadingg';
 import './style.scss';
 
 const tableIcons = {
@@ -205,11 +206,13 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
   );
 }
 
-function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
-  const data = [];
-  console.log(data);
-  const [selectedRow, setSelectedRow] = useState(null);
-  const [columns, setColumns] = useState([
+function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWorker, requestingWorkerTrakingCompany }) {
+
+  //Condicion de vida  o muerte sino comienzaa a combinar datos de una sesion con otra datos //
+  if (requestingWorker || requestingWorkerTrakingCompany) {
+    return 'Cargando datos....';
+  }
+  const columns = [
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Teléfono', field: 'celphone' },
@@ -220,19 +223,22 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
     { title: 'Hora', field: 'hour' },
     { title: 'Posición', field: 'position' },
     { title: 'Temperatura', field: 'temperature' },
-    { title: 'Evento' , field: 'event' },
+    { title: 'Evento', field: 'event' },
     { title: 'Track', field: 'type' },
-  ]);
+  ];
 
+  const data = [];
   workerTrakingCompany.forEach((paytraking) => {
+
     const payrollData = workerdata[paytraking.identification];
+    const { name, lastname, identification, celphone, cargo, sede } = payrollData;
     data.push({
-      name: payrollData.name.length && payrollData.lastname.length > 0 ? `${payrollData.name} ${payrollData.lastname}` : 'null',
-      identification: payrollData.identification.length > 0 ? payrollData.identification : 'null',
-      celphone: payrollData.celphone.length > 0 ? payrollData.celphone : 'null',
-      cargo: payrollData.cargo.length > 0 ? payrollData.cargo : 'null',
-      sede: payrollData.sede.value.length > 0 ? payrollData.sede.value : 'null',
-      idsede: payrollData.sede.id,
+      name: `${name} ${lastname}`,
+      identification,
+      celphone,
+      cargo,
+      sede: typeof sede === 'object' ? sede.value : 'null',
+      idsede: typeof sede === 'object' ? sede.id : 'null',
       position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : 'null',
       time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('D MMM YYYY') : 'null',
       hour: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('h:mm:ss a') : 'null',
@@ -243,59 +249,54 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [] }) {
   });
 
   return (
-    <div style={{ maxWidth: '100%' }}>
-      <ThemeProvider theme={theme}>
-        <MaterialTable
-          theme={(theme) => createMuiTheme({
-            ...theme,
-            palette: {
-              ...theme.palette,
-              primary: {
-                main: green[500],
-              },
-              secondary: {
-                main: grey[500],
-              },
+    <div style={{ maxWidth: '100%', position: 'relative' }}>
+      <MaterialTable
+        theme={(theme) => createMuiTheme({
+          ...theme,
+          palette: {
+            ...theme.palette,
+            primary: {
+              main: green[500],
             },
-          })}
-          localization={{
-            pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
-              labelRowsPerPage: '{20}',
+            secondary: {
+              main: grey[500],
             },
-            toolbar: {
-              nRowsSelected: '{0} row(s) selected',
+          },
+        })}
+        localization={{
+          pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}',
+            labelRowsPerPage: '{20}',
+          },
+          toolbar: {
+            nRowsSelected: '{0} row(s) selected',
+          },
+          header: {
+            actions: 'Acción',
+          },
+          body: {
+            emptyDataSourceMessage: 'No records to display',
+            filterRow: {
+              filterTooltip: 'Filter',
             },
-            header: {
-              actions: 'Acción',
-            },
-            body: {
-              emptyDataSourceMessage: 'No records to display',
-              filterRow: {
-                filterTooltip: 'Filter',
-              },
-            },
-          }}
-          icons={tableIcons}
-          title='Nómina '
-          columns={columns}
-          data={data}
-          options={{
-            actionsColumnIndex: -1,
-            exportButton: true,
-            draggable: true,
-            filtering: false,
-            search: true,
-            headerStyle: {
-              backgroundColor: '#01579b',
-              color: '#FFF',
-            },
-            rowStyle: (rowData) => ({
-              backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
-            }),
-          }}
-        />
-      </ThemeProvider>
+          },
+        }}
+        icons={tableIcons}
+        title='Nómina '
+        columns={columns}
+        data={data}
+        options={{
+          actionsColumnIndex: -1,
+          exportButton: true,
+          draggable: true,
+          filtering: false,
+          search: true,
+          headerStyle: {
+            backgroundColor: '#01579b',
+            color: '#FFF',
+          },
+        }}
+      />
     </div>
   );
 }
@@ -387,6 +388,8 @@ const mapStateProps = (state) => {
     workerSubCompany: state.firestore.data.workerSubCompany,
     workerTrakingSubCompany: state.firestore.ordered.workerTrakingSubCompany,
     workerTrakingCompany: state.firestore.ordered.workerTrakingCompany,
+    requestingWorker: state.firestore.status.requesting.worker,
+    requestingWorkerTrakingCompany: state.firestore.status.requesting.workerTrakingCompany,
   };
 };
 export default {
