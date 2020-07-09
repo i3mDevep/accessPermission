@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Webcam from 'react-webcam';
-//import Card from '@material-ui/core/Card';
 import PropTypes from 'prop-types';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
@@ -11,7 +10,7 @@ import { Button, Card, Container, Form, Row, Col, ListGroup } from 'react-bootst
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 
-const AuthPointAttention = ({ visibleAlert, worker = [], isAuth, showAlert }) => {
+const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, showAlert }) => {
 
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
@@ -43,7 +42,6 @@ const AuthPointAttention = ({ visibleAlert, worker = [], isAuth, showAlert }) =>
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-
   }, [webcamRef, setImgSrc]);
 
   const useStyles = makeStyles({
@@ -60,7 +58,11 @@ const AuthPointAttention = ({ visibleAlert, worker = [], isAuth, showAlert }) =>
   const handlerOnSubmit = (e) => {
     e.preventDefault();
     if (action && identification) {
-      alert('aca estoy');
+      traking({
+        action,
+        identification,
+        position: 'SubCompany Name',
+      });
 
     } else {
       showAlert({
