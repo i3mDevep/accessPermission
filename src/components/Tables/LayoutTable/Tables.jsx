@@ -220,7 +220,6 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWo
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'Fecha', field: 'time' },
-    { title: 'Hora', field: 'hour' },
     { title: 'Posición', field: 'position' },
     { title: 'Temperatura', field: 'temperature' },
     { title: 'Evento', field: 'event' },
@@ -240,8 +239,7 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWo
       sede: typeof sede === 'object' ? sede.value : 'null',
       idsede: typeof sede === 'object' ? sede.id : 'null',
       position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : 'null',
-      time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('D MMM YYYY') : 'null',
-      hour: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('h:mm:ss a') : 'null',
+      time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
       temperature: paytraking.temperature,
       event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
       type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#00b8a9' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
@@ -251,18 +249,6 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWo
   return (
     <div style={{ maxWidth: '100%', position: 'relative' }}>
       <MaterialTable
-        theme={(theme) => createMuiTheme({
-          ...theme,
-          palette: {
-            ...theme.palette,
-            primary: {
-              main: green[500],
-            },
-            secondary: {
-              main: grey[500],
-            },
-          },
-        })}
         localization={{
           pagination: {
             labelDisplayedRows: '{from}-{to} of {count}',
