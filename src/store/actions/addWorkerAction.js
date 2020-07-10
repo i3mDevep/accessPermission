@@ -91,7 +91,6 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
         dispatch({ type: 'CREATE_WORKER_SUCCESS' });
       })
       .catch((err) => {
-        console.log(err);
         showAlert({
           type: 'error',
           timeout: 9500,

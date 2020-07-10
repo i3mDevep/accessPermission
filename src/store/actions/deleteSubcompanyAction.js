@@ -8,7 +8,6 @@ export const deleteSubCompany = (data) => {
     const deteleSubCompany = firebase.functions().httpsCallable('deteleSubCompany');
     deteleSubCompany(data)
       .then((response) => {
-        console.log(response);
         dispatch({ type: 'DELETE_SUBCOMPANY_SUCCESS' });
       })
       .catch((err) => {

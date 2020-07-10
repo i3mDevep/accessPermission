@@ -14,7 +14,6 @@ const ApointWorkerContainer = ({ requesting }) => {
   );
 };
 const mapStateProps = (state) => {
-  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.workerSubcompanyFilter,

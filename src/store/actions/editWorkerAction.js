@@ -68,7 +68,6 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
             dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
           })
           .catch((err) => {
-            console.log(err);
             dispatch({ type: 'UPDATE_WORKER_ERROR', err });
           });
       }

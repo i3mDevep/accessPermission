@@ -14,7 +14,6 @@ const PayrollContainer = ({ requesting }) => {
   );
 };
 const mapStateProps = (state) => {
-  console.log(state);
   return {
     isAuth: state.auth.isAuth,
   };

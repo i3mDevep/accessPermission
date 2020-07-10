@@ -87,9 +87,7 @@ export const onUserCreate =
         });
       })
     }).then(function () {
-      console.log("Transaction successfully committed!");
     }).catch(function (error) {
-      console.log("Transaction failed: ", error);
     });
   });
 
@@ -129,8 +127,6 @@ export const onCompanyCreate =
         });
       })
     }).then(function () {
-      console.log("Transaction successfully committed!");
     }).catch(function (error) {
-      console.log("Transaction failed: ", error);
     });
   });

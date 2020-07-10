@@ -1,7 +1,6 @@
 import { SubCompanyAdmin } from './SubCompanyAdmin';
 
 const subCompanyCreateController = (data:any) => {
-    console.log(data);
     const idCompany = data.company;
     const dataSave = data.content;
     const email = dataSave.email;

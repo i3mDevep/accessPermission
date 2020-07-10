@@ -13,7 +13,6 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
     return <LoopCircleLoading />;
   }
   const handlerWorker = (uid, content, data64) => {
-    //console.log(data64);
     addWorker(uid, content.sede.id, content, data64);
   };
   return (
