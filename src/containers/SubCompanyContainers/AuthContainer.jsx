@@ -2,17 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { addTraking } from '../../store/actions/addTrakingAction';
 import { LoopCircleLoading } from 'react-loadingg';
+import { addTraking } from '../../store/actions/addTrakingAction';
 import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAttention';
 
-const AuthContainer = ({ workersubcompany, requesting, traking }) => {
+const AuthContainer = ({ workersubcompany, requesting }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
 
-  const handlerWorker = (traking) => {
-    addTraking(traking);
+  const handlerWorker = (uid, content) => {
+    addTraking(content);
   };
 
   return (
@@ -26,12 +26,13 @@ const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
     workersubcompany: state.firestore.ordered.workersubcompany,
+    requesting: state.firestore.status.requesting.subcompany,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTraking: (traking) => dispatch(addTraking(traking)),
+    addTraking: (idBusiness, idSubcompany, traking) => dispatch(addTraking(idBusiness, idSubcompany, traking)),
   };
 };
 

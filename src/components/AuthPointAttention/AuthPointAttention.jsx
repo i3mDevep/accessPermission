@@ -3,7 +3,6 @@ import Webcam from 'react-webcam';
 import PropTypes from 'prop-types';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import { Button, Card, Container, Form, Row, Col, ListGroup } from 'react-bootstrap';
@@ -18,7 +17,8 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
   const [name, setName] = useState('');
   const [lastname, setLastName] = useState('');
   const [identification, setIdentification] = useState('');
-  const [action, setAction] = useState('');
+  const [action, setAction] = useState(' ');
+const [prueba, setprueba] = useState('');
 
   const options = [
     { value: 'in', label: 'Entrada' },
@@ -43,13 +43,6 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
-
-  const useStyles = makeStyles({
-    media: {
-      height: 140,
-    },
-  });
-  const classes = useStyles();
 
   const handleChangeSelect = (event) => {
     setAction(event.currentTarget.value);
@@ -116,7 +109,7 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
           <Card>
             <CardContent>
               <Form id='CreateForm' onSubmit={handlerOnSubmit}>
-                <Form.Group controlId='Name'>
+                <Form.Group controlId='cName'>
                   <Form.Label>Nombre</Form.Label>
                   <Form.Control
                     placeholder='Nombre'
@@ -140,7 +133,7 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
                     value={identification}
                   />
                 </Form.Group>
-                <Form.Group controlId='Identification'>
+                <Form.Group controlId='event'>
                   <Form.Label>Evento registrado</Form.Label>
                   <Form.Control
                     placeholder=' '
@@ -167,7 +160,6 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
                   id='qrid'
                   alt='webcam'
                   text='name'
-                  className={classes.media}
                   src={imgSrc}
                 />
               </Card.Body>
@@ -236,7 +228,6 @@ function SearchWorker({ info = [], sendData }) {
     setQuery(item.identification);
     setSearchResults([]);
     sendData({ name: item.name, lastname: item.lastname, identification: item.identification });
-    console.log(item);
   };
   return (
     <>

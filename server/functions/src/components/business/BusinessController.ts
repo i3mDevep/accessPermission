@@ -1,7 +1,6 @@
 import { BusinessAdmin } from './BusinessAdmin';
 
 const businessCreateController = (request:any) => {
-    console.log(request.body);
     const data = request.body;
     const Business = new BusinessAdmin();
     return Business.registerWithEmailAndPassword(

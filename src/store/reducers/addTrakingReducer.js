@@ -9,7 +9,7 @@ const addWorkerReducer = (state = intitState, action) => {
         error: false,
         msg: 'worker_created',
       };
-    case 'TRAKING':
+    case 'TRAKING_ERROR':
       return {
         ...state,
         loading: false,

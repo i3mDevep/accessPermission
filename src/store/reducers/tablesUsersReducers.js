@@ -3,7 +3,6 @@ const initUsers = [{ id: '1', name: 'anomimus', identification: 'xxxx', gender: 
 const tablesUsersReducer = (state = initUsers, action) => {
   switch (action.type) {
     case 'SET_USER':
-      console.log('set user', action.user);
       return state;
     default:
       return state;

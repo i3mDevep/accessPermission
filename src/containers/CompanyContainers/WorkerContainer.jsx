@@ -23,8 +23,6 @@ const WorkerContainer = ({ deleteWorker, editWorker, isAuth, subCompanies }) => 
     setInit(rowData);
   };
   const handlerEditOnSubmit = (init, content) => {
-    // console.log(init);
-    // console.log(content);
     setShow(false);
     editWorker(isAuth.uid, content, init);
   };

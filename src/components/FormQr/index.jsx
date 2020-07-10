@@ -60,7 +60,6 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   };
   const handlerDownload = () => {
     const canvas = document.getElementById('qrid');
-    console.log(canvas.toDataURL('image/png'));
     const pngUrl = canvas
       .toDataURL('image/png')
       .replace('image/png', 'image/octet-stream');
