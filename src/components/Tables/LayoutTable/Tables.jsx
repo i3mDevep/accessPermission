@@ -1,8 +1,8 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { connect } from 'react-redux';
-import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import moment from 'moment';
-import MaterialTable from 'material-table';
+import MaterialTable, { MTableToolbar, MTableHeader } from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -22,9 +22,11 @@ import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import TablePagination from '@material-ui/core/TablePagination';
 import { green, grey, red, purple } from '@material-ui/core/colors';
+import { Row } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { LoopCircleLoading } from 'react-loadingg';
+import DatePicker from 'react-datepicker';
 import './style.scss';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -206,12 +208,8 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
   );
 }
 
-function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWorker, requestingWorkerTrakingCompany }) {
+function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
 
-  //Condicion de vida  o muerte sino comienzaa a combinar datos de una sesion con otra datos //
-  if (requestingWorker || requestingWorkerTrakingCompany) {
-    return 'Cargando datos....';
-  }
   const columns = [
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
@@ -227,27 +225,33 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWo
   ];
 
   const data = [];
+  const [startDate, setStartDate] = useState(new Date());
+
   workerTrakingCompany.forEach((paytraking) => {
 
-    const payrollData = workerdata[paytraking.identification];
-    const { name, lastname, identification, celphone, cargo, sede } = payrollData;
-    data.push({
-      name: `${name} ${lastname}`,
-      identification,
-      celphone,
-      cargo,
-      sede: typeof sede === 'object' ? sede.value : 'null',
-      idsede: typeof sede === 'object' ? sede.id : 'null',
-      position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : 'null',
-      time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      temperature: paytraking.temperature,
-      event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
-      type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#00b8a9' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
-    });
+    try {
+      const infoWorker = workerdata[paytraking.identification];
+      const { name, lastname, identification, celphone, cargo, sede } = infoWorker;
+      data.push({
+        name: `${name} ${lastname}`,
+        identification,
+        celphone,
+        cargo,
+        sede: typeof sede === 'object' ? sede.value : 'null',
+        idsede: typeof sede === 'object' ? sede.id : 'null',
+        position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : 'null',
+        time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LLL') : 'null',
+        temperature: paytraking.temperature,
+        event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
+        type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#00b8a9' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
+      });
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   return (
-    <div style={{ maxWidth: '100%', position: 'relative' }}>
+    <div style={{ maxWidth: '100%' }}>
       <MaterialTable
         localization={{
           pagination: {
@@ -268,15 +272,34 @@ function PayRollTable({ workerdata = [], workerTrakingCompany = [], requestingWo
           },
         }}
         icons={tableIcons}
-        title='Nómina '
+        title='Seguimiento'
+        components={{
+          Toolbar: (props) => (
+            <Row style={{ width: '100%' }}>
+              <MTableToolbar {...props} />
+              <Row className='p-3 ml-auto'>
+                <div className='m-1'>
+                  <span>Fecha de inicio:</span>
+                  <br />
+                  <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                </div>
+                <div className='m-1'>
+                  <span>Fecha de final: </span>
+                  <br />
+                  <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                </div>
+              </Row>
+            </Row>
+          ),
+        }}
         columns={columns}
         data={data}
         options={{
           pageSize: 10,
-          sorting: true,
+          sorting: false,
           actionsColumnIndex: -1,
           exportButton: true,
-          draggable: true,
+          draggable: false,
           filtering: false,
           search: true,
           headerStyle: {
@@ -376,14 +399,12 @@ const mapStateProps = (state) => {
     workerSubCompany: state.firestore.data.workerSubCompany,
     workerTrakingSubCompany: state.firestore.ordered.workerTrakingSubCompany,
     workerTrakingCompany: state.firestore.ordered.workerTrakingCompany,
-    requestingWorker: state.firestore.status.requesting.worker,
-    requestingWorkerTrakingCompany: state.firestore.status.requesting.workerTrakingCompany,
   };
 };
 export default {
   UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
   WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
   ApointWorkerTableRow: connect(mapStateProps, null)(ApointWorkerTableRow),
-  PayRollTable: connect(mapStateProps, null)(PayRollTable),
+  CompanyTrackingTable: connect(mapStateProps, null)(CompanyTrackingTable),
 };
 
