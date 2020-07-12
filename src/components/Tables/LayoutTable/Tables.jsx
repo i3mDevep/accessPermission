@@ -217,9 +217,9 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
     { title: 'Sede', field: 'sede' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
-    { title: 'Fecha', field: 'time' },
+    { title: 'Fecha', field: 'time'},
     { title: 'Posición', field: 'position' },
-    { title: 'Temperatura', field: 'temperature' },
+    { title: '°C', field: 'temperature' },
     { title: 'Evento', field: 'event' },
     { title: 'Track', field: 'type' },
   ];

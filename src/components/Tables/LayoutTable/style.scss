@@ -19,6 +19,9 @@
         font-size: 10px !important;
         width: 100% !important;
     }
+    .react-datepicker__input-container {
+        font-size: .6rem;
+    }
 }
 button:focus{
     outline: none !important;
@@ -29,10 +32,4 @@ button:focus{
 .MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon {
     color: rgba(253, 249, 22, 0.959) !important;
     opacity: 1 !important;
-}
-.MTableHeader-header-38 {
-    z-index: 0 !important;
-}
-.MTableToolbar-title-34 {
-    overflow: inherit !important;
 }
