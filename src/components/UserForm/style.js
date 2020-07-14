@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card, Form } from 'react-bootstrap';
+import { Card, Form, CardDeck } from 'react-bootstrap';
 
 export const ControlForm = styled(Form.Control)`
   font-size:calc(9px + .23vw);
@@ -25,9 +25,9 @@ export const ContainerForm = styled.div`
   }
 `;
 
-export const ContainerFormDiv = styled.div`
-  margin: 30px 300px 15px 300px;
+export const CardDeckCustome = styled(CardDeck)`
   font-size:calc(9px + .23vw);
+  margin: 10px;
   @media (max-width: 508px) {
     font-size:calc(11px + .23vw);
 
