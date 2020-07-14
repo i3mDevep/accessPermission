@@ -24,3 +24,12 @@ export const ContainerForm = styled.div`
     font-size:calc(11px + .23vw);
   }
 `;
+
+export const ContainerFormDiv = styled.div`
+  margin: 30px 300px 15px 300px;
+  font-size:calc(9px + .23vw);
+  @media (max-width: 508px) {
+    font-size:calc(11px + .23vw);
+
+  }
+`;

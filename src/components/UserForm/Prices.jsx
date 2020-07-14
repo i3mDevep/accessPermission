@@ -1,18 +1,17 @@
 import React from 'react';
 import { CardDeck, Card } from 'react-bootstrap';
-import { FcBullish, FcBriefcase, FcBusinessman, FcDepartment} from 'react-icons/fc';
-import { CardResponsive, ControlForm, ContainerForm } from './style';
+import { FcBullish, FcBriefcase, FcBusinessman, FcDepartment } from 'react-icons/fc';
+import { CardResponsive, ControlForm, ContainerFormDiv } from './style';
 
 const Prices = () => {
 
   return (
-    <ContainerForm
+    <ContainerFormDiv
       style={{
         display: 'block',
         flexDirection: 'column',
         alignItems: 'center',
         position: 'relative',
-        margin: '30px 20px 15px 20px',
       }}
     >
       <CardDeck>
@@ -21,7 +20,7 @@ const Prices = () => {
             <FcBusinessman size={100} />
           </div>
           <Card.Body>
-            <Card.Title>BASICO</Card.Title>
+            <Card.Title>Started</Card.Title>
             <Card.Text>
               <ul>
                 <li>Directorio de Usuarios</li>
@@ -37,10 +36,10 @@ const Prices = () => {
         </Card>
         <Card>
           <div className='text-center'>
-            <FcBriefcase size={100} />
+            <FcBullish size={100} />
           </div>
           <Card.Body>
-            <Card.Title>Card title</Card.Title>
+            <Card.Title>Pro</Card.Title>
             <Card.Text>
               This is a wider card with supporting text below as a natural lead-in to
               additional content. This content is a little bit longer.
@@ -52,10 +51,10 @@ const Prices = () => {
         </Card>
         <Card>
           <div className='text-center'>
-            <FcBullish size={100} />
+            <FcDepartment size={100} />
           </div>
           <Card.Body>
-            <Card.Title>Card title</Card.Title>
+            <Card.Title>Ultimate</Card.Title>
             <Card.Text>
               This card has supporting text below as a natural lead-in to additional
               content.
@@ -66,25 +65,8 @@ const Prices = () => {
             <small className='text-muted'>Last updated 3 mins ago</small>
           </Card.Footer>
         </Card>
-        <Card>
-          <div className='text-center'>
-            <FcDepartment size={100} />
-          </div>
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in to
-              additional content. This card has even longer content than the first to
-              show that equal height action.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className='text-muted'>Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
       </CardDeck>
-    </ContainerForm>
-
+    </ContainerFormDiv>
   );
 };
 
