@@ -2,7 +2,7 @@ import React, { useState, forwardRef } from 'react';
 import { connect } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import moment from 'moment';
-import MaterialTable, { MTableToolbar, MTableHeader } from 'material-table';
+import MaterialTable, { MTableToolbar } from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -217,7 +217,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
     { title: 'Sede', field: 'sede' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
-    { title: 'Fecha', field: 'time'},
+    { title: 'Fecha', field: 'time' },
     { title: 'Posición', field: 'position' },
     { title: '°C', field: 'temperature' },
     { title: 'Evento', field: 'event' },
@@ -243,7 +243,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
         time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LLL') : 'null',
         temperature: paytraking.temperature,
         event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
-        type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#00b8a9' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
+        type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#21bf73' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
       });
     } catch (err) {
       console.error(err);
@@ -252,6 +252,18 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
 
   return (
     <div style={{ maxWidth: '100%' }}>
+      {/* <Row className='p-3 ml-auto'>
+        <div className='m-1'>
+          <span>Fecha de inicio:</span>
+          <br />
+          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+        </div>
+        <div className='m-1'>
+          <span>Fecha de final: </span>
+          <br />
+          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+        </div>
+      </Row> */}
       <MaterialTable
         localization={{
           pagination: {
@@ -273,25 +285,6 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
         }}
         icons={tableIcons}
         title='Seguimiento'
-        components={{
-          Toolbar: (props) => (
-            <Row style={{ width: '100%' }}>
-              <MTableToolbar {...props} />
-              <Row className='p-3 ml-auto'>
-                <div className='m-1'>
-                  <span>Fecha de inicio:</span>
-                  <br />
-                  <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                </div>
-                <div className='m-1'>
-                  <span>Fecha de final: </span>
-                  <br />
-                  <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                </div>
-              </Row>
-            </Row>
-          ),
-        }}
         columns={columns}
         data={data}
         options={{
@@ -303,7 +296,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
           filtering: false,
           search: true,
           headerStyle: {
-            backgroundColor: '#01579b',
+            backgroundImage: 'linear-gradient(#120136, #01579b)',
             color: '#FFF',
           },
         }}

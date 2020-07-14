@@ -10,13 +10,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useInputValue from '../../hooks/useInputValue';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
+import ModalPhoto from './ModalPhoto';
 
 const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sedes = [] }) => {
 
+  const [showCamera, setShowCamera] = useState(false);
+  const [imageSrc, setimageSrc] = useState('');
   const [state, setState] = useState({
     checkedA: true,
   });
-
   const Name = useInputValue('');
   const Lastname = useInputValue('');
   const Identification = useInputValue('');
@@ -76,6 +78,15 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   };
   return (
     <Container fluid>
+      <ModalPhoto
+        show={showCamera}
+        onHide={(imageSrc) => {
+          setShowCamera(false);
+          if (imageSrc) {
+            setimageSrc(imageSrc);
+          }
+        }}
+      />
       <Row>
         {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
         <Col sm={12} md={7} style={{ backgroundColor: 'white', padding: '25px', marginBottom: '10px' }}>
@@ -244,8 +255,11 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                   />
                 </div>
               </Form.Group>
+              <Form.Group as={Col} controlId='cargo'>
+                <img onClick={() => setShowCamera(true)} style={{ borderRadius: '150px', width: '80px', height: '80px', objectFit: 'cover' }} alt='myperfil' src={imageSrc || 'https://cdn0.iconfinder.com/data/icons/unigrid-flat-human-vol-2/90/011_101_anonymous_anonym_hacker_vendetta_user_human_avatar-256.png'} />
+              </Form.Group>
             </Form.Row>
-            {state.checkedA === true ? <Alert variant="success">Activo</Alert> : <Alert variant="danger">Inactivo</Alert>}
+            {state.checkedA === true ? <Alert variant='success'>Activo</Alert> : <Alert variant='danger'>Inactivo</Alert>}
           </Form>
         </Col>
         <Col sm={12} md={4} style={{ backgroundColor: 'white', margin: '0 auto' }}>
