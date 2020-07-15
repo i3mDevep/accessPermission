@@ -322,18 +322,22 @@ function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany =
     ],
   });
   workerTrakingSubCompany.forEach((trakingperson) => {
-    const worker = workerSubCompany[trakingperson.identification];
-    data.push({
-      name: `${worker.name} ${worker.lastname}`,
-      identification: worker.identification,
-      address: worker.address.length > 0 ? worker.address : 'null',
-      celphone: worker.celphone.length > 0 ? worker.celphone : 'null',
-      idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
-      temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
-      position: typeof trakingperson.position === 'object' ? `${trakingperson.position.longitude} ${trakingperson.position.latitude}` : 'null',
-      time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
-    });
+    try {
+      const worker = workerSubCompany[trakingperson.identification];
+      data.push({
+        name: `${worker.name} ${worker.lastname}`,
+        identification: worker.identification,
+        address: worker.address.length > 0 ? worker.address : 'null',
+        celphone: worker.celphone.length > 0 ? worker.celphone : 'null',
+        idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
+        temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
+        position: typeof trakingperson.position === 'object' ? `${trakingperson.position.longitude} ${trakingperson.position.latitude}` : 'null',
+        time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+        type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
+      });
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   return (

@@ -6,13 +6,14 @@ import { LoopCircleLoading } from 'react-loadingg';
 import { addTraking } from '../../store/actions/addTrakingAction';
 import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAttention';
 
-const AuthContainer = ({ workersubcompany, requesting }) => {
+const AuthContainer = ({ workersubcompany, requesting, isAuth }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
 
-  const handlerWorker = (uid, content) => {
-    addTraking(content);
+  const handlerWorker = (content) => {
+    console.log(content)
+    addTraking(isAuth.companyId, isAuth.uid, content);
   };
 
   return (
@@ -23,16 +24,17 @@ const AuthContainer = ({ workersubcompany, requesting }) => {
   );
 };
 const mapStateProps = (state) => {
+
   return {
     isAuth: state.auth.isAuth,
     workersubcompany: state.firestore.ordered.workersubcompany,
-    requesting: state.firestore.status.requesting.subcompany,
+    requesting: state.firestore.status.requesting.workersubcompany,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTraking: (idBusiness, idSubcompany, traking) => dispatch(addTraking(idBusiness, idSubcompany, traking)),
+    addTraking: (idBusiness, idSubcompany, content) => dispatch(addTraking(idBusiness, idSubcompany, content)),
   };
 };
 

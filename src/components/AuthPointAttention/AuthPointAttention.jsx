@@ -18,7 +18,7 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
   const [lastname, setLastName] = useState('');
   const [identification, setIdentification] = useState('');
   const [action, setAction] = useState(' ');
-const [prueba, setprueba] = useState('');
+  const [prueba, setprueba] = useState('');
 
   const options = [
     { value: 'in', label: 'Entrada' },
@@ -90,7 +90,7 @@ const [prueba, setprueba] = useState('');
                 <Form.Group controlId='action'>
                   <Form.Control
                     required
-                    {...action}
+         
                     as='select'
                     onChange={handleChangeSelect}
                   >

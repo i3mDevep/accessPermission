@@ -1,23 +1,22 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app';
 
-export const addTraking = (idBusiness, traking) => {
-  console.log(traking);
+export const addTraking = (idBusiness, idSubcompany, content) => {
+  console.log(idBusiness, idSubcompany, content);
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
-  return (dispatch) => {
-    const db = firebase.firestore();
-    const docRef = `business/${idBusiness}/trakingworker`;
-    return db.collection(docRef).add(traking).set({
-      ...traking,
+  const db = firebase.firestore();
+  const docRef = 'trakingworker';
+  return db.collection('business').doc(idBusiness)
+    .collection('trakingworker')
+    .set({
+      ...content,
       time: currentTime,
     })
-      .then(() => {
-        dispatch({ type: 'CREATE_TRAKING_SUCCESS' });
-        console.log(correcto);
-      })
-      .catch((error) => {
-        alert('error');
-      });
-  };
+    .then(() => {
+      console.log('Document successfully written!');
+    })
+    .catch((error) => {
+      console.error('Error writing document: ', error);
+    });
 
 };
