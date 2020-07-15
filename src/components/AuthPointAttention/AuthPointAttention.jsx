@@ -5,11 +5,12 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import { Button, Card, Container, Form, Row, Col, ListGroup } from 'react-bootstrap';
+import { MdErrorOutline } from 'react-icons/md';
+import { Button, Card, Container, Form, Row, Col, ListGroup, Alert } from 'react-bootstrap';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 
-const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, showAlert }) => {
+const AuthPointAttention = ({ traking, visibleAlert, worker = [], isAuth, showAlert }) => {
 
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
@@ -18,7 +19,6 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
   const [lastname, setLastName] = useState('');
   const [identification, setIdentification] = useState('');
   const [action, setAction] = useState(' ');
-  const [prueba, setprueba] = useState('');
 
   const options = [
     { value: 'in', label: 'Entrada' },
@@ -75,12 +75,13 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
         <Col sm={10} md={6} style={{ margin: '0 auto' }}>
           <Card>
             <CardContent>
-              <Form>
+              <Form id='CreateTraking'>
                 <Form.Group controlId='Identification'>
                   <Form.Label>No de Documento</Form.Label>
                   <SearchWorker
                     info={worker}
                     sendData={(data) => {
+                      console.log(sendData);
                       setName(data.name);
                       setLastName(data.lastname);
                       setIdentification(data.identification);
@@ -90,7 +91,7 @@ const AuthPointAttention = ({ data, traking, visibleAlert, worker = [], isAuth, 
                 <Form.Group controlId='action'>
                   <Form.Control
                     required
-         
+
                     as='select'
                     onChange={handleChangeSelect}
                   >
@@ -205,6 +206,7 @@ function SearchWorker({ info = [], sendData }) {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [aux, setAux] = useState(true);
+  const [blocked, setBlocked] = useState('');
 
   // Recibo los eventos del input en setQuery
   // y habilito la bandera True para permitir la busqueda de nuevo
@@ -215,6 +217,16 @@ function SearchWorker({ info = [], sendData }) {
 
   //if aux = true entonces almacene en la variable result
   // los datos filtrados de info={workers} que llegan en el query del evento setQuery
+  useEffect(() => {
+    if (info.length <= 0) {
+      const result = true;
+      setBlocked(result);
+    } else {
+      const result = false;
+      setBlocked(result);
+    }
+
+  }, [blocked]);
 
   useEffect(() => {
     if (aux) {
@@ -231,9 +243,18 @@ function SearchWorker({ info = [], sendData }) {
   };
   return (
     <>
+      { blocked && !info.length && (
+        <Alert variant='danger' className='w-100'>
+          <small>
+            <MdErrorOutline size='20' />
+            Debes tener al menos un empleado para continuar
+          </small>
+        </Alert>
+      )}
       <Form.Control
         placeholder='Digite su No de documento'
         value={query}
+        disabled={blocked}
         autoComplete='off'
         onChange={(handleChange)}
       />

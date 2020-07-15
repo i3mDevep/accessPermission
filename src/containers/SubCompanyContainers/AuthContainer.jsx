@@ -12,10 +12,9 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth }) => {
   }
 
   const handlerWorker = (content) => {
-    console.log(content)
     addTraking(isAuth.companyId, isAuth.uid, content);
   };
-
+  console.log(workersubcompany);
   return (
     <AuthPointAttention
       worker={workersubcompany}
@@ -24,7 +23,6 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth }) => {
   );
 };
 const mapStateProps = (state) => {
-
   return {
     isAuth: state.auth.isAuth,
     workersubcompany: state.firestore.ordered.workersubcompany,
