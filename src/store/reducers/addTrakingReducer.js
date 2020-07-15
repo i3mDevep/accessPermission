@@ -2,6 +2,11 @@ const intitState = { error: false, msg: '', loading: false };
 
 const addWorkerReducer = (state = intitState, action) => {
   switch (action.type) {
+    case 'REQUEST_TRAKING':
+      return {
+        ...state,
+        loading: true,
+      };
     case 'CREATE_TRAKING_SUCCESS':
       return {
         ...state,
@@ -9,7 +14,7 @@ const addWorkerReducer = (state = intitState, action) => {
         error: false,
         msg: 'worker_created',
       };
-    case 'TRAKING_ERROR':
+    case 'CREATE_TRAKING_ERROR':
       return {
         ...state,
         loading: false,
