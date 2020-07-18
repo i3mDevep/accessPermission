@@ -2,7 +2,7 @@
 import firebase from 'firebase/app';
 import { showAlert } from './sweetAlertActions';
 
-export const addTraking = (idBusiness, idSubcompany, content) => {
+export const addTraking = (idBusiness, idSubcompany, content, base64) => {
   console.log(idBusiness, idSubcompany, content);
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   const db = firebase.firestore();

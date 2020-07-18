@@ -49,7 +49,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           cargo: Cargo.value,
           status: state.checkedA,
           sede: Sede,
-        }, document.getElementById('qrid').toDataURL('image/png'));
+        }, document.getElementById('qrid'));
     } else {
       showAlert({
         type: 'error',

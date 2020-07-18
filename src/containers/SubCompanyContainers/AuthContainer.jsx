@@ -11,10 +11,10 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth }) => {
     return <LoopCircleLoading />;
   }
 
-  const handlerWorker = (content) => {
-    addTraking(isAuth.companyId, isAuth.uid, content);
+  const handlerWorker = (content, data64) => {
+    console.log(data64)
+    addTraking(isAuth.companyId, isAuth.uid, content, data64);
   };
-  console.log(workersubcompany);
   return (
     <AuthPointAttention
       worker={workersubcompany}
