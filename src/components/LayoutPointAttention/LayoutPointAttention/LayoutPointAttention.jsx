@@ -31,8 +31,8 @@ import DescriptionIcon from '@material-ui/icons/Description';
 const drawerWidth = 240;
 
 const icons = [<HomeIcon />, <Fingerprint />, <PeopleAltIcon />, <FaceIcon />, <MailIcon />, <DescriptionIcon />, <SettingsApplicationsIcon />, <ExitToAppIcon />];
-const items = ['Home', 'Control Acceso', 'Empleados ', 'Clientes', 'Notificaciones', 'Informes'];
-const links = ['/home', '/control', '/empleadospoint', '/clientpoint', '/notificationpoint', '/infor'];
+const items = ['Home', 'Control Empleados', 'Control Clientes ',  'Notificaciones', 'Informes'];
+const links = ['/home', '/control', '/clientpoint', '/notificationpoint', '/infor'];
 
 const useStyles = makeStyles((theme) => ({
 
