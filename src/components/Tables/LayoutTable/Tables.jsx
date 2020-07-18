@@ -301,16 +301,17 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
 
 function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany = [] }) {
   const data = [];
+  console.log(workerTrakingSubCompany)
   const [state, setState] = React.useState({
     columns: [
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
       { title: 'Dirección', field: 'address' },
       { title: 'Teléfono', field: 'celphone' },
-      { title: 'Posición', field: 'position' },
       { title: 'Id', field: 'idsede', hidden: true },
-      { title: 'Regitro', field: 'time' },
-      { title: 'Temperatura', field: 'temperature' },
+      { title: 'Registro', field: 'time' },
+      { title: 'Temp', field: 'temperature' },
+      { title: 'Fotografía', field: 'img' },
       { title: 'Track', field: 'type' },
 
     ],
@@ -325,8 +326,8 @@ function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany =
         celphone: worker.celphone.length > 0 ? worker.celphone : 'null',
         idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
         temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
-        position: typeof trakingperson.position === 'object' ? `${trakingperson.position.longitude} ${trakingperson.position.latitude}` : 'null',
         time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+        img:  <img alt='imgTraking' style={{ borderRadius: '150px', width: '80px', height: '80px', objectFit: 'cover' }} src={trakingperson.imageSrc} />,
         type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
       });
     } catch (err) {

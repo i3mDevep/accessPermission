@@ -8,11 +8,13 @@ import editWorkerReducer from './editWorkerReducer';
 import deleteSubCompanyReducer from './deleteSubcompanyReducer';
 import deleteWorkerReducer from './deleteWorkerReducer';
 import notifications from './notificationRecucers';
+import addTrakingReducer from './addTrakingReducer';
 
 const rootReducers = combineReducers({
   auth: authReducer,
   tablesUsers: tablesUsersReducer,
   resultAddWorker: addWorkerReducer,
+  resultAddTraking: addTrakingReducer,
   resultEditWorker: editWorkerReducer,
   resultWorkerDelete: deleteWorkerReducer,
   resultDelete: deleteSubCompanyReducer,

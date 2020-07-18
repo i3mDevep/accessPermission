@@ -67,7 +67,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
       temperature: temp,
       identification,
       imageSrc,
-      position: 'Registro Web',
+      position: '{Registro Web}',
     });
   };
 
