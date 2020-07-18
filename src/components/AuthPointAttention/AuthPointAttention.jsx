@@ -57,29 +57,19 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
     setTemp(event.currentTarget.value);
   };
 
-  const handlerOnSubmit = React.useCallback((e) => {
-    e.preventDefault();
+  const handlerOnSubmit = (event) => {
+    event.preventDefault();
     const imageSrc = webcamRef.current.getScreenshot();
     /// Falta añadir validacion para que todo este resue
-    if (action) {
-      setImgSrc(imageSrc);
-      traking({
-        action,
-        temperature: temp,
-        identification,
-        imageSrc,
-        position: 'Registro Web',
-      }, imageSrc);
-    } else {
-      showAlert({
-        type: 'error',
-        title: 'Opss!',
-        content: 'Revisa tus campos de identificación o evento',
-        timeout: 3000,
-        showCancel: false,
-      });
-    }
-  }, [webcamRef, setImgSrc]);
+    setImgSrc(imageSrc);
+    traking({
+      action,
+      temperature: temp,
+      identification,
+      imageSrc,
+      position: 'Registro Web',
+    });
+  };
 
   return (
 
@@ -169,7 +159,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
                     value={action}
                   />
                 </Form.Group>
-                <Form.Group requiered controlId='temp'>
+                <Form.Group controlId='temp'>
                   <Form.Label>Temperatura registrada</Form.Label>
                   <Form.Control
                     placeholder=' '
