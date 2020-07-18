@@ -215,6 +215,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'Fecha', field: 'time' },
+    { title: 'Hora', field: 'hour' },
     { title: 'Posición', field: 'position' },
     { title: '°C', field: 'temperature' },
     { title: 'Evento', field: 'event' },
@@ -235,8 +236,9 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
         cargo,
         sede: typeof sede === 'object' ? sede.value : 'null',
         idsede: typeof sede === 'object' ? sede.id : 'null',
-        position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : 'null',
-        time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LLL') : 'null',
+        position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : paytraking.position,
+        time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LL') : 'null',
+        hour: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LTS') : 'null',
         temperature: paytraking.temperature,
         event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
         type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#21bf73' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
@@ -288,6 +290,10 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
           sorting: false,
           actionsColumnIndex: -1,
           exportButton: true,
+          /*
+          exportCsv: (columns) => {
+            alert('You should develop a code to export ' + columns + ' rows');
+          },*/
           draggable: false,
           filtering: false,
           search: true,

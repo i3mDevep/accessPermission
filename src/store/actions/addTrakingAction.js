@@ -12,7 +12,14 @@ export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
       time: currentTime,
     })
     .then(() => {
-      console.log('Document successfully written!');
+      showAlert({
+        type: 'success',
+        timeout: 2500,
+        title: 'Exitoso!',
+        content: 'Empleado Registrado !!!',
+        showCancel: false,
+      });
+      dispatch({ type: 'CREATE_TRAKING_SUCCESS' });
       return db.collection('business').doc(idBusiness)
         .collection('subcompanies').doc(idSubcompany)
         .collection('trakingworker')
@@ -21,19 +28,9 @@ export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
           ...content,
           time: currentTime,
         });
-    })
-    .then(() => {
-      dispatch({ type: 'CREATE_TRAKING_SUCCESS' });
-      showAlert({
-        type: 'success',
-        timeout: 2500,
-        title: 'Exitoso!',
-        content: 'Empleado Registrado !!!',
-        showCancel: false,
-      });
-      console.log('Alertt!');
-    })
+    }, console.log('Alertt!')) 
     .catch((err) => {
+      // dispatch({ type: 'CREATE_TRAKING_ERROR', err });
       showAlert({
         type: 'error',
         timeout: 9500,
@@ -41,6 +38,5 @@ export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
         content: err.message,
         showCancel: false,
       });
-      dispatch({ type: 'CREATE_TRAKING_ERROR', err });
     });
 };

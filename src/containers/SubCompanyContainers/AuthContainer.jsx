@@ -36,6 +36,7 @@ const mapStateProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+ // console.log(dispatch)
   return {
     addTraking: (idBusiness, idSubcompany, content) => dispatch(addTraking(idBusiness, idSubcompany, content)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
