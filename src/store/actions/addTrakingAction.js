@@ -12,14 +12,6 @@ export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
       time: currentTime,
     })
     .then(() => {
-      showAlert({
-        type: 'success',
-        timeout: 2500,
-        title: 'Exitoso!',
-        content: 'Empleado Registrado !!!',
-        showCancel: false,
-      });
-      dispatch({ type: 'CREATE_TRAKING_SUCCESS' });
       return db.collection('business').doc(idBusiness)
         .collection('subcompanies').doc(idSubcompany)
         .collection('trakingworker')
