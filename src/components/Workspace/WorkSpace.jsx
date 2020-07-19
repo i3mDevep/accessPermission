@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import { Container } from 'react-bootstrap';
 import ListCardsChart from '../ListCardsChart/ListCardsChart';
 import Tables from '../Tables/LayoutTable/Tables';
 import CardInfo from '../CardInfo/CardInfo';

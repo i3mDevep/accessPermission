@@ -1,15 +1,20 @@
 const intitState = { error: false, msg: '', loading: false };
 
-const addWorkerReducer = (state = intitState, action) => {
+const addTrakingReducer = (state = intitState, action) => {
   switch (action.type) {
+    case 'REQUEST_TRAKING':
+      return {
+        ...state,
+        loading: true,
+      };
     case 'CREATE_TRAKING_SUCCESS':
       return {
         ...state,
         loading: false,
         error: false,
-        msg: 'worker_created',
+        msg: 'traking_create',
       };
-    case 'TRAKING_ERROR':
+    case 'CREATE_TRAKING_ERROR':
       return {
         ...state,
         loading: false,
@@ -21,4 +26,4 @@ const addWorkerReducer = (state = intitState, action) => {
   }
 };
 
-export default addWorkerReducer;
+export default addTrakingReducer;

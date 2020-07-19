@@ -1,23 +1,42 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app';
+import { showAlert } from './sweetAlertActions';
 
-export const addTraking = (idBusiness, traking) => {
-  console.log(traking);
+export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
-  return (dispatch) => {
-    const db = firebase.firestore();
-    const docRef = `business/${idBusiness}/trakingworker`;
-    return db.collection(docRef).add(traking).set({
-      ...traking,
+  const db = firebase.firestore();
+  return db.collection('business').doc(idBusiness)
+    .collection('trakingworker').doc()
+    .set({
+      ...content,
       time: currentTime,
     })
-      .then(() => {
-        dispatch({ type: 'CREATE_TRAKING_SUCCESS' });
-        console.log(correcto);
-      })
-      .catch((error) => {
-        alert('error');
+    .then(() => {
+      showAlert({
+        type: 'success',
+        timeout: 2500,
+        title: 'Exitoso!',
+        content: 'Empleado Registrado !!!',
+        showCancel: false,
       });
-  };
-
+      dispatch({ type: 'CREATE_TRAKING_SUCCESS' });
+      return db.collection('business').doc(idBusiness)
+        .collection('subcompanies').doc(idSubcompany)
+        .collection('trakingworker')
+        .doc()
+        .set({
+          ...content,
+          time: currentTime,
+        });
+    }, console.log('Alertt!')) 
+    .catch((err) => {
+      // dispatch({ type: 'CREATE_TRAKING_ERROR', err });
+      showAlert({
+        type: 'error',
+        timeout: 9500,
+        title: 'Opss!',
+        content: err.message,
+        showCancel: false,
+      });
+    });
 };

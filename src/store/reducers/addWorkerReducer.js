@@ -1,4 +1,5 @@
 const intitState = { error: false, msg: '', loading: false };
+console.log('suceed')
 
 const addWorkerReducer = (state = intitState, action) => {
   switch (action.type) {
@@ -8,6 +9,7 @@ const addWorkerReducer = (state = intitState, action) => {
         loading: true,
       };
     case 'CREATE_WORKER_SUCCESS':
+      console.log('suceed')
       return {
         ...state,
         loading: false,
@@ -22,6 +24,7 @@ const addWorkerReducer = (state = intitState, action) => {
         msg: action.err.message,
       };
     default:
+      console.log('default')
       return state;
   }
 };

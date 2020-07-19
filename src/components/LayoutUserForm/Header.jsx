@@ -22,11 +22,6 @@ class HeaderNavBar extends React.Component {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <NavLink to='/dashboard' className='mr-3'>
-                {' '}
-                <BsTerminal />
-                Dashboard
-              </NavLink>
               <NavLink to='/' className='mr-3'>
                 {' '}
                 <BsPeopleCircle />

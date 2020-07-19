@@ -20,6 +20,8 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import TablePagination from '@material-ui/core/TablePagination';
 import { green, grey, red, purple } from '@material-ui/core/colors';
 import { Row } from 'react-bootstrap';
@@ -116,18 +118,16 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
   const data = [];
   const [selectedRow, setSelectedRow] = useState(null);
   const [columns, setColumns] = useState([
-    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2.5rem', color: `${rowData.status.color}` }} /> },
+    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2rem', color: `${rowData.status.color}` }} /> },
+    { title: 'Fotografía', field: 'img' },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Género', field: 'gender' },
-    { title: 'Edad', field: 'age' },
     { title: 'Dirección', field: 'address' },
     { title: 'Teléfono', field: 'celphone' },
     { title: 'Sede', field: 'sede' },
-    { title: 'Contrato', field: 'contrate' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
-    { title: 'F.ingreso', field: 'time' },
     { title: 'singlename', field: 'singlename', hidden: true },
     { title: 'singlelastname', field: 'singlename', hidden: true },
     { title: 'Salario', field: 'salary', hidden: true },
@@ -135,13 +135,12 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
   ]);
   worker.forEach((worker) => {
     data.push({
+      img: !worker.imageSrc ? <AddPhotoAlternateIcon className='text-center' color='primary' style={{ fontSize: 50 }} /> : <img alt='imgTraking' style={{ borderRadius: '120px', width: '60px', height: '60px', objectFit: 'cover' }} src={worker.imageSrc} />,
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
       gender: worker.gender,
-      age: worker.age,
       address: worker.address,
       celphone: worker.celphone,
-      contrate: worker.contrate,
       cargo: worker.cargo,
       sede: worker.sede.value,
       idsede: worker.sede.id,
@@ -149,7 +148,6 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
       singlelastname: worker.lastname,
       email: worker.email,
       salary: worker.salary,
-      time: worker.time && typeof worker.time === 'object' ? moment(worker.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
       status: worker.status === true ? { color: '#43a047', value: true } : { color: '#8888', value: false },
     });
   });
@@ -209,15 +207,15 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
 }
 
 function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
-
   const columns = [
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
-    { title: 'Teléfono', field: 'celphone' },
+    { title: 'Imagen', field: 'img' },
     { title: 'Sede', field: 'sede' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'Fecha', field: 'time' },
+    { title: 'Hora', field: 'hour' },
     { title: 'Posición', field: 'position' },
     { title: '°C', field: 'temperature' },
     { title: 'Evento', field: 'event' },
@@ -228,19 +226,19 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
   const [startDate, setStartDate] = useState(new Date());
 
   workerTrakingCompany.forEach((paytraking) => {
-
     try {
       const infoWorker = workerdata[paytraking.identification];
-      const { name, lastname, identification, celphone, cargo, sede } = infoWorker;
+      const { name, lastname, identification, cargo, sede } = infoWorker;
       data.push({
         name: `${name} ${lastname}`,
         identification,
-        celphone,
+        img: !paytraking.imageSrc ? <HighlightOffIcon color='primary' style={{ fontSize: 60 }} /> : <img alt='imgTraking' style={{ borderRadius: '120px', width: '60px', height: '60px', objectFit: 'cover' }} src={paytraking.imageSrc} />,
         cargo,
         sede: typeof sede === 'object' ? sede.value : 'null',
         idsede: typeof sede === 'object' ? sede.id : 'null',
-        position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : 'null',
-        time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LLL') : 'null',
+        position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : paytraking.position,
+        time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LL') : 'null',
+        hour: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LTS') : 'null',
         temperature: paytraking.temperature,
         event: paytraking.action === 'in' ? 'Entrada' : 'Salida',
         type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#21bf73' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
@@ -292,6 +290,10 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
           sorting: false,
           actionsColumnIndex: -1,
           exportButton: true,
+          /*
+          exportCsv: (columns) => {
+            alert('You should develop a code to export ' + columns + ' rows');
+          },*/
           draggable: false,
           filtering: false,
           search: true,
@@ -307,33 +309,39 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
 
 function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany = [] }) {
   const data = [];
+  console.log(workerTrakingSubCompany);
   const [state, setState] = React.useState({
     columns: [
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
       { title: 'Dirección', field: 'address' },
       { title: 'Teléfono', field: 'celphone' },
-      { title: 'Posición', field: 'position' },
       { title: 'Id', field: 'idsede', hidden: true },
-      { title: 'Regitro', field: 'time' },
-      { title: 'Temperatura', field: 'temperature' },
+      { title: 'Registro', field: 'time' },
+      { title: 'Temp', field: 'temperature' },
+      { title: 'Fotografía', field: 'img' },
       { title: 'Track', field: 'type' },
 
     ],
   });
   workerTrakingSubCompany.forEach((trakingperson) => {
-    const worker = workerSubCompany[trakingperson.identification];
-    data.push({
-      name: `${worker.name} ${worker.lastname}`,
-      identification: worker.identification,
-      address: worker.address.length > 0 ? worker.address : 'null',
-      celphone: worker.celphone.length > 0 ? worker.celphone : 'null',
-      idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
-      temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
-      position: typeof trakingperson.position === 'object' ? `${trakingperson.position.longitude} ${trakingperson.position.latitude}` : 'null',
-      time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-      type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
-    });
+    try {
+      //console.log(trakingperson.imageSrc)
+      const worker = workerSubCompany[trakingperson.identification];
+      data.push({
+        name: `${worker.name} ${worker.lastname}`,
+        identification: worker.identification,
+        address: worker.address.length > 0 ? worker.address : 'null',
+        celphone: worker.celphone.length > 0 ? worker.celphone : 'null',
+        idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
+        temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
+        time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
+        img: !trakingperson.imageSrc ? <HighlightOffIcon color='secondary' style={{ fontSize: 80 }} /> : <img alt='imgTraking' style={{ borderRadius: '140px', width: '70px', height: '70px', objectFit: 'cover' }} src={trakingperson.imageSrc} />,
+        type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
+      });
+    } catch (err) {
+      console.error(err);
+    }
   });
 
   return (
