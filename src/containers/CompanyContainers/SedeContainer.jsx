@@ -34,6 +34,7 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
     const dataSubCompany = {
       company: isAuth.uid,
       content: {
+        displayName: namesubcompany,
         namesubcompany,
         email,
         password,
