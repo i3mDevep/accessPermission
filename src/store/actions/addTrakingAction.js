@@ -20,7 +20,7 @@ export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
           ...content,
           time: currentTime,
         });
-    }, console.log('Alertt!')) 
+    }, console.log('Alertt!'))
     .catch((err) => {
       // dispatch({ type: 'CREATE_TRAKING_ERROR', err });
       showAlert({

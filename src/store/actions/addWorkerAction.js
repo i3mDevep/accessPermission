@@ -73,7 +73,7 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name: content.name, email: content.email, img: data64 }),
+          body: JSON.stringify({ name: content.name, email: content.email }),
         };
         fetch(
           'https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/createWorker',
