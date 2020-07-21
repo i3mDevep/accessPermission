@@ -1,6 +1,6 @@
 const intitState = { error: false, msg: '', loading: false };
 
-/*const addTrakingReducer = (state = intitState, action) => {
+const addTrakingReducer = (state = intitState, action) => {
   
   switch (action.type) {
     case 'REQUEST_TRAKING':
@@ -28,4 +28,4 @@ const intitState = { error: false, msg: '', loading: false };
 };
 
 
-export default addTrakingReducer;*/
+export default addTrakingReducer;

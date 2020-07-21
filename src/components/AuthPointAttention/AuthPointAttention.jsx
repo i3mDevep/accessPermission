@@ -9,6 +9,7 @@ import { MdErrorOutline } from 'react-icons/md';
 import { Button, Card, Container, Form, Row, Col, ListGroup, Alert } from 'react-bootstrap';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
+import 'firebase/storage';
 
 const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAuth, showAlert }) => {
 

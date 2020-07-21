@@ -16,9 +16,10 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
   }
 
   const handlerWorker = (uid, content, data64, imageSrc) => {
+    console.log(uid)
     addWorker(uid, content.sede.id, content, data64)
       .then(() => {
-        firebase.storage().ref().child(`${isAuth.displayName}/${content.identification}/photoURL`).putString(imageSrc, 'data_url');
+        firebase.storage().ref().child(`${uid}/${content.identification}/QrPicture`).putString(imageSrc, 'data_url');
       });
   };
   return (
@@ -30,6 +31,7 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
 };
 
 const mapStateProps = (state) => {
+  console.log(state)
   return {
     isAuth: state.auth.isAuth,
     subCompanies: state.firestore.ordered.subcompany,

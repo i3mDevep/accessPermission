@@ -6,6 +6,7 @@ import { LoopCircleLoading } from 'react-loadingg';
 import { ScreenLoading2 } from '../../components/ScreenLoading';
 import { addTraking } from '../../store/actions/addTrakingAction';
 import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAttention';
+import 'firebase/storage';
 
 const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, resultAddTraking }) => {
   if (requesting) {
@@ -13,7 +14,9 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, result
   }
 
   const handlerWorker = (content) => {
-    addTraking(isAuth.companyId, isAuth.uid, content);
+    addTraking(isAuth.companyId, isAuth.uid, content)
+    //console.log(isAuth.companyId, isAuth.uid, content)
+
   };
   return (
     <>
@@ -36,7 +39,7 @@ const mapStateProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
- // console.log(dispatch)
+  // console.log(dispatch)
   return {
     addTraking: (idBusiness, idSubcompany, content) => dispatch(addTraking(idBusiness, idSubcompany, content)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
