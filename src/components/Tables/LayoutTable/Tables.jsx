@@ -114,44 +114,60 @@ function UsersTableRow({ users = [] }) {
   );
 }
 
-function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker }) {
-  const data = [];
+function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, photos }) {
+  console.log(photos);
   const [selectedRow, setSelectedRow] = useState(null);
-  const [columns, setColumns] = useState([
-    { title: 'Estado', field: 'status', render: (rowData) => <AccountCircleIcon style={{ fontSize: '2rem', color: `${rowData.status.color}` }} /> },
-    { title: 'Fotografía', field: 'img' },
+  const data = [];
+  const columns = [
+    {
+      title: 'Avatar',
+      field: 'avatar',
+      render: (rowData) => (
+        <img
+          alt='avatar'
+          style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover', opacity: rowData.status.opacity }}
+          src={rowData.avatar}
+        />
+      ),
+    },
+    { title: 'Estado', field: 'status', hidden: true, render: (rowData) => <AccountCircleIcon style={{ fontSize: '2rem', color: `${rowData.status.color}` }} /> },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
     { title: 'Género', field: 'gender' },
     { title: 'Dirección', field: 'address' },
     { title: 'Teléfono', field: 'celphone' },
     { title: 'Sede', field: 'sede' },
+    { title: 'Edad', field: 'age' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'singlename', field: 'singlename', hidden: true },
     { title: 'singlelastname', field: 'singlename', hidden: true },
     { title: 'Salario', field: 'salary', hidden: true },
     { title: 'Email', field: 'email', hidden: true },
-  ]);
+    { title: 'contrate', field: 'contrate', hidden: true },
+  ];
+  /* Parce no le quite campos porque sino cuando vaya a darle en el boton de editar no tiene de
+  donde recuperar los datos, mas facil le pone el parametro hidden en true */
   worker.forEach((worker) => {
     data.push({
-      img: !worker.imageSrc ? <AddPhotoAlternateIcon className='text-center' color='primary' style={{ fontSize: 50 }} /> : <img alt='imgTraking' style={{ borderRadius: '120px', width: '60px', height: '60px', objectFit: 'cover' }} src={worker.imageSrc} />,
+      avatar: photos[worker.identification],
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
       gender: worker.gender,
       address: worker.address,
       celphone: worker.celphone,
       cargo: worker.cargo,
+      contrate: worker.contrate,
+      age: worker.age,
       sede: worker.sede.value,
       idsede: worker.sede.id,
       singlename: worker.name,
       singlelastname: worker.lastname,
       email: worker.email,
       salary: worker.salary,
-      status: worker.status === true ? { color: '#43a047', value: true } : { color: '#8888', value: false },
+      status: worker.status === true ? { color: '#43a047', value: true, opacity: '1' } : { color: '#8888', value: false, opacity: '.2' },
     });
   });
-
   return (
     <div style={{ maxWidth: '100%' }}>
       <MaterialTable
@@ -187,7 +203,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
           filtering: false,
           search: true,
           headerStyle: {
-            backgroundColor: '#01579b',
+            backgroundImage: 'linear-gradient(#120136, #01579b)',
             color: '#FFF',
           },
           rowStyle: (rowData) => ({
@@ -216,14 +232,15 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
     { title: 'Id', field: 'idsede', hidden: true },
     { title: 'Fecha', field: 'time' },
     { title: 'Hora', field: 'hour' },
-    { title: 'Posición', field: 'position' },
+    { title: 'Posición', field: 'position', hidden: true },
+    { title: 'Gps', field: 'pread' },
     { title: '°C', field: 'temperature' },
     { title: 'Evento', field: 'event' },
     { title: 'Track', field: 'type' },
   ];
 
   const data = [];
-  const [startDate, setStartDate] = useState(new Date());
+  //const [startDate, setStartDate] = useState(new Date());
 
   workerTrakingCompany.forEach((paytraking) => {
     try {
@@ -236,6 +253,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
         cargo,
         sede: typeof sede === 'object' ? sede.value : 'null',
         idsede: typeof sede === 'object' ? sede.id : 'null',
+        pread: paytraking.address,
         position: typeof paytraking.position === 'object' ? `${paytraking.position.longitude} ${paytraking.position.latitude}` : paytraking.position,
         time: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LL') : 'null',
         hour: typeof paytraking.time === 'object' ? moment(paytraking.time.toDate().toISOString()).locale('es').format('LTS') : 'null',

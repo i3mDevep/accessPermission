@@ -49,8 +49,9 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           cargo: Cargo.value,
           status: state.checkedA,
           sede: Sede,
-          imageSrc,
-        }, document.getElementById('qrid'));
+        },
+        document.getElementById('qrid').toDataURL('image/png'),
+        imageSrc);
     } else {
       showAlert({
         type: 'error',
@@ -242,8 +243,8 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                 />
               </Form.Group>
               <Form.Group as={Col} controlId='status'>
-                <Form.Label className='text-center'>Estado del trabajador</Form.Label>
-                <div>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <Form.Label>Estado del trabajador</Form.Label>
                   <FormControlLabel
                     control={(
                       <Switch
@@ -252,21 +253,15 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                         name='checkedA'
                       />
                     )}
+
                   />
                 </div>
               </Form.Group>
               <Form.Group as={Col} controlId='cargo'>
-                <Form.Label>Fotografía</Form.Label>
-                <div>
-                  <img onClick={() => setShowCamera(true)} style={{ borderRadius: '150px', width: '80px', height: '80px', objectFit: 'cover' }} alt='myperfil' src={imageSrc || 'https://cdn0.iconfinder.com/data/icons/unigrid-flat-human-vol-2/90/011_101_anonymous_anonym_hacker_vendetta_user_human_avatar-256.png'} />
-                </div>
+                <img onClick={() => setShowCamera(true)} style={{ borderRadius: '150px', width: '80px', height: '80px', objectFit: 'cover' }} alt='myperfil' src={imageSrc || 'https://cdn0.iconfinder.com/data/icons/unigrid-flat-human-vol-2/90/011_101_anonymous_anonym_hacker_vendetta_user_human_avatar-256.png'} />
               </Form.Group>
             </Form.Row>
-            <Form.Group as={Col} controlId='alert'>
-              <Form.Label>Estado </Form.Label>
-              {state.checkedA === true ? <Alert variant='success'>Activo</Alert> : <Alert variant='danger'>Inactivo</Alert>}
-            </Form.Group>
-
+            {state.checkedA === true ? <Alert variant='success'>Activo</Alert> : <Alert variant='danger'>Inactivo</Alert>}
           </Form>
         </Col>
         <Col sm={12} md={4} style={{ backgroundColor: 'white', margin: '0 auto' }}>

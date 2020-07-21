@@ -1,3 +1,5 @@
+import 'firebase/storage';
+
 const myfirebaseConfig = {
   // apiKey: 'AIzaSyAAzRlAm770pzgH3mERHYd9wt4ByvMo3w8',
   // authDomain: 'controlaccess-226cb.firebaseapp.com',

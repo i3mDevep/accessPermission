@@ -73,7 +73,7 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name: content.name, email: content.email }),
+          body: JSON.stringify({ name: content.name, email: content.email, img: data64 }),
         };
         fetch(
           'https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/createWorker',
@@ -103,7 +103,6 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
   };
 };
 /*
-
           return db.collection('business').doc(idBusiness).collection('subcompanies').doc(idSubcompany)
             .collection('worker')
             .doc(content.identification)
@@ -126,7 +125,6 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
                     const { gender } = content;
                     const Men = mdoc.get('Men.value');
                     const Women = mdoc.get('Women.value');
-
                     if (doc.data().gender === 'Mujer' && gender === 'Hombre') {
                       transaction.update(documentRef, {
                         Men: {

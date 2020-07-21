@@ -4,11 +4,12 @@ import Tables from '../Tables/LayoutTable/Tables';
 import CardInfo from '../CardInfo/CardInfo';
 import EditWorkerModal from './EditWorkerModal';
 
-const Worker = ({ onClickDeleteWorker, onClickEditWorker, show, onHide, init, sedes, onSubmit }) => {
+const Worker = ({ photos, onClickDeleteWorker, onClickEditWorker, show, onHide, init, sedes, onSubmit }) => {
   return (
     <Container fluid>
       <CardInfo.CardInfoWorker />
       <Tables.WorkerTableRow
+        photos={photos}
         onClickEditWorker={onClickEditWorker}
         onClickDeleteWorker={onClickDeleteWorker}
       />
