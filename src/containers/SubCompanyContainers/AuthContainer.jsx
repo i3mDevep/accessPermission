@@ -9,12 +9,14 @@ import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAtt
 import 'firebase/storage';
 
 const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, resultAddTraking }) => {
+ 
   if (requesting) {
     return <LoopCircleLoading />;
   }
 
-  const handlerWorker = (content) => {
-    addTraking(isAuth.companyId, isAuth.uid, content)
+  const handlerWorker = (content, imageSrc) => {
+    console.log(content, imageSrc)
+    addTraking(isAuth.companyId, isAuth.uid, content, imageSrc)
     //console.log(isAuth.companyId, isAuth.uid, content)
 
   };
@@ -29,7 +31,6 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, result
   );
 };
 const mapStateProps = (state) => {
-  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     resultAddTraking: state.resultAddTraking,
@@ -41,7 +42,7 @@ const mapStateProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // console.log(dispatch)
   return {
-    addTraking: (idBusiness, idSubcompany, content) => dispatch(addTraking(idBusiness, idSubcompany, content)),
+    addTraking: (idBusiness, idSubcompany, content, imageSrc) => dispatch(addTraking(idBusiness, idSubcompany, content, imageSrc)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
   };
 };

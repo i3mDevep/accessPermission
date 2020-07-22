@@ -29,6 +29,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import DatePicker from 'react-datepicker';
 import './style.scss';
 import 'react-datepicker/dist/react-datepicker.css';
+import firebase from 'firebase/app';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -115,7 +116,6 @@ function UsersTableRow({ users = [] }) {
 }
 
 function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, photos }) {
-  console.log(photos);
   const [selectedRow, setSelectedRow] = useState(null);
   const data = [];
   const columns = [
@@ -262,7 +262,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
         type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#21bf73' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
       });
     } catch (err) {
-      console.error(err);
+
     }
   });
 
@@ -325,10 +325,11 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
   );
 }
 
-function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany = [] }) {
+function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubCompany = [] }) {
   const data = [];
-  console.log(workerTrakingSubCompany);
-  const [state, setState] = React.useState({
+
+
+  const [state, setState] = React.useState({  
     columns: [
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
@@ -358,7 +359,7 @@ function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany =
         type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
       });
     } catch (err) {
-      console.error(err);
+      //console.error(err);
     }
   });
 
