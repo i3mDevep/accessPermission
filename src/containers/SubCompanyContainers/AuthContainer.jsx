@@ -9,14 +9,13 @@ import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAtt
 import 'firebase/storage';
 
 const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, resultAddTraking }) => {
- 
+
   if (requesting) {
     return <LoopCircleLoading />;
   }
 
   const handlerWorker = (content, imageSrc) => {
-    console.log(content, imageSrc)
-    addTraking(isAuth.companyId, isAuth.uid, content, imageSrc)
+    addTraking(isAuth.companyId, isAuth.uid, content, imageSrc);
     //console.log(isAuth.companyId, isAuth.uid, content)
 
   };
