@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
-import Table from '../../components/Tables/LayoutTable/Tables';
+import Table from '../../components/Tables/Tables';
 
 const TrackingContainer = ({ requestingWorker, requestingWorkerTrakingCompany }) => {
   //Condicion de vida  o muerte sino comienzaa a combinar datos de una sesion con otra datos //

@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
-import firebase from 'firebase/app';
-import { Button } from 'react-bootstrap';
-import Table from '../../components/Tables/LayoutTable/Tables';
+import Table from '../../components/Tables/Tables';
 
 const ApointWorkerContainer = ({ requesting }) => {
   if (requesting) {

@@ -10,7 +10,7 @@ import { showAlert } from '../../store/actions/sweetAlertActions';
 import 'firebase/storage';
 import FormQr from '../../components/FormQr';
 
-const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, showAlert, requesting, isAuth }) => {
+const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, requesting, isAuth }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
@@ -18,7 +18,7 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
   const handlerWorker = (uid, content, data64, imageSrc) => {
     addWorker(uid, content.sede.id, content, data64)
       .then(() => {
-        firebase.storage().ref().child(`${uid}/${content.identification}/QrPicture`).putString(imageSrc, 'data_url');
+        firebase.storage().ref().child(`${isAuth.displayName}/${content.identification}/photoURL`).putString(imageSrc, 'data_url');
       });
   };
   return (
@@ -30,7 +30,6 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
 };
 
 const mapStateProps = (state) => {
-  console.log(state)
   return {
     isAuth: state.auth.isAuth,
     subCompanies: state.firestore.ordered.subcompany,
