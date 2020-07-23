@@ -2,30 +2,49 @@
 import firebase from 'firebase/app';
 import { showAlert } from './sweetAlertActions';
 import 'firebase/storage';
-import { displayName } from 'qrcode.react';
 
 export const addTraking = (idBusiness, idSubcompany, content, imageSrc) => {
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
-  const db = firebase.firestore();
-  return db.collection('business').doc(idBusiness)
-    .collection('trakingworker')
+  const db = firebase.firestore().collection('business').doc(idBusiness);
+  const storageRef = firebase.storage().ref(`${idBusiness}/traking`);
+  let globalId = '';
+  let globalUrl = '';
+
+  return db.collection('trakingworker')
     .add({
       ...content,
       time: currentTime,
     })
     .then((result) => {
-     // dispatch({ type: 'CREATE_TRAKING_ERROR', err });
-      firebase.storage().ref().child(`${idBusiness}/traking/${result.id}`).putString(imageSrc, 'data_url');
-      return db.collection('business').doc(idBusiness)
-        .collection('subcompanies').doc(idSubcompany)
-        .collection('trakingworker').doc(result.id)
+      console.log('complete track Comp ')
+      globalId = result.id;
+      return storageRef.child(result.id).putString(imageSrc, 'data_url');
+    })
+    .then((result) => {
+      return result.ref.getDownloadURL();
+    })
+    .then((url) => {
+      globalUrl = url;
+      console.log('complete track Comp url')
+      return db.collection('trakingworker')
+        .doc(globalId)
+        .update({
+          urlImg: url,
+        });
+    })
+    .then((url) => {
+      console.log('complete track Sub')
+      return db.collection('subcompanies').doc(idSubcompany)
+        .collection('trakingworker')
+        .doc(globalId)
         .set({
           ...content,
+          urlImg: globalUrl,
           time: currentTime,
         });
-    }, console.log('Alertt!'))
+    })
     .catch((err) => {
-     // dispatch({ type: 'CREATE_TRAKING_ERROR', err });
+      // dispatch({ type: 'CREATE_TRAKING_ERROR', err });
       showAlert({
         type: 'error',
         timeout: 9500,

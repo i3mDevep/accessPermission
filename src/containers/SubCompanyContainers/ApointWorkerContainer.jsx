@@ -3,62 +3,24 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
+import firebase from 'firebase/app';
+import { Button } from 'react-bootstrap';
 import Table from '../../components/Tables/LayoutTable/Tables';
 
-import firebase from 'firebase/app';
-
-const ApointWorkerContainer = ({ requesting, isAuth, workerTrakingSubCompany=[] }) => {
-  const [urlFile, setFileUrl] = useState(null);
-  const componentIsMounted = useRef(true);
-
+const ApointWorkerContainer = ({ requesting }) => {
   if (requesting) {
-    return <LoopCircleLoading />;  }
-    const data = workerTrakingSubCompany 
+    return <LoopCircleLoading />;
+  }
 
-    const storageRef = firebase.storage().ref(`${isAuth.companyId}/traking`);
-    const fileRef = storageRef.child('AYlEtLMVcRBEPmyrLgeF').getDownloadURL();
-
-    useEffect(() => {
-      return () => {
-        componentIsMounted.current = false;
-      };
-    }, []); 
-  
-    useEffect(() => {
-      async function fetchStorage() {
-        try {
-          const asyncResponse = await fetch(fileRef);
-          const { value } = asyncResponse.data;
-
-         
-  
-          if (componentIsMounted.current) {
-            setFileUrl(value.urlFile);
-            console.log(urlFile)
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      }
-  
-      fetchStorage();
-    }, []);
-
-    console.log(fileRef);
-    
-  
   return (
     <>
-    <Table.ApointWorkerTableRow />
-    <div> <img src={fileRef}  alt="Italian Trulli" /> </div>
-    
+      <Table.ApointWorkerTableRow />
     </>
   );
 };
 
-
-
 const mapStateProps = (state) => {
+  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.workerSubcompanyFilter,

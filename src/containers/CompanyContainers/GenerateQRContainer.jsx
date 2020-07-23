@@ -16,7 +16,6 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, sh
   }
 
   const handlerWorker = (uid, content, data64, imageSrc) => {
-    console.log(uid)
     addWorker(uid, content.sede.id, content, data64)
       .then(() => {
         firebase.storage().ref().child(`${uid}/${content.identification}/QrPicture`).putString(imageSrc, 'data_url');

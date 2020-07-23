@@ -21,12 +21,12 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import ImageSearch from '@material-ui/icons/ImageSearch';
 import TablePagination from '@material-ui/core/TablePagination';
 import { green, grey, red, purple } from '@material-ui/core/colors';
-import { Row } from 'react-bootstrap';
+import { Form, Col, Card, Button, ListGroup, Row, Container, Alert, Modal } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import DatePicker from 'react-datepicker';
+
 import './style.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 import firebase from 'firebase/app';
@@ -123,11 +123,15 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, p
       title: 'Avatar',
       field: 'avatar',
       render: (rowData) => (
-        <img
-          alt='avatar'
-          style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover', opacity: rowData.status.opacity }}
-          src={rowData.avatar}
-        />
+        !rowData.avatar ? (
+          <HighlightOffIcon alt='nophoto' color='primary' style={{ fontSize: 70 }} />
+        ) : (
+          <img
+            alt='traking'
+            style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover' }}
+            src={rowData.avatar}
+          />
+        )
       ),
     },
     { title: 'Estado', field: 'status', hidden: true, render: (rowData) => <AccountCircleIcon style={{ fontSize: '2rem', color: `${rowData.status.color}` }} /> },
@@ -226,7 +230,21 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
   const columns = [
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
-    { title: 'Imagen', field: 'img' },
+    {
+      title: 'Fotografía',
+      field: 'Registro',
+      render: (rowData) => (
+        !rowData.img ? (
+          <HighlightOffIcon alt='nophoto' color='primary' style={{ fontSize: 70 }} />
+        ) : (
+          <img
+            alt='traking'
+            style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover' }}
+            src={rowData.img}
+          />
+        )
+      ),
+    },
     { title: 'Sede', field: 'sede' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
@@ -249,7 +267,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
       data.push({
         name: `${name} ${lastname}`,
         identification,
-        img: !paytraking.imageSrc ? <HighlightOffIcon color='primary' style={{ fontSize: 60 }} /> : <img alt='imgTraking' style={{ borderRadius: '120px', width: '60px', height: '60px', objectFit: 'cover' }} src={paytraking.imageSrc} />,
+        img: paytraking.urlImg,
         cargo,
         sede: typeof sede === 'object' ? sede.value : 'null',
         idsede: typeof sede === 'object' ? sede.id : 'null',
@@ -327,10 +345,23 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
 
 function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubCompany = [] }) {
   const data = [];
-
-
-  const [state, setState] = React.useState({  
+  const [state, setState] = React.useState({
     columns: [
+      {
+        title: 'Fotografía',
+        field: 'Registro',
+        render: (rowData) => (
+          !rowData.img ? (
+            <HighlightOffIcon alt='nophoto' color='primary' style={{ fontSize: 70 }} />
+          ) : (
+            <img
+              alt='traking'
+              style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover' }}
+              src={rowData.img}
+            />
+          )
+        ),
+      },
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
       { title: 'Dirección', field: 'address' },
@@ -338,14 +369,13 @@ function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubC
       { title: 'Id', field: 'idsede', hidden: true },
       { title: 'Registro', field: 'time' },
       { title: 'Temp', field: 'temperature' },
-      { title: 'Fotografía', field: 'img' },
-      { title: 'Track', field: 'type' },
 
+      { title: 'Track', field: 'type' },
     ],
   });
+
   workerTrakingSubCompany.forEach((trakingperson) => {
     try {
-      //console.log(trakingperson.imageSrc)
       const worker = workerSubCompany[trakingperson.identification];
       data.push({
         name: `${worker.name} ${worker.lastname}`,
@@ -355,16 +385,14 @@ function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubC
         idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
         temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
         time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-        img: !trakingperson.imageSrc ? <HighlightOffIcon color='secondary' style={{ fontSize: 80 }} /> : <img alt='imgTraking' style={{ borderRadius: '140px', width: '70px', height: '70px', objectFit: 'cover' }} src={trakingperson.imageSrc} />,
+        img: trakingperson.urlImg, //? <HighlightOffIcon color='secondary' style={{ fontSize: 80 }} /> : <img alt='imgTraking' style={{ borderRadius: '140px', width: '70px', height: '70px', objectFit: 'cover' }} src={trakingperson.urlImg} />,
         type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
       });
     } catch (err) {
-      //console.error(err);
     }
   });
 
   return (
-
     <div style={{ maxWidth: '100%' }}>
       <ThemeProvider theme={theme}>
         <MaterialTable
@@ -380,7 +408,9 @@ function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubC
           icons={tableIcons}
           title='Control de Ingreso'
           columns={state.columns}
+
           data={data}
+          //onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
           localization={{
             pagination: {
               labelDisplayedRows: '{from}-{to} of {count}',
@@ -389,7 +419,7 @@ function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubC
               nRowsSelected: '{0} row(s) selected',
             },
             header: {
-              actions: 'Acción',
+              actions: 'actions',
             },
             body: {
               emptyDataSourceMessage: 'No hay registros',
