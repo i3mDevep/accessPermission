@@ -1,5 +1,18 @@
 
+.avatar {
+    border-radius: 150px;
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+}
+
 @media (max-width: 508px) {
+    .avatar {
+        border-radius: 150px;
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+    }
     .MuiPaper-root {
         & table, tr, thead, tbody, th, tr, td{
             font-size: 10px;

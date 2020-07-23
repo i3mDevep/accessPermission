@@ -115,7 +115,7 @@ function UsersTableRow({ users = [] }) {
 }
 
 function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, photos }) {
-  console.log(photos);
+
   const [selectedRow, setSelectedRow] = useState(null);
   const data = [];
   const columns = [
@@ -125,7 +125,8 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, p
       render: (rowData) => (
         <img
           alt='avatar'
-          style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover', opacity: rowData.status.opacity }}
+          className='avatar'
+          style={{ opacity: rowData.status.opacity }}
           src={rowData.avatar}
         />
       ),
