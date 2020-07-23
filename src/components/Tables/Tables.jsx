@@ -29,6 +29,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import DatePicker from 'react-datepicker';
 import './style.scss';
 import 'react-datepicker/dist/react-datepicker.css';
+import firebase from 'firebase/app';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -69,53 +70,7 @@ const theme = createMuiTheme({
   },
 });
 
-function UsersTableRow({ users = [] }) {
-  const data = [];
-  users.forEach((user) => {
-    data.push({
-      name: user.name,
-      identification: user.identification,
-      gender: user.gender,
-      age: user.age,
-      address: user.address,
-      telphone: user.telphone,
-      sede: user.sede,
-      time: typeof user.time === 'object' ? moment(user.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-    });
-  });
-  return (
-    <div style={{ maxWidth: '100%' }}>
-      <MaterialTable
-        id='mytable'
-        icons={tableIcons}
-        title='Users'
-        columns={[
-          { title: 'Name', field: 'Nombre' },
-          { title: 'Identification', field: 'Identificación' },
-          { title: 'Gender', field: 'Género' },
-          { title: 'Age', field: 'Edad' },
-          { title: 'Address', field: 'Dirección' },
-          { title: 'Telphone', field: 'Teléfono' },
-          { title: 'Sede', field: 'Sede' },
-          { title: 'Time', field: 'time' },
-        ]}
-        data={data}
-        options={{
-          draggable: false,
-          filtering: false,
-          search: true,
-          headerStyle: {
-            backgroundColor: '#01579b',
-            color: '#FFF',
-          },
-        }}
-      />
-    </div>
-  );
-}
-
 function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, photos }) {
-
   const [selectedRow, setSelectedRow] = useState(null);
   const data = [];
   const columns = [
@@ -263,7 +218,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
         type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#21bf73' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
       });
     } catch (err) {
-      console.error(err);
+
     }
   });
 
@@ -326,10 +281,11 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
   );
 }
 
-function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany = [] }) {
+function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubCompany = [] }) {
   const data = [];
-  console.log(workerTrakingSubCompany);
-  const [state, setState] = React.useState({
+
+
+  const [state, setState] = React.useState({  
     columns: [
       { title: 'Nombre', field: 'name' },
       { title: 'Identificación', field: 'identification' },
@@ -359,7 +315,7 @@ function ApointWorkerTableRow({ workerSubCompany = [], workerTrakingSubCompany =
         type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
       });
     } catch (err) {
-      console.error(err);
+      //console.error(err);
     }
   });
 
@@ -419,10 +375,10 @@ const mapStateProps = (state) => {
     workerSubCompany: state.firestore.data.workerSubCompany,
     workerTrakingSubCompany: state.firestore.ordered.workerTrakingSubCompany,
     workerTrakingCompany: state.firestore.ordered.workerTrakingCompany,
+    clients: state.firestore.ordered.clients,
   };
 };
 export default {
-  UsersTableRow: connect(mapStateProps, null)(UsersTableRow),
   WorkerTableRow: connect(mapStateProps, null)(WorkerTableRow),
   ApointWorkerTableRow: connect(mapStateProps, null)(ApointWorkerTableRow),
   CompanyTrackingTable: connect(mapStateProps, null)(CompanyTrackingTable),

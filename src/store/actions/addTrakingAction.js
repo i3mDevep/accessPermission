@@ -4,7 +4,7 @@ import { showAlert } from './sweetAlertActions';
 import 'firebase/storage';
 import { displayName } from 'qrcode.react';
 
-export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
+export const addTraking = (idBusiness, idSubcompany, content, imageSrc) => {
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   const db = firebase.firestore();
   return db.collection('business').doc(idBusiness)
@@ -15,11 +15,11 @@ export const addTraking = (idBusiness, idSubcompany, content, dispatch) => {
     })
     .then((result) => {
      // dispatch({ type: 'CREATE_TRAKING_ERROR', err });
-      firebase.storage().ref().child(`${idBusiness}/${content.identification}/traking/${result.id}`).putString(content.imageSrc, 'data_url');
+      firebase.storage().ref().child(`${idBusiness}/traking/${result.id}`).putString(imageSrc, 'data_url');
       return db.collection('business').doc(idBusiness)
         .collection('subcompanies').doc(idSubcompany)
-        .collection('trakingworker')
-        .add({
+        .collection('trakingworker').doc(result.id)
+        .set({
           ...content,
           time: currentTime,
         });

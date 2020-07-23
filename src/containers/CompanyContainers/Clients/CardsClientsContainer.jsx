@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import Workspace from '../../components/Workspace/WorkSpace';
+import CardInfo from '../../../components/CardInfo/CardInfo';
 
-const WorkspaceContainer = () => (
-  <Workspace />
+const CardsClientsContainer = () => (
+  <CardInfo.CardInfoUsers />
 );
-
 const mapStateProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
@@ -28,16 +27,6 @@ export default compose(
         ],
         storeAs: 'totals',
       },
-      { collection: 'business',
-        doc: props.isAuth.uid,
-        subcollections: [
-          {
-            collection: 'users',
-          },
-        ],
-        storeAs: 'users',
-        //limit: 10,
-      },
     ];
   }),
-)(WorkspaceContainer);
+)(CardsClientsContainer);

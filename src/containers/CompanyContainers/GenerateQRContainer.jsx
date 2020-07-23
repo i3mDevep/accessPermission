@@ -30,7 +30,6 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, re
 };
 
 const mapStateProps = (state) => {
-  console.log(state)
   return {
     isAuth: state.auth.isAuth,
     subCompanies: state.firestore.ordered.subcompany,

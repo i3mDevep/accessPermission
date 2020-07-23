@@ -47,7 +47,15 @@ const WorkerContainer = ({ deleteWorker, editWorker, isAuth, subCompanies }) => 
   }, []);
 
   return (
-    <Worker photos={photos} onSubmit={handlerEditOnSubmit} sedes={subCompanies} init={init} show={show} onHide={() => setShow(false)} onClickDeleteWorker={handlerDeleteWorker} onClickEditWorker={handlerEditWorker} />
+    <Worker 
+      photos={photos} 
+      onSubmit={handlerEditOnSubmit} 
+      sedes={subCompanies} 
+      init={init}
+      show={show} 
+      onHide={() => setShow(false)} 
+      onClickDeleteWorker={handlerDeleteWorker} 
+      onClickEditWorker={handlerEditWorker} />
   );
 };
 

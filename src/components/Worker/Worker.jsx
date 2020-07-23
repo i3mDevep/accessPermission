@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import Tables from '../Tables/LayoutTable/Tables';
+import Tables from '../Tables/Tables';
 import CardInfo from '../CardInfo/CardInfo';
 import EditWorkerModal from './EditWorkerModal';
 
