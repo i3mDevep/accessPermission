@@ -65,7 +65,7 @@ const TableClients = ({ clients = [], isAuth }) => {
 };
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    width: 560,
   },
 });
 
