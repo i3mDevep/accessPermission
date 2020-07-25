@@ -76,13 +76,6 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
   return (
 
     <Container fluid>
-      <ModalCapturePicture
-        imgSrc={imgSrc}
-        show={showPicture}
-        onHide={(imageSrc) => {
-          setPicture(false);
-        }}
-      />
       <Row>
         {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
         <Col sm={10} md={6} style={{ margin: '0 auto' }}>
@@ -136,7 +129,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
           <br />
           <Card>
             <CardContent>
-              <Form id={name} onSubmit={handlerOnSubmit}>
+              <Form id='CreateForm' onSubmit={handlerOnSubmit}>
                 <Form.Group controlId='cName'>
                   <Form.Label>Nombre</Form.Label>
                   <Form.Control
@@ -212,6 +205,13 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
               <br />
             </CardContent>
           </Card>
+          <ModalCapturePicture
+            imgSrc={imgSrc}
+            show={showPicture}
+            onHide={(imageSrc) => {
+              setPicture(false);
+            }}
+          />
         </Col>
       </Row>
     </Container>
@@ -299,6 +299,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     isAuth: state.auth.isAuth,
     visibleAlert: getVisibleAlert(state.notifications),
