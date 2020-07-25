@@ -5,16 +5,18 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import { MdErrorOutline } from 'react-icons/md';
+import { MdErrorOutline, MdEventAvailable } from 'react-icons/md';
 import { Button, Card, Container, Form, Row, Col, ListGroup, Alert } from 'react-bootstrap';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
+import ModalCapturePicture from './ModalCapturePicture';
 import 'firebase/storage';
 
 const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAuth, showAlert }) => {
 
   const webcamRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
+  const [showPicture, setPicture] = useState(false);
   const [name, setName] = useState('');
   const [lastname, setLastName] = useState('');
   const [identification, setIdentification] = useState('');
@@ -60,20 +62,27 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
 
   const handlerOnSubmit = (event) => {
     event.preventDefault();
+    console.log(event.target.value);
     const imageSrc = webcamRef.current.getScreenshot();
-    /// Falta añadir validacion para que todo este resue
     setImgSrc(imageSrc);
     traking({
       action,
       temperature: temp,
       identification,
-      position: '{Registro Web}',
-    },imageSrc);
+      position: isAuth.displayName,
+    }, imageSrc);
   };
 
   return (
 
     <Container fluid>
+      <ModalCapturePicture
+        imgSrc={imgSrc}
+        show={showPicture}
+        onHide={(imageSrc) => {
+          setPicture(false);
+        }}
+      />
       <Row>
         {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
         <Col sm={10} md={6} style={{ margin: '0 auto' }}>
@@ -127,10 +136,11 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
           <br />
           <Card>
             <CardContent>
-              <Form id='CreateForm' onSubmit={handlerOnSubmit}>
+              <Form id={name} onSubmit={handlerOnSubmit}>
                 <Form.Group controlId='cName'>
                   <Form.Label>Nombre</Form.Label>
                   <Form.Control
+                    required={true}
                     disabled={true}
                     value={name}
                   />
@@ -140,6 +150,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
                   <Form.Control
                     placeholder='Apellido'
                     disabled={true}
+                    required={true}
                     value={lastname}
                   />
                 </Form.Group>
@@ -148,6 +159,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
                   <Form.Control
                     placeholder='Documento del empleado'
                     disabled={true}
+                    required={true}
                     value={identification}
                   />
                 </Form.Group>
@@ -155,6 +167,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
                   <Form.Label>Evento registrado</Form.Label>
                   <Form.Control
                     placeholder=' '
+                    required={true}
                     disabled={true}
                     value={action}
                   />
@@ -163,6 +176,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
                   <Form.Label>Temperatura registrada</Form.Label>
                   <Form.Control
                     placeholder=' '
+                    required={true}
                     disabled={true}
                     value={temp}
                   />
@@ -173,6 +187,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
                 type='submit'
                 form='CreateForm'
                 className='mr-2'
+                onClick={() => setPicture(true)}
               >
                 Registrar
               </Button>
@@ -197,20 +212,6 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
               <br />
             </CardContent>
           </Card>
-          <br />
-          {imgSrc && (
-            <Card className='text-center'>
-              <Card.Body>
-                <img
-                  id='qrid'
-                  alt='webcam'
-                  text='name'
-                  src={imgSrc}
-                />
-              </Card.Body>
-            </Card>
-          )}
-          <br />
         </Col>
       </Row>
     </Container>

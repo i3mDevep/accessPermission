@@ -30,6 +30,7 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, result
   );
 };
 const mapStateProps = (state) => {
+  console.log(state)
   return {
     isAuth: state.auth.isAuth,
     resultAddTraking: state.resultAddTraking,
