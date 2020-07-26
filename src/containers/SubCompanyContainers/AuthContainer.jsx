@@ -8,7 +8,7 @@ import { addTraking } from '../../store/actions/addTrakingAction';
 import AuthPointAttention from '../../components/AuthPointAttention/AuthPointAttention';
 import 'firebase/storage';
 
-const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, resultAddTraking }) => {
+const AuthContainer = ({ workersubcompany, requesting, isAuth, addTraking, resultAddTraking }) => {
 
   if (requesting) {
     return <LoopCircleLoading />;
@@ -30,7 +30,6 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth, showAlert, result
   );
 };
 const mapStateProps = (state) => {
-  console.log(state)
   return {
     isAuth: state.auth.isAuth,
     resultAddTraking: state.resultAddTraking,

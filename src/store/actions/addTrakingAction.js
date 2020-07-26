@@ -4,21 +4,16 @@ import { showAlert } from './sweetAlertActions';
 import 'firebase/storage';
 
 export const addTraking = (idBusiness, idSubcompany, content, imageSrc) => {
+
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   return (dispatch) => {
-    console.log(dispatch);
     const db = firebase.firestore().collection('business').doc(idBusiness);
     const storageRef = firebase.storage().ref(`${idBusiness}/traking`);
     let globalId = '';
     let globalUrl = '';
     dispatch({ type: 'REQUEST_TRAKING' });
-    return db.collection('trakingworker')
-      .add({
-        ...content,
-        time: currentTime,
-      })
+    return db.collection('trakingworker').add({ ...content, time: currentTime })
       .then((result) => {
-        console.log('complete track Comp ');
         globalId = result.id;
         return storageRef.child(result.id).putString(imageSrc, 'data_url');
       })
@@ -27,15 +22,13 @@ export const addTraking = (idBusiness, idSubcompany, content, imageSrc) => {
       })
       .then((url) => {
         globalUrl = url;
-        console.log('complete track Comp url');
         return db.collection('trakingworker')
           .doc(globalId)
           .update({
             urlImg: url,
           });
       })
-      .then((url) => {
-        console.log('complete track Sub');
+      .then(() => {
         return db.collection('subcompanies').doc(idSubcompany)
           .collection('trakingworker')
           .doc(globalId)
@@ -45,7 +38,6 @@ export const addTraking = (idBusiness, idSubcompany, content, imageSrc) => {
             time: currentTime,
           });
       })
-
       .then(() => {
         showAlert({
           type: 'success',
