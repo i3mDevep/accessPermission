@@ -15,7 +15,6 @@ import Paper from '@material-ui/core/Paper';
 import { tableIcons } from '../icons';
 
 const TableClients = ({ clients = [], isAuth }) => {
-  console.log(clients);
   const data = [];
   clients.forEach((client) => {
     data.push({
@@ -65,7 +64,7 @@ const TableClients = ({ clients = [], isAuth }) => {
 };
 const useStyles = makeStyles({
   table: {
-    width: 560,
+    minWidth: 240,
   },
 });
 
@@ -83,7 +82,6 @@ const Mytracking = ({ info, isAuth }) => {
         const mydata = [];
         querySnapshot.forEach((doc) => {
           mydata.push(doc.data());
-          console.log(doc.id, ' => ', doc.data());
         });
         setTracking(mydata);
       });
@@ -91,10 +89,11 @@ const Mytracking = ({ info, isAuth }) => {
   return (
     <div
       style={{
+        padding: 20,
         fontSize: 100,
         textAlign: 'center',
         color: 'white',
-        backgroundColor: '#43A047',
+        backgroundColor: '#47b273',
       }}
     >
       <TableContainer component={Paper}>
@@ -102,7 +101,7 @@ const Mytracking = ({ info, isAuth }) => {
           <TableHead>
             <TableRow>
               <TableCell>Localizacion</TableCell>
-              <TableCell align='right'>Temperatura</TableCell>
+              <TableCell align='center'>Temperatura</TableCell>
               <TableCell align='right'>Tiempo</TableCell>
             </TableRow>
           </TableHead>
@@ -112,7 +111,7 @@ const Mytracking = ({ info, isAuth }) => {
                 <TableCell component='th' scope='row'>
                   {row.gps}
                 </TableCell>
-                <TableCell align='right'>{row.temperature}</TableCell>
+                <TableCell align='center'>{row.temperature}</TableCell>
                 <TableCell align='right'>{typeof row.time === 'object' ? moment(row.time.toDate().toISOString()).locale('es').format('MMMM Do YYYY, h:mm:ss a') : 'null'}</TableCell>
               </TableRow>
             ))}
