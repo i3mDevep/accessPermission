@@ -1,7 +1,7 @@
 const intitState = { error: false, msg: '', loading: false };
+console.log(intitState);
 
 const addTrakingReducer = (state = intitState, action) => {
-  
   switch (action.type) {
     case 'REQUEST_TRAKING':
       return {
@@ -26,6 +26,5 @@ const addTrakingReducer = (state = intitState, action) => {
       return state;
   }
 };
-
 
 export default addTrakingReducer;
