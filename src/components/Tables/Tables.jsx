@@ -70,21 +70,23 @@ const theme = createMuiTheme({
   },
 });
 
-function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, photos }) {
+function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker }) {
   const [selectedRow, setSelectedRow] = useState(null);
   const data = [];
   const columns = [
+    { title: 'Nombre', field: 'name' },
+    { title: 'Identificación', field: 'identification' },
     {
-      title: 'Avatar',
-      field: 'avatar',
+      title: 'Fotografía',
+      field: 'Registro',
       render: (rowData) => (
-        !rowData.avatar ? (
+        !rowData.img ? (
           <HighlightOffIcon alt='nophoto' color='primary' style={{ fontSize: 70 }} />
         ) : (
           <img
             alt='traking'
             style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover' }}
-            src={rowData.avatar}
+            src={rowData.img}
           />
         )
       ),
@@ -109,7 +111,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker, p
   donde recuperar los datos, mas facil le pone el parametro hidden en true */
   worker.forEach((worker) => {
     data.push({
-      avatar: photos[worker.identification],
+      img: worker.urlImg,
       name: `${worker.name} ${worker.lastname}`,
       identification: worker.identification,
       gender: worker.gender,
@@ -213,8 +215,6 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
   ];
 
   const data = [];
-  //const [startDate, setStartDate] = useState(new Date());
-
   workerTrakingCompany.forEach((paytraking) => {
     try {
       const infoWorker = workerdata[paytraking.identification];
@@ -340,7 +340,7 @@ function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubC
         idsede: worker.sede.id.length > 0 ? worker.sede.id : 'null',
         temperature: trakingperson.temperature.length > 0 ? trakingperson.temperature : 'null',
         time: typeof trakingperson.time === 'object' ? moment(trakingperson.time.toDate().toISOString()).format('MMMM Do YYYY, h:mm:ss a') : 'null',
-        img: trakingperson.urlImg, //? <HighlightOffIcon color='secondary' style={{ fontSize: 80 }} /> : <img alt='imgTraking' style={{ borderRadius: '140px', width: '70px', height: '70px', objectFit: 'cover' }} src={trakingperson.urlImg} />,
+        img: trakingperson.urlImg,
         type: trakingperson.action === 'in' ? <GpsFixedIcon color='primary' alt='in' /> : <GpsFixedIcon style={{ color: 'red' }} alt='out' />,
       });
     } catch (err) {

@@ -3,23 +3,20 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
-import firebase from 'firebase/app';
 import { ScreenLoading2 } from '../../components/ScreenLoading';
 import { addWorker } from '../../store/actions/addWorkerAction';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import 'firebase/storage';
 import FormQr from '../../components/FormQr';
 
-const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, requesting, isAuth }) => {
+const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, requesting }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
 
   const handlerWorker = (uid, content, data64, imageSrc) => {
-    addWorker(uid, content.sede.id, content, data64)
-      .then(() => {
-        firebase.storage().ref().child(`${isAuth.displayName}/${content.identification}/photoURL`).putString(imageSrc, 'data_url');
-      });
+    addWorker(uid, content.sede.id, content, data64, imageSrc);
+
   };
   return (
     <>
@@ -40,7 +37,7 @@ const mapStateProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addWorker: (idBusiness, idSubcompany, content, data64) => dispatch(addWorker(idBusiness, idSubcompany, content, data64)),
+    addWorker: (idBusiness, idSubcompany, content, data64, imageSrc) => dispatch(addWorker(idBusiness, idSubcompany, content, data64, imageSrc)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
   };
 };

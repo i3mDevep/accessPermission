@@ -1,13 +1,17 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app';
 import { showAlert } from './sweetAlertActions';
+import 'firebase/storage';
 
-export const addWorker = (idBusiness, idSubcompany, content, data64) => {
+export const addWorker = (idBusiness, idSubcompany, content, data64, imageSrc) => {
+
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   return (dispatch) => {
     dispatch({ type: 'REQUEST_WORKER' });
     const db = firebase.firestore();
     const docRef = `business/${idBusiness}/worker/${content.identification}`;
+    const storageRef = firebase.storage().ref(`${idBusiness}`);
+    let globalUrl = '';
     return db.doc(docRef).get()
       .then((doc) => {
         if (!doc.exists) {
@@ -18,11 +22,30 @@ export const addWorker = (idBusiness, idSubcompany, content, data64) => {
               ...content,
               time: currentTime,
             })
+            .then((result) => {
+              return storageRef.child(`/${content.identification}/`).putString(imageSrc, 'data_url');
+            })
+            .then((result) => {
+              return result.ref.getDownloadURL();
+            })
+            .then((url) => {
+              globalUrl = url;
+              return globalUrl;
+            })
             .then(() => {
               return db.collection('business').doc(idBusiness).collection('worker').doc(content.identification)
                 .set({
                   ...content,
                   time: currentTime,
+                  urlImg: globalUrl,
+                });
+            })
+            .then(() => {
+              return db.collection('business').doc(idBusiness).collection('subcompanies').doc(idSubcompany)
+                .collection('worker')
+                .doc(content.identification)
+                .update({
+                  urlImg: globalUrl,
                 });
             })
             .then(() => {

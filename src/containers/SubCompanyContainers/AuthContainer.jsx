@@ -16,8 +16,6 @@ const AuthContainer = ({ workersubcompany, requesting, isAuth, addTraking, resul
 
   const handlerWorker = (content, imageSrc) => {
     addTraking(isAuth.companyId, isAuth.uid, content, imageSrc);
-    //console.log(isAuth.companyId, isAuth.uid, content)
-
   };
   return (
     <>

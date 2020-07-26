@@ -62,7 +62,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
 
   const handlerOnSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
+    console.log(event.target);
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
     traking({
@@ -71,10 +71,10 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
       identification,
       position: isAuth.displayName,
     }, imageSrc);
+    setPicture(true);
   };
 
   return (
-
     <Container fluid>
       <Row>
         {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
@@ -180,7 +180,7 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
                 type='submit'
                 form='CreateForm'
                 className='mr-2'
-                onClick={() => setPicture(true)}
+                //={() => setPicture(true)}
               >
                 Registrar
               </Button>
@@ -299,7 +299,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     visibleAlert: getVisibleAlert(state.notifications),
