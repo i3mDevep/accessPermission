@@ -15,6 +15,7 @@ const GenerateQRContainer = ({ subCompanies = [], addWorker, resultAddWorker, re
   }
 
   const handlerWorker = (uid, content, data64, imageSrc) => {
+    console.log(content.sede.id)
     addWorker(uid, content.sede.id, content, data64, imageSrc);
 
   };

@@ -74,26 +74,20 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
   const [selectedRow, setSelectedRow] = useState(null);
   const data = [];
   const columns = [
-    { title: 'Nombre', field: 'name' },
-    { title: 'Identificación', field: 'identification' },
     {
       title: 'Fotografía',
       field: 'Registro',
       render: (rowData) => (
-        !rowData.img ? (
-          <HighlightOffIcon alt='nophoto' color='primary' style={{ fontSize: 70 }} />
-        ) : (
-          <img
-            alt='traking'
-            style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover' }}
-            src={rowData.img}
-          />
-        )
+        <img
+          alt='traking'
+          style={{ borderRadius: '150px', width: '50px', height: '50px', objectFit: 'cover', opacity: rowData.status.opacity }}
+          src={rowData.img || 'https://cdn2.iconfinder.com/data/icons/delivery-and-logistic/64/Not_found_the_recipient-no_found-person-user-search-searching-4-256.png'}
+        />
       ),
     },
-    { title: 'Estado', field: 'status', hidden: true, render: (rowData) => <AccountCircleIcon style={{ fontSize: '2rem', color: `${rowData.status.color}` }} /> },
     { title: 'Nombre', field: 'name' },
     { title: 'Identificación', field: 'identification' },
+    { title: 'Estado', field: 'status', hidden: true, render: (rowData) => <AccountCircleIcon style={{ fontSize: '2rem', color: `${rowData.status.color}` }} /> },
     { title: 'Género', field: 'gender' },
     { title: 'Dirección', field: 'address' },
     { title: 'Teléfono', field: 'celphone' },

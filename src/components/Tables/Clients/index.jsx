@@ -12,6 +12,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { random } from 'lodash';
 import { tableIcons } from '../icons';
 
 const TableClients = ({ clients = [], isAuth }) => {
@@ -89,11 +90,12 @@ const Mytracking = ({ info, isAuth }) => {
   return (
     <div
       style={{
-        padding: 20,
+        padding: 10,
         fontSize: 100,
+        borderRadius: 5,
         textAlign: 'center',
         color: 'white',
-        backgroundColor: '#47b273',
+        backgroundImage: 'linear-gradient(#120136, #01579b)',
       }}
     >
       <TableContainer component={Paper}>
@@ -106,8 +108,9 @@ const Mytracking = ({ info, isAuth }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tracking.map((row) => (
-              <TableRow key={row.identification}>
+            {tracking.map((row, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <TableRow key={`${row.identification}-${index}`}>
                 <TableCell component='th' scope='row'>
                   {row.gps}
                 </TableCell>

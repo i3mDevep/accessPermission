@@ -42,18 +42,19 @@ const updateTotalsWorker = (currentTime, idBusiness, currentContent, passContent
 };
 
 export const editWorker = (idBusiness, currentContent, passContent) => {
+  console.log(passContent);
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   return (dispatch) => {
     dispatch({ type: 'UPDATE_REQUEST_WORKER' });
     const db = firebase.firestore();
     if (passContent.idsede !== 'Not Assigned') {
       if (currentContent.sede.id === passContent.idsede) {
-        return db.doc(`business/${idBusiness}/subcompanies/${currentContent.sede.id}/worker/${currentContent.identification}`).set({
+        return db.doc(`business/${idBusiness}/subcompanies/${currentContent.sede.id}/worker/${currentContent.identification}`).update({
           ...currentContent,
           time: currentTime,
         })
           .then(() => {
-            return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).set({
+            return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).update({
               ...currentContent,
               time: currentTime,
             });
@@ -65,9 +66,11 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
             return 0;
           })
           .then(() => {
+            console.log('update arriba');
             dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
           })
           .catch((err) => {
+            console.log('update arriba error');
             dispatch({ type: 'UPDATE_WORKER_ERROR', err });
           });
       }
@@ -76,13 +79,11 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
         .then(() => {
           return db.doc(`business/${idBusiness}/subcompanies/${currentContent.sede.id}/worker/${currentContent.identification}`).set({
             ...currentContent,
-            time: currentTime,
           });
         })
         .then(() => {
-          return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).set({
+          return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).update({
             ...currentContent,
-            time: currentTime,
           });
         })
         .then(() => {
@@ -92,13 +93,16 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
           return 0;
         })
         .then(() => {
+          console.log('update');
+
           dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
         })
         .catch((err) => {
+          console.log('error', err);
           dispatch({ type: 'UPDATE_WORKER_ERROR', err });
         });
     }
-    return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).set({
+    return db.doc(`business/${idBusiness}/worker/${currentContent.identification}`).update({
       ...currentContent,
       time: currentTime,
     })
@@ -117,9 +121,11 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
         return 0;
       })
       .then(() => {
+        console.log('update 2');
         dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
       })
       .catch((err) => {
+        console.log('update error 2', err);
         dispatch({ type: 'UPDATE_WORKER_ERROR', err });
       });
   };

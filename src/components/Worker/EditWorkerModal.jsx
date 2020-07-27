@@ -40,6 +40,7 @@ const EditWorkerModal = ({ onSubmit, init, loading = false, blocked = false, sed
         cargo: Cargo.value,
         status: state.checkedA,
         sede: Sede,
+       // urlImg: init.urlImg,
       });
   };
   const handleChange = (event) => {

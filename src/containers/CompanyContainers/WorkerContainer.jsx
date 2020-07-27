@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import firebase from 'firebase/app';
 import { deleteWorker } from '../../store/actions/deleteWorkerAction';
 import { editWorker } from '../../store/actions/editWorkerAction';
 import 'firebase/storage';
@@ -11,7 +10,6 @@ import Worker from '../../components/Worker/Worker';
 const WorkerContainer = ({ deleteWorker, editWorker, isAuth, subCompanies }) => {
   const [show, setShow] = useState(false);
   const [init, setInit] = useState('');
-  const [photos, setPhoto] = useState({});
 
   const handlerDeleteWorker = (rowData) => {
     return new Promise((resolve, reject) => {
@@ -22,6 +20,7 @@ const WorkerContainer = ({ deleteWorker, editWorker, isAuth, subCompanies }) => 
 
   };
   const handlerEditWorker = (rowData) => {
+    console.log(rowData);
     setShow(true);
     setInit(rowData);
   };
@@ -30,32 +29,32 @@ const WorkerContainer = ({ deleteWorker, editWorker, isAuth, subCompanies }) => 
     editWorker(isAuth.uid, content, init);
   };
 
-  useEffect(() => {
-    firebase.storage().ref().child(isAuth.displayName).listAll()
-      .then((result) => {
-        const urls = {};
-        result.prefixes.forEach((ref, index) => {
-          return ref.child('photoURL').getDownloadURL()
-            .then((url) => {
-              urls[ref.name] = url;
-              if (result.prefixes.length - 1 === index) {
-                setPhoto(urls);
-              }
-            });
-        });
-      });
-  }, []);
+  //useEffect(() => {
+  // firebase.storage().ref().child(isAuth.displayName).listAll()
+  //   .then((result) => {
+  //     const urls = {};
+  //     result.prefixes.forEach((ref, index) => {
+  //       return ref.child('photoURL').getDownloadURL()
+  //         .then((url) => {
+  //           urls[ref.name] = url;
+  //           if (result.prefixes.length - 1 === index) {
+  //             setPhoto(urls);
+  //           }
+  //         });
+  //     });
+  //   });
+  //}, []);
 
   return (
-    <Worker 
-      photos={photos} 
-      onSubmit={handlerEditOnSubmit} 
-      sedes={subCompanies} 
+    <Worker
+      onSubmit={handlerEditOnSubmit}
+      sedes={subCompanies}
       init={init}
-      show={show} 
-      onHide={() => setShow(false)} 
-      onClickDeleteWorker={handlerDeleteWorker} 
-      onClickEditWorker={handlerEditWorker} />
+      show={show}
+      onHide={() => setShow(false)}
+      onClickDeleteWorker={handlerDeleteWorker}
+      onClickEditWorker={handlerEditWorker}
+    />
   );
 };
 

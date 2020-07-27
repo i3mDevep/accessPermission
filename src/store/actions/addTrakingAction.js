@@ -21,6 +21,7 @@ export const addTraking = (idBusiness, idSubcompany, content, imageSrc) => {
         return result.ref.getDownloadURL();
       })
       .then((url) => {
+        globalUrl = url;
         return db.collection('trakingworker')
           .doc(globalId)
           .update({
