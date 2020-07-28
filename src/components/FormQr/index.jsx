@@ -258,7 +258,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                 </div>
               </Form.Group>
               <Form.Group as={Col} controlId='cargo'>
-                <img onClick={() => setShowCamera(true)} style={{ borderRadius: '150px', width: '80px', height: '80px', objectFit: 'cover' }} alt='myperfil' src={imageSrc || 'https://cdn0.iconfinder.com/data/icons/unigrid-flat-human-vol-2/90/011_101_anonymous_anonym_hacker_vendetta_user_human_avatar-256.png'} />
+                <img onClick={() => setShowCamera(true)} style={{ borderRadius: '150px', width: '80px', height: '80px', objectFit: 'cover' }} alt='myperfil' src={imageSrc || 'https://cdn4.iconfinder.com/data/icons/electronics-2/256/Camera-128.png'} />
               </Form.Group>
             </Form.Row>
             {state.checkedA === true ? <Alert variant='success'>Activo</Alert> : <Alert variant='danger'>Inactivo</Alert>}
