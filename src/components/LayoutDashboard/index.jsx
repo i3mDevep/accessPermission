@@ -22,6 +22,10 @@ const LayoutDashboard = ({ children }) => {
         setIcon(() => <MdFiberNew />);
         setTitle('SEDES');
         break;
+      case '/client':
+        setIcon(() => <MdFiberNew />);
+        setTitle('CLIENTES');
+        break;
       default:
         setIcon(() => <MdDashboard />);
         setTitle('DASHBOARD');
