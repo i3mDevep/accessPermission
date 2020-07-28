@@ -179,23 +179,19 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
 
 function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
   const columns = [
-    { title: 'Nombre', field: 'name' },
-    { title: 'Identificación', field: 'identification' },
     {
       title: 'Fotografía',
       field: 'Registro',
       render: (rowData) => (
-        !rowData.img ? (
-          <HighlightOffIcon alt='nophoto' color='primary' style={{ fontSize: 70 }} />
-        ) : (
-          <img
-            alt='traking'
-            style={{ borderRadius: '150px', width: '70px', height: '70px', objectFit: 'cover' }}
-            src={rowData.img}
-          />
-        )
+        <img
+          alt='traking'
+          style={{ borderRadius: '150px', width: '50px', height: '50px', objectFit: 'cover' }}
+          src={rowData.img || 'https://cdn2.iconfinder.com/data/icons/delivery-and-logistic/64/Not_found_the_recipient-no_found-person-user-search-searching-4-256.png'}
+        />
       ),
     },
+    { title: 'Nombre', field: 'name' },
+    { title: 'Identificación', field: 'identification' },
     { title: 'Sede', field: 'sede' },
     { title: 'Cargo', field: 'cargo' },
     { title: 'Id', field: 'idsede', hidden: true },
