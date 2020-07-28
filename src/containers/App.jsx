@@ -41,6 +41,7 @@ const onAuthStateChange = (callback) => {
 const LoggedInRoutesWithbusiness = [
   <Route key='register' path='/register' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route key='/' path='/' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='client' path='/client' exact={true} component={Client} />,
   <Route key='dashboard' path='/dashboard' exact={true} component={Dashboard} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
@@ -61,6 +62,7 @@ const LoggedOut = [
   <Route key='register' path='/register' exact={true} component={Register} />,
   <Route key='login' path='/login' exact={true} component={Login} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
+  <Route key='/' path='/' exact={true} component={() => <Redirect to='/login' />} />,
 ];
 
 const App = ({ signIn, isAuth }) => {

@@ -318,7 +318,6 @@ function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubC
       { title: 'Id', field: 'idsede', hidden: true },
       { title: 'Registro', field: 'time' },
       { title: 'Temp', field: 'temperature' },
-
       { title: 'Track', field: 'type' },
     ],
   });

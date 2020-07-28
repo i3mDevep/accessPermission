@@ -35,13 +35,13 @@ const TableClients = ({ clients = [], isAuth }) => {
         icons={tableIcons}
         title='Clients'
         columns={[
-          { title: 'Name', field: 'name' },
-          { title: 'Identification', field: 'identification' },
-          { title: 'Gender', field: 'gender' },
-          { title: 'Age', field: 'age' },
-          { title: 'Address', field: 'address' },
-          { title: 'Telphone', field: 'telphone' },
-          { title: 'Time', field: 'time' },
+          { title: 'Nombre', field: 'name' },
+          { title: 'Identificación', field: 'identification' },
+          { title: 'Genero', field: 'gender' },
+          { title: 'Edad', field: 'age' },
+          { title: 'Dirección', field: 'address' },
+          { title: 'Teléfono', field: 'telphone' },
+          { title: 'Registro', field: 'time' },
         ]}
         data={data}
         detailPanel={[
