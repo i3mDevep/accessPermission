@@ -16,6 +16,7 @@ import Payroll from '../pages/company/Payroll';
 import LayoutDashboard from '../components/LayoutDashboard';
 import AuthPage from '../pages/subcompany/AuthPage';
 import LayoutApointIndex from '../components/LayoutPointAttention/ApointIndex';
+import Client from '../pages/company/Client';
 import PricesPage from '../pages/PricesPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
@@ -41,6 +42,7 @@ const LoggedInRoutesWithbusiness = [
   <Route key='register' path='/register' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='/' path='/' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route key='client' path='/client' exact={true} component={Client} />,
   <Route key='dashboard' path='/dashboard' exact={true} component={Dashboard} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
   <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
@@ -54,11 +56,6 @@ const LoggedInRoutesWithOutbusiness = [
   <Route key='home' path='/home' exact={true} component={ApointWorkerPage} />,
   <Route key='control' path='/control' exact={true} component={AuthPage} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
-  <Route key='login' path='/login' exact={true} component={() => <Redirect to='/home' />} />,
-  <Route key='register' path='/register' exact={true} component={() => <Redirect to='/home' />} />,
-  <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/home' />} />,
-  <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/home' />} />,
-  <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/home' />} />,
 ];
 
 const LoggedOut = [
@@ -66,12 +63,6 @@ const LoggedOut = [
   <Route key='login' path='/login' exact={true} component={Login} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
   <Route key='/' path='/' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route key='worker' path='/worker' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/login' />} />,
-  <Route key='sedes2' path='*' exact={true} component={() => <Redirect to='/login' />} />,
 ];
 
 const App = ({ signIn, isAuth }) => {

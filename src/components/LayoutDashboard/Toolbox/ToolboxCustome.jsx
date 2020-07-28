@@ -38,7 +38,7 @@ const myicons = [
   <MdFiberNew color='white' size='20' />];
 
 const messages = ['Dashboard', 'Empleados', 'Nomina', 'Clientes', 'Informes', 'Alertas', 'Registrar', 'Sedes'];
-const links = ['/dashboard', '/worker', '/payroll', '', '', '', '/generateqr', '/sedes'];
+const links = ['/dashboard', '/worker', '/payroll', '/client', '', '', '/generateqr', '/sedes'];
 
 const themer = createMuiTheme({
   typography: {

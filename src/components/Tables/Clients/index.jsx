@@ -28,12 +28,12 @@ const TableClients = ({ clients = [], isAuth }) => {
         title='Clients'
         columns={[
           { title: 'Nombre', field: 'name' },
-          { title: 'Identificacion', field: 'identification' },
+          { title: 'Identificación', field: 'identification' },
           { title: 'Genero', field: 'gender' },
           { title: 'Edad', field: 'age' },
-          { title: 'Direccion', field: 'address' },
-          { title: 'Celular', field: 'telphone' },
-          { title: 'F.registro', field: 'time' },
+          { title: 'Dirección', field: 'address' },
+          { title: 'Teléfono', field: 'telphone' },
+          { title: 'Registro', field: 'time' },
         ]}
         data={data}
         detailPanel={[
