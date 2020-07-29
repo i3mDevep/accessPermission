@@ -82,6 +82,7 @@ const UserHome = () => {
               ¿En que consiste?
             </Typography>
             <Typography variant='h6' align='center' color='textSecondary' paragraph>
+              Sabemos que estamos pasando tiempos dificiles en nuestras empresas
               Somos una plataforma tecnológica, de uso gratuito  que  te permite
               cumplir con el control de bioseguridad para tu negocio, reportes en
               Tiempo Real, y registro de temperatura de tus clientes y trabajadores
@@ -106,7 +107,6 @@ const UserHome = () => {
             <Grid item xs={6}>
               <Tooltip title='Add' placement='left-start'>
                 <SystemUpdateIcon background='blue'/>
-        
               </Tooltip>
               <br />
               <Tooltip title='Add' placement='left'>
