@@ -51,19 +51,20 @@ const LoggedInRoutesWithbusiness = [
   <Route key='worker' path='/worker' exact={true} component={WorkerPage} />,
   <Route key='sedes' path='/sedes' exact={true} component={Sedes} />,
   <Route key='payroll' path='/payroll' exact={true} component={Payroll} />,
-  <Route key='/' path='/' exact={true} component={() => <Redirect to='/userhomepage' />} />,
+  <Route key='userhomepage' path='/userhomepage' exact={true} component={() => <Redirect to='/dashboard' />} />,
 ];
 
 const LoggedInRoutesWithOutbusiness = [
   <Route key='home' path='/home' exact={true} component={ApointWorkerPage} />,
   <Route key='control' path='/control' exact={true} component={AuthPage} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
-  <Route key='/' path='/' exact={true} component={() => <Redirect to='/userhomepage' />} />,
+  <Route key='/' path='/' exact={true} component={() => <Redirect to='/home' />} />,
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='register' path='/register' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/userhomepage' />} />,
+  <Route key='userhomepage' path='/userhomepage' exact={true} component={() => <Redirect to='/home' />} />,
 ];
 
 const LoggedOut = [
