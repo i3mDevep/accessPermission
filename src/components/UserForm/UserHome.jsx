@@ -13,6 +13,8 @@ import Link from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import SystemUpdateIcon from '@material-ui/icons/SystemUpdate';
 import { Row, Col } from 'react-bootstrap';
+import { FaReact } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 import { Background } from './style';
 import HeaderNavBar from '../LayoutUserForm/Header';
 
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#004876',
     padding: theme.spacing(6),
   },
 }));
@@ -80,7 +82,7 @@ const UserHome = () => {
           </Col>
           <Col sm='12' md='6'>
             <Container className='p-5'>
-              <h1 className='text-center p-2' style={{fontSize:'1.8rem'}}>
+              <h1 className='text-center p-2' style={{ fontSize: '1.8rem' }}>
                 ¿En que consiste?
               </h1>
               <Typography variant='h6' align='center' color='textSecondary' paragraph>
@@ -188,13 +190,23 @@ const UserHome = () => {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant='h6' align='center' gutterBottom>
-          Desarrollado por:
-        </Typography>
-        <Typography variant='subtitle1' align='center' color='textSecondary' component='p'>
-          En Ardobot queremos impulsar la innovación!
-        </Typography>
-        <Copyright />
+        <Row>
+          <Col style={{ textAlign: 'center' }}>
+            <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Powered by</h4>
+            <br/>
+            <FaReact size={100} color='white' />
+          </Col>
+          <Col style={{ textAlign: 'center' }}>
+            <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Developed with</h4>
+            <br/>
+            <img alt='logo' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fardobot_logo.png?alt=media&token=6249da59-eaa5-4ea6-a655-9c4932d11b7c' />
+          </Col>
+          <Col style={{ textAlign: 'center' }}>
+            <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Support in</h4>
+            <br/>
+            <img style={{height:'100px'}} alt='firebase' src='https://firebase.google.com/downloads/brand-guidelines/PNG/logo-vertical.png?hl=es-419'/>
+          </Col>
+        </Row>
       </footer>
       {/* End footer */}
       );
