@@ -18,7 +18,7 @@ const ListCardsChart = ({ totals }) => {
   }
   const { Men, Women } = totals;
   const dataChartRadar = {
-    labels: ['Men', 'Women'],
+    labels: ['Hombres', 'Mujeres'],
     datasets: [
       {
         data: [Men.value, Women.value],
@@ -29,13 +29,13 @@ const ListCardsChart = ({ totals }) => {
   };
   return (
     <Row>
-      <CardChart title='Week' titleheader='Total'>
-        <MyChartBar color='#400082' />
+      <CardChart title='Semana' titleheader='Total'>
+        <MyChartBar color='#32325d' />
       </CardChart>
-      <CardChart title='Gender' titleheader='Total'>
+      <CardChart title='Género' titleheader='Total'>
         <MyChartRadar color='#323edd' data={dataChartRadar} />
       </CardChart>
-      <CardChart title='Year' titleheader='Total'>
+      <CardChart title='Año' titleheader='Total'>
         <MyChartMix color='#ff1e56' />
       </CardChart>
     </Row>

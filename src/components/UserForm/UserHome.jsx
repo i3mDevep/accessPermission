@@ -83,8 +83,7 @@ const UserHome = () => {
               <h1 className='text-center p-2' style={{fontSize:'1.8rem'}}>
                 ¿En que consiste?
               </h1>
-              <Typography variant='h6' align='center' color='textSecondary' paragraph>
-                Sabemos que estamos pasando tiempos dificiles en nuestras empresas
+              <Typography variant='h5' align='center' color='textSecondary' paragraph>
                 Somos una plataforma tecnológica, de uso gratuito  que  te permite
                 cumplir con el control de bioseguridad para tu negocio, reportes en
                 Tiempo Real, y registro de temperatura de tus clientes y trabajadores

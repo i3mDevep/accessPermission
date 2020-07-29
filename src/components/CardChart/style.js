@@ -29,12 +29,3 @@ export const Card = styled.div`
   top: -20px;
   border-radius: 10px;
 `;
-export const Title = styled.h3`
-  color: #222831;
-  font-weight: lighter;
-  font-size: 25px;
-  padding-top: 30px;
-  position: absolute;
-  bottom: 40px;
-  left: 20px;
-`;

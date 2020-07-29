@@ -25,22 +25,22 @@ const CardInfoUsers = ({ inforcards }) => {
   return (
 
     <CardDeck>
-      <Target title='Users' value={Users.value} text={typeof Users.time === 'object' && moment(Users.time.toDate().toISOString()).calendar()}>
+      <Target title='Clientes' value={Users.value} text={typeof Users.time === 'object' && moment(Users.time.toDate().toISOString()).calendar()}>
         <FiUsers size='30px' />
       </Target>
-      <Target title='Women' value={Women.value} porcentage='3.48%' text={typeof Women.time === 'object' && moment(Women.time.toDate().toISOString()).calendar()} typetext='text-danger'>
+      <Target title='Mujeres' value={Women.value} text={typeof Women.time === 'object' && moment(Women.time.toDate().toISOString()).calendar()} typetext='text-danger'>
         <AiOutlineWoman size='30px' />
       </Target>
-      <Target title='Men' value={Men.value} porcentage='1.10%' text={typeof Men.time === 'object' && moment(Men.time.toDate().toISOString()).calendar()} typetext='text-warning'>
+      <Target title='Hombres' value={Men.value} text={typeof Men.time === 'object' && moment(Men.time.toDate().toISOString()).calendar()} typetext='text-warning'>
         <AiOutlineMan size='30px' />
       </Target>
-      <Target title='Children' value={Children.value} porcentage='12%' text={typeof Children.time === 'object' && moment(Children.time.toDate().toISOString()).calendar()} typetext='text-info'>
+      <Target title='Empleados ' value={Children.value} porcentage=' ' text={typeof Children.time === 'object' && moment(Children.time.toDate().toISOString()).calendar()} typetext='text-info'>
         <IoMdHappy size='30px' />
       </Target>
-      <Target title='Entries' value={Tracking.input} porcentage='12%' text='00:00' typetext='text-info'>
+      <Target title='Entradas' value={Tracking.input} porcentage=' ' text=' ' typetext='text-info'>
         <GiEntryDoor size='30px' />
       </Target>
-      <Target title='Exits' value={Tracking.output} porcentage='12%' text='00:00' typetext='text-info'>
+      <Target title='Salidas' value={Tracking.output} porcentage=' ' text=' ' typetext='text-info'>
         <IoMdExit size='30px' />
       </Target>
     </CardDeck>

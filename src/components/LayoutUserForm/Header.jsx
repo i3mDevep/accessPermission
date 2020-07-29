@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { BsGem, BsPeopleCircle, BsCompass, BsCloudDownload } from 'react-icons/bs';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';

@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,24 +10,10 @@ import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+//simport Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        Your Website
-      </Link>
-      {' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -37,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
       listStyle: 'none',
     },
   },
+
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
@@ -76,54 +63,29 @@ const useStyles = makeStyles((theme) => ({
 
 const tiers = [
   {
-    title: 'Free',
+    title: 'Gratis',
     price: '0',
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
-    buttonText: 'Sign up for free',
+    description: ['Diseñado para personas o empresas que tienen 1 solo punto de atención y 1000 registro de entrada y salida mensuales'],
+    buttonText: 'Registrarse',
     buttonVariant: 'outlined',
+    data: '/register',
   },
   {
     title: 'Pro',
     subheader: 'Most popular',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-    ],
+    price: '15.000',
+    description: ['Diseñado para empresas que tienen mas de un punto de venta y quiren controlar la hora de entrada y salida de sus empleados'],
     buttonText: 'Get started',
     buttonVariant: 'contained',
+    data: '/register',
   },
   {
     title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
+    price: ' ',
+    description: ['Te gusta lo que hacemos, quieres personalizar o añadir mas funcionalidad al servicio que te brindamos, esta opción es para ti'],
     buttonText: 'Contact us',
     buttonVariant: 'outlined',
-  },
-];
-const footers = [
-  {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
+    data: 'https://api.whatsapp.com/send?phone=573116183653',
   },
 ];
 
@@ -133,9 +95,6 @@ export default function Prices() {
   return (
     <>
       <CssBaseline />
-      {/* Hero unit */}
-
-      {/* End hero unit */}
       <Container maxWidth='md' component='main'>
         <Grid container spacing={5} alignItems='flex-end'>
           {tiers.map((tier) => (
@@ -169,7 +128,8 @@ export default function Prices() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color='primary'>
+                  <Button fullWidth variant={tier.buttonVariant}  color='primary' >
+                    <Link exact activeClassName='current'  to={tier.data}/>
                     {tier.buttonText}
                   </Button>
                 </CardActions>
@@ -178,8 +138,6 @@ export default function Prices() {
           ))}
         </Grid>
       </Container>
-      {/* Footer */}
-      {/* End footer */}
     </>
   );
 }

@@ -5,8 +5,8 @@ export const MyCard = styled.div`
   display: flex;
   margin: 0 auto;
   width: 100%;
-  min-height: 230px;
-  border-radius: 10px;
+  min-height: 250px;
+  border-radius: 5px;
   padding: 5px;
   justify-content: center;
   align-items: center;

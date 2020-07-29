@@ -15,7 +15,7 @@ const Target = ({
       <Card.Body>
         <Row>
           <div className='col'>
-            <Card.Title tag='h5' className='text-uppercase text-muted mb-0'>
+            <Card.Title tag='h6' className='text-uppercase text-muted mb-0 color: #525f7f'>
               {title || <Skeleton /> }
             </Card.Title>
             <span className='h2 font-weight-bold mb-0'>

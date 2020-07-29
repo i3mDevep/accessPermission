@@ -27,7 +27,7 @@ const DEFAULT_DATA_RADAR = {
 };
 
 const datamix = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Dic'],
   datasets: [
     {
       label: 'Sales',
