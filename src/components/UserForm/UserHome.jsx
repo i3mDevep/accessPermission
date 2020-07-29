@@ -5,15 +5,14 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import SystemUpdateIcon from '@material-ui/icons/SystemUpdate';
+import { Row, Col } from 'react-bootstrap';
 import { Background } from './style';
 import HeaderNavBar from '../LayoutUserForm/Header';
 
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#f7f6f4',
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
@@ -73,25 +72,29 @@ const UserHome = () => {
       <Background>
         <HeaderNavBar />
       </Background>
-      <CssBaseline />
       <main>
         {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth='sm'>
-            <Typography component='h1' variant='h3' align='center' color='textPrimary' gutterBottom>
-              ¿En que consiste?
-            </Typography>
-            <Typography variant='h6' align='center' color='textSecondary' paragraph>
-              Sabemos que estamos pasando tiempos dificiles en nuestras empresas
-              Somos una plataforma tecnológica, de uso gratuito  que  te permite
-              cumplir con el control de bioseguridad para tu negocio, reportes en
-              Tiempo Real, y registro de temperatura de tus clientes y trabajadores
-            </Typography>
-            <Typography variant='caption' align='center' color='textSecondary' paragraph>
-              *Aplican Terminos y Condiciones
-            </Typography>
-          </Container>
-        </div>
+        <Row className={classes.heroContent}>
+          <Col sm='12' md='5'>
+            <img className='w-100' alt='port' src='https://img.freepik.com/free-vector/qr-code-scanning_41910-348.jpg?size=626&ext=jpg' />
+          </Col>
+          <Col sm='12' md='6'>
+            <Container className='p-5'>
+              <h1 className='text-center p-2' style={{fontSize:'1.8rem'}}>
+                ¿En que consiste?
+              </h1>
+              <Typography variant='h6' align='center' color='textSecondary' paragraph>
+                Sabemos que estamos pasando tiempos dificiles en nuestras empresas
+                Somos una plataforma tecnológica, de uso gratuito  que  te permite
+                cumplir con el control de bioseguridad para tu negocio, reportes en
+                Tiempo Real, y registro de temperatura de tus clientes y trabajadores
+              </Typography>
+              <Typography variant='caption' align='center' color='textSecondary' paragraph>
+                *Aplican Terminos y Condiciones
+              </Typography>
+            </Container>
+          </Col>
+        </Row>
 
         <Container className={classes.cardGrid} maxWidth='md'>
           <Grid container justify='center'>
@@ -106,7 +109,7 @@ const UserHome = () => {
           <Grid container justify='center'>
             <Grid item xs={6}>
               <Tooltip title='Add' placement='left-start'>
-                <SystemUpdateIcon background='blue'/>
+                <SystemUpdateIcon background='blue' />
               </Tooltip>
               <br />
               <Tooltip title='Add' placement='left'>
