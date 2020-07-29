@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
-import { BsTerminal, BsPeopleCircle, BsCompass } from 'react-icons/bs';
+import { BsGem, BsPeopleCircle, BsCompass, BsCloudDownload } from 'react-icons/bs';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { Navbar, Nav } from 'react-bootstrap';
-import logo from '../../assets/img/brand/ardobot_logo.png';
+import logo from '../../assets/img/brand/ardobot_access.png';
 import './Header.scss';
 
 class HeaderNavBar extends React.Component {
@@ -22,21 +22,25 @@ class HeaderNavBar extends React.Component {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <NavLink to='/' className='mr-3'>
+              <NavLink exact activeClassName='current' to='/' className='mr-3'>
+                {' '}
+                Nosotros
+              </NavLink>
+              <NavLink exact activeClassName='current' to='/login' className='mr-3'>
                 {' '}
                 <BsPeopleCircle />
                 Login
               </NavLink>
-              <NavLink className='mr-3' to='/register'>
-                {' '}
-                <BsCompass />
-                Registro
-              </NavLink>
-              <NavLink className='mr-3' to='/prices'>
+              <NavLink exact activeClassName='current' className='mr-3' to='/prices'>
                 {' '}
                 <RiMoneyDollarCircleLine />
                 Precios
               </NavLink>
+              <a className='mr-3' target='_blank' rel='noreferrer' href='https://play.google.com/store/apps/developer?id=ARDOBOT+ROBOTICA+S.A.S'>
+                {' '}
+                <BsCloudDownload />
+                Descargar App
+              </a>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

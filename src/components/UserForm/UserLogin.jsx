@@ -30,6 +30,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
       <h1 className='text-white'>
         <small>Bienvenidos</small>
       </h1>
+      <br />
       <CardResponsive>
         <Card.Header className='bg-transparent '>
           <div style={{ color: 'blue' }} className='text-center'>
@@ -123,9 +124,19 @@ const UserLogin = ({ onSubmit, error, loading }) => {
                 Sing in
               </Button>
             </div>
-
+            <br />
             <div className='text-center'>
-              <small>developed by ardobot</small>
+              <Link to='/register'>
+                <Button
+                  variant='primary'
+                  style={{
+                    borderRadius: '20px',
+                    width: '80%',
+                  }}
+                >
+                  Registrar
+                </Button>
+              </Link>
             </div>
           </Form>
         </Card.Body>
@@ -138,13 +149,6 @@ const UserLogin = ({ onSubmit, error, loading }) => {
         >
           <small>Olvido su contraseña?</small>
         </a>
-        <Link
-          tag={Link}
-          className='text-light ml-3'
-          to='/register'
-        >
-          <small>Crear una cuenta</small>
-        </Link>
       </Row>
     </ContainerForm>
   );

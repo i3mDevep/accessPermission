@@ -29,7 +29,7 @@ class Footer extends React.Component {
                     href='https://www.ardobot.co'
                     target='_blank'
                   >
-                    Ardobot Robótica SAS
+                    Términos y Condiciones
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -38,7 +38,7 @@ class Footer extends React.Component {
                     href='https://www.ardobot.co'
                     target='_blank'
                   >
-                    About Us
+                    Contacto
                   </NavLink>
                 </NavItem>
                 <NavItem>

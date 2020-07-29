@@ -33,3 +33,7 @@ export const CardDeckCustome = styled(CardDeck)`
 
   }
 `;
+
+export const Background = styled.div`
+  background: linear-gradient(to bottom, #0b4779, #1b6ca8);
+`;
