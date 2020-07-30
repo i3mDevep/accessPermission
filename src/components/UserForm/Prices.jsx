@@ -8,7 +8,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/StarBorder';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 //simport Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
@@ -63,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 const tiers = [
   {
-    title: 'Gratis',
+    title: 'Free',
     price: '0',
     description: ['Diseñado para personas o empresas que tienen 1 solo punto de atención y 1000 registro de entrada y salida mensuales'],
     buttonText: 'Registrarse',
@@ -128,10 +127,11 @@ export default function Prices() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant}  color='primary' >
-                    <Link exact activeClassName='current'  to={tier.data}/>
-                    {tier.buttonText}
-                  </Button>
+                  <Link to={tier.data}>
+                    <Button fullWidth variant={tier.buttonVariant} href={tier.data} color='primary'>
+                      {tier.buttonText}
+                    </Button>
+                  </Link>
                 </CardActions>
               </Card>
             </Grid>

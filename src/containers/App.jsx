@@ -19,6 +19,7 @@ import LayoutApointIndex from '../components/LayoutPointAttention/ApointIndex';
 import Client from '../pages/company/Client';
 import PricesPage from '../pages/PricesPage';
 import UserHomePage from '../pages/UserHomePage';
+import ClientPointPage from '../pages/subcompany/ClientPointPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -52,12 +53,14 @@ const LoggedInRoutesWithbusiness = [
   <Route key='sedes' path='/sedes' exact={true} component={Sedes} />,
   <Route key='payroll' path='/payroll' exact={true} component={Payroll} />,
   <Route key='userhomepage' path='/userhomepage' exact={true} component={() => <Redirect to='/dashboard' />} />,
+  <Route key='clientpoint' path='/clientpoint' exact={true} component={() => <Redirect to='/userhomepage' />} />,
 ];
 
 const LoggedInRoutesWithOutbusiness = [
   <Route key='home' path='/home' exact={true} component={ApointWorkerPage} />,
   <Route key='control' path='/control' exact={true} component={AuthPage} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
+  <Route key='clientpoint' path='/clientpoint' exact={true} component={ClientPointPage} />,
   <Route key='/' path='/' exact={true} component={() => <Redirect to='/home' />} />,
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='register' path='/register' exact={true} component={() => <Redirect to='/userhomepage' />} />,
@@ -65,6 +68,7 @@ const LoggedInRoutesWithOutbusiness = [
   <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='userhomepage' path='/userhomepage' exact={true} component={() => <Redirect to='/home' />} />,
+
 ];
 
 const LoggedOut = [
@@ -79,6 +83,7 @@ const LoggedOut = [
   <Route key='worker' path='/worker' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='sedes' path='/sedes' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='sedes2' path='*' exact={true} component={() => <Redirect to='/userhomepage' />} />,
+  <Route key='clientpoint' path='/clientpoint' exact={true} component={() => <Redirect to='/userhomepage' />} />,
 ];
 
 const App = ({ signIn, isAuth }) => {

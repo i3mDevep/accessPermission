@@ -19,7 +19,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Fingerprint from '@material-ui/icons/Fingerprint';
-import FaceIcon from '@material-ui/icons/Face';
 import MailIcon from '@material-ui/icons/Mail';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
