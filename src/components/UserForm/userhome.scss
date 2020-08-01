@@ -1,0 +1,8 @@
+.container_user_home {
+    color: white;
+}
+@media (max-width: 548px) {
+    .container_user_home {
+        background-color: rgba(0, 0, 0, .5);
+    }
+}
