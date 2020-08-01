@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button, Form, Col } from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid';
@@ -9,17 +9,18 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { showAlert } from '../../store/actions/sweetAlertActions';
-import useInputValue from '../../hooks/useInputValue';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
+import useInputValue from '../../hooks/useInputValue';
 
-const ClientPointAttetion = ({ show, onHide }) => {
+
+const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }) => {
 
   const Name = useInputValue('');
   const Identification = useInputValue('');
   const Address = useInputValue('');
   const Celphone = useInputValue('');
-  const Age = useInputValue('');
   const Gender = useInputValue('');
+  const Temperature = useInputValue('');
 
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
@@ -29,7 +30,14 @@ const ClientPointAttetion = ({ show, onHide }) => {
 
   const handlerOnSubmit = (event) => {
     event.preventDefault();
-    traking({
+    onSubmit({
+      identification: Identification.value,
+      name: Name.value,
+      Address: Address.value,
+      Gender: Gender.value,
+      temperature: Temperature.value,
+      date: selectedDate,
+      celphone: Celphone.value,
 
     });
   };
@@ -42,6 +50,7 @@ const ClientPointAttetion = ({ show, onHide }) => {
         aria-labelledby='contained-modal-title-vcenter'
         centered
       >
+        {visibleAlert && <SweetAlert {...visibleAlert}>{visibleAlert.content}</SweetAlert>}
         <Modal.Header closeButton>
           <Modal.Title>Registro de Clientes</Modal.Title>
         </Modal.Header>
@@ -69,14 +78,16 @@ const ClientPointAttetion = ({ show, onHide }) => {
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <Grid container justify='space-around'>
                     <KeyboardDatePicker
-                      margin='normal'
-                      id='date-picker-dialog'
-                      label='Fecha de Nacimiento'
+                      disableToolbar
+                      variant='inline'
                       format='MM/dd/yyyy'
+                      margin='normal'
+                      id='date-picker-inline'
+                      label='Fecha de Nacimiento'
                       value={selectedDate}
                       onChange={handleDateChange}
                       KeyboardButtonProps={{
-                        'poppins': 'change date',
+                        'aria-label': 'change date',
                       }}
                     />
                   </Grid>
@@ -112,6 +123,7 @@ const ClientPointAttetion = ({ show, onHide }) => {
               <Form.Group as={Col} controlId='formGridprone'>
                 <Form.Label>Temperatúra</Form.Label>
                 <Form.Control
+                {...Temperature}
                   placeholder=' (°C)'
                 />
               </Form.Group>
@@ -123,18 +135,17 @@ const ClientPointAttetion = ({ show, onHide }) => {
                 />
               </Form.Group>
             </Form.Row>
+            <Button
+              variant='primary'
+              type='submit'
+            >
+              Registrar
+            </Button>
           </Form>
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={onHide}>
             Close
-          </Button>
-          <Button
-            variant='primary'
-            type='submit'
-          >
-            Registrar
           </Button>
         </Modal.Footer>
       </Modal>
@@ -158,3 +169,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientPointAttetion);
+

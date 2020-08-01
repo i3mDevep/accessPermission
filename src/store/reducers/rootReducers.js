@@ -9,6 +9,7 @@ import deleteSubCompanyReducer from './deleteSubcompanyReducer';
 import deleteWorkerReducer from './deleteWorkerReducer';
 import notifications from './notificationRecucers';
 import addTrakingReducer from './addTrakingReducer';
+import addClientReducer from './addClientReducer';
 
 const rootReducers = combineReducers({
   auth: authReducer,
@@ -18,6 +19,7 @@ const rootReducers = combineReducers({
   resultEditWorker: editWorkerReducer,
   resultWorkerDelete: deleteWorkerReducer,
   resultDelete: deleteSubCompanyReducer,
+  resultAddClient: addClientReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
   notifications,
