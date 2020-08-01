@@ -11,8 +11,8 @@ export const addClient = (idBusiness, content) => {
     .then((result) => {
       return db.doc(content.identification).collection('traking')
         .add({
-          idenfification: content.idenfification,
-          temperature: content.temperature,
+         // idenfification: content.idenfification,
+         // temperature: content.temperature,
           gps: ' Site Web',
           time: currentTime });
     })

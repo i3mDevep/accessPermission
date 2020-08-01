@@ -23,9 +23,13 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
+  heroContent1: {
+    backgroundColor: '#f7f6f4',
+    padding: theme.spacing(8, 0, 6),
+  },
   heroContent: {
     backgroundColor: '#1b6ca8',
-    padding: theme.spacing(4, 0, 6),
+    padding: theme.spacing(0, 0),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -50,8 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 const UserHome = () => {
   const classes = useStyles();
 
@@ -62,8 +64,26 @@ const UserHome = () => {
       </Background>
       <main>
         {/* Hero unit */}
+        <Row className={classes.heroContent1}>
+          <Col align='left' sm='10' md='5'>
+            <img className='w-100' alt='port' src='https://img.freepik.com/free-vector/qr-code-scanning_41910-348.jpg?size=626&ext=jpg' />
+          </Col>
+          <Col sm='12' md='6'>
+            <Container className='p-5'>
+              <h1 className='text-center p-2' style={{ fontSize: '1.8rem' }}>
+                Que queremos?
+              </h1>
+              <Typography variant='h4' style={{ fontSize: '1.2rem', padding: '20px' }} align='center' paragraph>
+                Apoyarnos los unos a los otros,
+                por eso aportamos nuestro conocimiento y experiencia para que tu
+                negocio agilice el proceso de entrada y salida de clientes y empleados, cumpliendo
+                con los parámetros de bioseguridad existentes.
+              </Typography>
+            </Container>
+          </Col>
+        </Row>
         <Row className={classes.heroContent}>
-          <Col sm='12' md='5'>
+          <Col sm='12' md='6'>
             <img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' />
           </Col>
           <Col sm='12' md='6'>
@@ -83,8 +103,8 @@ const UserHome = () => {
           </Col>
         </Row>
         <Row>
-          <Col style={{ display: 'flex', justifyContent: 'center', alignContent:'center', padding:'50px' }}>
-            <Grid item container xs={6} alignItems='flex-end' direction='column'>
+          <Col style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '50px' }}>
+            <Grid item container xs={3} alignItems='flex-end' direction='column'>
               <Grid item>
                 <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Finformes.png?alt=media&token=018395b1-95e5-41d9-aa81-3f5ed0966aa2' />
               </Grid>
@@ -95,8 +115,25 @@ const UserHome = () => {
                 <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fregistro.png?alt=media&token=585004ab-b58f-42a2-a75d-9058bcca2094' />
               </Grid>
             </Grid>
+            <Grid item container xs={3} md={10} alignItems='flex-end' direction='column'>
+              <Grid item>
+                <Typography variant='caption' align='center' paragraph>
+                  *Aplican Terminos y Condiciones
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant='caption' align='center' paragraph>
+                  *Aplican Terminos y Condiciones
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant='caption' align='center' paragraph>
+                  *Aplican Terminos y Condiciones
+                </Typography>
+              </Grid>
+            </Grid>
           </Col>
-          <Col style={{ display: 'flex', justifyContent: 'center', alignContent:'center', padding:'50px' }}>
+          <Col style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '50px' }}>
             <Grid item xs={6} alignItems='flex-end' direction='row'>
               <Grid item>
                 <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fregistro.png?alt=media&token=585004ab-b58f-42a2-a75d-9058bcca2094' />
@@ -110,7 +147,7 @@ const UserHome = () => {
             </Grid>
           </Col>
           <Col style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <img alt='sdas' style={{ width: '75%', minWidth:'400px', objectFit:'cover' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F3.png?alt=media&token=532e76cc-70e2-4d1a-be4f-c3eeb3dae3a9' />
+            <img alt='sdas' style={{ width: '75%', minWidth: '400px', objectFit: 'cover' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F3.png?alt=media&token=532e76cc-70e2-4d1a-be4f-c3eeb3dae3a9' />
           </Col>
         </Row>
         {/* <Container className={classes.cardGrid} maxWidth='md'>
@@ -148,20 +185,23 @@ const UserHome = () => {
       {/* Footer */}
       <footer className={classes.footer}>
         <Row>
-          <Col sm='12' md='4' style={{ textAlign: 'center' }}>
+          <Col sm='12' md='4' style={{ textAlign: 'center', padding: '20px' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Powered by</h4>
             <br />
             <FaReact size={100} color='white' />
+            <br />
           </Col>
-          <Col sm='12' md='4'style={{ textAlign: 'center' }}>
+          <Col sm='12' md='4' style={{ textAlign: 'center', padding: '20px' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Developed with</h4>
             <br />
             <img alt='logo' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fardobot_logo.png?alt=media&token=6249da59-eaa5-4ea6-a655-9c4932d11b7c' />
+            <br />
           </Col>
-          <Col sm='12' md='4' style={{ textAlign: 'center' }}>
+          <Col sm='12' md='4' style={{ textAlign: 'center', padding: '20px' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Support in</h4>
             <br />
             <img style={{ height: '100px' }} alt='firebase' src='https://firebase.google.com/downloads/brand-guidelines/PNG/logo-vertical.png?hl=es-419' />
+            <br />
           </Col>
         </Row>
       </footer>
