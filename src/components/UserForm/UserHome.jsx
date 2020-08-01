@@ -148,17 +148,17 @@ const UserHome = () => {
       {/* Footer */}
       <footer className={classes.footer}>
         <Row>
-          <Col style={{ textAlign: 'center' }}>
+          <Col sm='12' md='4' style={{ textAlign: 'center' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Powered by</h4>
             <br />
             <FaReact size={100} color='white' />
           </Col>
-          <Col style={{ textAlign: 'center' }}>
+          <Col sm='12' md='4'style={{ textAlign: 'center' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Developed with</h4>
             <br />
             <img alt='logo' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fardobot_logo.png?alt=media&token=6249da59-eaa5-4ea6-a655-9c4932d11b7c' />
           </Col>
-          <Col style={{ textAlign: 'center' }}>
+          <Col sm='12' md='4' style={{ textAlign: 'center' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Support in</h4>
             <br />
             <img style={{ height: '100px' }} alt='firebase' src='https://firebase.google.com/downloads/brand-guidelines/PNG/logo-vertical.png?hl=es-419' />
