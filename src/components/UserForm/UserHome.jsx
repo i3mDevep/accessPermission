@@ -105,7 +105,7 @@ const UserHome = () => {
           </Col>
         </Row>
         <Container style={{ display: 'flex', justifyContent: 'center' }}>
-          <video width='320' height='540' style={{ outline: 'none' }} controls>
+          <video muted width='320' height='540' style={{ outline: 'none' }} autoPlay>
             <source src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fvideos%2FcontrolAppMovil.mp4?alt=media&token=e5f0ba0b-ac13-4212-9724-dd354dcf21c3' type='video/mp4' />
             <p>This browser does not support the video element.</p>
           </video>
