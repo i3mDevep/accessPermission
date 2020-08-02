@@ -21,7 +21,6 @@ const ImageSave = async (identification, imageSrc, idBusiness) => {
 const saveDataWorker = (idBusiness, idSubcompany, content, imageSrc, db) => {
 
   return new Promise((resolve, reject) => {
-
     const docRef = `business/${idBusiness}/worker/${content.identification}`;
     const currentTime = firebase.firestore.FieldValue.serverTimestamp();
 
@@ -71,17 +70,12 @@ export const addWorker = (idBusiness, idSubcompany, content, data64, imageSrc) =
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
 
   return (dispatch) => {
-
     dispatch({ type: 'REQUEST_WORKER' });
-
     const db = firebase.firestore();
-
     return saveDataWorker(idBusiness, idSubcompany, content, imageSrc, db)
       .then(() => {
         return db.runTransaction((transaction) => {
-
           const documentRef = db.doc(`business/${idBusiness}/resum/totalsWorker`);
-
           return transaction.get(documentRef)
             .then((mdoc) => {
               const { gender } = content;

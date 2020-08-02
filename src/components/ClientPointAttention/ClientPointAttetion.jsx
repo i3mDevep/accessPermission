@@ -8,10 +8,10 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
-
 
 const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }) => {
 
@@ -161,7 +161,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     visibleAlert: getVisibleAlert(state.notifications),

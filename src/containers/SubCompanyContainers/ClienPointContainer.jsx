@@ -39,7 +39,6 @@ const ClienPointContainer = ({ requesting, isAuth, addClient }) => {
 };
 
 const mapStateProps = (state) => {
-  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.clients,
