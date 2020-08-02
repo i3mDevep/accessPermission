@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   heroContent1: {
-    backgroundColor: '#f7f6f4',
-    padding: theme.spacing(8, 0, 6),
+    backgroundColor: 'white',
+    padding: theme.spacing(0, 0, 0, 15),
   },
   heroContent: {
     backgroundColor: '#1b6ca8',
-    padding: theme.spacing(0, 0),
+    padding: theme.spacing(5, 0, 10, 0),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -62,26 +62,8 @@ const UserHome = () => {
       <Background>
         <HeaderNavBar />
       </Background>
-      <main>
+      <body>
         {/* Hero unit */}
-        <Row className={classes.heroContent1}>
-          <Col align='left' sm='10' md='5'>
-            <img className='w-100' alt='port' src='https://img.freepik.com/free-vector/qr-code-scanning_41910-348.jpg?size=626&ext=jpg' />
-          </Col>
-          <Col sm='12' md='6'>
-            <Container className='p-5'>
-              <h1 className='text-center p-2' style={{ fontSize: '1.8rem' }}>
-                Que queremos?
-              </h1>
-              <Typography variant='h4' style={{ fontSize: '1.2rem', padding: '20px' }} align='center' paragraph>
-                Apoyarnos los unos a los otros,
-                por eso aportamos nuestro conocimiento y experiencia para que tu
-                negocio agilice el proceso de entrada y salida de clientes y empleados, cumpliendo
-                con los parámetros de bioseguridad existentes.
-              </Typography>
-            </Container>
-          </Col>
-        </Row>
         <Row className={classes.heroContent}>
           <Col sm='12' md='6'>
             <img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' />
@@ -100,6 +82,22 @@ const UserHome = () => {
                 *Aplican Terminos y Condiciones
               </Typography>
             </Container>
+          </Col>
+        </Row>
+        <Row className={classes.heroContent1}>
+          <Col sm='12' md='6' style={{ fontSize: '1.8rem' }}>
+            <Container className='p-5'>
+              <h1 className='text-center p-2' style={{ fontSize: '1.8rem' }}>
+                Que queremos?
+              </h1>
+              <Typography variant='h4' style={{ fontSize: '1.2rem' }} align='center' paragraph>
+                Apoyarnos los unos a los otros,
+                por eso aportamos nuestro conocimiento
+              </Typography>
+            </Container>
+          </Col>
+          <Col align='left' sm='10' md='5'>
+            <img className='w-100' alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
           </Col>
         </Row>
         <Row>
@@ -181,7 +179,7 @@ const UserHome = () => {
             ))}
           </Grid>
         </Container> */}
-      </main>
+      </body>
       {/* Footer */}
       <footer className={classes.footer}>
         <Row>
