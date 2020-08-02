@@ -9,7 +9,7 @@ import TableClients from '../../components/Tables/Clients';
 import ClientPointAttetion from '../../components/ClientPointAttention/ClientPointAttetion';
 import { addClient } from '../../store/actions/addClientAction';
 
-const ClienPointContainer = ({ requesting, isAuth, addClient }) => {
+const ClienPointContainer = ({ requesting, isAuth, addClient, clients }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
@@ -29,6 +29,7 @@ const ClienPointContainer = ({ requesting, isAuth, addClient }) => {
           show={show}
           onHide={onHide}
           onSubmit={onSubmit}
+          clients={clients}
         />
 
         <Card className='text-center' body style={{ width: '13rem' }}>

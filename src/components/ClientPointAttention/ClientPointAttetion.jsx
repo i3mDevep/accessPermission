@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button, Form, Col } from 'react-bootstrap';
+import { Modal, Button, Form, Col, ListGroup, Alert} from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid';
+import { MdErrorOutline } from 'react-icons/md';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -13,7 +14,7 @@ import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
 
-const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }) => {
+const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients }) => {
 
   const Name = useInputValue('');
   const Identification = useInputValue('');
@@ -21,6 +22,8 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
   const Celphone = useInputValue('');
   const Gender = useInputValue('');
   const Temperature = useInputValue('');
+
+  console.log(clients);
 
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
@@ -57,11 +60,8 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
           <Form id='CreateForm' onSubmit={handlerOnSubmit}>
             <Form.Group controlId='formGridDocument'>
               <Form.Label>Documento</Form.Label>
-              <Form.Control
-                required={true}
-                {...Identification}
-                type='number'
-                placeholder='Número de Documento'
+              <SearchClient
+                info={clients}
               />
             </Form.Group>
             <Form.Row>
@@ -74,7 +74,6 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
                   placeholder='Ingrese un Nombre'
                 />
               </Form.Group>
-
               <Form.Group as={Col} controlId='formGridPassword'>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <Grid container justify='space-around'>
@@ -94,9 +93,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
                   </Grid>
                 </MuiPickersUtilsProvider>
               </Form.Group>
-
             </Form.Row>
-
             <Form.Row>
               <Form.Group as={Col} controlId='formGridCity'>
                 <Form.Label>Dirección</Form.Label>
@@ -106,7 +103,6 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
                   placeholder='Dirección de residencia'
                 />
               </Form.Group>
-
               <Form.Group as={Col} controlId='formGridState'>
                 <Form.Label>Género</Form.Label>
                 <Form.Control
@@ -121,7 +117,6 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
                 </Form.Control>
               </Form.Group>
             </Form.Row>
-
             <Form.Row>
               <Form.Group as={Col} controlId='formGridprone'>
                 <Form.Label>Temperatúra</Form.Label>
@@ -156,8 +151,67 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
       </Modal>
     </>
   );
-
 };
+
+function SearchClient({ info = [], sendData }) {
+  const [query, setQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [aux, setAux] = useState(true);
+  const [blocked, setBlocked] = useState(true);
+  //console.log(info)
+  // Recibo los eventos del input en setQuery
+  // y habilito la bandera True para permitir la busqueda de nuevo
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+    setAux(true);
+  };
+
+  //if aux = true entonces almacene en la variable result
+  // los datos filtrados de info={workers} que llegan en el query del evento setQuery
+  useEffect(() => {
+    if (info.length <= 0) {
+      setBlocked(true);
+    } else {
+      setBlocked(false);
+    }
+  }, [blocked]);
+
+  useEffect(() => {
+    if (aux) {
+      const results = info.filter((info) => info.id.includes(query));
+      setSearchResults(results);
+    }
+  }, [query]);
+
+  const handlerSelect = (item) => {
+    setAux(false);
+    setQuery(item.identification);
+    setSearchResults([]);
+    sendData({ name: item.name, identification: item.identification });
+  };
+  return (
+    <>
+      <Form.Control
+        placeholder='Busqie o cree un cliente '
+        value={query}
+        disabled={blocked}
+        autoComplete='off'
+        onChange={(handleChange)}
+      />
+      <ListGroup as='ul' style={{ position: 'absolute', top: '85px',  display: 'block' }} className='AutocompleteText'>
+        {query.length > 0 ? searchResults.map((item) => (
+          <ListGroup.Item onClick={() => handlerSelect(item)} as='li' variant='light' id={item.id} key={item.id}>
+            {' '}
+            {item.identification}
+            {' '}
+            {item.name}
+          </ListGroup.Item>
+        )) : ' '}
+      </ListGroup>
+    </>
+  );
+
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
