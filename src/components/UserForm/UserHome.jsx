@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent1: {
     backgroundColor: 'white',
-    padding: theme.spacing(0, 0, 0, 15),
+    padding: theme.spacing(0, 0, 0, 0),
   },
   heroContent: {
     backgroundColor: '#1b6ca8',
@@ -73,7 +73,7 @@ const UserHome = () => {
               <h1 className='text-center p-2' style={{ fontSize: '1.8rem' }}>
                 ¿En que consiste?
               </h1>
-              <Typography variant='h5' style={{ fontSize: '1.2rem', padding: '20px' }} align='center' paragraph>
+              <Typography variant='h5' style={{ fontSize: '1.2rem' }} align='center' paragraph>
                 Somos una plataforma tecnológica, de uso gratuito  que  te permite
                 cumplir con el control de bioseguridad para tu negocio, reportes en
                 Tiempo Real, y registro de temperatura de tus clientes y trabajadores
@@ -86,7 +86,9 @@ const UserHome = () => {
         </Row>
         <Row className={classes.heroContent1}>
           <Col sm='12' md='6' style={{ fontSize: '1.8rem' }}>
-            <Container className='p-5'>
+            <Container className='p-5' style={{ padding: '50px, ' }}>
+              <br />
+              <br />
               <h1 className='text-center p-2' style={{ fontSize: '1.8rem' }}>
                 Que queremos?
               </h1>
@@ -97,23 +99,26 @@ const UserHome = () => {
             </Container>
           </Col>
           <Col align='left' sm='10' md='5'>
-            <img className='w-100' alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
+            <img className='w-100' alt='port' style={{ maxWidth: '500px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
           </Col>
         </Row>
         <Row>
           <Col style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '50px' }}>
             <Grid item container xs={3} alignItems='flex-end' direction='column'>
               <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Finformes.png?alt=media&token=018395b1-95e5-41d9-aa81-3f5ed0966aa2' />
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Ftemperatura.png?alt=media&token=e622475c-6ceb-4937-93a2-a0f0c911e127' />
               </Grid>
               <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Flocalizacion.png?alt=media&token=3609f498-2843-4d88-be2c-dbfd21d9db82' />
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fcontrol%20de%20fechas.png?alt=media&token=3c94d7a5-6ced-47d5-86f4-6f87a2eead81' />
               </Grid>
               <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fregistro.png?alt=media&token=585004ab-b58f-42a2-a75d-9058bcca2094' />
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fcuestionarios.png?alt=media&token=0201c4f5-5306-401e-989f-e16b523c1485' />
+              </Grid>
+              <Grid item>
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fdescarga.png?alt=media&token=28f16383-851e-45ea-9e4f-86c827fd62ba' />
               </Grid>
             </Grid>
-            <Grid item container xs={3} md={10} alignItems='flex-end' direction='column'>
+            <Grid item container xs={3} md={10} alignItems='flex-center' direction='row'>
               <Grid item>
                 <Typography variant='caption' align='center' paragraph>
                   *Aplican Terminos y Condiciones
@@ -134,13 +139,16 @@ const UserHome = () => {
           <Col style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '50px' }}>
             <Grid item xs={6} alignItems='flex-end' direction='row'>
               <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fregistro.png?alt=media&token=585004ab-b58f-42a2-a75d-9058bcca2094' />
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Freloj.png?alt=media&token=a583adfa-3416-466f-9d64-f3f0e37ecc69' />
               </Grid>
               <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fcontrol%20de%20fechas.png?alt=media&token=76896c86-09ee-4941-8ee0-be83760aaac8' />
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Finformes.png?alt=media&token=5502e0a4-a3ad-4696-9d5f-56427fd7be89' />
               </Grid>
               <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fdescarga.png?alt=media&token=58d884c6-502e-45ae-a908-c8a58ee0c93a' />
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fregistro.png?alt=media&token=a23f76b2-c093-4a0b-ae5c-4429c24829d8' />
+              </Grid>
+              <Grid item>
+                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Flocalizacion.png?alt=media&token=1553e202-5134-45fe-be3d-04ddc368443b' />
               </Grid>
             </Grid>
           </Col>
