@@ -152,9 +152,7 @@ const UserHome = () => {
               </Grid>
             </Grid>
           </Col>
-          <Col style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <img alt='sdas' style={{ width: '75%', minWidth: '400px', objectFit: 'cover' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F3.png?alt=media&token=532e76cc-70e2-4d1a-be4f-c3eeb3dae3a9' />
-          </Col>
+
         </Row>
         {/* <Container className={classes.cardGrid} maxWidth='md'>
           <Grid container spacing={4}>

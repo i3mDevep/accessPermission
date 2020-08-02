@@ -9,7 +9,7 @@ import TableClientsContainer from '../CompanyContainers/Clients/TableClientsCont
 import ClientPointAttetion from '../../components/ClientPointAttention/ClientPointAttetion';
 import { addClient } from '../../store/actions/addClientAction';
 
-const ClienPointContainer = ({ requesting, isAuth }) => {
+const ClienPointContainer = ({ requesting, isAuth, addClient }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
