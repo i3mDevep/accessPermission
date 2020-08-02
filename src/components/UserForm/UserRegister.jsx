@@ -17,6 +17,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
   const chellphone = useInputValue('');
   const address = useInputValue('');
   const city = useInputValue('');
+  const plan = useInputValue('');
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +27,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
       celphone: chellphone.value,
       address: address.value,
       city: city.value,
+      plan: plan.value,
     });
   };
 
@@ -126,6 +128,20 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 required={true}
                 {...address}
               />
+            </Form.Group>
+            <Form.Group controlId='formPlan'>
+              <Form.Label>Plan</Form.Label>
+              <Form.Control
+                required={true}
+                disabled={loading}
+                {...plan}
+                as='select'
+              >
+                <option hidden>Seleccione una opción</option>
+                <option value='Free'>Free</option>
+                <option value='Pro'>Pro</option>
+                <option value='Otro'>Enterprise</option>
+              </Form.Control>
             </Form.Group>
             { error && (
               <Alert variant='danger'>
