@@ -39,6 +39,7 @@ const ClienPointContainer = ({ requesting, isAuth, addClient }) => {
 };
 
 const mapStateProps = (state) => {
+  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.clients,
@@ -59,6 +60,14 @@ export default compose(
   connect(mapStateProps, mapDispatchToProps),
   firestoreConnect((props) => {
     return [
+      { collection: 'business',
+        doc: props.isAuth.companyId,
+        subcollections: [
+          {
+            collection: 'clients',
+          },
+        ],
+      },
       { collection: 'business',
         doc: props.isAuth.companyId,
         subcollections: [
