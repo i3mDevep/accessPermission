@@ -19,9 +19,7 @@ const useStyles = makeStyles({
 });
 
 const TableClientsTrackingComponent = ({ tracking }) => {
-
   const classes = useStyles();
-
   return (
     <div
       style={{

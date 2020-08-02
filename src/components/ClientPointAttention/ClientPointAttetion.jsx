@@ -33,11 +33,11 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
     onSubmit({
       identification: Identification.value,
       name: Name.value,
-      Address: Address.value,
-      Gender: Gender.value,
+      address: Address.value,
+      gender: Gender.value,
       temperature: Temperature.value,
-      date: selectedDate,
-      celphone: Celphone.value,
+      age: selectedDate,
+      telphone: Celphone.value,
 
     });
   };
@@ -139,7 +139,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
               variant='primary'
               type='submit'
             >
-              Registrar
+              Guardar
             </Button>
           </Form>
         </Modal.Body>

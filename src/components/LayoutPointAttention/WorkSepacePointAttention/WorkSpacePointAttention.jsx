@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tables from '../../Tables/LayoutTable/Tables';
+import Tables from '../../Tables/Tables';
 
 const WorkSpacePointAttention = () => (
   <>

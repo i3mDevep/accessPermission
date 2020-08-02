@@ -8,17 +8,22 @@ import { tableIcons } from '../icons';
 import TableClientsTrackingContainer from '../../../containers/CompanyContainers/Clients/TableClientsTrackingContainer';
 
 const TableClients = ({ clients = [], isAuth }) => {
+
   const data = [];
   clients.forEach((client) => {
-    data.push({
-      name: client.name,
-      identification: client.id,
-      gender: client.gender,
-      age: client.age,
-      address: client.address,
-      telphone: client.cellphone,
-      time: typeof client.time === 'object' ? moment(client.time.toDate().toISOString()).locale('es').format('LL') : 'null',
-    });
+    try {
+      data.push({
+        name: client.name,
+        identification: client.id,
+        gender: client.gender,
+        age: typeof client.age === 'object' ? moment(client.age.toDate().toISOString()).locale('es').calendar() : client.age,
+        address: client.address,
+        telphone: client.cellphone,
+        time: typeof client.time === 'object' ? moment(client.time.toDate().toISOString()).format('LLL') : client.time,
+      });
+    } catch (err) {
+
+    }
   });
   return (
     <div style={{ maxWidth: '100%' }}>
@@ -30,7 +35,7 @@ const TableClients = ({ clients = [], isAuth }) => {
           { title: 'Nombre', field: 'name' },
           { title: 'Identificación', field: 'identification' },
           { title: 'Genero', field: 'gender' },
-          { title: 'Edad', field: 'age' },
+          { title: 'Fecha de Nacimiento', field: 'age' },
           { title: 'Dirección', field: 'address' },
           { title: 'Teléfono', field: 'telphone' },
           { title: 'Registro', field: 'time' },
