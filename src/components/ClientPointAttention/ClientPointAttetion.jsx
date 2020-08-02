@@ -38,7 +38,6 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
       temperature: Temperature.value,
       age: selectedDate,
       telphone: Celphone.value,
-
     });
   };
 
@@ -59,6 +58,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
             <Form.Group controlId='formGridDocument'>
               <Form.Label>Documento</Form.Label>
               <Form.Control
+                required={true}
                 {...Identification}
                 type='number'
                 placeholder='Número de Documento'
@@ -68,6 +68,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
               <Form.Group as={Col} controlId='formGridData'>
                 <Form.Label>Nombre y Apellido</Form.Label>
                 <Form.Control
+                  required={true}
                   {...Name}
                   type='text'
                   placeholder='Ingrese un Nombre'
@@ -100,6 +101,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
               <Form.Group as={Col} controlId='formGridCity'>
                 <Form.Label>Dirección</Form.Label>
                 <Form.Control
+                  required={true}
                   {...Address}
                   placeholder='Dirección de residencia'
                 />
@@ -108,6 +110,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
               <Form.Group as={Col} controlId='formGridState'>
                 <Form.Label>Género</Form.Label>
                 <Form.Control
+                  required={true}
                   {...Gender}
                   as='select'
                 >
@@ -123,13 +126,15 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert }
               <Form.Group as={Col} controlId='formGridprone'>
                 <Form.Label>Temperatúra</Form.Label>
                 <Form.Control
-                {...Temperature}
+                  required={true}
+                  {...Temperature}
                   placeholder=' (°C)'
                 />
               </Form.Group>
               <Form.Group as={Col} controlId='formGridTemp'>
                 <Form.Label>Teléfono</Form.Label>
                 <Form.Control
+                  required={true}
                   {...Celphone}
                   placeholder=' Número de contacto'
                 />

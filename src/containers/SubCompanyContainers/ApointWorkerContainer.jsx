@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
-import { Container, Button, Card, Row, Col, CardDeck } from 'react-bootstrap';
-import {
-  BrowserRouter as Router,
-  Link,
-} from 'react-router-dom';
+import { Button, Card, Row, CardDeck } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Table from '../../components/Tables/Tables';
 
 const ApointWorkerContainer = ({ requesting }) => {
@@ -17,24 +14,22 @@ const ApointWorkerContainer = ({ requesting }) => {
 
   return (
     <>
-      <Container>
-        <Row>
-          <CardDeck>
-            <Link to='/control'>
-              <Card className='text-center' body style={{ width: '15rem' }}>
-                <Button variant='danger' linl='/control'>Registro de Empleados</Button>
-              </Card>
-            </Link>
-            <Link to='/clientpoint'>
-              <Card className='text-center' body style={{ width: '15rem' }}>
-                <Button variant='danger'>Registro de Clientes</Button>
-              </Card>
-            </Link>
-          </CardDeck>
-        </Row>
-        <br />
-        <Table.ApointWorkerTableRow />
-      </Container>
+      <Row>
+        <CardDeck>
+          <Link to='/control'>
+            <Card className='text-center' body style={{ width: '15rem' }}>
+              <Button variant='danger' linl='/control'>Registro de Empleados</Button>
+            </Card>
+          </Link>
+          <Link to='/clientpoint'>
+            <Card className='text-center' body style={{ width: '15rem' }}>
+              <Button variant='danger'>Registro de Clientes</Button>
+            </Card>
+          </Link>
+        </CardDeck>
+      </Row>
+      <br />
+      <Table.ApointWorkerTableRow />
     </>
   );
 };

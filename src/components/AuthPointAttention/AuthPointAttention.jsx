@@ -5,7 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import { MdErrorOutline, MdEventAvailable } from 'react-icons/md';
+import { MdErrorOutline } from 'react-icons/md';
 import { Button, Card, Container, Form, Row, Col, ListGroup, Alert } from 'react-bootstrap';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
@@ -62,15 +62,27 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
 
   const handlerOnSubmit = (event) => {
     event.preventDefault();
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-    traking({
-      action,
-      temperature: temp,
-      identification,
-      position: isAuth.displayName,
-    }, imageSrc);
-    setPicture(true);
+    console.log(action.length);
+
+    if (identification.length > 1 && temp.length > 1 && action.length > 1) {
+      const imageSrc = webcamRef.current.getScreenshot();
+      setImgSrc(imageSrc);
+      traking({
+        action,
+        temperature: temp,
+        identification,
+        position: isAuth.displayName,
+      }, imageSrc);
+      setPicture(true);
+    } else {
+      showAlert({
+        type: 'error',
+        timeout: 9500,
+        title: 'Opss!',
+        content: 'Complete todos los datos para realiar el registro',
+        showCancel: false,
+      });
+    }
   };
 
   return (
@@ -270,7 +282,7 @@ function SearchWorker({ info = [], sendData }) {
         autoComplete='off'
         onChange={(handleChange)}
       />
-      <ListGroup as='ul' className='AutocompleteText'>
+      <ListGroup as='ul' style={{ position: 'absolute', top: '85px' }} className='AutocompleteText'>
         {query.length > 0 ? searchResults.map((item) => (
           <ListGroup.Item onClick={() => handlerSelect(item)} as='li' variant='light' id={item.id} key={item.id}>
             {' '}
@@ -298,7 +310,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     isAuth: state.auth.isAuth,
     visibleAlert: getVisibleAlert(state.notifications),
