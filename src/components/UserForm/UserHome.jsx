@@ -85,24 +85,32 @@ const UserHome = () => {
           </Col>
         </Row>
         <Row className={classes.heroContent1}>
-          <Col sm='12' md='6' style={{ fontSize: '1.8rem' }}>
-            <Container className='p-5' style={{ padding: '50px, ' }}>
-              <br />
-              <br />
+          <Col md='3' />
+          <Col sm='12' md='4' style={{ fontSize: '1.8rem', margin: 'auto' }}>
+            <Container style={{ padding: '50px' }}>
               <h1 className='text-center p-2' style={{ fontSize: '1.8rem' }}>
-                Que queremos?
+                ¿Que queremos?
               </h1>
               <Typography variant='h4' style={{ fontSize: '1.2rem' }} align='center' paragraph>
                 Apoyarnos los unos a los otros,
-                por eso aportamos nuestro conocimiento
+                por eso aportamos nuestros conocimientos
+                en la tecnologia para brindarte la mayor
+                ayuda posible en esta esta situacion de
+                pandemia.
               </Typography>
             </Container>
           </Col>
-          <Col align='left' sm='10' md='5'>
+          <Col align='left' sm='10' md='4'>
             <img className='w-100' alt='port' style={{ maxWidth: '500px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
           </Col>
         </Row>
-        <Row>
+        <Container style={{ display: 'flex', justifyContent: 'center' }}>
+          <video width='320' height='540' style={{ outline: 'none' }} controls>
+            <source src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fvideos%2FcontrolAppMovil.mp4?alt=media&token=e5f0ba0b-ac13-4212-9724-dd354dcf21c3' type='video/mp4' />
+            <p>This browser does not support the video element.</p>
+          </video>
+        </Container>
+        {/* <Row>
           <Col style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '50px' }}>
             <Grid item container xs={3} alignItems='flex-end' direction='column'>
               <Grid item>
@@ -153,7 +161,7 @@ const UserHome = () => {
             </Grid>
           </Col>
 
-        </Row>
+        </Row> */}
         {/* <Container className={classes.cardGrid} maxWidth='md'>
           <Grid container spacing={4}>
             {cards.map((card) => (
