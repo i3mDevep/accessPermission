@@ -23,7 +23,7 @@ const saveClient = (idBusiness, content, db) => {
 
 export const addClient = (idBusiness, content) => {
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
-  const docRef = `business/${idBusiness}/clients/${content.identification}/traking`;
+  const docRef = `business/${idBusiness}/clients/${content.identification}/tracking`;
   return (dispatch) => {
     const db = firebase.firestore().collection('business').doc(idBusiness).collection('clients');
     dispatch({ type: 'REQUEST_CLIENT' });
@@ -32,10 +32,12 @@ export const addClient = (idBusiness, content) => {
         .then((doc) => {
           if (!doc.exists) {
             console.log('el documento No existe');
-            return db.doc(content.identification).set({ ...content, time: currentTime });
+            return db.doc(content.identification).set({ ...content, time: currentTime }).then(() => {
+              return firebase.firestore().collection(docRef).add({ ...content, time: currentTime });
+            });
           }
           console.log('el documento  existe');
-          return docRef.update({ ...content, time: currentTime });
+          return firebase.firestore().collection(docRef).add({ ...content, time: currentTime });
 
         })
         .then(() => {
@@ -47,6 +49,7 @@ export const addClient = (idBusiness, content) => {
             showCancel: false,
           })(dispatch);
           dispatch({ type: 'CREATE_CLIENT_SUCCESS' });
+          resolve('melo!');
         })
         .catch((e) => reject(e));
     });
