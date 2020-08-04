@@ -20,11 +20,7 @@ import Client from '../pages/company/Client';
 import PricesPage from '../pages/PricesPage';
 import UserHomePage from '../pages/UserHomePage';
 import ClientPointPage from '../pages/subcompany/ClientPointPage';
-<<<<<<< HEAD
-import ComingSoon from '../components/CommingSoon/CommingSoon';
-=======
 import Informs from '../pages/company/Informs';
->>>>>>> fff248df0ea58975f88ff06d0dc9aae0ee562636
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
 import 'firebase/firestore';
