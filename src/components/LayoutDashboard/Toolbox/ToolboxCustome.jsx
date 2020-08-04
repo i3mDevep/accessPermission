@@ -38,7 +38,7 @@ const myicons = [
   <MdFiberNew color='white' size='20' />];
 
 const messages = ['Dashboard', 'Empleados', 'Nomina', 'Clientes', 'Informes', 'Alertas', 'Registrar', 'Sedes'];
-const links = ['/dashboard', '/worker', '/payroll', '/client', '/informes', '/alertas', '/generateqr', '/sedes'];
+const links = ['/dashboard', '/worker', '/payroll', '/client', '/informs', '', '/generateqr', '/sedes'];
 
 const themer = createMuiTheme({
   typography: {
@@ -121,6 +121,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    overflow: 'hidden',
     padding: theme.spacing(3),
     '@media (max-width: 508px)': {
       padding: '24px 0',

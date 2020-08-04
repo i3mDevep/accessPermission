@@ -225,7 +225,7 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
         type: paytraking.action === 'in' ? <GpsFixedIcon style={{ color: '#21bf73' }} /> : <GpsFixedIcon style={{ color: 'red' }} />,
       });
     } catch (err) {
-
+      console.log('sucedio error en tracking company');
     }
   });
 

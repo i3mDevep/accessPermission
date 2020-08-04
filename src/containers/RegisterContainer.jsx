@@ -8,9 +8,9 @@ const RegisterContainer = ({ showAlert }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState('');
 
-  const handlerOnsubmit = async ({ email, password, company, celphone, address, city }) => {
+  const handlerOnsubmit = async ({ email, password, company, celphone, address, city, plan }) => {
     setLoading(true);
-    const data = { email, password, company, celphone, address, city, displayName: company };
+    const data = { email, password, company, celphone, address, city, myplan: plan, displayName: company };
     try {
       const config = {
         method: 'POST',
