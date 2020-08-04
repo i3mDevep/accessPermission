@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
-import InformsControlCard from '../../components/InformsComponent/InformsControlCard';
+import { WorkerCard, WorkerTrackingCard } from '../../components/InformsComponent';
 
 const Informs = ({ isAuth }) => {
   if (isAuth.myplan !== 'Pro') {
@@ -20,8 +20,8 @@ const Informs = ({ isAuth }) => {
   }
   return (
     <Container fluid style={{ height: '100%', marginTop: '50px', overflow: 'hiden', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-      <InformsControlCard title='Empleados registrados' description='empleados actuales' image='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdlcGr4z9WmjGSyyAdTKq0JPRBP_slPFvxqA&usqp=CAU' />
-      <InformsControlCard title='Control empleados' description='seguimiento de empleados' image='https://www.constructshow.com/content/informa/construct-show/en/register/_jcr_content/par_page/column_control/par-col-1/column_control_12856/par-col-1/image.img.png/1559654426259.png' />
+      <WorkerCard title='Empleados registrados' description='empleados actuales' image='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdlcGr4z9WmjGSyyAdTKq0JPRBP_slPFvxqA&usqp=CAU' />
+      <WorkerTrackingCard title='Control empleados' description='seguimiento de empleados' image='https://www.constructshow.com/content/informa/construct-show/en/register/_jcr_content/par_page/column_control/par-col-1/column_control_12856/par-col-1/image.img.png/1559654426259.png' />
     </Container>
   );
 
