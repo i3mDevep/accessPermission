@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button, Form, Col, ListGroup, Alert} from 'react-bootstrap';
+import { Modal, Button, Form, Col, ListGroup, Alert } from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid';
 import { MdErrorOutline } from 'react-icons/md';
 import DateFnsUtils from '@date-io/date-fns';
@@ -14,16 +14,20 @@ import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
 
-const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients }) => {
+const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients, sendData }) => {
 
+  const [name, setName] = useState('');
+  const [Changeentification, setIdentification] = useState();
+  const [query, setQyery] = useState();
   const Name = useInputValue('');
-  const Identification = useInputValue('');
+  const Identification = useInputValue(' ');
   const Address = useInputValue('');
   const Celphone = useInputValue('');
   const Gender = useInputValue('');
   const Temperature = useInputValue('');
 
-  console.log(clients);
+  console.log('data', query);
+  console.log('data2', Identification);
 
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
@@ -31,11 +35,13 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
     setSelectedDate(date);
   };
 
+
   const handlerOnSubmit = (event) => {
+    console.log(Identification);
     event.preventDefault();
     onSubmit({
-      identification: Identification.value,
-      name: Name.value,
+      identification: Changeentification,
+      name: name,
       address: Address.value,
       gender: Gender.value,
       temperature: Temperature.value,
@@ -62,6 +68,12 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
               <Form.Label>Documento</Form.Label>
               <SearchClient
                 info={clients}
+                //{...Identification}
+                sendData={(mydata) => {
+                  console.log('mydata: ', mydata);
+                  setName(mydata.name);
+                  setIdentification(mydata.identification);
+                }}
               />
             </Form.Group>
             <Form.Row>
@@ -69,7 +81,8 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
                 <Form.Label>Nombre y Apellido</Form.Label>
                 <Form.Control
                   required={true}
-                  {...Name}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   type='text'
                   placeholder='Ingrese un Nombre'
                 />
@@ -158,11 +171,17 @@ function SearchClient({ info = [], sendData }) {
   const [searchResults, setSearchResults] = useState([]);
   const [aux, setAux] = useState(true);
   const [blocked, setBlocked] = useState(true);
-  //console.log(info)
+
+
+  const [ name, setName] = useState('');
+  const [ gender, setGender] = useState('');
+
+  //console.log(info) 
   // Recibo los eventos del input en setQuery
   // y habilito la bandera True para permitir la busqueda de nuevo
   const handleChange = (event) => {
     setQuery(event.target.value);
+    sendData({ identification: event.target.value, name, gender });
     setAux(true);
   };
 
@@ -174,7 +193,7 @@ function SearchClient({ info = [], sendData }) {
     } else {
       setBlocked(false);
     }
-  }, [blocked]);
+  }, []);
 
   useEffect(() => {
     if (aux) {
@@ -187,18 +206,22 @@ function SearchClient({ info = [], sendData }) {
     setAux(false);
     setQuery(item.identification);
     setSearchResults([]);
-    sendData({ name: item.name, identification: item.identification });
+    setName(item.name);
+    setGender(item.gender);
+    sendData({ identification: item.identification, name: item.name, gender: item.gender });
+
+    //sendData({ name: item.name, identification: item.identification, query });
+    console.log(item);
   };
   return (
     <>
       <Form.Control
         placeholder='Busqie o cree un cliente '
         value={query}
-        disabled={blocked}
         autoComplete='off'
         onChange={(handleChange)}
       />
-      <ListGroup as='ul' style={{ position: 'absolute', top: '85px',  display: 'block' }} className='AutocompleteText'>
+      <ListGroup as='ul' style={{ position: 'absolute', zIndex: 100, top: '85px', display: 'block' }} className='AutocompleteText'>
         {query.length > 0 ? searchResults.map((item) => (
           <ListGroup.Item onClick={() => handlerSelect(item)} as='li' variant='light' id={item.id} key={item.id}>
             {' '}

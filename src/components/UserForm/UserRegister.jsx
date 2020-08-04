@@ -21,7 +21,12 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email: email.value,
+    if (!plan.value) {
+      alert('Seleccione un plan!');
+      return;
+    }
+    onSubmit({
+      email: email.value,
       password: password.value,
       company: company.value,
       celphone: chellphone.value,
@@ -50,7 +55,6 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
             <Form.Group controlId='formCompany'>
               <Form.Label>Compañia</Form.Label>
               <ControlForm
-                placeholder='Compañia'
                 disabled={loading}
                 type='text'
                 required={true}
@@ -140,7 +144,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 <option hidden>Seleccione una opción</option>
                 <option value='Free'>Free</option>
                 <option value='Pro'>Pro</option>
-                <option value='Otro'>Enterprise</option>
+                {/* <option value='Otro'>Enterprise</option> */}
               </Form.Control>
             </Form.Group>
             { error && (
@@ -156,7 +160,6 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                   width: '80%',
                 }}
                 disabled={loading}
-                onClick={!loading ? handlerSubmit : null}
               >
                 {loading ? 'Guardando' : 'Completar Registro'}
               </Button>
