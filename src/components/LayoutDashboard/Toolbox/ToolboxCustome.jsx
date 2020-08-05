@@ -180,7 +180,7 @@ const ToolboxCustome = ({ children, isAuth }) => {
               <MenuIcon />
             </IconButton>
             <Typography variant='h5' noWrap>
-              { window.location.pathname.slice(1).toUpperCase() }
+              { isAuth.displayName }
             </Typography>
             <div style={{ marginLeft: 'auto' }}>
               <IconButton

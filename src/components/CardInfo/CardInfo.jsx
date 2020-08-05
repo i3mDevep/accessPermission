@@ -24,7 +24,7 @@ const CardInfoUsers = ({ inforcards }) => {
   const { Users, Men, Women, Children, Tracking } = inforcards;
   return (
 
-    <CardDeck>
+    <CardDeck style={{ minWidth: '200px' }}>
       <Target title='Clientes' value={Users.value} text={typeof Users.time === 'object' && moment(Users.time.toDate().toISOString()).calendar()}>
         <FiUsers size='30px' />
       </Target>
@@ -60,7 +60,7 @@ const CardInfoWorker = ({ inforcardsWorker }) => {
   }
   const { Worker, Men, Women } = inforcardsWorker;
   return (
-    <CardDeck>
+    <CardDeck style={{ minWidth: '200px' }}>
       <Target title='Worker' value={Worker.value} text={typeof Worker.time === 'object' && moment(Worker.time.toDate().toISOString()).calendar()}>
         <FiUsers size='30px' />
       </Target>
