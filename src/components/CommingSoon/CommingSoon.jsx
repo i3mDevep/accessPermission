@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Row, Col, ListGroup, Alert } from 'react-bootstrap';
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
@@ -8,20 +7,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import { PayPalButton } from 'react-paypal-button-v2';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import EmojiEmotionsTwoToneIcon from '@material-ui/icons/EmojiEmotionsTwoTone';
 import SentimentVerySatisfiedTwoToneIcon from '@material-ui/icons/SentimentVerySatisfiedTwoTone';
 import SentimentSatisfiedTwoToneIcon from '@material-ui/icons/SentimentSatisfiedTwoTone';
@@ -31,7 +21,6 @@ import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import AppsIcon from '@material-ui/icons/Apps';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import ModalDonate from './ModalDonate';
 
 const Transition = React.forwardRef((props, ref) => {

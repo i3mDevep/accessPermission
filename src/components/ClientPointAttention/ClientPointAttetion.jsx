@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button, Form, Col, ListGroup, Alert } from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid';
-import { MdErrorOutline } from 'react-icons/md';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -13,7 +12,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
-import { setGlobalCssModule } from 'reactstrap/lib/utils';
+
 
 const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients, sendData }) => {
 

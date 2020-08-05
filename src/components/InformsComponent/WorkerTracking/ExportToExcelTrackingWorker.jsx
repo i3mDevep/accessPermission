@@ -16,7 +16,6 @@ const ExportToExcelTrackingWorker = forwardRef(({ data }, ref) => {
         <ExcelExportColumn field='time' title='Fecha-Hora' />
         <ExcelExportColumn field='temperature' title='Temperatuara' />
         <ExcelExportColumn field='address' title='Gps' />
-
       </ExcelExport>
     </div>
   );
