@@ -32,9 +32,6 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
   const Gender = useInputValue('');
   const Temperature = useInputValue('');
 
-  console.log('data', query);
-  console.log('data2', Identification);
-
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
   const handleDateChange = (date) => {

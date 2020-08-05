@@ -7,6 +7,13 @@ import PropTypes from 'prop-types';
 import { MdErrorOutline } from 'react-icons/md';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import Grid from '@material-ui/core/Grid';
 import useInputValue from '../../hooks/useInputValue';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
@@ -31,6 +38,11 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   const Contrate = useInputValue('');
   const Cargo = useInputValue('');
   const [Sede, setSede] = useState({ value: '', id: '' });
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +53,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           identification: Identification.value,
           address: Address.value,
           celphone: Celphone.value,
-          age: parseInt(Age.value, 10),
+          age: selectedDate,
           gender: Gender.value,
           email: Email.value,
           salary: Salary.value,
@@ -183,14 +195,23 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
             </Form.Row>
             <Form.Row>
               <Form.Group as={Col} controlId='Age'>
-                <Form.Label>Edad</Form.Label>
-                <Form.Control
-                  type='number'
-                  placeholder='Edad del empleado'
-                  {...Age}
-                  required
-                  disabled={blocked}
-                />
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <Grid container justify='space-around'>
+                    <KeyboardDatePicker
+                      disableToolbar
+                      variant='inline'
+                      format='MM/dd/yyyy'
+                      margin='normal'
+                      id='date-picker-inline'
+                      label='Fecha de Nacimiento'
+                      value={selectedDate}
+                      onChange={handleDateChange}
+                      KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                      }}
+                    />
+                  </Grid>
+                </MuiPickersUtilsProvider>
               </Form.Group>
 
               <Form.Group as={Col} controlId='Gender'>

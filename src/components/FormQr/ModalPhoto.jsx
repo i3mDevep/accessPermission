@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import Webcam from 'react-webcam';
 import { Modal, Button } from 'react-bootstrap';
 
+
 const ModalPhoto = ({ show, onHide }) => {
   const webcamRef = useRef(null);
 
