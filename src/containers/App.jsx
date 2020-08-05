@@ -20,11 +20,8 @@ import Client from '../pages/company/Client';
 import PricesPage from '../pages/PricesPage';
 import UserHomePage from '../pages/UserHomePage';
 import ClientPointPage from '../pages/subcompany/ClientPointPage';
-<<<<<<< HEAD
-import ComingSoon from '../components/CommingSoon/CommingSoon';
-=======
 import Informs from '../pages/company/Informs';
->>>>>>> fff248df0ea58975f88ff06d0dc9aae0ee562636
+import ComingSoon from '../components/CommingSoon/CommingSoon';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -51,8 +48,7 @@ const LoggedInRoutesWithbusiness = [
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='/' path='/' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='client' path='/client' exact={true} component={Client} />,
-  <Route key='informes' path='/informes' exact={true} component={ComingSoon} />,
-  <Route key='alertas' path='/alertas' exact={true} component={ComingSoon} />,
+  <Route key='alertas' path='/alerts' exact={true} component={ComingSoon} />,
   <Route key='dashboard' path='/dashboard' exact={true} component={Dashboard} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
   <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
@@ -71,7 +67,7 @@ const LoggedInRoutesWithOutbusiness = [
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
   <Route key='clientpoint' path='/clientpoint' exact={true} component={ClientPointPage} />,
   <Route key='notificationpoint' path='/notificationpoint' exact={true} component={ComingSoon} />,
-  <Route key='clientpoint' path='/infor' exact={true} component={ComingSoon} />,
+  <Route key='infor' path='/infor' exact={true} component={ComingSoon} />,
   <Route key='/' path='/' exact={true} component={() => <Redirect to='/home' />} />,
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='register' path='/register' exact={true} component={() => <Redirect to='/userhomepage' />} />,
