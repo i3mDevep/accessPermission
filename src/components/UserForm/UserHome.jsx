@@ -71,7 +71,7 @@ const UserHome = () => {
       <Background>
         <HeaderNavBar />
       </Background>
-      <body>
+      <div style={{ overflow: 'hidden' }}>
         {/* Hero unit */}
         <Row className={classes.heroContent}>
           <Col sm='12' md='6'>
@@ -224,7 +224,7 @@ const UserHome = () => {
             </Col>
           </Row>
         </Container>
-      </body>
+      </div>
       {/* Footer */}
       <footer className={classes.footer}>
         <Row>
