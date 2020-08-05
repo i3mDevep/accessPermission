@@ -3,12 +3,12 @@ import React from 'react';
 import { Nav, Container, Row, Col, NavItem, NavLink } from 'react-bootstrap';
 import './Footer.scss';
 
-class Footer extends React.Component {
+class Footer extends React.Component { 
   render() {
     return (
       <footer className='p-2 footer_home'>
         <Container>
-          <Row className='align-items-center justify-content-xl-between'>
+          <Row className='align-items-center justify-content-xl-between '>
             <Col xl='6'>
               <div className='copyright text-center text-xl-left footer_color '>
                 © 2014
@@ -47,7 +47,7 @@ class Footer extends React.Component {
                     href='https://www.ardobot.co'
                     target='_blank'
                   >
-                    MIT License
+                    Donaciones
                   </NavLink>
                 </NavItem>
               </Nav>

@@ -11,7 +11,9 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { Background } from './style';
 import HeaderNavBar from '../LayoutUserForm/Header';
+import Footer from '../LayoutUserForm/Footer';
 import './userhome.scss';
+import '../LayoutUserForm/Footer.scss';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -237,6 +239,7 @@ const UserHome = () => {
           </Col>
         </Row>
       </footer>
+      <Footer />
       {/* End footer */}
     </>
   );
