@@ -71,7 +71,7 @@ const UserHome = () => {
       <Background>
         <HeaderNavBar />
       </Background>
-      <div>
+      <body>
         {/* Hero unit */}
         <Row className={classes.heroContent}>
           <Col sm='12' md='6'>
@@ -224,7 +224,7 @@ const UserHome = () => {
             </Col>
           </Row>
         </Container>
-      </div>
+      </body>
       {/* Footer */}
       <footer className={classes.footer}>
         <Row>
