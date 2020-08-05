@@ -6,6 +6,9 @@ import Container from '@material-ui/core/Container';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Row, Col } from 'react-bootstrap';
 import { FaReact } from 'react-icons/fa';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
 import { Background } from './style';
 import HeaderNavBar from '../LayoutUserForm/Header';
 import './userhome.scss';
@@ -42,6 +45,19 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: '#004876',
     padding: theme.spacing(6),
+  },
+  img: {
+    padding: theme.spacing(2, 0, 0, 0),
+    //textAlign: 'center',
+  },
+  text: {
+    margin: theme.spacing(2),
+    padding: theme.spacing(5, 0, 0, 0),
+    textAlign: 'center',
+    variant: 'h4',
+    direction: 'column',
+    fontSize: '0.8rem',
+    color: theme.palette.text.primary,
   },
 }));
 
@@ -95,95 +111,108 @@ const UserHome = () => {
             <img className='w-100' alt='port' style={{ maxWidth: '500px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
           </Col>
         </Row>
-        <Container style={{ display: 'flex', justifyContent: 'center' }}>
-          <video muted width='320' height='540' style={{ outline: 'none' }} autoPlay>
-            <source src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fvideos%2FcontrolAppMovil.mp4?alt=media&token=e5f0ba0b-ac13-4212-9724-dd354dcf21c3' type='video/mp4' />
-            <p>This browser does not support the video element.</p>
-          </video>
-        </Container>
-        {/* <Row>
-          <Col style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '50px' }}>
-            <Grid item container xs={3} alignItems='flex-end' direction='column'>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Ftemperatura.png?alt=media&token=e622475c-6ceb-4937-93a2-a0f0c911e127' />
+        <Container style={{ overflow: 'hidden', display: 'flex' }}>
+          <Grid container alignItems='flex-start' direction='column' spacing={1}>
+            <Grid container>
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Registro de Temperatúra' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Ftemperatura.png?alt=media&token=e622475c-6ceb-4937-93a2-a0f0c911e127' />
               </Grid>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fcontrol%20de%20fechas.png?alt=media&token=3c94d7a5-6ced-47d5-86f4-6f87a2eead81' />
-              </Grid>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fcuestionarios.png?alt=media&token=0201c4f5-5306-401e-989f-e16b523c1485' />
-              </Grid>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fdescarga.png?alt=media&token=28f16383-851e-45ea-9e4f-86c827fd62ba' />
-              </Grid>
-            </Grid>
-            <Grid item container xs={3} md={10} alignItems='flex-center' direction='row'>
-              <Grid item>
-                <Typography variant='caption' align='center' paragraph>
-                  *Aplican Terminos y Condiciones
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant='caption' align='center' paragraph>
-                  *Aplican Terminos y Condiciones
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant='caption' align='center' paragraph>
-                  *Aplican Terminos y Condiciones
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Registro de Temeperatúra de Clientes y Empleados.
                 </Typography>
               </Grid>
             </Grid>
-          </Col>
-          <Col style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '50px' }}>
-            <Grid item xs={6} alignItems='flex-end' direction='row'>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Freloj.png?alt=media&token=a583adfa-3416-466f-9d64-f3f0e37ecc69' />
+            <Grid container>
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Registro de los datos generales de clientes y empleados
+                </Typography>
               </Grid>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Finformes.png?alt=media&token=5502e0a4-a3ad-4696-9d5f-56427fd7be89' />
-              </Grid>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fregistro.png?alt=media&token=a23f76b2-c093-4a0b-ae5c-4429c24829d8' />
-              </Grid>
-              <Grid item>
-                <CircleImage title='Escaner de cedula' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Flocalizacion.png?alt=media&token=1553e202-5134-45fe-be3d-04ddc368443b' />
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Registro de clientes, datos etc.' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fregistro.png?alt=media&token=a23f76b2-c093-4a0b-ae5c-4429c24829d8' />
               </Grid>
             </Grid>
-          </Col>
-
-        </Row> */}
-        {/* <Container className={classes.cardGrid} maxWidth='md'>
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image='https://source.unsplash.com/random'
-                    title='Image title'
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant='h5' component='h2'>
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size='small' color='primary'>
-                      View
-                    </Button>
-                    <Button size='small' color='primary'>
-                      Edit
-                    </Button>
-                  </CardActions>
-                </Card>
+            <Grid container>
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Cuestionarios' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fcuestionarios.png?alt=media&token=0201c4f5-5306-401e-989f-e16b523c1485' />
               </Grid>
-            ))}
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Gestión de cuestionarios: Para la evaluación general del estado de salud,
+                  cuyas preguntas y contenido se pueden personalizar.
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Localización de clientes y empleados: A través de la lectura de código
+                  QR o documentos de identidad, usted podrá estar enterado donde se encuentra
+                  el personal de su interés.
+                </Typography>
+              </Grid>
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Registro de clientes, datos etc.' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Flocalizacion.png?alt=media&token=1553e202-5134-45fe-be3d-04ddc368443b  ' />
+              </Grid>
+            </Grid>
           </Grid>
-        </Container> */}
+
+          <Grid container spacing={2}>
+            <Grid item xs={6} sm={6}>
+              <video muted width='320' height='540' style={{ outline: 'none' }} autoPlay>
+                <source src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fvideos%2FcontrolAppMovil.mp4?alt=media&token=e5f0ba0b-ac13-4212-9724-dd354dcf21c3' type='video/mp4' />
+                <p>This browser does not support the video element.</p>
+              </video>
+            </Grid>
+          </Grid>
+
+          <Grid container alignItems='flex-start' direction='column' spacing={1}>
+            <Grid container>
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Registro de Temperatúra' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Freloj.png?alt=media&token=a583adfa-3416-466f-9d64-f3f0e37ecc69' />
+              </Grid>
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Control en Tiempo Real: Nuestro sistema está basado en bases de datos en tiempo real.
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Gestión alarmas internas: En los casos en los que una persona no cumpla con las
+                  condiciones necesarias.
+                </Typography>
+              </Grid>
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Alarmas.' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Falarma.png?alt=media&token=3beb929b-96c6-4259-9c5e-bebbc79b099b' />
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Descarga Nuesta App' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fdescarga.png?alt=media&token=28f16383-851e-45ea-9e4f-86c827fd62ba' />
+              </Grid>
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Nuesta App es de uso gratuito, compatible con dispositivos Android.
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid xs={8}>
+                <Typography className={classes.text} paragraph>
+                  Nómina: Mediante la lectura de códigos QR
+                  y/o documento de identidad, usted podrá saber cuál es la hora de entrada y salida
+                  de sus empleados, o las horas pico de mayor afluencia de sus clientes.
+                </Typography>
+              </Grid>
+              <Grid xs={3} className={classes.img} item>
+                <CircleImage title='Nómina.' URL='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fcontrol%20de%20fechas.png?alt=media&token=8effece5-f9ef-430b-9215-877b2e8f035e' />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container>
       </body>
       {/* Footer */}
       <footer className={classes.footer}>
@@ -216,7 +245,7 @@ const UserHome = () => {
 const CircleImage = ({ URL, title }) => {
   return (
     <Tooltip title={title} placement='left-end'>
-      <Button style={{ borderRadius: '100%' }}>
+      <Button style={{ borderRadius: '100%', maxWidth: '10%' }}>
         <img style={{ width: '100px' }} alt='imagecircle' src={URL} />
       </Button>
     </Tooltip>

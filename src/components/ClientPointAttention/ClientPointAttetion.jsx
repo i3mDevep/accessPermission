@@ -13,12 +13,18 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
+import { setGlobalCssModule } from 'reactstrap/lib/utils';
 
 const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients, sendData }) => {
 
   const [name, setName] = useState('');
   const [Changeentification, setIdentification] = useState();
-  const [query, setQyery] = useState();
+  const [gender, setGender] = useState();
+  const [telphone, setTelphone] = useState();
+  const [age, setAge] = useState();
+  const [address, setAddress] = useState();
+  const [query, setQuery] = useState();
+
   const Name = useInputValue('');
   const Identification = useInputValue(' ');
   const Address = useInputValue('');
@@ -35,18 +41,17 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
     setSelectedDate(date);
   };
 
-
   const handlerOnSubmit = (event) => {
     console.log(Identification);
     event.preventDefault();
     onSubmit({
       identification: Changeentification,
-      name: name,
+      name,
       address: Address.value,
       gender: Gender.value,
       temperature: Temperature.value,
       age: selectedDate,
-      telphone: Celphone.value,
+      cellphone: Celphone.value,
     });
   };
 
@@ -73,6 +78,10 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
                   console.log('mydata: ', mydata);
                   setName(mydata.name);
                   setIdentification(mydata.identification);
+                  setGender(mydata.gender);
+                  setTelphone(mydata.telphone);
+                  setAge(mydata.age);
+                  setAddress(mydata.address);
                 }}
               />
             </Form.Group>
@@ -172,11 +181,10 @@ function SearchClient({ info = [], sendData }) {
   const [aux, setAux] = useState(true);
   const [blocked, setBlocked] = useState(true);
 
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
 
-  const [ name, setName] = useState('');
-  const [ gender, setGender] = useState('');
-
-  //console.log(info) 
+  //console.log(info)
   // Recibo los eventos del input en setQuery
   // y habilito la bandera True para permitir la busqueda de nuevo
   const handleChange = (event) => {
@@ -208,26 +216,33 @@ function SearchClient({ info = [], sendData }) {
     setSearchResults([]);
     setName(item.name);
     setGender(item.gender);
-    sendData({ identification: item.identification, name: item.name, gender: item.gender });
+    sendData({
+      identification: item.identification,
+      name: item.name,
+      gender: item.gender,
+      age: item.age,
+      address: item.address,
+      telphone: item.telphone,
+    });
 
     //sendData({ name: item.name, identification: item.identification, query });
-    console.log(item);
   };
   return (
     <>
       <Form.Control
-        placeholder='Busqie o cree un cliente '
+        placeholder='Busque o cree un cliente '
         value={query}
         autoComplete='off'
         onChange={(handleChange)}
       />
-      <ListGroup as='ul' style={{ position: 'absolute', zIndex: 100, top: '85px', display: 'block' }} className='AutocompleteText'>
+      <ListGroup as='ul' style={{ position: 'absolute', zIndex: 100, top: '85px', display: 'flex' }} className='AutocompleteText'>
         {query.length > 0 ? searchResults.map((item) => (
           <ListGroup.Item onClick={() => handlerSelect(item)} as='li' variant='light' id={item.id} key={item.id}>
-            {' '}
             {item.identification}
-            {' '}
+            {' / '}
             {item.name}
+            {' / '}
+            {item.telphone}
           </ListGroup.Item>
         )) : ' '}
       </ListGroup>

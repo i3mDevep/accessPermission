@@ -26,15 +26,17 @@ import EmojiEmotionsTwoToneIcon from '@material-ui/icons/EmojiEmotionsTwoTone';
 import SentimentVerySatisfiedTwoToneIcon from '@material-ui/icons/SentimentVerySatisfiedTwoTone';
 import SentimentSatisfiedTwoToneIcon from '@material-ui/icons/SentimentSatisfiedTwoTone';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import AppsIcon from '@material-ui/icons/Apps';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import { Hidden } from '@material-ui/core';
+import ModalDonate from './ModalDonate';
+
+const Transition = React.forwardRef((props, ref) => {
+  return <Slide direction='down' ref={ref} {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     //display: 'block',
     // flexGrow: 1,
-    padding: theme.spacing(10),
+    padding: theme.spacing(2, 20, 2, 20),
     overflow: 'hidden',
   },
   content: {
@@ -55,9 +57,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: [
       'poppins',
     ].join(','),
-  },
-  textField: {
-    width: '25ch',
   },
   paper: {
     padding: theme.spacing(2),
@@ -111,10 +110,6 @@ const styles = (theme) => ({
 
 });
 
-const Transition = React.forwardRef((props, ref) => {
-  return <Slide direction='down' ref={ref} {...props} />;
-});
-
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose } = props;
   return (
@@ -136,16 +131,9 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-const DialogContent = withStyles((theme) => ({
-  root: {
-    margin: 50,
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
 /////////////////////////////////////////// Funcion ////////////////////////////////////////////////////////
 
-const CommingSoon = () => {
+const CommingSoon = ({ data }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -173,13 +161,20 @@ const CommingSoon = () => {
 
   return (
     <>
-      {/* MODAL */}
+      <ModalDonate
+        open={open}
+        onClose={handleClose}
+        amount={amount}
+        onChange={handleChangeTab}
+      />
+
+      {/*}
       <Dialog
         fullWidth={true}
         maxWidth='xs'
         TransitionComponent={Transition}
         onClose={handleClose}
-        aria-labelledby='max-width-dialog-title'
+        //aria-labelledby='max-width-dialog-title'
         open={open}
       >
         <DialogTitle ClassName='text-center' id='customized-dialog-title' onClose={handleClose}>
@@ -198,15 +193,15 @@ const CommingSoon = () => {
             <Grid item xs={12} sm container>
               <Grid item xs container direction='column' spacing={2}>
                 <Grid item xs>
-                  <Typography gutterBottom variant='subtitle1'>
+                  <Typography component={'div'} gutterBottom variant='subtitle1'>
                     Tu contribución es importante
                   </Typography>
-                  <Typography variant='body2' gutterBottom>
+                  <Typography component={'div'} variant='body2' gutterBottom>
                     Con tu contribución sifragramos costos de servidor y permitimos al equipo de desarrollo incluir nuevas funcionalidades para ti.
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant='body2' style={{ cursor: 'pointer' }}>
+                  <Typography component={'div'} variant='body2' style={{ cursor: 'pointer' }}>
                     <Form className='text-center' style={{ padding: '5px' }}>
                       <FormControl variant='filled'>
                         <InputLabel htmlFor='outlined-adornment-amount'> Monto </InputLabel>
@@ -216,7 +211,6 @@ const CommingSoon = () => {
                           value={amount}
                           onChange={handleChange}
                           startAdornment={<InputAdornment position='start'>$</InputAdornment>}
-                          labelWidth={30}
                         />
                       </FormControl>
                     </Form>
