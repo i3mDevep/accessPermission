@@ -164,7 +164,7 @@ const UserHome = () => {
             </Grid>
           </Grid>
 
-          <Grid container spacing={2}>
+          <Grid container direction='column' spacing={10}>
             <Grid item xs={6} sm={6}>
               <video muted width='320' height='540' style={{ outline: 'none' }} autoPlay>
                 <source src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fvideos%2FcontrolAppMovil.mp4?alt=media&token=e5f0ba0b-ac13-4212-9724-dd354dcf21c3' type='video/mp4' />

@@ -64,7 +64,7 @@ const tiers = [
   {
     title: 'Free',
     price: '0',
-    description: ['Diseñado para personas o empresas que tienen 1 solo punto de atención y 1000 registro de entrada y salida mensuales'],
+    description: ['Diseñado para personas o empresas que tienen 1 solo punto de atención y 200 registro de entrada y salida mensuales'],
     buttonText: 'Registrarse',
     buttonVariant: 'outlined',
     data: '/register',
