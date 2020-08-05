@@ -113,7 +113,11 @@ const UserHome = () => {
             <img className='w-100' alt='port' style={{ maxWidth: '500px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
           </Col>
         </Row>
+        <Grid item xs={12}>
+          <h1 className='text-center p-2' style={{ fontSize: '1.8rem', padding: '5' }}> Servicios </h1>
+        </Grid>
         <Container style={{ overflow: 'hidden', display: 'flex' }}>
+
           <Grid container alignItems='flex-start' direction='column' spacing={1}>
             <Grid container>
               <Grid xs={3} className={classes.img} item>
