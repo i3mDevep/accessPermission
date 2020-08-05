@@ -21,6 +21,7 @@ import PricesPage from '../pages/PricesPage';
 import UserHomePage from '../pages/UserHomePage';
 import ClientPointPage from '../pages/subcompany/ClientPointPage';
 import ComingSoon from '../components/CommingSoon/CommingSoon';
+import DonacionesPage from '../pages/DonacionesPage';
 import Informs from '../pages/company/Informs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'firebase/auth';
@@ -85,6 +86,7 @@ const LoggedOut = [
   <Route key='userhomepage' path='/userhomepage' exact={true} component={UserHomePage} />,
   <Route key='/' path='/' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='dashboard' path='/dashboard' exact={true} component={() => <Redirect to='/userhomepage' />} />,
+  <Route key='donate' path='/donaciones' exact={true} component={DonacionesPage} />,
   <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='generateqr' path='/generateqr' exact={true} component={() => <Redirect to='/userhomepage' />} />,
   <Route key='worker' path='/worker' exact={true} component={() => <Redirect to='/userhomepage' />} />,

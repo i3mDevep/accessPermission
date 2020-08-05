@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { BsGem, BsPeopleCircle, BsCompass, BsCloudDownload } from 'react-icons/bs';
+import { BsPeopleCircle, BsCloudDownload } from 'react-icons/bs';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { Navbar, Nav } from 'react-bootstrap';
 import logo from '../../assets/img/brand/ardobot_access.png';
@@ -39,8 +39,12 @@ class HeaderNavBar extends React.Component {
               <a className='mr-3' target='_blank' rel='noreferrer' href='https://play.google.com/store/apps/developer?id=ARDOBOT+ROBOTICA+S.A.S'>
                 {' '}
                 <BsCloudDownload />
-                Descargar App
+                Download App
               </a>
+              <NavLink exact activeClassName='current' className='mr-3' to='/donaciones'>
+                {' '}
+                Donar
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

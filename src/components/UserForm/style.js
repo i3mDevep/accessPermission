@@ -30,7 +30,6 @@ export const CardDeckCustome = styled(CardDeck)`
   margin: 10px;
   @media (max-width: 508px) {
     font-size:calc(11px + .23vw);
-
   }
 `;
 

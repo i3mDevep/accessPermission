@@ -41,15 +41,6 @@ class Footer extends React.Component {
                     Contacto
                   </NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink
-                    className='footer_color'
-                    href='https://www.ardobot.co'
-                    target='_blank'
-                  >
-                    Donaciones
-                  </NavLink>
-                </NavItem>
               </Nav>
             </Col>
           </Row>
