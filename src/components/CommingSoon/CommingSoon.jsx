@@ -34,17 +34,22 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import AppsIcon from '@material-ui/icons/Apps';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import { Hidden } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
   root: {
-    flexGrow: 1,
+    //display: 'block',
+    // flexGrow: 1,
+    padding: theme.spacing(10),
+    overflow: 'hidden',
   },
   content: {
-    // flexGrow: 1,
-    // padding: theme.spacing(3),
+    //flexGrow: 1,
+    display: 'flex',
+    //padding: theme.spacing(50),
   },
   typography: {
     fontFamily: [
@@ -88,7 +93,7 @@ const styles = (theme) => ({
     },
   },
   root: {
-    color: theme.palette.secondary.ligth,
+    color: '#ffffff',
     backgroundColor: theme.palette.info.dark,
     //display: 'flex',
     //flexWrap: 'wrap',
@@ -180,7 +185,7 @@ const CommingSoon = () => {
         <DialogTitle ClassName='text-center' id='customized-dialog-title' onClose={handleClose}>
           <BeachAccessIcon />
           {' '}
-          Contribución
+          Gracias
         </DialogTitle>
         <br />
         <Paper className={classes.paper}>

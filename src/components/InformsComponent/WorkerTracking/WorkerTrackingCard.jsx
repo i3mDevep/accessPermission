@@ -1,4 +1,5 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, useRef } from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,6 +10,9 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import Button from '@material-ui/core/Button';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
+import moment from 'moment';
+import ExportToExcelTrackingWorker from './ExportToExcelTrackingWorker';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,8 +43,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InformsControlCard = ({ title, description, image }) => {
+const WorkerTrackingCard = ({ title, description, image, isAuth }) => {
   const classes = useStyles();
+  const [data, setData] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [maxDate, setMaxDate] = useState(() => {
     const dt = new Date();
@@ -49,6 +54,11 @@ const InformsControlCard = ({ title, description, image }) => {
   });
 
   const ref = React.createRef();
+  const refExcel = useRef();
+
+  const download = () => {
+    refExcel.current.save();
+  };
 
   const CustomeButtonCalendar = forwardRef(({ value, onClick, labeldate = 'Fecha de inicio' }, ref) => (
     <div style={{ display: 'block' }}>
@@ -106,9 +116,11 @@ const InformsControlCard = ({ title, description, image }) => {
             aria-label='play/pause'
             onClick={async () => {
               try {
-                const result = await fetch('https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workersregistered?IdCompany=3bYjSGVQlvYVZPtjdnjHw2xBD2J2');
+                const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')}"&dateEnd="${moment(maxDate.toDateString()).format('l')}"`);
                 const res = await result.json();
-                console.log(res);
+                setData(res.result);
+                download();
+                //console.log(res);
               } catch (err) {
                 console.error(err);
               }
@@ -139,8 +151,13 @@ const InformsControlCard = ({ title, description, image }) => {
           />
         </div>
       </div>
-
+      <ExportToExcelTrackingWorker data={data} ref={refExcel} />
     </Card>
   );
 };
-export default InformsControlCard;
+const mapStateProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth,
+  };
+};
+export default connect(mapStateProps, null)(WorkerTrackingCard);

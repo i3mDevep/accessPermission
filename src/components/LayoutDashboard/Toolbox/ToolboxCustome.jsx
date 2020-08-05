@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import firebase from 'firebase/app';
 import { FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaMoneyCheck, FaDatabase } from 'react-icons/fa';
 import { RiQrCodeLine } from 'react-icons/ri';
@@ -129,8 +130,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-export default function ToolboxCustome({ children }) {
+const ToolboxCustome = ({ children, isAuth }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -207,7 +207,7 @@ export default function ToolboxCustome({ children }) {
                 open={open2}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>{isAuth.displayName}</MenuItem>
                 <MenuItem onClick={handleCloseSession}>Logout</MenuItem>
               </Menu>
             </div>
@@ -254,4 +254,12 @@ export default function ToolboxCustome({ children }) {
       </div>
     </ThemeProvider>
   );
-}
+};
+
+const mapStateProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth,
+  };
+};
+
+export default connect(mapStateProps, null)(ToolboxCustome);
