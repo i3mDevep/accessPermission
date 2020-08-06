@@ -120,11 +120,10 @@ const DialogTitle = withStyles(styles)((props) => {
 
 const ModalDonate = ({ open, onClose, amount }) => {
 
-  const [data, setData] = useState(amount);
   const classes = useStyles();
 
   const handleChange = (event) => {
-    setData(event.target.value );
+    setData(event.target.value);
   };
 
   //const amount = data;
