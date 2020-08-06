@@ -156,83 +156,9 @@ const CommingSoon = ({ data }) => {
         amount={amount}
         onChange={handleChangeTab}
       />
-
-      {/*}
-      <Dialog
-        fullWidth={true}
-        maxWidth='xs'
-        TransitionComponent={Transition}
-        onClose={handleClose}
-        //aria-labelledby='max-width-dialog-title'
-        open={open}
-      >
-        <DialogTitle ClassName='text-center' id='customized-dialog-title' onClose={handleClose}>
-          <BeachAccessIcon />
-          {' '}
-          Gracias
-        </DialogTitle>
-        <br />
-        <Paper className={classes.paper}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <ButtonBase className={classes.image}>
-                <img className={classes.img} alt='complex' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fvectorstock_2382722.png?alt=media&token=c24e0fa5-ee3c-4389-b912-97b85c240776' />
-              </ButtonBase>
-            </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  <Typography component={'div'} gutterBottom variant='subtitle1'>
-                    Tu contribución es importante
-                  </Typography>
-                  <Typography component={'div'} variant='body2' gutterBottom>
-                    Con tu contribución sifragramos costos de servidor y permitimos al equipo de desarrollo incluir nuevas funcionalidades para ti.
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography component={'div'} variant='body2' style={{ cursor: 'pointer' }}>
-                    <Form className='text-center' style={{ padding: '5px' }}>
-                      <FormControl variant='filled'>
-                        <InputLabel htmlFor='outlined-adornment-amount'> Monto </InputLabel>
-                        <Input
-                          className='text-center'
-                          id='outlined-adornment-amount'
-                          value={amount}
-                          onChange={handleChange}
-                          startAdornment={<InputAdornment position='start'>$</InputAdornment>}
-                        />
-                      </FormControl>
-                    </Form>
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item />
-            </Grid>
-          </Grid>
-          <PayPalButton
-            amount={amount}
-            options={{
-              clientId: 'AaEEUAMgJ53c-JO7IRu22io-Cs40k_Pei7-2e6whSCnRdEUg7UZn7O8Zy3RSFyyrCHKnrSX3J5juWQ_g',
-            }}
-            // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-            onSuccess={(details, data) => {
-              alert(`Transaction completed by ${details.payer.name.given_name}`);
-
-              // OPTIONAL: Call your server to save the transaction
-              return fetch('/paypal-transaction-complete', {
-                method: 'post',
-                body: JSON.stringify({
-                  orderID: data.orderID,
-                }),
-              });
-            }}
-          />
-        </Paper>
-      </Dialog>
-      {/* MODAL */}
       <div className={classes.root}>
         <CssBaseline />
-        <h3 className='text-center'>Eres importante para nosotros</h3>
+        <h3 className='text-center'>Donaciones</h3>
         <br />
         <Grid item xs={12}>
           <Paper square={false}>
@@ -248,7 +174,7 @@ const CommingSoon = ({ data }) => {
               <Tab icon={<EmojiEmotionsTwoToneIcon />} onClick={(e) => handleClickOpen(10)} label='10 USD' />
               <Tab icon={<SentimentVerySatisfiedTwoToneIcon />} onClick={(e) => handleClickOpen(15)} label='15 USD' />
               <Tab icon={<FavoriteIcon />} onClick={(e) => handleClickOpen(30)} label='30 USD' />
-              <Tab icon={<AttachMoneyIcon />} onClick={(e) => handleClickOpen()} label='Monto Libre' />
+              <Tab icon={<AttachMoneyIcon />} onClick={(e) => handleClickOpen(100)} label='100 USD' />
             </Tabs>
           </Paper>
         </Grid>

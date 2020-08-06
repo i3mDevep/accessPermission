@@ -18,6 +18,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
   const address = useInputValue('');
   const city = useInputValue('');
   const plan = useInputValue('');
+  const nit = useInputValue('');
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +34,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
       address: address.value,
       city: city.value,
       plan: plan.value,
+      nit: nit.value,
     });
   };
 
@@ -58,8 +60,18 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 disabled={loading}
                 type='text'
                 required={true}
-                placeholder='Nombre de tu empresa'
+                placeholder='Nombre de tu empresa '
                 {...company}
+              />
+            </Form.Group>
+            <Form.Group controlId='formNit'>
+              <Form.Label>Identificación</Form.Label>
+              <ControlForm
+                disabled={loading}
+                type='tel'
+                required={true}
+                placeholder='Nit o documento de identidad'
+                {...nit}
               />
             </Form.Group>
             <Form.Group controlId='formEmail'>
@@ -105,7 +117,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                     disabled={loading}
                     type='tel'
                     required={true}
-                    placeholder='Numero'
+                    placeholder='Numero de Contácto'
                     {...chellphone}
                   />
                 </Form.Group>
@@ -114,7 +126,7 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 <Form.Group controlId='formCity'>
                   <Form.Label>Ciudad</Form.Label>
                   <ControlForm
-                    placeholder='Tu ciudad actual'
+                    placeholder='Ciudad'
                     disabled={loading}
                     type='text'
                     required={true}
@@ -123,30 +135,37 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 </Form.Group>
               </Col>
             </Form.Row>
-            <Form.Group controlId='formAddress'>
-              <Form.Label>Dirección</Form.Label>
-              <ControlForm
-                placeholder='Dirección de tu compañia'
-                disabled={loading}
-                type='text'
-                required={true}
-                {...address}
-              />
-            </Form.Group>
-            <Form.Group controlId='formPlan'>
-              <Form.Label>Plan</Form.Label>
-              <Form.Control
-                required={true}
-                disabled={loading}
-                {...plan}
-                as='select'
-              >
-                <option hidden>Seleccione una opción</option>
-                <option value='Free'>Free</option>
-                <option value='Pro'>Pro</option>
-                {/* <option value='Otro'>Enterprise</option> */}
-              </Form.Control>
-            </Form.Group>
+            <Form.Row>
+              <Col>
+                <Form.Group controlId='formAddress'>
+                  <Form.Label>Dirección</Form.Label>
+                  <ControlForm
+                    placeholder='Dirección de tu compañia'
+                    disabled={loading}
+                    type='text'
+                    required={true}
+                    {...address}
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId='formPlan'>
+                  <Form.Label>Plan</Form.Label>
+                  <Form.Control
+                    required={true}
+                    disabled={loading}
+                    {...plan}
+                    as='select'
+                  >
+                    <option hidden>Seleccione una opción</option>
+                    <option value='Free'>Free</option>
+                    <option value='Pro'>Pro</option>
+                    {/* <option value='Otro'>Enterprise</option> */}
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+            </Form.Row>
+
             { error && (
               <Alert variant='danger'>
                 <small>{error}</small>
@@ -164,7 +183,6 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 {loading ? 'Guardando' : 'Completar Registro'}
               </Button>
             </div>
-
           </Form>
         </Card.Body>
       </CardResponsive>
