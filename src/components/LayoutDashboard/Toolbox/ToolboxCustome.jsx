@@ -129,6 +129,11 @@ const useStyles = makeStyles((theme) => ({
       width: '90% !important',
     },
   },
+  itemList: {
+    '&[aria-current]': {
+      backgroundColor: '#21bf73',
+    },
+  },
 }));
 const ToolboxCustome = ({ children, isAuth }) => {
   const classes = useStyles();
@@ -239,6 +244,7 @@ const ToolboxCustome = ({ children, isAuth }) => {
                 button
                 key={text}
                 component={CustomNavLink}
+                className={classes.itemList}
                 to={`${links[index]}`}
               >
                 <ListItemIcon>{ myicons[index] }</ListItemIcon>

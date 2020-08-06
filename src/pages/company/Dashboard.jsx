@@ -7,6 +7,7 @@ import CardsClientsContainer from '../../containers/CompanyContainers/Clients/Ca
 const Dashboard = () => {
   return (
     <Container fluid>
+      <h3 className='text-center m-3'>Dashboard</h3>
       <CardsClientsContainer />
       <ListCardsChart />
       <TableClientsContainer />

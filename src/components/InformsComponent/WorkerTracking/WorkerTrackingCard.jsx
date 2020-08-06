@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const WorkerTrackingCard = ({ title, description, image, isAuth }) => {
+const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) => {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
@@ -115,12 +115,16 @@ const WorkerTrackingCard = ({ title, description, image, isAuth }) => {
           <IconButton
             aria-label='play/pause'
             onClick={async () => {
+              if (isAuth.myplan !== 'Pro') {
+                modalUpdate();
+                return;
+              }
               try {
                 const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')}"&dateEnd="${moment(maxDate.toDateString()).format('l')}"`);
                 const res = await result.json();
                 setData(res.result);
                 download();
-                //console.log(res);
+                console.log(res);
               } catch (err) {
                 console.error(err);
               }

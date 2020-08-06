@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const WorkerCard = ({ title, description, image, isAuth }) => {
+const WorkerCard = ({ title, description, image, isAuth, modalUpdate }) => {
   const classes = useStyles();
   const [data, setData] = useState([]);
 
@@ -64,6 +64,10 @@ const WorkerCard = ({ title, description, image, isAuth }) => {
           <IconButton
             aria-label='play/pause'
             onClick={async () => {
+              if (isAuth.myplan !== 'Pro') {
+                modalUpdate();
+                return;
+              }
               try {
                 const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workersregistered?IdCompany=${isAuth.uid}`);
                 const res = await result.json();

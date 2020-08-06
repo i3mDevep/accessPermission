@@ -9,7 +9,7 @@ import { deleteSubCompany } from '../../store/actions/deleteSubcompanyAction';
 import { ScreenLoading2 } from '../../components/ScreenLoading';
 import SedeComponent from '../../components/Sede/index';
 
-const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, deleteSubCompany, loadingDeleted, workerMain }) => {
+const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, deleteSubCompany, loadingDeleted, workerMain, modalUpdate }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
@@ -48,8 +48,7 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
       },
     };
     setLoading(true);
-    const createSubCompany = firebase
-      .functions().httpsCallable('createSubCompany');
+    const createSubCompany = firebase.functions().httpsCallable('createSubCompany');
     createSubCompany(dataSubCompany)
       .then((response) => {
         setResponse(response);
@@ -88,7 +87,15 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
         response={response}
         onHide={() => setModalShow(false)}
         onClickEdit={handlerOnEditSubCompany}
-        onClickNewSede={() => setModalShow(true)}
+        onClickNewSede={() => {
+          if (isAuth.myplan !== 'Pro') {
+            if (subCompanies.length > 0) {
+              modalUpdate();
+              return;
+            }
+          }
+          setModalShow(true);
+        }}
         onClickDeleted={handlerOnDeletedSubCompany}
         workers={workerMain}
       />

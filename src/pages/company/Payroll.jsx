@@ -5,6 +5,7 @@ import PayrollContainer from '../../containers/CompanyContainers/TrackingContain
 const Payroll = () => {
   return (
     <Container fluid>
+      <h3 className='text-center m-3'>Seguimiento empleados</h3>
       <PayrollContainer />
     </Container>
   ) ;
