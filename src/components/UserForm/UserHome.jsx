@@ -150,7 +150,7 @@ const mainFeaturedPost = {
     'Al usar nuestra plataforma de modo oportuno puede aprovechar al máximo las virtudes de su equipo de trabajo. Somos lo flexibles y ofrecemos funcionalidades de sobra para ajustarnos al estilo y las necesidades específicas de su empresa.',
   image: 'https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_5Artboard%203.png?alt=media&token=b96a7fe5-f7d6-4977-ac64-60bb9f4b4814',
   imgText: 'A tu manera',
-  linkText: 'Contáxtanos',
+  linkText: 'Ver planes y precios',
 };
 
 const UserHome = () => {
@@ -278,34 +278,19 @@ const UserHome = () => {
           {/*Banner Home */}
           <MainFeaturedPost post={mainFeaturedPost} />
 
-          <Grid container className={classes.heroContent2} style={{ backgroundColor: '#fbfbfd' }} alignItems='center'>
-            <br />
-            <Grid item xs={12}>
-              <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='center' paragraph>
-                A tu manera
-              </Typography>
-              <Typography xs={12} variant='h5' className={classes.textHero5} alignItems='center' paragraph>
-                Al usar nuestra plataforma de modo oportuno puede aprovechar al máximo las virtudes de su equipo de trabajo.
-                Somos lo flexibles y ofrecemos funcionalidades de sobra para ajustarnos al estilo y las necesidades específicas de su empresa.
-              </Typography>
-            </Grid>
-            <br />
-            <Grid className='text-center' item xs={12}>
-              <Link to='/prices'>
-                <Button className={classes.marginButton2} align='center' onClick={preventDefault} link='/prices' type='button' variant='contained' color='primary'>
-                  Ver Planes y Precios¡
-                </Button>
-              </Link>
-            </Grid>
-            <br />
-          </Grid>
-
+          {/* Hero Video*/}
           <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent2}>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
-              <img className='w-100' alt='port' style={{ maxWidth: '400%' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F1587993229123.jpg?alt=media&token=b560f305-a537-465c-b04a-8e6ee212f2ea' />
-              {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
+              <Grid container spacing={2}>
+                <Grid item xs={6} sm={6}>
+                  <video muted width='320' height='540' style={{ outline: 'none', margin: 'auto' }} autoPlay>
+                    <source src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fvideos%2FcontrolAppMovil.mp4?alt=media&token=e5f0ba0b-ac13-4212-9724-dd354dcf21c3' type='video/mp4' />
+                    <p>This browser does not support the video element.</p>
+                  </video>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item sm={12} md={5}>
+            <Grid item sm={6} md={5}>
               <Container>
                 <br />
                 <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='center' paragraph>

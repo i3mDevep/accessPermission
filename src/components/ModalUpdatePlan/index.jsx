@@ -1,10 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -25,20 +28,48 @@ const useStyles = makeStyles((theme) => ({
   },
   imageNoAllow: {
     width: '300px',
-    objectFit:'cover',
+    objectFit: 'cover',
   },
 }));
+
+const styles = {
+  dialog: {
+    backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_6Artboard%204.png?alt=media&token=67b3b01c-3c98-4e9a-ae44-26d716f6ad3a)',
+  },
+};
+
+const DialogWithBackgroundImage = withStyles(styles)(({ classes, handleClose, open }) => (
+  <Dialog
+    open={open}
+    onClose={handleClose}
+    aria-labelledby='responsive-dialog-title'
+    classes={{ paper: classes.dialog }}
+    closeAfterTransition
+    BackdropComponent={Backdrop}
+    BackdropProps={{
+      timeout: 500,
+    }}
+    //className={classes.modal}
+  >
+    <DialogTitle id='customized-dialog-title'>Wow such background</DialogTitle>
+    <DialogContent style={{ height: 750, width: 500 }}>
+      The rest of the dialog content
+    </DialogContent>
+  </Dialog>
+));
 
 export default function TransitionsModal({ handleClose, open }) {
   const classes = useStyles();
 
   return (
     <div>
-      <Modal
+      <DialogWithBackgroundImage handleClose={handleClose} open={open} />
+      {/*
+      <Dialog
         disableAutoFocus={true}
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
-        className={classes.modal}
+        //className={classes.modal}
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -51,7 +82,7 @@ export default function TransitionsModal({ handleClose, open }) {
           <div className={classes.paper}>
             <Grid container spacing={2}>
               <Grid item>
-                <img className={classes.imageNoAllow} alt='updateplan' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fnoallow_illustration_x2.png?alt=media&token=eb20b654-5872-4ffa-803e-b2160d16b639' />
+                <img className={classes.imageNoAllow} alt='updateplan' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_6Artboard%204.png?alt=media&token=67b3b01c-3c98-4e9a-ae44-26d716f6ad3a' />
               </Grid>
               <Grid item xs={12} sm container>
                 <Grid item xs container direction='column' spacing={2}>
@@ -76,7 +107,7 @@ export default function TransitionsModal({ handleClose, open }) {
             </Grid>
           </div>
         </Fade>
-      </Modal>
+      </Dialog> */}
     </div>
   );
 }
