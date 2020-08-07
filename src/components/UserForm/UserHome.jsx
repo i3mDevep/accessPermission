@@ -8,12 +8,13 @@ import Container from '@material-ui/core/Container';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Row, Col } from 'react-bootstrap';
 import { FaReact } from 'react-icons/fa';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
-import { Background } from './style';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import HeaderNavBar from '../LayoutUserForm/Header';
+import { Background } from './style';
 import Footer from '../LayoutUserForm/Footer';
 
 import './userhome.scss';
@@ -45,6 +46,23 @@ const useStyles = makeStyles((theme) => ({
     height: '3.4rem',
     backgroundColor: '#F7BE00',
   },
+  marginButton2: {
+    size: 'large',
+    width: '17rem',
+    height: '3.4rem',
+    backgroundColor: '#004876',
+  },
+  textHero5: {
+    padding: theme.spacing(3, 45, 5, 45),
+    fontSize: '1.3rem',
+    color: '#172B4D',
+    align: 'center',
+    '@media (max-width: 540px)': {
+      padding: theme.spacing(1, 1, 1, 1),
+      //width: '90% !important',
+      fontSize: '1.3rem',
+    },
+  },
   heroContentButton: {
     padding: theme.spacing(3, 1, 1, 20),
     backgroundColor: '#1b6ca8',
@@ -62,17 +80,22 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '2.5rem !important',
     },
   },
-  heroContent1: {
-    backgroundColor: 'white',
+  textContent: {
+    fontSize: '3rem',
     padding: theme.spacing(0, 0, 0, 0),
+    '@media (max-width: 600px)': {
+      padding: theme.spacing(0, 1, 1, 1),
+      //width: '90% !important',
+      fontSize: '2rem !important',
+    },
   },
   heroContent: {
     padding: theme.spacing(3, 1, 1, 20),
     backgroundColor: '#1b6ca8',
-    '@media (max-width: 540px)': {
+    '@media (max-width: 600px)': {
       padding: theme.spacing(0, 1, 1, 1),
       //width: '90% !important',
-      fontSize: '2.5rem !important',
+      fontSize: '2rem !important',
     },
   },
 
@@ -87,20 +110,6 @@ const useStyles = makeStyles((theme) => ({
   },
   heroButtons: {
     marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
   },
   footer: {
     backgroundColor: '#004876',
@@ -119,6 +128,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '0.8rem',
     color: theme.palette.text.primary,
   },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
 }));
 
 const UserHome = () => {
@@ -136,12 +156,13 @@ const UserHome = () => {
         <HeaderNavBar />
       </Background>
       <div style={{ overflow: 'hidden' }}>
+
         {/* Hero 1 */}
         <ThemeProvider theme={theme}>
           <Grid container alignItems='flex-start' className={classes.heroContent}>
-            <Grid item sm='12' md='5'>
+            <Grid item sm={12} md={5}>
               <Container>
-                <Typography variant='h1' style={{ fontSize: '3rem', color: '#ffffff' }} align='left' paragraph>
+                <Typography variant='h1' className={classes.textContent} style={{ color: '#ffffff' }} align='left' paragraph>
                   Nuestro sistema reduce el tiempo de entrada y salida de clientes y empleados.
                 </Typography>
                 <Typography variant='h5' style={{ fontSize: '1.5625rem', color: 'white' }} align='left' paragraph>
@@ -149,18 +170,18 @@ const UserHome = () => {
                 </Typography>
               </Container>
             </Grid>
-            <Grid item className={classes.heroImg1} sm='12' md='6'>
+            <Grid item className={classes.heroImg1} sm={12} md={6}>
               <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
           </Grid>
           <Grid container className={classes.heroContentButton}>
             <Grid item xs={3}>
-              <form alignItems='row' className={classes.textInput} noValidate autoComplete='off'>
+              <form className={classes.textInput} noValidate autoComplete='off'>
                 <TextField placeholder='Correo Electrónico' id='outlined-basic' variant='outlined' />
               </form>
             </Grid>
-            <Grid item md='5' xs={10}>
+            <Grid item md={5} xs={10}>
               <Link to='/register'>
                 <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
                   Registrese. !Es grátis¡
@@ -171,7 +192,7 @@ const UserHome = () => {
 
           {/* Hero 2 */}
           <Grid container alignItems='flex-start' className={classes.heroContent2}>
-            <Grid item sm='12' md='5'>
+            <Grid item sm={12} md={5}>
               <Container>
                 <br />
                 <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='left' paragraph>
@@ -182,7 +203,7 @@ const UserHome = () => {
                   y empleados.
                 </Typography>
               </Container>
-              <Grid item md='5' xs={10}>
+              <Grid item md={5} xs={10}>
                 <Link to='/register'>
                   <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
                     Empieza ahora¡
@@ -190,7 +211,7 @@ const UserHome = () => {
                 </Link>
               </Grid>
             </Grid>
-            <Grid item className={classes.heroImg1} sm='12' md='6'>
+            <Grid item className={classes.heroImg1} sm={12} md={6}>
               <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
@@ -198,11 +219,11 @@ const UserHome = () => {
 
           {/* Hero 3 */}
           <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent2}>
-            <Grid item className={classes.heroImg1} sm='12' md='6'>
+            <Grid item className={classes.heroImg1} sm={12} md={6}>
               <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
-            <Grid item sm='12' md='5'>
+            <Grid item sm={12} md={5}>
               <Container>
                 <br />
                 <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='left' paragraph>
@@ -218,7 +239,7 @@ const UserHome = () => {
 
           {/* Hero 4 */}
           <Grid container alignItems='flex-start' className={classes.heroContent2}>
-            <Grid item sm='12' md='5'>
+            <Grid item sm={12} md={5}>
               <Container>
                 <br />
                 <Typography variant='h3' style={{ fontSize: '1.8rem', color: '#172B4D' }} align='left' paragraph>
@@ -227,16 +248,71 @@ const UserHome = () => {
                 <Typography variant='h5' style={{ fontSize: '1.3rem', color: '#172B4D' }} align='left' paragraph>
                   Impulse la productividad dando rienda suelta a su equipo de Marketinkg
                 </Typography>
-                <Typography variant='p' style={{ fontSize: '1rem', color: '#172B4D' }} align='left' paragraph>
+                <Typography component='div' style={{ fontSize: '1rem', color: '#172B4D' }} align='left' paragraph>
                   <ul>
                     <li>Control de ingreso y salida de empleados</li>
+                    <li>Información de clientes, edad y sexo</li>
+                    <li>Horas de mayor afluencía</li>
+                    <li>Número de personas que ingresan a un punto de venta</li>
                   </ul>
                 </Typography>
               </Container>
             </Grid>
-            <Grid item className={classes.heroImg1} sm='12' md='6'>
+            <Grid item className={classes.heroImg1} sm={12} md={6}>
               <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
+            </Grid>
+          </Grid>
+
+          {/* Hero 5 */}
+
+          <Grid container className={classes.heroContent2} style={{ backgroundColor: '#fbfbfd' }} alignItems='center'>
+            <br />
+            <Grid item xs={12}>
+              <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='center' paragraph>
+                A tu manera
+              </Typography>
+              <Typography xs={12} variant='h5' className={classes.textHero5} alignItems='center' paragraph>
+                Al usar nuestra plataforma de modo oportuno puede aprovechar al máximo las virtudes de su equipo de trabajo.
+                Somos lo bastante flexibles y ofrecemos funcionalidades de sobra para ajustarnos al estilo y las necesidades específicas de su empresa.
+              </Typography>
+            </Grid>
+            <br />
+            <Grid className='text-center' item xs={12}>
+              <Link to='/prices'>
+                <Button className={classes.marginButton2} align='center' onClick={preventDefault} link='/prices' type='button' variant='contained' color='primary'>
+                  Planes y Precios¡
+                </Button>
+              </Link>
+            </Grid>
+            <br />
+            <Grid className='text-center' item xs={12}>
+              <Card variant='outlined'>
+                <CardContent>
+                  <img alt='port' style={{ maxWidth: 'auto' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F1587993229123.jpg?alt=media&token=b560f305-a537-465c-b04a-8e6ee212f2ea' />
+                </CardContent>
+                <CardActions>
+                  <Button size='small'>Learn More</Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          </Grid>
+
+          <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent2}>
+            <Grid item className={classes.heroImg1} sm={12} md={6}>
+              <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
+              {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
+            </Grid>
+            <Grid item sm={12} md={5}>
+              <Container>
+                <br />
+                <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='center' paragraph>
+                  Descubra como funciona
+                </Typography>
+                <Typography variant='h5' style={{ fontSize: '1.3rem', color: '#172B4D' }} align='left' paragraph>
+                  Prueba nuestro
+                </Typography>
+              </Container>
             </Grid>
           </Grid>
 
@@ -356,19 +432,19 @@ const UserHome = () => {
       {/* Footer */}
       <footer className={classes.footer}>
         <Row>
-          <Col sm='12' md='4' style={{ textAlign: 'center', padding: '20px' }}>
+          <Col sm={12} md={4} style={{ textAlign: 'center', padding: '20px' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Powered by</h4>
             <br />
             <FaReact size={100} color='white' />
             <br />
           </Col>
-          <Col sm='12' md='4' style={{ textAlign: 'center', padding: '20px' }}>
+          <Col sm={12} md={4} style={{ textAlign: 'center', padding: '20px' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Developed with</h4>
             <br />
             <img alt='logo' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fardobot_logo.png?alt=media&token=6249da59-eaa5-4ea6-a655-9c4932d11b7c' />
             <br />
           </Col>
-          <Col sm='12' md='4' style={{ textAlign: 'center', padding: '20px' }}>
+          <Col sm={12} md={4} style={{ textAlign: 'center', padding: '20px' }}>
             <h4 style={{ fontSize: '1.4rem', color: 'white' }}>Support in</h4>
             <br />
             <img style={{ height: '100px' }} alt='firebase' src='https://firebase.google.com/downloads/brand-guidelines/PNG/logo-vertical.png?hl=es-419' />
