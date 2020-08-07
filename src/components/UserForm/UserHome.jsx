@@ -10,12 +10,11 @@ import { Row, Col } from 'react-bootstrap';
 import { FaReact } from 'react-icons/fa';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import Paper from '@material-ui/core/Paper';
 import HeaderNavBar from '../LayoutUserForm/Header';
 import { Background } from './style';
 import Footer from '../LayoutUserForm/Footer';
+import MainFeaturedPost from './MainFeaturedPost';
 
 import './userhome.scss';
 import '../LayoutUserForm/Footer.scss';
@@ -38,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
       borderRadius: '0.3rem',
     },
+  },
+  dialog: {
+    backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_5Artboard%203.png?alt=media&token=b96a7fe5-f7d6-4977-ac64-60bb9f4b4814)',
   },
   marginButton: {
     margin: theme.spacing(1),
@@ -64,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heroContentButton: {
-    padding: theme.spacing(3, 1, 1, 20),
+    padding: theme.spacing(0, 1, 2, 20),
     backgroundColor: '#1b6ca8',
     '@media (max-width: 540px)': {
       padding: theme.spacing(0, 1, 1, 1),
@@ -73,7 +75,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heroImg1: {
-    padding: theme.spacing(0, 0, 0, 20),
+    padding: theme.spacing(0, 10, 0, 10),
+    maxWidth: 650,
     '@media (max-width: 540px)': {
       padding: theme.spacing(0, 1, 1, 1),
       //width: '90% !important',
@@ -141,6 +144,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const mainFeaturedPost = {
+  title: 'A tu Manera',
+  description:
+    'Al usar nuestra plataforma de modo oportuno puede aprovechar al máximo las virtudes de su equipo de trabajo. Somos lo flexibles y ofrecemos funcionalidades de sobra para ajustarnos al estilo y las necesidades específicas de su empresa.',
+  image: 'https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_5Artboard%203.png?alt=media&token=b96a7fe5-f7d6-4977-ac64-60bb9f4b4814',
+  imgText: 'A tu manera',
+  linkText: 'Contáxtanos',
+};
+
 const UserHome = () => {
   const classes = useStyles();
 
@@ -156,9 +168,8 @@ const UserHome = () => {
         <HeaderNavBar />
       </Background>
       <div style={{ overflow: 'hidden' }}>
-
-        {/* Hero 1 */}
         <ThemeProvider theme={theme}>
+          {/* Hero 1 */}
           <Grid container alignItems='flex-start' className={classes.heroContent}>
             <Grid item sm={12} md={5}>
               <Container>
@@ -166,12 +177,12 @@ const UserHome = () => {
                   Nuestro sistema reduce el tiempo de entrada y salida de clientes y empleados.
                 </Typography>
                 <Typography variant='h5' style={{ fontSize: '1.5625rem', color: 'white' }} align='left' paragraph>
-                  Cumple con los parámetros de bioseguridad requeridos, obten informes de empleados y clientes.
+                  Cumple con los parámetros de bioseguridad requeridos y obtén informes de empleados y clientes.
                 </Typography>
               </Container>
             </Grid>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
-              <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
+              <img className='w-100' alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FImage_1%20copy.png?alt=media&token=62cb5ee0-6897-43e4-94ce-5b87a0196b6a' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
           </Grid>
@@ -196,10 +207,10 @@ const UserHome = () => {
               <Container>
                 <br />
                 <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='left' paragraph>
-                  ¡Questión de segundos!
+                  ¡Cuestión de segundos!
                 </Typography>
                 <Typography variant='h5' style={{ fontSize: '1.5625rem', color: '#172B4D' }} align='left' paragraph>
-                  Nuestra base de datos en tiempo real te permite observar de manera detallada el ingreso y la salida de clientes
+                  Nuestra base de datos te permite observar de manera detallada y en tiempo real el ingreso y la salida de clientes
                   y empleados.
                 </Typography>
               </Container>
@@ -212,7 +223,7 @@ const UserHome = () => {
               </Grid>
             </Grid>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
-              <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
+              <img className='w-100' alt='port' style={{ maxWidth: '400%' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_2Artboard%202.png?alt=media&token=3ddeb9cc-c765-4c38-857f-80034e5aac8c' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
           </Grid>
@@ -220,7 +231,7 @@ const UserHome = () => {
           {/* Hero 3 */}
           <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent2}>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
-              <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
+              <img className='w-100' alt='port' style={{ maxWidth: '400%' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_3Artboard%202.png?alt=media&token=ab8038c5-24a0-4c7b-aed6-e73de6105c10' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
             <Grid item sm={12} md={5}>
@@ -230,7 +241,7 @@ const UserHome = () => {
                   Todo en un solo sítio
                 </Typography>
                 <Typography variant='h5' style={{ fontSize: '1.3rem', color: '#172B4D' }} align='left' paragraph>
-                  1, 2 o 3. Sin importar el número de empleados o puntos de venta que tengas, toda la información la
+                  Sin importar el número de empleados o puntos de venta que tengas, toda la información la
                   puedes gestionar desde un sólo punto.
                 </Typography>
               </Container>
@@ -259,12 +270,13 @@ const UserHome = () => {
               </Container>
             </Grid>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
-              <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
+              <img className='w-100' alt='port' style={{ maxWidth: '400%' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_4Artboard%202.png?alt=media&token=87119e8c-c2d0-4578-96be-a5e7485e1b37' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
           </Grid>
 
-          {/* Hero 5 */}
+          {/*Banner Home */}
+          <MainFeaturedPost post={mainFeaturedPost} />
 
           <Grid container className={classes.heroContent2} style={{ backgroundColor: '#fbfbfd' }} alignItems='center'>
             <br />
@@ -274,33 +286,23 @@ const UserHome = () => {
               </Typography>
               <Typography xs={12} variant='h5' className={classes.textHero5} alignItems='center' paragraph>
                 Al usar nuestra plataforma de modo oportuno puede aprovechar al máximo las virtudes de su equipo de trabajo.
-                Somos lo bastante flexibles y ofrecemos funcionalidades de sobra para ajustarnos al estilo y las necesidades específicas de su empresa.
+                Somos lo flexibles y ofrecemos funcionalidades de sobra para ajustarnos al estilo y las necesidades específicas de su empresa.
               </Typography>
             </Grid>
             <br />
             <Grid className='text-center' item xs={12}>
               <Link to='/prices'>
                 <Button className={classes.marginButton2} align='center' onClick={preventDefault} link='/prices' type='button' variant='contained' color='primary'>
-                  Planes y Precios¡
+                  Ver Planes y Precios¡
                 </Button>
               </Link>
             </Grid>
             <br />
-            <Grid className='text-center' item xs={12}>
-              <Card variant='outlined'>
-                <CardContent>
-                  <img alt='port' style={{ maxWidth: 'auto' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F1587993229123.jpg?alt=media&token=b560f305-a537-465c-b04a-8e6ee212f2ea' />
-                </CardContent>
-                <CardActions>
-                  <Button size='small'>Learn More</Button>
-                </CardActions>
-              </Card>
-            </Grid>
           </Grid>
 
           <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent2}>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
-              <img className='w-100' alt='port' style={{ maxWidth: '400px' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2Fhome3.jpg?alt=media&token=59a4c115-47ac-4764-bb70-56e41c99c930' />
+              <img className='w-100' alt='port' style={{ maxWidth: '400%' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F1587993229123.jpg?alt=media&token=b560f305-a537-465c-b04a-8e6ee212f2ea' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
             </Grid>
             <Grid item sm={12} md={5}>

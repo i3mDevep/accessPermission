@@ -36,7 +36,7 @@ class HeaderNavBar extends React.Component {
                 <RiMoneyDollarCircleLine />
                 Precios
               </NavLink>
-              <a className='mr-3' target='_blank' rel='noreferrer' href='https://play.google.com/store/apps/developer?id=ARDOBOT+ROBOTICA+S.A.S'>
+              <a className='mr-3' target='_blank' rel='noreferrer' href='https://play.google.com/store/apps/details?id=com.ardobot.ardocontrol'>
                 {' '}
                 <BsCloudDownload />
                 Download App
