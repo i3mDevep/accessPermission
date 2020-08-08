@@ -4,7 +4,7 @@ import WorkerContainer from '../../containers/CompanyContainers/WorkerContainer'
 const WorkerPage = () => {
   return (
     <>
-      <h3 className='text-center m-3'>Empleados actuales</h3>
+      <h3 className='text-center m-3'>Listado de empleados</h3>
       <WorkerContainer />
     </>
   );

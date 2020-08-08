@@ -1,16 +1,33 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-import { BsPeopleCircle, BsCloudDownload } from 'react-icons/bs';
-import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { Navbar, Nav } from 'react-bootstrap';
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import logo from '../../assets/img/brand/ardobot_access.png';
 import './Header.scss';
 
-class HeaderNavBar extends React.Component {
-  render() {
-    return (
-      <header className='container'>
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Poppins',
+    ].join(','),
+  },
+});
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+const HeaderNavBar = () => {
+
+  const classes = useStyles();
+  return (
+    <header className='container'>
+      <ThemeProvider theme={theme}>
         <Navbar className='Navbar' variant='dark' expand='lg'>
           <Navbar.Brand href='dashboard'>
             <img
@@ -22,35 +39,22 @@ class HeaderNavBar extends React.Component {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <NavLink exact activeClassName='current' to='/' className='mr-3'>
-                {' '}
-                Nosotros
-              </NavLink>
               <NavLink exact activeClassName='current' to='/login' className='mr-3'>
                 {' '}
-                <BsPeopleCircle />
-                Login
+                <Button className={classes.root} variant='contained'>
+                  Iniciar sesión
+                </Button>
               </NavLink>
-              <NavLink exact activeClassName='current' className='mr-3' to='/prices'>
+              <NavLink exact activeClassName='current' to='/register' className='mr-3'>
                 {' '}
-                <RiMoneyDollarCircleLine />
-                Precios
-              </NavLink>
-              <a className='mr-3' target='_blank' rel='noreferrer' href='https://play.google.com/store/apps/details?id=com.ardobot.ardocontrol'>
-                {' '}
-                <BsCloudDownload />
-                Download App
-              </a>
-              <NavLink exact activeClassName='current' className='mr-3' to='/donaciones'>
-                {' '}
-                Donar
+                <Button className={classes.root}>Registrarse</Button>
               </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </header>
-    );
-  }
-}
+      </ThemeProvider>
+    </header>
+  );
+};
 
 export default HeaderNavBar;

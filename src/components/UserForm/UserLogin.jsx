@@ -55,7 +55,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
                   required={true}
                   type='email'
                   {...email}
-                  placeholder='Enter email'
+                  placeholder='Correo Electrónico'
                 />
               </InputGroup>
             </Form.Group>
@@ -71,7 +71,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
                   disabled={loading}
                   type='password'
                   required={true}
-                  placeholder='Password'
+                  placeholder='Contraseña'
                   {...password}
                 />
               </InputGroup>
@@ -87,7 +87,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
                   className='custom-control-label'
                   htmlFor=' customCheckLogin'
                 >
-                  <span className='text-muted'>Remember me</span>
+                  <span className='text-muted'>Recuerdame</span>
                 </label>
               </div>
             </Form.Group>
@@ -123,20 +123,6 @@ const UserLogin = ({ onSubmit, error, loading }) => {
               >
                 Sing in
               </Button>
-            </div>
-            <br />
-            <div className='text-center'>
-              <Link to='/register'>
-                <Button
-                  variant='primary'
-                  style={{
-                    borderRadius: '20px',
-                    width: '80%',
-                  }}
-                >
-                  Registrar
-                </Button>
-              </Link>
             </div>
           </Form>
         </Card.Body>

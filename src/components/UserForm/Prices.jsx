@@ -62,29 +62,29 @@ const useStyles = makeStyles((theme) => ({
 
 const tiers = [
   {
-    title: 'Free',
+    title: 'Gratis',
     price: '0',
-    description: ['Diseñado para personas o empresas que tienen 1 solo punto de atención y 200 registro de entrada y salida mensuales'],
-    buttonText: 'Registrarse',
+    description: ['Diseñado para personas o empresas que tienen 1 solo punto de atención y 200 registro de entrada y salida mensuales.'],
+    buttonText: 'Registrese Ahora',
     buttonVariant: 'outlined',
     data: '/register',
   },
   {
     title: 'Pro',
-    subheader: 'Most popular',
-    price: '15.000',
-    description: ['Diseñado para empresas que tienen mas de un punto de venta y quiren controlar la hora de entrada y salida de sus empleados'],
-    buttonText: 'Get started',
+    subheader: 'Popular',
+    price: '50.000',
+    description: ['Diseñado para empresas que tienen de 1 a 5 puntos de venta, acceso total a todos los módulos, ofrecemos acompañamiento de uso e implementación de la plataforma.'],
+    buttonText: 'Registrese Ahora',
     buttonVariant: 'contained',
     data: '/register',
   },
   {
-    title: 'Enterprise',
-    price: ' ',
-    description: ['Te gusta lo que hacemos, quieres personalizar o añadir mas funcionalidad al servicio que te brindamos, esta opción es para ti'],
-    buttonText: 'Contact us',
+    title: 'Empresas',
+    price: '30.000',
+    description: ['Diseñado para empresas que tienen mas de 5 puntos de venta, precio ofertado por volumen'],
+    buttonText: 'Registrese Ahora',
     buttonVariant: 'outlined',
-    data: 'https://api.whatsapp.com/send?phone=573116183653',
+    data: '/register',
   },
 ];
 
@@ -115,7 +115,7 @@ export default function Prices() {
                       {tier.price}
                     </Typography>
                     <Typography variant='h6' color='textSecondary'>
-                      /mo
+                      /mes
                     </Typography>
                   </div>
                   <ul>
@@ -128,9 +128,11 @@ export default function Prices() {
                 </CardContent>
                 <CardActions>
                   <Link to={tier.data}>
-                    <Button fullWidth variant={tier.buttonVariant} href={tier.data} color='primary'>
-                      {tier.buttonText}
-                    </Button>
+                    <div className='text-center'>
+                      <Button fullWidth variant={tier.buttonVariant} href={tier.data} color='primary'>
+                        {tier.buttonText}
+                      </Button>
+                    </div>
                   </Link>
                 </CardActions>
               </Card>

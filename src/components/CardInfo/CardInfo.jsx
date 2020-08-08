@@ -61,13 +61,13 @@ const CardInfoWorker = ({ inforcardsWorker }) => {
   const { Worker, Men, Women } = inforcardsWorker;
   return (
     <CardDeck style={{ minWidth: '200px' }}>
-      <Target title='Worker' value={Worker.value} text={typeof Worker.time === 'object' && moment(Worker.time.toDate().toISOString()).calendar()}>
+      <Target title='Empleados' value={Worker.value} text={typeof Worker.time === 'object' && moment(Worker.time.toDate().toISOString()).calendar()}>
         <FiUsers size='30px' />
       </Target>
-      <Target title='Women' value={Women.value} porcentage='3.48%' text={typeof Worker.time === 'object' && moment(Women.time.toDate().toISOString()).calendar()} typetext='text-danger'>
+      <Target title='Mujeres' value={Women.value} porcentage='3.48%' text={typeof Worker.time === 'object' && moment(Women.time.toDate().toISOString()).calendar()} typetext='text-danger'>
         <AiOutlineWoman size='30px' />
       </Target>
-      <Target title='Men' value={Men.value} porcentage='1.10%' text={typeof Worker.time === 'object' && moment(Men.time.toDate().toISOString()).calendar()} typetext='text-warning'>
+      <Target title='Hombres' value={Men.value} porcentage='1.10%' text={typeof Worker.time === 'object' && moment(Men.time.toDate().toISOString()).calendar()} typetext='text-warning'>
         <AiOutlineMan size='30px' />
       </Target>
     </CardDeck>

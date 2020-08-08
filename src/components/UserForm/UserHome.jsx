@@ -10,7 +10,6 @@ import { Row, Col } from 'react-bootstrap';
 import { FaReact } from 'react-icons/fa';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 import HeaderNavBar from '../LayoutUserForm/Header';
 import { Background } from './style';
 import Footer from '../LayoutUserForm/Footer';

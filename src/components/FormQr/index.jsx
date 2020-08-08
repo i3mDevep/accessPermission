@@ -37,6 +37,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   const Salary = useInputValue('');
   const Contrate = useInputValue('');
   const Cargo = useInputValue('');
+  const DocumentOption = useInputValue(' ');
   const [Sede, setSede] = useState({ value: '', id: '' });
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
@@ -61,6 +62,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           cargo: Cargo.value,
           status: state.checkedA,
           sede: Sede,
+          typeDocument: DocumentOption.value,
         },
         document.getElementById('qrid').toDataURL('image/png'),
         imageSrc);
@@ -150,16 +152,33 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                 />
               </Form.Group>
             </Form.Row>
-
-            <Form.Group controlId='Identification'>
-              <Form.Label>Cedula o documento de indentificación</Form.Label>
-              <Form.Control
-                placeholder='Documento del empleado'
-                {...Identification}
-                required
-                disabled={blocked}
-              />
-            </Form.Group>
+            <Form.Row>
+              <Form.Group controlId='Identification'>
+                <Form.Label>Documento de indentificación</Form.Label>
+                <Form.Control
+                  placeholder='Documento del empleado'
+                  {...Identification}
+                  required
+                  disabled={blocked}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId='Tipo'>
+                <Form.Label>Tipo de Documento</Form.Label>
+                <Form.Control
+                  placeholder='Tipo de documento.'
+                  required
+                  {...DocumentOption}
+                  as='select'
+                  disabled={blocked}
+                >
+                  <optgroup label='Tipo de documento'>
+                    <option>Cédula de ciudadanía</option>
+                    <option>Tarjeta de identidad</option>
+                    <option>Documento de extrangería</option>
+                  </optgroup>
+                </Form.Control>
+              </Form.Group>
+            </Form.Row>
 
             <Form.Group controlId='Address'>
               <Form.Label>Dirección Residencia</Form.Label>
@@ -245,7 +264,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
               <Form.Group as={Col} controlId='salary'>
                 <Form.Label>Salario básico</Form.Label>
                 <Form.Control
-                  placeholder='$ 000.000'
+                  placeholder='$ 0.000.000'
                   type='money'
                   {...Salary}
                   disabled={blocked}

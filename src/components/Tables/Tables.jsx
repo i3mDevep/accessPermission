@@ -144,7 +144,7 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
           },
         }}
         icons={tableIcons}
-        title='Worker'
+        title='Empleados'
         columns={columns}
         data={data}
         editable={{
