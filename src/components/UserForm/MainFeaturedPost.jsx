@@ -9,7 +9,7 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: 'relative',
-    //backgroundColor: theme.palette.grey[800],
+    backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
     backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_5Artboard%203.png?alt=media&token=b96a7fe5-f7d6-4977-ac64-60bb9f4b4814)',
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-   // backgroundColor: 'rgba(0,0,0,.3)',
+    // backgroundColor: 'rgba(0,0,0,.3)',
   },
   mainFeaturedPostContent: {
     position: 'relative',
@@ -54,7 +54,7 @@ export default function MainFeaturedPost(props) {
             <Typography variant='h5' color='inherit' paragraph>
               {post.description}
             </Typography>
-            <Link variant='subtitle1' href='https://api.whatsapp.com/send?phone=573116183653&text=&source=&data=&app_absent='>
+            <Link variant='subtitle1' href='/prices'>
               {post.linkText}
             </Link>
           </div>
