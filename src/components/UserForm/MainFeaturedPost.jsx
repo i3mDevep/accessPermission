@@ -5,6 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import { NavLink } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -34,6 +36,13 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 0,
     },
   },
+  marginButton: {
+    margin: theme.spacing(1),
+    size: 'large',
+    width: '17rem',
+    height: '3.4rem',
+    backgroundColor: '#F7BE00',
+  },
 }));
 
 export default function MainFeaturedPost(props) {
@@ -54,9 +63,11 @@ export default function MainFeaturedPost(props) {
             <Typography variant='h5' color='inherit' paragraph>
               {post.description}
             </Typography>
-            <Link variant='subtitle1' href='/prices'>
-              {post.linkText}
-            </Link>
+            <NavLink exact activeClassName='current' to='/prices'>
+              <Button className={classes.marginButton} type='button' variant='contained' color='primary'>
+                Ver planes y precios
+              </Button>
+            </NavLink>
           </div>
         </Grid>
       </Grid>

@@ -147,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
 const mainFeaturedPost = {
   title: 'A tu Manera',
   description:
-    'Al usar nuestra plataforma de modo oportuno puede aprovechar al máximo las virtudes de su equipo de trabajo. Somos lo flexibles y ofrecemos funcionalidades de sobra para ajustarnos al estilo y las necesidades específicas de su empresa.',
+    'Al usar nuestra plataforma de modo oportuno puede aprovechar al máximo las virtudes de su equipo de trabajo.',
   image: 'https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_5Artboard%203.png?alt=media&token=b96a7fe5-f7d6-4977-ac64-60bb9f4b4814',
   imgText: 'A tu manera',
   linkText: 'Ver planes y precios',
