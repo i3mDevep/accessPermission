@@ -2,7 +2,6 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import GetAppIcon from '@material-ui/icons/GetApp';
 import Link from '@material-ui/core/Link';
 import ListCardsChart from '../../components/ListCardsChart/ListCardsChart';
 import TableClientsContainer from '../../containers/CompanyContainers/Clients/TableClientsContainer';

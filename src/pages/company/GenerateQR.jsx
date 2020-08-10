@@ -3,7 +3,7 @@ import GenerateQRContainer from '../../containers/CompanyContainers/GenerateQRCo
 
 const GenerateQR = () => (
   <>
-    <h3 className='text-center m-3'>Registrar empleados</h3>
+    <h3 className='text-center m-3'>Registro de Empleados</h3>
     <GenerateQRContainer />
   </>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase/app';
-import { FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaMoneyCheck, FaDatabase } from 'react-icons/fa';
+import { FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaFingerprint, FaDatabase } from 'react-icons/fa';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { MdFiberNew } from 'react-icons/md';
 import clsx from 'clsx';
@@ -34,14 +34,14 @@ const drawerWidth = 240;
 const myicons = [
   <FaUserAstronaut color='white' size='20' />,
   <FaChild color='white' size='20' />,
-  <FaMoneyCheck color='white' size='20' />,
+  <FaFingerprint color='white' size='20' />,
   <FaCog color='white' size='20' />,
   <FaTemperatureHigh color='white' size='20' />,
   <FaDatabase color='white' size='20' />,
   <RiQrCodeLine color='white' size='20' />,
   <MdFiberNew color='white' size='20' />];
 
-const messages = ['Dashboard', 'Empleados', 'Nomina', 'Clientes', 'Informes', 'Alertas', 'Registrar', 'Sedes'];
+const messages = ['Dashboard', 'Empleados', 'Seguimiento', 'Clientes', 'Informes', 'Alertas', 'Registrar', 'Sedes'];
 const links = ['/dashboard', '/worker', '/payroll', '/client', '/informs', '/alerts', '/generateqr', '/sedes'];
 
 const themer = createMuiTheme({

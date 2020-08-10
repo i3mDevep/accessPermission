@@ -62,9 +62,9 @@ const SedeContainer = ({ isAuth, subCompanies = [], requesting, showAlert, delet
     showAlert({
       type: 'warning',
       title: 'Estas seguro?',
-      content: 'Estas a punto de Eliminar toda la información!',
+      content: 'Estas a punto de ELIMINAR toda la información!',
       showCancel: true,
-      confirmBtnText: 'Yes, delete it!',
+      confirmBtnText: 'Si borrar todo!',
       confirmBtnBsStyle: 'danger',
       onConfirm: () => deleteSubCompany({ subCompanyId: subCompid, companyId: isAuth.uid }),
       onCancel: null,

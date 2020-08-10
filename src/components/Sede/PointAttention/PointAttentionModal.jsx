@@ -67,7 +67,7 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
                 type='email'
                 required={true}
                 {...email}
-                placeholder='Enter email'
+                placeholder='Email'
               />
             </Form.Group>
 
@@ -76,7 +76,7 @@ const PointAttentionModal = ({ submit, loading, response, ...rest }) => {
               <Form.Control
                 disabled={loading}
                 type='current-password'
-                placeholder='Administre una contraseña'
+                placeholder=''
                 required={true}
                 {...password}
               />
