@@ -195,7 +195,7 @@ const UserHome = () => {
             <Grid item md={5} xs={10}>
               <Link to='/register'>
                 <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
-                  Registrese. !Es grátis¡
+                  Registrese ¡Es grátis!
                 </Button>
               </Link>
             </Grid>
@@ -217,7 +217,7 @@ const UserHome = () => {
               <Grid item md={5} xs={10}>
                 <Link to='/register'>
                   <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
-                    Empieza ahora¡
+                    Empieza ahora
                   </Button>
                 </Link>
               </Grid>
