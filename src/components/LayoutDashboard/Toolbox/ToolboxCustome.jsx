@@ -23,6 +23,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { CustomNavLink } from './style';
 import logo from '../../../../public/ardobot_logo.png';
 
@@ -213,7 +215,16 @@ const ToolboxCustome = ({ children, isAuth }) => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>{isAuth.displayName}</MenuItem>
-                <MenuItem onClick={handleCloseSession}>Logout</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <GetAppIcon />
+                  {' '}
+                  Descargar App
+                </MenuItem>
+                <MenuItem onClick={handleCloseSession}>
+                  <ExitToAppIcon />
+                  {' '}
+                  Cerrar sesión
+                </MenuItem>
               </Menu>
             </div>
           </Toolbar>
