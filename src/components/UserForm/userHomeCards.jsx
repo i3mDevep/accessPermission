@@ -86,13 +86,13 @@ const titles = [
 
 const texts = [
   'Registre la temperatura de clientes y empleados',
-  'Base de datos de empleados con registro fotográfico.',
+  'Gestione sus empleados por tipo de empleado, puesto de trabajo, lugar de trabajo, nivel salarial, etc.',
   'Calcule la nómina de sus empleados a partir del registro de entrada y salida.',
   'Creé su própia base de datos, categóricelos y tome medidas dependiendo el típo de público que lo visita, su departamento de marketing se lo agradecerá.',
-  'Nuestro sistema está basado en bases de datos en tiempo real genere informes al instante.',
+  'Nuestro sistema está basado en bases de datos en tiempo real genere informes al instante con la información captada.',
   'Nuestro sistema capta el posicionamiento gps o registro fotográfico de sus empleados cuando se registran. ',
   'Nuesta App es de uso gratuito, compatible con dispositivos Android. (Próximamente Apple)',
-  'Centralice la información de su empresa. ',
+  'Nuestra plataforma le permite gestionar diversas sedes o puntos de venta, usted podrá segmentar los empleados de cada uno de ellas.',
 ];
 
 const links = [
