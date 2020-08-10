@@ -5,60 +5,62 @@ import { MyCard, AreaChart } from './style';
 
 const options = {
   maintainAspectRatio: false,
-  responsive: true,
+  responsive: false,
   legend: {
     position: 'left',
     labels: {
       boxWidth: 10,
-      fontColor: 'white',
+      fontColor: 'black',
     },
   },
 };
 
 const DEFAULT_DATA_RADAR = {
-  labels: ['Red', 'Blue', 'Yellow'],
+  labels: ['#FF6384', '#36A2EB', '#FFCE56'],
   datasets: [
     {
+      fontColor: '#00000',
       data: [300, 50, 100],
-      backgroundColor: ['#f40552', '#ffd31d', '#00005c'],
-      hoverBackgroundColor: ['#f40552', '#ffd31d', '#00005c'],
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
     },
   ],
 };
 
 const datamix = {
-  labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Dic'],
+  labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Dic'],
   datasets: [
     {
-      label: 'Sales',
+      label: 'Total',
       type: 'line',
       data: [51, 65, 40, 49, 60, 37, 40],
       fill: false,
-      borderColor: '#EC932F',
-      backgroundColor: '#EC932F',
-      pointBorderColor: '#EC932F',
-      pointBackgroundColor: '#EC932F',
-      pointHoverBackgroundColor: '#32e0c4',
-      pointHoverBorderColor: '#32e0c4',
+      borderColor: '#B92454 ',
+      backgroundColor: '#B92454  ',
+      pointBorderColor: '#B92454  ',
+      pointBackgroundColor: '#B92454',
+      pointHoverBackgroundColor: '#B92454',
+      pointHoverBorderColor: '#B92454',
     },
     {
       type: 'bar',
       label: 'Visitor',
       data: [200, 185, 590, 621, 250, 400, 95],
       fill: true,
-      backgroundColor: 'rgba(255,255,255,0.2)',
-      borderColor: '#fff',
-      borderWidth: 2,
-      hoverBackgroundColor: '#f4f4f4',
-      hoverBorderColor: '#f4f4f4',
+      borderWidth: 1,
+      backgroundColor: '#71B37C',
+      borderColor: '#71B37C',
+      hoverBackgroundColor: '#71B37C',
+      hoverBorderColor: '#71B37C',
     },
   ],
 };
 
 const optionsmix = {
+  responsive: true,
   maintainAspectRatio: false,
   legend: {
-    display: false,
+    display: true,
   },
   tooltips: {
     backgroundColor: '#fff',
@@ -70,35 +72,45 @@ const optionsmix = {
     intersect: 0,
     position: 'nearest',
   },
-  responsive: true,
   scales: {
     yAxes: [
       {
-        barPercentage: 1.6,
+        type: 'linear',
+        display: true,
+        position: 'left',
+        id: 'y-axis-1',
         gridLines: {
-          drawBorder: false,
-          color: 'rgba(255,255,248,0.1)',
-          zeroLineColor: 'transparent',
+          display: false,
         },
-        ticks: {
-          suggestedMin: 60,
-          suggestedMax: 125,
-          padding: 20,
-          fontColor: '#fff',
+        labels: {
+          show: true,
+        },
+      },
+      {
+        type: 'linear',
+        display: true,
+        position: 'right',
+        id: 'y-axis-2',
+        gridLines: {
+          display: false,
+        },
+        labels: {
+          show: true,
         },
       },
     ],
     xAxes: [
       {
+        display: true,
         barPercentage: 1.0,
         gridLines: {
-          drawBorder: false,
+          drawBorder: true,
           color: 'rgba(255,255,248,0.1)',
           zeroLineColor: 'transparent',
         },
         ticks: {
           padding: 20,
-          fontColor: '#fff',
+          fontColor: 'black',
         },
       },
     ],

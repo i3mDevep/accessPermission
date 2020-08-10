@@ -30,7 +30,7 @@ const TableClients = ({ clients = [], isAuth }) => {
       <MaterialTable
         id='mytable'
         icons={tableIcons}
-        title='Clients'
+        title='Reporte de clientes'
         columns={[
           { title: 'Nombre', field: 'name' },
           { title: 'Identificación', field: 'identification' },
