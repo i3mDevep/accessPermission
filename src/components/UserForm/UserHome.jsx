@@ -107,6 +107,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     '@media (max-width: 540px)': {
       padding: theme.spacing(0, 1, 1, 1),
+      flexDirection: 'column-reverse',
+      //width: '90% !important',
+      fontSize: '2.5rem !important',
+    },
+  },
+  heroContent3: {
+    padding: theme.spacing(7, 1, 1, 20),
+    backgroundColor: 'white',
+    '@media (max-width: 540px)': {
+      padding: theme.spacing(0, 1, 1, 1),
       //width: '90% !important',
       fontSize: '2.5rem !important',
     },
@@ -156,12 +166,6 @@ const mainFeaturedPost = {
 const UserHome = () => {
   const classes = useStyles();
 
-  const preventDefault = (event) => {
-    event.preventDefault();
-    console.log('The link was clicked.');
-
-  };
-
   return (
     <>
       <Background>
@@ -193,16 +197,22 @@ const UserHome = () => {
               </form>
             </Grid>
             <Grid item md={5} xs={10}>
+<<<<<<< HEAD
               <Link to='/register'>
                 <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
                   Registrese ¡Es grátis!
+=======
+              <NavLink to='/register'>
+                <Button className={classes.marginButton} type='button' variant='contained' color='primary'>
+                  Registrese. !Es grátis¡
+>>>>>>> 0fb1f9c277fe586d8f8fc51ddcc4327c5069f46d
                 </Button>
-              </Link>
+              </NavLink>
             </Grid>
           </Grid>
 
           {/* Hero 2 */}
-          <Grid container alignItems='flex-start' className={classes.heroContent2}>
+          <Grid container className={classes.heroContent2}>
             <Grid item sm={12} md={5}>
               <Container>
                 <br />
@@ -215,11 +225,17 @@ const UserHome = () => {
                 </Typography>
               </Container>
               <Grid item md={5} xs={10}>
+<<<<<<< HEAD
                 <Link to='/register'>
                   <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
                     Empieza ahora
+=======
+                <NavLink to='/register'>
+                  <Button className={classes.marginButton} type='button' variant='contained' color='primary'>
+                    Empieza ahora¡
+>>>>>>> 0fb1f9c277fe586d8f8fc51ddcc4327c5069f46d
                   </Button>
-                </Link>
+                </NavLink>
               </Grid>
             </Grid>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
@@ -229,7 +245,7 @@ const UserHome = () => {
           </Grid>
 
           {/* Hero 3 */}
-          <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent2}>
+          <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent3}>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
               <img className='w-100' alt='port' style={{ maxWidth: '400%' }} src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_3Artboard%202.png?alt=media&token=ab8038c5-24a0-4c7b-aed6-e73de6105c10' />
               {/*<img className='w-75' style={{ maxWidth: '500px', position: 'absolute' }} alt='port' src='https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2F5.png?alt=media&token=520496b5-3dfc-43f7-972c-41b1015de39d' /> */}
