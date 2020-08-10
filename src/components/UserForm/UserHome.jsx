@@ -222,7 +222,7 @@ const UserHome = () => {
               <Grid item md={5} xs={10}>
                 <NavLink to='/register'>
                   <Button className={classes.marginButton} type='button' variant='contained' color='primary'>
-                    Empieza ahora¡
+                    Empieza ahora
                   </Button>
                 </NavLink>
               </Grid>

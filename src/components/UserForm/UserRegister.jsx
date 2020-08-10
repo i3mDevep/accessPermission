@@ -167,7 +167,6 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 </Form.Group>
               </Col>
             </Form.Row>
-
             { error && (
               <Alert variant='danger'>
                 <small>{error}</small>
@@ -185,12 +184,12 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                 {loading ? 'Guardando' : 'Completar Registro'}
               </Button>
             </div>
+            <span>Al completar el registro Aceptas términos y condiciones</span>
           </Form>
         </Card.Body>
       </CardResponsive>
       <br />
     </ContainerForm>
-    
   );
 
 };
