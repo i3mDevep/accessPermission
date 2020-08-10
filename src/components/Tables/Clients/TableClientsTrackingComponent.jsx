@@ -35,7 +35,7 @@ const TableClientsTrackingComponent = ({ tracking }) => {
         <Table className={classes.table} size='small' aria-label='a dense table'>
           <TableHead>
             <TableRow>
-              <TableCell>Localizacion</TableCell>
+              <TableCell>Localización</TableCell>
               <TableCell align='center'>Temperatura</TableCell>
               <TableCell align='right'>Tiempo</TableCell>
             </TableRow>

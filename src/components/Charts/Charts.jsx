@@ -35,12 +35,12 @@ const datamix = {
       type: 'line',
       data: [51, 65, 40, 49, 60, 37, 40],
       fill: false,
-      borderColor: '#B92454 ',
-      backgroundColor: '#B92454  ',
-      pointBorderColor: '#B92454  ',
-      pointBackgroundColor: '#B92454',
-      pointHoverBackgroundColor: '#B92454',
-      pointHoverBorderColor: '#B92454',
+      borderColor: '#00f2c3',
+      backgroundColor: '#00f2c3',
+      pointBorderColor: '#00f2c3',
+      pointBackgroundColor: '#00f2c3',
+      pointHoverBackgroundColor: '#00f2c3',
+      pointHoverBorderColor: '#00f2c3',
     },
     {
       type: 'bar',
@@ -48,8 +48,8 @@ const datamix = {
       data: [200, 185, 590, 621, 250, 400, 95],
       fill: true,
       borderWidth: 1,
-      backgroundColor: '#ffa534',
-      borderColor: '#ffa534',
+      backgroundColor: '#ff8d72',
+      borderColor: '#ff8d72',
       hoverBackgroundColor: '#71B37C',
       hoverBorderColor: '#71B37C',
     },
@@ -59,6 +59,7 @@ const datamix = {
 const optionsmix = {
   responsive: true,
   maintainAspectRatio: false,
+  
   legend: {
     display: true,
   },

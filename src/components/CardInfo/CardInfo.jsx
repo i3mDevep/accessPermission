@@ -6,6 +6,8 @@ import { IoMdExit, IoMdHappy } from 'react-icons/io';
 import { FiUsers } from 'react-icons/fi';
 import { GiEntryDoor } from 'react-icons/gi';
 import { Row, CardDeck } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 import Target from './Target';
 
 const CardInfoUsers = ({ inforcards }) => {

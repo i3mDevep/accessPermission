@@ -21,6 +21,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import SaveIcon from '@material-ui/icons/Save';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import BrokenImageIcon from '@material-ui/icons/BrokenImage';
 import ImageSearch from '@material-ui/icons/ImageSearch';
 import TablePagination from '@material-ui/core/TablePagination';
 import { green, grey, red, purple } from '@material-ui/core/colors';
@@ -78,11 +79,15 @@ function WorkerTableRow({ worker = [], onClickDeleteWorker, onClickEditWorker })
       title: 'Fotografía',
       field: 'Registro',
       render: (rowData) => (
-        <img
-          alt='traking'
-          style={{ borderRadius: '150px', width: '50px', height: '50px', objectFit: 'cover', opacity: rowData.status.opacity }}
-          src={rowData.img || 'https://cdn2.iconfinder.com/data/icons/delivery-and-logistic/64/Not_found_the_recipient-no_found-person-user-search-searching-4-256.png'}
-        />
+        !rowData.img ? (
+          <BrokenImageIcon alt='nophoto' style={{ fontSize: 70, color: '#a6a6a6' }} />
+        ) : (
+          <img
+            alt='traking'
+            style={{ borderRadius: '150px', width: '50px', height: '50px', objectFit: 'cover', opacity: rowData.status.opacity }}
+            src={rowData.img}
+          />
+        )
       ),
     },
     { title: 'Nombre', field: 'name' },
@@ -183,11 +188,15 @@ function CompanyTrackingTable({ workerdata = [], workerTrakingCompany = [] }) {
       title: 'Fotografía',
       field: 'Registro',
       render: (rowData) => (
-        <img
-          alt='traking'
-          style={{ borderRadius: '150px', width: '50px', height: '50px', objectFit: 'cover' }}
-          src={rowData.img || 'https://cdn2.iconfinder.com/data/icons/delivery-and-logistic/64/Not_found_the_recipient-no_found-person-user-search-searching-4-256.png'}
-        />
+        !rowData.img ? (
+          <BrokenImageIcon alt='nophoto' style={{ fontSize: 70, color: '#a6a6a6' }} />
+        ) : (
+          <img
+            alt='traking'
+            style={{ borderRadius: '150px', width: '50px', height: '50px', objectFit: 'cover' }}
+            src={rowData.img}
+          />
+        )
       ),
     },
     { title: 'Nombre', field: 'name' },
@@ -297,7 +306,7 @@ function ApointWorkerTableRow({ isAuth, workerSubCompany = [], workerTrakingSubC
         field: 'Registro',
         render: (rowData) => (
           !rowData.img ? (
-            <HighlightOffIcon alt='nophoto' color='primary' style={{ fontSize: 70 }} />
+            <BrokenImageIcon alt='nophoto' style={{ fontSize: 70, color: '#a6a6a6'}} />
           ) : (
             <img
               alt='traking'

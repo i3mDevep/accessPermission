@@ -1,12 +1,16 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
 import Badge from '@material-ui/core/Badge';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme, createMuiTheme } from '@material-ui/core/styles';
 import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import MenuItem from '@material-ui/core/MenuItem';
+import Link from '@material-ui/core/Link';
+import Menu from '@material-ui/core/Menu';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -23,39 +27,55 @@ import MailIcon from '@material-ui/icons/Mail';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import { NavLink } from 'react-router-dom';
+import { CustomNavLink } from './style';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import DescriptionIcon from '@material-ui/icons/Description';
 
 const drawerWidth = 240;
 
-const icons = [<HomeIcon />, <Fingerprint />, <PeopleAltIcon />, <MailIcon />, <DescriptionIcon />, <SettingsApplicationsIcon />, <ExitToAppIcon />];
+const icons = [
+  <HomeIcon alt='nophoto' style={{ color: '#ffffff' }} />,
+  <Fingerprint style={{ color: '#ffffff' }} />,
+  <PeopleAltIcon style={{ color: '#ffffff' }} />,
+  <MailIcon style={{ color: '#ffffff' }} />,
+  <DescriptionIcon style={{ color: '#ffffff' }} />,
+  <SettingsApplicationsIcon style={{ color: '#ffffff' }} />,
+  <ExitToAppIcon style={{ color: '#ffffff' }} />,
+];
+
 const items = ['Home', 'Control Empleados', 'Control Clientes ', 'Notificaciones', 'Informes'];
 const links = ['/home', '/control', '/clientpoint', '/notificationpoint', '/infor'];
 
-const useStyles = makeStyles((theme) => ({
-
+const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      'poppins',
+      'Poppins',
     ].join(','),
   },
+});
 
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    //color: 'red', // Color text container
+  },
+  selected: {
+    backgroundColor: 'red',
   },
   appBar: {
-    //color: 'red', color text
-    background: '#004876',
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: 100,
+    backgroundImage: 'url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_960_720.png)',
+    backgroundPosition: 'left',
+    backgroundSize: 'cover',
+    color: 'white',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
   appBarShift: {
-    background: '#004876',
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -64,10 +84,8 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   menuButton: {
-    background: '#004876',
     marginRight: 36,
   },
-
   hide: {
     display: 'none',
   },
@@ -77,20 +95,26 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
   },
   drawerOpen: {
-    //color: '#ffff',
-    //icon: '#ffff',
-    // background: '#004876',
     width: drawerWidth,
+    backgroundImage: 'url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_960_720.png)',
+    backgroundPosition: 'left',
+    backgroundSize: 'cover',
+    color: 'white',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
+    zIndex: 50,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundImage: 'url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_960_720.png)',
+    backgroundPosition: 'left',
+    backgroundSize: 'cover',
+    color: 'white',
     overflowX: 'hidden',
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up('sm')]: {
@@ -107,27 +131,46 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    overflow: 'hidden',
     padding: theme.spacing(3),
+    '@media (max-width: 508px)': {
+      padding: '24px 0',
+      width: '90% !important',
+    },
   },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
+  itemList: {
+    '&[aria-current]': {
+      backgroundColor: '#21bf73',
     },
   },
 }));
 
-function FooterPointAttention({ children, onClick }) {
+function FooterPointAttention({ children, onClick, isAuth }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open2 = Boolean(anchorEl);
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
 
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleCloseSession = () => {
+    setAnchorEl(null);
+    firebase.auth().signOut();
   };
 
   return (
@@ -151,14 +194,49 @@ function FooterPointAttention({ children, onClick }) {
           >
             <MenuIcon />
           </IconButton>
-          <div style={{ marginRight: 'auto' }}>
-            <Typography edge='start' style={{ marginRight: 'auto' }} variant='h6' noWrap />
+          <Typography variant='h5' noWrap>
+            { isAuth.displayName }
+          </Typography>
+          <div style={{ marginLeft: 'auto' }}>
+            <IconButton
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              onClick={handleMenu}
+              color='inherit'
+            >
+              <AccountCircle style={{ fontSize: '2.8rem' }} />
+            </IconButton>
+            <Menu
+              id='menu-appbar'
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={open2}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>{isAuth.displayName}</MenuItem>
+              <MenuItem>
+                <Link variant='caption' href='https://play.google.com/store/apps/details?id=com.ardobot.ardocontrol'>
+                  <GetAppIcon />
+                  {' '}
+                  Descargar App
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleCloseSession}>
+                <ExitToAppIcon />
+                {' '}
+                Cerrar sesión
+              </MenuItem>
+            </Menu>
           </div>
-          <IconButton aria-label='show 17 new notifications' color='inherit'>
-            <Badge badgeContent={17} color='secondary'>
-              <NotificationImportantIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -175,7 +253,6 @@ function FooterPointAttention({ children, onClick }) {
         }}
       >
         <div className={classes.toolbar}>
-          .  Aplicacion
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -185,9 +262,9 @@ function FooterPointAttention({ children, onClick }) {
           {items.map((text, index) => (
             <ListItem
               button
-              disableTouchRipple
+              className={classes.itemList}
               to={links[index]}
-              component={NavLink}
+              component={CustomNavLink}
               key={text}
             >
               <ListItemIcon>{icons[index]}</ListItemIcon>
@@ -197,10 +274,11 @@ function FooterPointAttention({ children, onClick }) {
         </List>
         <Divider />
         <List>
-          {['Ayuda', 'Salir'].map((text, index) => (
+          {['Salir'].map((text, index) => (
             <ListItem
               button
               to={links[6]}
+              className={classes.itemList}
               onClick={() => firebase.auth().signOut()}
               key={text}
             >
@@ -218,4 +296,12 @@ function FooterPointAttention({ children, onClick }) {
   );
 }
 
-export default FooterPointAttention;
+const mapStateProps = (state) => {
+  console.log(state);
+  return {
+    isAuth: state.auth.isAuth,
+  };
+};
+
+export default connect(mapStateProps, null)(FooterPointAttention);
+
