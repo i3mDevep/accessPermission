@@ -117,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     '@media (max-width: 540px)': {
       padding: theme.spacing(0, 1, 1, 1),
+      
       //width: '90% !important',
       fontSize: '2.5rem !important',
     },
