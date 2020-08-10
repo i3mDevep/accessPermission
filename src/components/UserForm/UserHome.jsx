@@ -259,7 +259,7 @@ const UserHome = () => {
               <Container>
                 <br />
                 <Typography variant='h3' style={{ fontSize: '1.8rem', color: '#172B4D' }} align='left' paragraph>
-                  Descargue y genere informes a partir de la información recolectada,
+                  Descargue y genere informes a partir de la información recolectada.
                 </Typography>
                 <Typography variant='h5' style={{ fontSize: '1.3rem', color: '#172B4D' }} align='left' paragraph>
                   Impulse la productividad de su empresa
@@ -268,6 +268,7 @@ const UserHome = () => {
                   <ul>
                     <li>Número de personas que ingresan a un punto de venta</li>
                     <li>Control de ingreso y salida de empleados</li>
+                    <li>Gestión de sedes o puntos de venta</li>
                     <li>Información de clientes, edad y sexo</li>
                     <li>Horas de mayor afluencía</li>
                   </ul>
