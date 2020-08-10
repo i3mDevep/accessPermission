@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     '@media (max-width: 540px)': {
       padding: theme.spacing(0, 1, 1, 1),
-      
+
       //width: '90% !important',
       fontSize: '2.5rem !important',
     },
@@ -198,15 +198,9 @@ const UserHome = () => {
               </form>
             </Grid>
             <Grid item md={5} xs={10}>
-<<<<<<< HEAD
-              <Link to='/register'>
-                <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
-                  Registrese ¡Es grátis!
-=======
               <NavLink to='/register'>
                 <Button className={classes.marginButton} type='button' variant='contained' color='primary'>
                   Registrese. !Es grátis¡
->>>>>>> 0fb1f9c277fe586d8f8fc51ddcc4327c5069f46d
                 </Button>
               </NavLink>
             </Grid>
@@ -226,15 +220,9 @@ const UserHome = () => {
                 </Typography>
               </Container>
               <Grid item md={5} xs={10}>
-<<<<<<< HEAD
-                <Link to='/register'>
-                  <Button className={classes.marginButton} onClick={preventDefault} link='/register' type='button' variant='contained' color='primary'>
-                    Empieza ahora
-=======
                 <NavLink to='/register'>
                   <Button className={classes.marginButton} type='button' variant='contained' color='primary'>
                     Empieza ahora¡
->>>>>>> 0fb1f9c277fe586d8f8fc51ddcc4327c5069f46d
                   </Button>
                 </NavLink>
               </Grid>
