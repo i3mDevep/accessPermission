@@ -42,7 +42,7 @@ const Sedes = () => {
       <div className={classes.root}>
         <Alert severity='warning'>Recuerde que las credenciales creadas en este módulo son el acceso a la App y a la dashboard asignada a cáda sede!</Alert>
       </div>
-      <ModalUpdatePlan open={openModalUpdate} handleClose={handleClose} />
+      <ModalUpdatePlan open={openModalUpdate} onClose={handleClose} />
       <SedeContainer modalUpdate={handleOpen} />
     </>
   );
