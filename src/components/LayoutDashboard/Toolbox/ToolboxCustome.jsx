@@ -19,6 +19,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Link from '@material-ui/core/Link';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -216,9 +217,11 @@ const ToolboxCustome = ({ children, isAuth }) => {
               >
                 <MenuItem onClick={handleClose}>{isAuth.displayName}</MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <GetAppIcon />
-                  {' '}
-                  Descargar App
+                  <Link variant='descargar' href='https://play.google.com/store/apps/details?id=com.ardobot.ardocontrol'>
+                    <GetAppIcon />
+                    {' '}
+                    Descargar App
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseSession}>
                   <ExitToAppIcon />
