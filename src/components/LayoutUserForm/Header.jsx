@@ -44,12 +44,14 @@ const HeaderNavBar = () => {
     <header className='container'>
       <ThemeProvider theme={theme}>
         <Navbar className='Navbar' variant='dark' expand='lg'>
-          <Navbar.Brand href='dashboard'>
-            <img
-              alt=''
-              src={logo}
-              className='logo'
-            />
+          <Navbar.Brand>
+            <NavLink exact activeClassName='current' to='/uerhomepage'>
+              <img
+                alt=''
+                src={logo}
+                className='logo'
+              />
+            </NavLink>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>

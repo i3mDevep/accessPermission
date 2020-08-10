@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   mainFeaturedPostContent: {
     position: 'relative',
     padding: theme.spacing(3, 0, 0, 0),
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       //padding: theme.spacing(6),
       padding: theme.spacing(3, 3, 0, 54),
       paddingRight: 0,
