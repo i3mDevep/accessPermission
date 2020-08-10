@@ -1,6 +1,5 @@
 import React, { useState, forwardRef, useRef } from 'react';
 import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -9,10 +8,20 @@ import Typography from '@material-ui/core/Typography';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Button from '@material-ui/core/Button';
 import DatePicker from 'react-datepicker';
+import { makeStyles, withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 import moment from 'moment';
 import ExportToExcelTrackingWorker from './ExportToExcelTrackingWorker';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Poppins',
+    ].join(','),
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +52,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const StyledButton = withStyles({
+  root: {
+    color: '#fffff',
+    background: '#004876 ',
+    borderRadius: 3,
+    border: 0,
+    height: 48,
+    padding: '0 30px',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+
 const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) => {
   const classes = useStyles();
   const [data, setData] = useState([]);
@@ -64,9 +87,9 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
     <div style={{ display: 'block' }}>
       <span>{ labeldate }</span>
       <br />
-      <Button variant='contained' color='secondary' onClick={onClick} ref={ref}>
+      <StyledButton variant='contained' color='primary' onClick={onClick} ref={ref}>
         {value}
-      </Button>
+      </StyledButton>
     </div>
 
   ));
@@ -101,62 +124,64 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
     }
   };
   return (
-    <Card className={classes.root}>
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component='h5' variant='h5'>
-            {title}
-          </Typography>
-          <Typography variant='subtitle1' color='textSecondary'>
-            {description}
-          </Typography>
-        </CardContent>
-        <div className={classes.controls}>
-          <IconButton
-            aria-label='play/pause'
-            onClick={async () => {
-              if (isAuth.myplan !== 'Pro') {
-                modalUpdate();
-                return;
-              }
-              try {
-                const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')}"&dateEnd="${moment(maxDate.toDateString()).format('l')}"`);
-                const res = await result.json();
-                setData(res.result);
-                download();
-                console.log(res);
-              } catch (err) {
-                console.error(err);
-              }
-            }}
-          >
-            <GetAppIcon className={classes.playIcon} />
-          </IconButton>
+    <ThemeProvider theme={theme}>
+      <Card className={classes.root}>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography component='h5' variant='h5'>
+              {title}
+            </Typography>
+            <Typography variant='subtitle1' color='textSecondary'>
+              {description}
+            </Typography>
+          </CardContent>
+          <div className={classes.controls}>
+            <IconButton
+              aria-label='play/pause'
+              onClick={async () => {
+                if (isAuth.myplan !== 'Pro') {
+                  modalUpdate();
+                  return;
+                }
+                try {
+                  const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')}"&dateEnd="${moment(maxDate.toDateString()).format('l')}"`);
+                  const res = await result.json();
+                  setData(res.result);
+                  download();
+                  console.log(res);
+                } catch (err) {
+                  console.error(err);
+                }
+              }}
+            >
+              <GetAppIcon className={classes.playIcon} />
+            </IconButton>
+          </div>
         </div>
-      </div>
-      <CardMedia
-        className={classes.cover}
-        image={image}
-        title='Live from space album cover'
-      />
-      <div className='m-auto'>
-        <div className='m-2 p-3'>
-          <DatePicker
-            selected={startDate}
-            onChange={handlerStartDate}
-            customInput={<CustomeButtonCalendar ref={ref} />}
-          />
+        <CardMedia
+          className={classes.cover}
+          image={image}
+          title='Live from space album cover'
+        />
+        <div className='m-auto'>
+          <div className='m-2 p-3'>
+            <DatePicker
+              selected={startDate}
+              onChange={handlerStartDate}
+              customInput={<CustomeButtonCalendar ref={ref} />}
+            />
+          </div>
+          <div className='m-2 p-3'>
+            <DatePicker
+              selected={maxDate}
+              onChange={handlerFinalDate}
+              customInput={<CustomeButtonCalendar labeldate='Fecha final' ref={ref} />}
+            />
+          </div>
         </div>
-        <div className='m-2 p-3'>
-          <DatePicker
-            selected={maxDate}
-            onChange={handlerFinalDate}
-            customInput={<CustomeButtonCalendar labeldate='Fecha final' ref={ref} />}
-          />
-        </div>
-      </div>
-      <ExportToExcelTrackingWorker data={data} ref={refExcel} />
-    </Card>
+        <ExportToExcelTrackingWorker data={data} ref={refExcel} />
+      </Card>
+    </ThemeProvider>
   );
 };
 const mapStateProps = (state) => {

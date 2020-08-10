@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase/app';
-import { FaUserAstronaut, FaChild, FaCog, FaTemperatureHigh, FaFingerprint, FaDatabase } from 'react-icons/fa';
+import { FaUserAstronaut, FaChild, FaCog, FaCalendarDay, FaFingerprint, FaDatabase } from 'react-icons/fa';
 import { RiQrCodeLine } from 'react-icons/ri';
 import { MdFiberNew } from 'react-icons/md';
 import clsx from 'clsx';
@@ -36,7 +36,7 @@ const myicons = [
   <FaChild color='white' size='20' />,
   <FaFingerprint color='white' size='20' />,
   <FaCog color='white' size='20' />,
-  <FaTemperatureHigh color='white' size='20' />,
+  <FaCalendarDay color='white' size='20' />,
   <FaDatabase color='white' size='20' />,
   <RiQrCodeLine color='white' size='20' />,
   <MdFiberNew color='white' size='20' />];

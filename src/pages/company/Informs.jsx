@@ -17,8 +17,9 @@ const Informs = () => {
     <Container fluid style={{ height: '100%', overflow: 'hiden', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
       <h3 className='text-center m-3'>Informes</h3>
       <ModalUpdatePlan open={openModalUpdate} handleClose={handleClose} />
-      <WorkerCard modalUpdate={handleOpen} title='Empleados registrados' description='empleados actuales' image='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdlcGr4z9WmjGSyyAdTKq0JPRBP_slPFvxqA&usqp=CAU' />
-      <WorkerTrackingCard modalUpdate={handleOpen} title='Control empleados' description='seguimiento de empleados' image='https://www.constructshow.com/content/informa/construct-show/en/register/_jcr_content/par_page/column_control/par-col-1/column_control_12856/par-col-1/image.img.png/1559654426259.png' />
+      <WorkerCard modalUpdate={handleOpen} title='Clientes' description='Descargue la base clientes registrados' />
+      <WorkerCard modalUpdate={handleOpen} title='Empleados registrados' description='Descargue la base de datos de empleados registrados' />
+      <WorkerTrackingCard modalUpdate={handleOpen} title='Control empleados' description='Seleccione un rango de fechas no mayor a 30 días. Pulsando el botón descargar usted podrá descargar el registro de entrada y salida de sus empleados para el calculo de nómina' />
     </Container>
   );
 
