@@ -33,7 +33,7 @@ const datamix = {
     {
       label: 'Total',
       type: 'line',
-      data: [51, 65, 40, 49, 60, 37, 40],
+      data: [51, 65, 40, 49, 60, 37, 40, 51, 65, 40, 49, 60],
       fill: false,
       borderColor: '#00f2c3',
       backgroundColor: '#00f2c3',
@@ -45,7 +45,7 @@ const datamix = {
     {
       type: 'bar',
       label: 'Visitantes',
-      data: [200, 185, 590, 621, 250, 400, 95],
+      data: [200, 185, 590, 621, 250, 400, 95, 185, 190, 321, 30, 100],
       fill: true,
       borderWidth: 1,
       backgroundColor: '#ff8d72',
@@ -59,9 +59,8 @@ const datamix = {
 const optionsmix = {
   responsive: true,
   maintainAspectRatio: false,
-  
   legend: {
-    display: true,
+    display: false,
   },
   tooltips: {
     backgroundColor: '#fff',
@@ -144,7 +143,7 @@ export const MyChartRadar = ({ color = 'white', data = DEFAULT_DATA_RADAR }) => 
 
 export const MyChartMix = ({ color = 'white' }) => (
   <MyCard color={color}>
-    <AreaChart className='chart-area'>
+    <AreaChart className='chart-area w-100'>
       <Bar data={datamix} options={optionsmix} />
       {' '}
     </AreaChart>
