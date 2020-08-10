@@ -30,9 +30,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { NavLink } from 'react-router-dom';
-import { CustomNavLink } from './style';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import DescriptionIcon from '@material-ui/icons/Description';
+import { CustomNavLink } from './style';
 
 const drawerWidth = 240;
 
@@ -46,8 +46,8 @@ const icons = [
   <ExitToAppIcon style={{ color: '#ffffff' }} />,
 ];
 
-const items = ['Home', 'Control Empleados', 'Control Clientes ', 'Notificaciones', 'Informes'];
-const links = ['/home', '/control', '/clientpoint', '/notificationpoint', '/infor'];
+const items = ['Home', 'Control Empleados', 'Control Clientes ', 'Notificaciones'];
+const links = ['/home', '/control', '/clientpoint', '/notificationpoint'];
 
 const theme = createMuiTheme({
   typography: {
@@ -258,6 +258,7 @@ function FooterPointAttention({ children, onClick, isAuth }) {
           </IconButton>
         </div>
         <Divider />
+        <a>hola </a>
         <List>
           {items.map((text, index) => (
             <ListItem

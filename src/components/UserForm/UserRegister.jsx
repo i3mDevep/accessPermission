@@ -154,13 +154,15 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
                   <Form.Control
                     required={true}
                     disabled={loading}
+                    className="mr-sm-2"
+                    id="inlineFormCustomSelect"
                     {...plan}
                     as='select'
                   >
                     <option hidden>Seleccione una opción</option>
                     <option value='Free'>Free</option>
                     <option value='Pro'>Pro</option>
-                    {/* <option value='Otro'>Enterprise</option> */}
+                    <option value='Enterprise'>Enterprise</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -186,7 +188,9 @@ const UserRegister = ({ onSubmit, loading, error, visibleAlert }) => {
           </Form>
         </Card.Body>
       </CardResponsive>
+      <br />
     </ContainerForm>
+    
   );
 
 };

@@ -222,11 +222,7 @@ const CommingSoon = ({ data }) => {
                         Es momento de apoyarnos los unos a los otros!
                       </Typography>
                       <Typography variant='body2' gutterBottom>
-                        Sabemos qué, para pequeños y grandes comerciantes el
-                        ingreso de Clientes y Empleados cumpliendo con las medidas
-                        de bioseguridad existentes representa un tiempo valioso en la
-                        ejecución de las actividades de nuestros negocios.
-                        Por eso, ponemos a tu disposición una plataforma de control ágil con
+                        Ponemos a tu disposición una plataforma de control ágil con
                         la que podrás disminuir el tiempo de ingreso de personal.
                       </Typography>
                     </Grid>
