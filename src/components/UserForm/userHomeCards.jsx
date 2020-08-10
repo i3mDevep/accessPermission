@@ -63,9 +63,9 @@ const useStyles = makeStyles((theme) => ({
 
 const CircleImage = ({ URL, title }) => {
   return (
-    <Tooltip title={title} placement='right'>
-      <Button style={{ borderRadius: '100%', maxWidth: '10%' }}>
-        <img style={{ width: '100px' }} alt='imagecircle' src={URL} />
+    <Tooltip title={title} placement='right' style={{ width: '100%' }} >
+      <Button style={{ borderRadius: '100%', width: '100%' }}>
+        <img style={{ width: '100%' }} alt='imagecircle' src={URL} />
       </Button>
     </Tooltip>
   );
