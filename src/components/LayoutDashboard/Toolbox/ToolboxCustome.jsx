@@ -216,8 +216,8 @@ const ToolboxCustome = ({ children, isAuth }) => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>{isAuth.displayName}</MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Link variant='descargar' href='https://play.google.com/store/apps/details?id=com.ardobot.ardocontrol'>
+                <MenuItem >
+                  <Link variant='caption' href='https://play.google.com/store/apps/details?id=com.ardobot.ardocontrol'>
                     <GetAppIcon />
                     {' '}
                     Descargar App
