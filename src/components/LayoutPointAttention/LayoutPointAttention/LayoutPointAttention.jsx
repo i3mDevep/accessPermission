@@ -2,7 +2,8 @@ import React from 'react';
 import firebase from 'firebase/app';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import Badge from '@material-ui/core/Badge';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import { makeStyles, useTheme, createMuiTheme } from '@material-ui/core/styles';
 import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 import Drawer from '@material-ui/core/Drawer';
@@ -29,7 +30,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import GetAppIcon from '@material-ui/icons/GetApp';
-import { NavLink } from 'react-router-dom';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import DescriptionIcon from '@material-ui/icons/Description';
 import { CustomNavLink } from './style';
@@ -145,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FooterPointAttention({ children, onClick, isAuth }) {
+function FooterPointAttention({ children, onClick, isAuth, display }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -254,11 +254,14 @@ function FooterPointAttention({ children, onClick, isAuth }) {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
+            <Typography variant='caption' style={{ fontSize: '1rem', color: 'white' }} align='left' paragraph>
+              {display.email}
+            </Typography>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
-        <a>hola </a>
+
         <List>
           {items.map((text, index) => (
             <ListItem
@@ -298,11 +301,28 @@ function FooterPointAttention({ children, onClick, isAuth }) {
 }
 
 const mapStateProps = (state) => {
-  console.log(state);
+  console.log(state.firebase.auth);
   return {
     isAuth: state.auth.isAuth,
+    subCompanies: state.firestore.ordered.subcompany,
+    display: state.firebase.auth,
   };
 };
 
-export default connect(mapStateProps, null)(FooterPointAttention);
+export default compose(
+  connect(mapStateProps, null),
+  firestoreConnect((props) => {
+    return [
+      { collection: 'business',
+        doc: props.isAuth.uid,
+        subcollections: [
+          {
+            collection: 'subcompanies',
+          },
+        ],
+        storeAs: 'subcompany',
+      },
+    ];
+  }),
+)(FooterPointAttention);
 

@@ -40,12 +40,12 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   const DocumentOption = useInputValue(' ');
   const [Sede, setSede] = useState({ value: '', id: '' });
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
   const handlerOnSubmit = (e) => {
+    console.log(DocumentOption);
     e.preventDefault();
     if (Gender.value !== '' && Sede.id !== '') {
       worker(isAuth.uid,
@@ -171,11 +171,9 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                   as='select'
                   disabled={blocked}
                 >
-                  <optgroup label='Tipo de documento'>
-                    <option>Cédula de ciudadanía</option>
-                    <option>Tarjeta de identidad</option>
-                    <option>Documento de extrangería</option>
-                  </optgroup>
+                  <option value='cc'>Cédula de ciudadanía</option>
+                  <option value='ti'>Tarjeta de identidad</option>
+                  <option value='de'>Documento de extrangería</option>
                 </Form.Control>
               </Form.Group>
             </Form.Row>
@@ -219,7 +217,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
                     <KeyboardDatePicker
                       disableToolbar
                       variant='inline'
-                      format='MM/dd/yyyy'
+                      format='dd/MM/yyyy'
                       margin='normal'
                       id='date-picker-inline'
                       label='Fecha de Nacimiento'
@@ -326,7 +324,6 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
           </Card.Body>
           <Card.Body className='m-auto'>
             <Button
-
               variant='primary'
               type='submit'
               form='CreateForm'

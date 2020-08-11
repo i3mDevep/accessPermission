@@ -5,7 +5,10 @@ import { compose } from 'redux';
 import CardInfo from '../../../components/CardInfo/CardInfo';
 
 const CardsClientsContainer = () => (
-  <CardInfo.CardInfoUsers />
+  <>
+    <CardInfo.CardInfoUsers />
+    <CardInfo.CardInfoWorker />
+  </>
 );
 const mapStateProps = (state) => {
   return {

@@ -7,7 +7,12 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Button from '@material-ui/core/Button';
-import DatePicker from 'react-datepicker';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 import { makeStyles, withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -69,30 +74,16 @@ const StyledButton = withStyles({
 const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) => {
   const classes = useStyles();
   const [data, setData] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  const [maxDate, setMaxDate] = useState(() => {
-    const dt = new Date();
-    dt.setMonth(dt.getMonth() + 1);
-    return dt;
-  });
 
-  const ref = React.createRef();
+  const [startDate, setStartDate] = React.useState(new Date());
+  const [maxDate, setMaxDate] = React.useState(new Date());
+
   const refExcel = useRef();
 
   const download = () => {
     refExcel.current.save();
   };
 
-  const CustomeButtonCalendar = forwardRef(({ value, onClick, labeldate = 'Fecha de inicio' }, ref) => (
-    <div style={{ display: 'block' }}>
-      <span>{ labeldate }</span>
-      <br />
-      <StyledButton variant='contained' color='primary' onClick={onClick} ref={ref}>
-        {value}
-      </StyledButton>
-    </div>
-
-  ));
   const dayDiff = function (date1, date2) {
     const dt1 = new Date(date1);
     const dt2 = new Date(date2);
@@ -116,9 +107,9 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
   const handlerFinalDate = (date) => {
     const r = dayDiff(startDate, date);
     if (r < 1) {
-      alert('no es posible ingresar una fecha final menor que la de inicio !');
+      alert('No es posible ingresar una fecha final menor que la de inicio !');
     } else if (r > 31) {
-      alert('no es posible ingresar una fecha de diferencia mayor a 30 dias!');
+      alert('No es posible ingresar una fecha de diferencia mayor a 30 dias!');
     } else {
       setMaxDate(date);
     }
@@ -144,7 +135,7 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
                   return;
                 }
                 try {
-                  const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')}"&dateEnd="${moment(maxDate.toDateString()).format('l')}"`);
+                  const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')} UTC-5"&dateEnd="${moment(maxDate.toDateString()).format('l')} UTC-5"`);
                   const res = await result.json();
                   setData(res.result);
                   download();
@@ -164,19 +155,42 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
           title='Live from space album cover'
         />
         <div className='m-auto'>
-          <div className='m-2 p-3'>
-            <DatePicker
-              selected={startDate}
-              onChange={handlerStartDate}
-              customInput={<CustomeButtonCalendar ref={ref} />}
-            />
+          <div>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant='inline'
+                format='dd/MM/yyyy'
+                margin='normal'
+                id='start'
+                label='Fecha inicial'
+                value={startDate}
+                onChange={handlerStartDate}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+
+            </MuiPickersUtilsProvider>
+
           </div>
-          <div className='m-2 p-3'>
-            <DatePicker
-              selected={maxDate}
-              onChange={handlerFinalDate}
-              customInput={<CustomeButtonCalendar labeldate='Fecha final' ref={ref} />}
-            />
+
+          <div>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant='inline'
+                format='dd/MM/yyyy'
+                margin='normal'
+                id='final'
+                label='Fecha final'
+                value={maxDate}
+                onChange={handlerFinalDate}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </MuiPickersUtilsProvider>
           </div>
         </div>
         <ExportToExcelTrackingWorker data={data} ref={refExcel} />

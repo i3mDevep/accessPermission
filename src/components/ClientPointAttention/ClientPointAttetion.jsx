@@ -14,7 +14,7 @@ import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
 
 
-const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients, sendData }) => {
+const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients, sendData, isAuth }) => {
 
   const [name, setName] = useState('');
   const [Changeentification, setIdentification] = useState();
@@ -43,11 +43,13 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
     onSubmit({
       identification: Changeentification,
       name,
+      idSubcompany: isAuth.uid,
       address: Address.value,
       gender: Gender.value,
       temperature: Temperature.value,
-      age: selectedDate,
+      birth: selectedDate,
       cellphone: Celphone.value,
+      cause: ' causa ',
     });
   };
 
@@ -98,7 +100,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
                     <KeyboardDatePicker
                       disableToolbar
                       variant='inline'
-                      format='MM/dd/yyyy'
+                      format='dd/MM/yyyy'
                       margin='normal'
                       id='date-picker-inline'
                       label='Fecha de Nacimiento'

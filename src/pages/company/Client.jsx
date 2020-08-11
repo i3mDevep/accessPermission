@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import TableClientsContainer from '../../containers/CompanyContainers/Clients/TableClientsContainer';
-import CardsClientsContainer from '../../containers/CompanyContainers/Clients/CardsClientsContainer';
+import CardInfo from '../../components/CardInfo/CardInfo';
 
 const Client = () => {
   return (
     <Container fluid>
       <h3 className='text-center m-3'>Seguimiento clientes</h3>
-      <CardsClientsContainer />
+      <CardInfo.CardInfoUsers />
       <TableClientsContainer />
     </Container>
   );

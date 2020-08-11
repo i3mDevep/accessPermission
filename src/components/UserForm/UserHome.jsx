@@ -38,32 +38,12 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: '0.3rem',
     },
   },
-  dialog: {
-    backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/coronavirus-control.appspot.com/o/recourses%2FIMAGEN_5Artboard%203.png?alt=media&token=b96a7fe5-f7d6-4977-ac64-60bb9f4b4814)',
-  },
   marginButton: {
     margin: theme.spacing(1),
     size: 'large',
     width: '17rem',
     height: '3.4rem',
     backgroundColor: '#F7BE00',
-  },
-  marginButton2: {
-    size: 'large',
-    width: '17rem',
-    height: '3.4rem',
-    backgroundColor: '#004876',
-  },
-  textHero5: {
-    padding: theme.spacing(3, 45, 5, 45),
-    fontSize: '1.3rem',
-    color: '#172B4D',
-    align: 'center',
-    '@media (max-width: 540px)': {
-      padding: theme.spacing(1, 1, 1, 1),
-      //width: '90% !important',
-      fontSize: '1.3rem',
-    },
   },
   heroContentButton: {
     padding: theme.spacing(0, 1, 2, 20),
@@ -122,36 +102,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '2.5rem !important',
     },
   },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
   footer: {
     backgroundColor: '#004876',
     padding: theme.spacing(6),
   },
-  img: {
-    padding: theme.spacing(2, 0, 0, 0),
-    //textAlign: 'center',
-  },
-  text: {
-    margin: theme.spacing(2),
-    padding: theme.spacing(5, 0, 0, 0),
-    textAlign: 'center',
-    variant: 'h4',
-    direction: 'column',
-    fontSize: '0.8rem',
-    color: theme.palette.text.primary,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
   title: {
     fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
   },
 }));
 
@@ -284,7 +240,7 @@ const UserHome = () => {
           {/*Banner Home */}
           <MainFeaturedPost post={mainFeaturedPost} />
 
-          {/* Hero Video*/}
+          {/* Hero Video */}
           <Grid container alignItems='flex-start' style={{ backgroundColor: '#fbfbfd' }} className={classes.heroContent2}>
             <Grid item className={classes.heroImg1} sm={12} md={6}>
               <Grid container spacing={2}>
@@ -350,13 +306,4 @@ const UserHome = () => {
   );
 };
 
-const CircleImage = ({ URL, title }) => {
-  return (
-    <Tooltip title={title} placement='left-end'>
-      <Button style={{ borderRadius: '100%', maxWidth: '10%' }}>
-        <img style={{ width: '100px' }} alt='imagecircle' src={URL} />
-      </Button>
-    </Tooltip>
-  );
-};
 export default UserHome;
