@@ -25,7 +25,7 @@ const Informs = () => {
         <Grid item sm={10} md={5}>
           <WorkerCard modalUpdate={handleOpen} title='Empleados registrados' description='Descargue la base de datos de empleados registrados' image='https://darvideo.tv/wp-content/uploads/2019/10/1-3.jpg' />
         </Grid>
-        <WorkerTrackingCard modalUpdate={handleOpen} title='Control empleados' description='Seleccione un rango de fechas no mayor a 30 días. Pulsando el botón descargar usted podrá descargar el registro de entrada y salida de sus empleados para el calculo de nómina' image='https://cdn2.iconfinder.com/data/icons/office-and-business-special-set-3/260/61-256.png' />
+        <WorkerTrackingCard modalUpdate={handleOpen} title='Control empleados' description='Seleccione un rango de fechas no mayor a 30 días. Pulsando el botón descargar usted podrá descargar el registro de entrada y salida de sus empleados para el calculo de nómina' image='https://media.gettyimages.com/vectors/smart-watch-health-tracker-mobile-device-vector-id1132074462?s=612x612' />
       </Grid>
     </Container>
   );
