@@ -4,9 +4,9 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import CardInfo from '../../../components/CardInfo/CardInfo';
 
-const CardsClientsContainer = () => (
+const CardsWorkerContainer = () => (
   <>
-    <CardInfo.CardInfoUsers />
+    <CardInfo.CardInfoWorker />
   </>
 );
 const mapStateProps = (state) => {
@@ -24,11 +24,11 @@ export default compose(
         subcollections: [
           {
             collection: 'resum',
-            doc: 'totals',
+            doc: 'totalsWorker',
           },
         ],
-        storeAs: 'totals',
+        storeAs: 'totalsWorker',
       },
     ];
   }),
-)(CardsClientsContainer);
+)(CardsWorkerContainer);

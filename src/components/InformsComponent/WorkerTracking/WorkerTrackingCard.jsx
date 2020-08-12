@@ -10,14 +10,14 @@ import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-import { makeStyles, withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 import moment from 'moment';
+import { Grid } from '@material-ui/core';
 import ExportToExcelTrackingWorker from './ExportToExcelTrackingWorker';
 
 const theme = createMuiTheme({
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: '900px',
     margin: '10px',
+    position: 'relative',
   },
   details: {
     display: 'flex',
@@ -43,11 +44,13 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: 151,
+    width: '90%',
+    maxWidth: 151,
   },
   controls: {
-    display: 'flex',
-    alignItems: 'center',
+    position: 'absolute',
+    bottom: -3,
+    right: 0,
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
@@ -56,20 +59,6 @@ const useStyles = makeStyles((theme) => ({
     width: 38,
   },
 }));
-
-const StyledButton = withStyles({
-  root: {
-    color: '#fffff',
-    background: '#004876 ',
-    borderRadius: 3,
-    border: 0,
-    height: 48,
-    padding: '0 30px',
-  },
-  label: {
-    textTransform: 'capitalize',
-  },
-})(Button);
 
 const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) => {
   const classes = useStyles();
@@ -117,84 +106,87 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
   return (
     <ThemeProvider theme={theme}>
       <Card className={classes.root}>
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography component='h5' variant='h5'>
-              {title}
-            </Typography>
-            <Typography variant='subtitle1' color='textSecondary'>
-              {description}
-            </Typography>
-          </CardContent>
-          <div className={classes.controls}>
-            <IconButton
-              aria-label='play/pause'
-              onClick={async () => {
-                if (isAuth.myplan !== 'Pro') {
-                  modalUpdate();
-                  return;
-                }
-                try {
-                  const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')} UTC-5"&dateEnd="${moment(maxDate.toDateString()).format('l')} UTC-5"`);
-                  const res = await result.json();
-                  setData(res.result);
-                  download();
-                  console.log(res);
-                } catch (err) {
-                  console.error(err);
-                }
-              }}
-            >
-              <GetAppIcon className={classes.playIcon} />
-            </IconButton>
-          </div>
-        </div>
-        <CardMedia
-          className={classes.cover}
-          image={image}
-          title='Live from space album cover'
-        />
-        <div className='m-auto'>
-          <div>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                disableToolbar
-                variant='inline'
-                format='dd/MM/yyyy'
-                margin='normal'
-                id='start'
-                label='Fecha inicial'
-                value={startDate}
-                onChange={handlerStartDate}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-
-            </MuiPickersUtilsProvider>
-
-          </div>
-
-          <div>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                disableToolbar
-                variant='inline'
-                format='dd/MM/yyyy'
-                margin='normal'
-                id='final'
-                label='Fecha final'
-                value={maxDate}
-                onChange={handlerFinalDate}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-            </MuiPickersUtilsProvider>
-          </div>
-        </div>
-        <ExportToExcelTrackingWorker data={data} ref={refExcel} />
+        <Grid container>
+          <Grid item sm={6} md={2} className='m-auto'>
+            <img
+              className={classes.cover}
+              src={image}
+              alt='Live from space album cover'
+            />
+          </Grid>
+          <Grid item sm={6} md={3} className='m-auto'>
+            <div>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant='inline'
+                  format='dd/MM/yyyy'
+                  margin='normal'
+                  id='start'
+                  label='Fecha inicial'
+                  value={startDate}
+                  onChange={handlerStartDate}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+            </div>
+            <div>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant='inline'
+                  format='dd/MM/yyyy'
+                  margin='normal'
+                  id='final'
+                  label='Fecha final'
+                  value={maxDate}
+                  onChange={handlerFinalDate}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+            </div>
+          </Grid>
+          <Grid item sm={10} md={6} className='m-auto p-3'>
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <Typography component='h5' variant='h5'>
+                  {title}
+                </Typography>
+                <Typography variant='subtitle1' color='textSecondary'>
+                  {description}
+                </Typography>
+              </CardContent>
+              <div className={classes.controls}>
+                <IconButton
+                  aria-label='play/pause'
+                  onClick={async () => {
+                    if (isAuth.myplan !== 'Pro') {
+                      modalUpdate();
+                      return;
+                    }
+                    try {
+                      const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')} UTC-5"&dateEnd="${moment(maxDate.toDateString()).format('l')} UTC-5"`);
+                      const res = await result.json();
+                      setData(res.result);
+                      download();
+                      console.log(res);
+                    } catch (err) {
+                      console.error(err);
+                    }
+                  }}
+                >
+                  <GetAppIcon className={classes.playIcon} />
+                </IconButton>
+              </div>
+            </div>
+          </Grid>
+        </Grid>
       </Card>
+      <ExportToExcelTrackingWorker data={data} ref={refExcel} />
     </ThemeProvider>
   );
 };
