@@ -121,7 +121,7 @@ const UserLogin = ({ onSubmit, error, loading }) => {
                   width: '80%',
                 }}
               >
-                Sing in
+                Acceder
               </Button>
             </div>
           </Form>

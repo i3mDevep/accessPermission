@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -106,85 +106,81 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
   return (
     <ThemeProvider theme={theme}>
       <Card className={classes.root}>
-        <Grid container>
-          <Grid item sm={6} md={2} className='m-auto'>
-            <img
-              className={classes.cover}
-              src={image}
-              alt='Live from space album cover'
-            />
-          </Grid>
-          <Grid item sm={6} md={3} className='m-auto'>
-            <div>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant='inline'
-                  format='dd/MM/yyyy'
-                  margin='normal'
-                  id='start'
-                  label='Fecha inicial'
-                  value={startDate}
-                  onChange={handlerStartDate}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </MuiPickersUtilsProvider>
-            </div>
-            <div>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant='inline'
-                  format='dd/MM/yyyy'
-                  margin='normal'
-                  id='final'
-                  label='Fecha final'
-                  value={maxDate}
-                  onChange={handlerFinalDate}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </MuiPickersUtilsProvider>
-            </div>
-          </Grid>
-          <Grid item sm={10} md={6} className='m-auto p-3'>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component='h5' variant='h5'>
-                  {title}
-                </Typography>
-                <Typography variant='subtitle1' color='textSecondary'>
-                  {description}
-                </Typography>
-              </CardContent>
-              <div className={classes.controls}>
-                <IconButton
-                  aria-label='play/pause'
-                  onClick={async () => {
-                    if (isAuth.myplan !== 'Pro') {
-                      modalUpdate();
-                      return;
-                    }
-                    try {
-                      const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')} UTC-5"&dateEnd="${moment(maxDate.toDateString()).format('l')} UTC-5"`);
-                      const res = await result.json();
-                      setData(res.result);
-                      download();
-                      console.log(res);
-                    } catch (err) {
-                      console.error(err);
-                    }
-                  }}
-                >
-                  <GetAppIcon className={classes.playIcon} />
-                </IconButton>
-              </div>
-            </div>
-          </Grid>
-        </Grid>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography component='h5' variant='h5'>
+              {title}
+            </Typography>
+            <Typography variant='subtitle1' color='textSecondary'>
+              {description}
+            </Typography>
+          </CardContent>
+          <div className={classes.controls}>
+            <IconButton
+              aria-label='play/pause'
+              onClick={async () => {
+                if (isAuth.myplan !== 'Pro') {
+                  modalUpdate();
+                  return;
+                }
+                try {
+                  const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')} UTC-5"&dateEnd="${moment(maxDate.toDateString()).format('l')} UTC-5"`);
+                  const res = await result.json();
+                  setData(res.result);
+                  download();
+                } catch (err) {
+                  console.error(err);
+                }
+              }}
+            >
+              <GetAppIcon className={classes.playIcon} />
+            </IconButton>
+          </div>
+        </div>
+        <CardMedia
+          className={classes.cover}
+          image={image}
+          title='Live from space album cover'
+        />
+        <div className='m-auto'>
+          <div>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant='inline'
+                format='dd/MM/yyyy'
+                margin='normal'
+                id='start'
+                label='Fecha inicial'
+                value={startDate}
+                onChange={handlerStartDate}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+
+            </MuiPickersUtilsProvider>
+
+          </div>
+          <div>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant='inline'
+                format='dd/MM/yyyy'
+                margin='normal'
+                id='final'
+                label='Fecha final'
+                value={maxDate}
+                onChange={handlerFinalDate}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </MuiPickersUtilsProvider>
+          </div>
+        </div>
+        <ExportToExcelTrackingWorker data={data} ref={refExcel} />
       </Card>
       <ExportToExcelTrackingWorker data={data} ref={refExcel} />
     </ThemeProvider>
