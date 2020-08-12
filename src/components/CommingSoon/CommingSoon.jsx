@@ -219,7 +219,7 @@ const CommingSoon = ({ data }) => {
                     <Grid item xs>
                       <Typography gutterBottom variant='h5' component='h2'>
                         <LoyaltyIcon />
-                        Es momento de apoyarnos los unos a los otros!
+                        Tu apoyo es importante.
                       </Typography>
                       <Typography variant='body2' gutterBottom>
                         Ponemos a tu disposición una plataforma de control ágil con
@@ -281,11 +281,6 @@ const CommingSoon = ({ data }) => {
                       </Typography>
                       <Typography variant='body2' gutterBottom>
                         Ayúdanos para que siga siendo gratuito para todas aquellas pequeñas empresas que lo necesitan.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant='body2' style={{ cursor: 'pointer' }}>
-                        <AppsIcon />
                       </Typography>
                     </Grid>
                   </Grid>
