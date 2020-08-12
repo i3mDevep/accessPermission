@@ -139,7 +139,7 @@ const CommingSoon = ({ data }) => {
   };
 
   const handleClickOpen = (amount) => {
-    console.log(amount);
+
     setOpen(true);
     setAmount(amount);
   };

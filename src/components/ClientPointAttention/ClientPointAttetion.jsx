@@ -38,7 +38,6 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
   };
 
   const handlerOnSubmit = (event) => {
-    console.log(Identification);
     event.preventDefault();
     onSubmit({
       identification: Changeentification,

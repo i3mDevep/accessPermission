@@ -62,7 +62,6 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
 
   const handlerOnSubmit = (event) => {
     event.preventDefault();
-    console.log(action.length);
 
     if (identification.length > 1 && temp.length > 1 && action.length > 1) {
       const imageSrc = webcamRef.current.getScreenshot();

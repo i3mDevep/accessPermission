@@ -19,7 +19,6 @@ const ClienPointContainer = ({ requesting, isAuth, addClient, clients }) => {
   const onHide = () => setShow(false);
 
   const onSubmit = (content) => {
-    console.log(content)
     addClient(isAuth.companyId, content);
   };
 

@@ -257,6 +257,9 @@ function FooterPointAttention({ children, onClick, isAuth, display }) {
             <Typography variant='caption' style={{ fontSize: '1rem', color: 'white' }} align='left' paragraph>
               {display.email}
             </Typography>
+            <Typography variant='caption' style={{ fontSize: '1rem', color: 'white' }} align='left' paragraph>
+              {display.email}
+            </Typography>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
@@ -301,7 +304,6 @@ function FooterPointAttention({ children, onClick, isAuth, display }) {
 }
 
 const mapStateProps = (state) => {
-  console.log(state.firebase.auth);
   return {
     isAuth: state.auth.isAuth,
     subCompanies: state.firestore.ordered.subcompany,

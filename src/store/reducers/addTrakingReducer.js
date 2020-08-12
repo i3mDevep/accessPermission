@@ -1,5 +1,5 @@
 const intitState = { error: false, msg: '', loading: false };
-console.log(intitState);
+//console.log(intitState);
 
 const addTrakingReducer = (state = intitState, action) => {
   switch (action.type) {

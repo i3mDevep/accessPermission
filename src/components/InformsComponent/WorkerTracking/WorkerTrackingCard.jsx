@@ -170,7 +170,6 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
                       const res = await result.json();
                       setData(res.result);
                       download();
-                      console.log(res);
                     } catch (err) {
                       console.error(err);
                     }

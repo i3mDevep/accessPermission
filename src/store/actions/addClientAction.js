@@ -13,7 +13,7 @@ export const addClient = (idBusiness, content) => {
       db.doc(content.identification).get()
         .then((doc) => {
           if (!doc.exists) {
-            console.log('el documento No existe');
+            //console.log('el documento No existe');
             return db.doc(content.identification).set({ ...content, time: currentTime }).then(() => {
               return firebase.firestore().collection(docRef)
                 .add({
@@ -25,7 +25,7 @@ export const addClient = (idBusiness, content) => {
                   time: currentTime });
             });
           }
-          console.log('el documento  existe');
+         // console.log('el documento  existe');
           return firebase.firestore().collection(docRef)
             .add({
               gps: 'Registro web',
