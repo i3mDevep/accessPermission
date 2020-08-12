@@ -10,14 +10,14 @@ import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-import { makeStyles, withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 import moment from 'moment';
+import { Grid } from '@material-ui/core';
 import ExportToExcelTrackingWorker from './ExportToExcelTrackingWorker';
 
 const theme = createMuiTheme({
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: '900px',
     margin: '10px',
+    position: 'relative',
   },
   details: {
     display: 'flex',
@@ -43,11 +44,13 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: 151,
+    width: '90%',
+    maxWidth: 151,
   },
   controls: {
-    display: 'flex',
-    alignItems: 'center',
+    position: 'absolute',
+    bottom: -3,
+    right: 0,
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
@@ -56,20 +59,6 @@ const useStyles = makeStyles((theme) => ({
     width: 38,
   },
 }));
-
-const StyledButton = withStyles({
-  root: {
-    color: '#fffff',
-    background: '#004876 ',
-    borderRadius: 3,
-    border: 0,
-    height: 48,
-    padding: '0 30px',
-  },
-  label: {
-    textTransform: 'capitalize',
-  },
-})(Button);
 
 const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) => {
   const classes = useStyles();
@@ -173,7 +162,6 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
             </MuiPickersUtilsProvider>
 
           </div>
-
           <div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
@@ -194,6 +182,7 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
         </div>
         <ExportToExcelTrackingWorker data={data} ref={refExcel} />
       </Card>
+      <ExportToExcelTrackingWorker data={data} ref={refExcel} />
     </ThemeProvider>
   );
 };
