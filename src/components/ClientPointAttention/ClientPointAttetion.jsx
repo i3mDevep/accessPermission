@@ -13,25 +13,18 @@ import { showAlert } from '../../store/actions/sweetAlertActions';
 import { getVisibleAlert } from '../../store/reducers/notificationRecucers';
 import useInputValue from '../../hooks/useInputValue';
 
-
 const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, clients, sendData, isAuth }) => {
 
   const [name, setName] = useState('');
-  const [Changeentification, setIdentification] = useState();
-  const [gender, setGender] = useState();
-  const [telphone, setTelphone] = useState();
-  const [age, setAge] = useState();
-  const [address, setAddress] = useState();
-  const [query, setQuery] = useState();
+  const [identification, setIdentification] = useState('');
+  const [address, setAddress] = useState('');
+  const [gender, setGender] = useState('');
+  const [cellphone, setCellphone] = useState('');
+  const [age, setAge] = useState('');
 
-  const Name = useInputValue('');
-  const Identification = useInputValue(' ');
-  const Address = useInputValue('');
-  const Celphone = useInputValue('');
-  const Gender = useInputValue('');
   const Temperature = useInputValue('');
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -40,14 +33,13 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
   const handlerOnSubmit = (event) => {
     event.preventDefault();
     onSubmit({
-      identification: Changeentification,
+      identification,
       name,
       idSubcompany: isAuth.uid,
-      address: Address.value,
-      gender: Gender.value,
+      gender: gender.value,
       temperature: Temperature.value,
       birth: selectedDate,
-      cellphone: Celphone.value,
+      cellphone: cellphone.value,
       cause: ' causa ',
     });
   };
@@ -70,14 +62,13 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
               <Form.Label>Documento</Form.Label>
               <SearchClient
                 info={clients}
-                //{...Identification}
                 sendData={(mydata) => {
                   console.log('mydata: ', mydata);
                   setName(mydata.name);
                   setIdentification(mydata.identification);
                   setGender(mydata.gender);
-                  setTelphone(mydata.telphone);
-                  setAge(mydata.age);
+                  setCellphone(mydata.cellphone);
+                  setAge(mydata.birth);
                   setAddress(mydata.address);
                 }}
               />
@@ -118,7 +109,9 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
                 <Form.Label>Dirección</Form.Label>
                 <Form.Control
                   required={true}
-                  {...Address}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  type='text'
                   placeholder='Dirección de residencia'
                 />
               </Form.Group>
@@ -126,7 +119,9 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
                 <Form.Label>Género</Form.Label>
                 <Form.Control
                   required={true}
-                  {...Gender}
+                  value={gender}
+                  type='text'
+                  onChange={(e) => setGender(e.target.value)}
                   as='select'
                 >
                   <option hidden>Seleccione una opción</option>
@@ -140,6 +135,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
               <Form.Group as={Col} controlId='formGridprone'>
                 <Form.Label>Temperatúra</Form.Label>
                 <Form.Control
+                  type='text'
                   required={true}
                   {...Temperature}
                   placeholder=' (°C)'
@@ -148,8 +144,10 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
               <Form.Group as={Col} controlId='formGridTemp'>
                 <Form.Label>Teléfono</Form.Label>
                 <Form.Control
+                  type='text'
                   required={true}
-                  {...Celphone}
+                  value={cellphone}
+                  onChange={(e) => setCellphone(e.target.value)}
                   placeholder=' Número de contacto'
                 />
               </Form.Group>
@@ -180,15 +178,11 @@ function SearchClient({ info = [], sendData }) {
 
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
+  const [birth, setBirth] = useState('');
 
   //console.log(info)
   // Recibo los eventos del input en setQuery
   // y habilito la bandera True para permitir la busqueda de nuevo
-  const handleChange = (event) => {
-    setQuery(event.target.value);
-    sendData({ identification: event.target.value, name, gender });
-    setAux(true);
-  };
 
   //if aux = true entonces almacene en la variable result
   // los datos filtrados de info={workers} que llegan en el query del evento setQuery
@@ -207,22 +201,24 @@ function SearchClient({ info = [], sendData }) {
     }
   }, [query]);
 
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+    sendData({ identification: event.target.value, name, gender, birth });
+    setAux(true);
+  };
+
   const handlerSelect = (item) => {
     setAux(false);
     setQuery(item.identification);
     setSearchResults([]);
-    setName(item.name);
-    setGender(item.gender);
     sendData({
       identification: item.identification,
       name: item.name,
       gender: item.gender,
-      age: item.age,
+      birth: item.birth,
       address: item.address,
-      telphone: item.telphone,
+      cellphone: item.cellphone,
     });
-
-    //sendData({ name: item.name, identification: item.identification, query });
   };
   return (
     <>
@@ -230,7 +226,8 @@ function SearchClient({ info = [], sendData }) {
         placeholder='Busque o cree un cliente '
         value={query}
         autoComplete='off'
-        onChange={(handleChange)}
+        type='text'
+        onChange={handleChange}
       />
       <ListGroup as='ul' style={{ position: 'absolute', zIndex: 100, top: '85px', display: 'flex' }} className='AutocompleteText'>
         {query.length > 0 ? searchResults.map((item) => (
