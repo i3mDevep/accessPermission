@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -139,7 +139,6 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
                   const res = await result.json();
                   setData(res.result);
                   download();
-                  console.log(res);
                 } catch (err) {
                   console.error(err);
                 }
