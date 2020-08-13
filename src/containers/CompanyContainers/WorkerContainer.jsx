@@ -20,7 +20,6 @@ const WorkerContainer = ({ deleteWorker, editWorker, isAuth, subCompanies }) => 
 
   };
   const handlerEditWorker = (rowData) => {
-    console.log(rowData);
     setShow(true);
     setInit(rowData);
   };

@@ -42,7 +42,7 @@ const updateTotalsWorker = (currentTime, idBusiness, currentContent, passContent
 };
 
 export const editWorker = (idBusiness, currentContent, passContent) => {
-  console.log(passContent);
+  //console.log(passContent);
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   return (dispatch) => {
     dispatch({ type: 'UPDATE_REQUEST_WORKER' });
@@ -66,11 +66,11 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
             return 0;
           })
           .then(() => {
-            console.log('update arriba');
+           // console.log('update arriba');
             dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
           })
           .catch((err) => {
-            console.log('update arriba error');
+           // console.log('update arriba error');
             dispatch({ type: 'UPDATE_WORKER_ERROR', err });
           });
       }
@@ -93,12 +93,12 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
           return 0;
         })
         .then(() => {
-          console.log('update');
+         // console.log('update');
 
           dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
         })
         .catch((err) => {
-          console.log('error', err);
+         // console.log('error', err);
           dispatch({ type: 'UPDATE_WORKER_ERROR', err });
         });
     }
@@ -121,11 +121,11 @@ export const editWorker = (idBusiness, currentContent, passContent) => {
         return 0;
       })
       .then(() => {
-        console.log('update 2');
+        //console.log('update 2');
         dispatch({ type: 'UPDATE_WORKER_SUCCESS' });
       })
       .catch((err) => {
-        console.log('update error 2', err);
+       // console.log('update error 2', err);
         dispatch({ type: 'UPDATE_WORKER_ERROR', err });
       });
   };
