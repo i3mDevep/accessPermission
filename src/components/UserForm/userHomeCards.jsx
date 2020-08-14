@@ -87,7 +87,7 @@ const titles = [
 const texts = [
   'Registre la temperatura de clientes y empleados',
   'Gestione sus empleados por tipo de empleado, puesto de trabajo, lugar de trabajo, nivel salarial, etc.',
-  'Calcule la nómina de sus empleados a partir del registro de entrada y salida.',
+  'Realice la nómina en segundos, controle el tiempo de sus empleados.',
   'Creé su própia base de datos, categóricelos y tome medidas dependiendo el típo de público que lo visita, su departamento de marketing se lo agradecerá.',
   'Nuestro sistema está basado en bases de datos en tiempo real genere informes al instante con la información captada.',
   'Nuestro sistema capta el posicionamiento gps o registro fotográfico de sus empleados cuando se registran. ',
