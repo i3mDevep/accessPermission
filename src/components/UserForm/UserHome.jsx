@@ -258,6 +258,13 @@ const UserHome = () => {
                 <Typography variant='h3' style={{ fontSize: '2.1875rem', color: '#172B4D' }} align='center' paragraph>
                   Descubra como funciona
                 </Typography>
+                <Grid item className='text-center'>
+                  <NavLink to='/register'>
+                    <Button className={classes.marginButton} type='button' variant='contained' color='primary'>
+                      Pruebe Grátis
+                    </Button>
+                  </NavLink>
+                </Grid>
                 <Typography variant='h6' align='center' color='textSecondary' paragraph>
                   Somos una plataforma de código abierto, podemos ofrecerle nuevas funcionalidades según sus requerimientos.
                 </Typography>
