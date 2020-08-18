@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button, Form, Col, ListGroup, Alert } from 'react-bootstrap';
+import moment from 'moment';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -20,14 +21,11 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
   const [address, setAddress] = useState('');
   const [gender, setGender] = useState('');
   const [cellphone, setCellphone] = useState('');
-  const [age, setAge] = useState('');
-
   const Temperature = useInputValue('');
-
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChange = (age) => {
+    setSelectedDate(age);
   };
 
   const handlerOnSubmit = (event) => {
@@ -64,12 +62,11 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
               <SearchClient
                 info={clients}
                 sendData={(mydata) => {
-                  // console.log('mydata: ', mydata);
                   setName(mydata.name);
                   setIdentification(mydata.identification);
                   setGender(mydata.gender);
                   setCellphone(mydata.cellphone);
-                  setAge(mydata.birth);
+                  setSelectedDate(mydata.birth);
                   setAddress(mydata.address);
                 }}
               />
@@ -216,7 +213,7 @@ function SearchClient({ info = [], sendData }) {
       identification: item.identification,
       name: item.name,
       gender: item.gender,
-      birth: item.birth,
+      birth: moment(item.birth.toDate().toISOString()).locale('es').calendar(),
       address: item.address,
       cellphone: item.cellphone,
     });
