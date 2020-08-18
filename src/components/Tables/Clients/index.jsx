@@ -62,6 +62,7 @@ const TableClients = ({ clients = [], isAuth }) => {
 };
 
 const mapStateProps = (state) => {
+  console.log('clientable', state);
   return {
     isAuth: state.auth.isAuth,
     clients: state.firestore.ordered.clients,

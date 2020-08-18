@@ -19,6 +19,7 @@ export const addClient = (idBusiness, content) => {
                 .add({
                   gps: 'Registro web',
                   idSubcompany: content.idSubcompany,
+                  address: content.address,
                   identification: content.identification,
                   temperature: content.temperature,
                   cause: content.cause,
@@ -33,7 +34,8 @@ export const addClient = (idBusiness, content) => {
               identification: content.identification,
               temperature: content.temperature,
               cause: content.cause,
-              time: currentTime });
+              time: currentTime,
+            });
 
         })
         .then(() => {

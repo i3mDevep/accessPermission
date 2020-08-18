@@ -36,10 +36,11 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
       identification,
       name,
       idSubcompany: isAuth.uid,
-      gender: gender.value,
+      gender,
+      address,
       temperature: Temperature.value,
       birth: selectedDate,
-      cellphone: cellphone.value,
+      cellphone,
       cause: ' causa ',
     });
   };
@@ -63,7 +64,7 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
               <SearchClient
                 info={clients}
                 sendData={(mydata) => {
-                  console.log('mydata: ', mydata);
+                  // console.log('mydata: ', mydata);
                   setName(mydata.name);
                   setIdentification(mydata.identification);
                   setGender(mydata.gender);
