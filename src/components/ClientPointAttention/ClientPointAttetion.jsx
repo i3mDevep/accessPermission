@@ -21,11 +21,21 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
   const [address, setAddress] = useState('');
   const [gender, setGender] = useState('');
   const [cellphone, setCellphone] = useState('');
-  const Temperature = useInputValue('');
+  const [Temperature, setTemperature] = useState('');
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (age) => {
     setSelectedDate(age);
+  };
+
+  const clearForm = () => {
+    setName(' ');
+    setIdentification(' ');
+    setGender(' ');
+    setAddress(' ');
+    setCellphone(' ');
+    setTemperature(' ');
+    setSelectedDate(new Date());
   };
 
   const handlerOnSubmit = (event) => {
@@ -39,8 +49,9 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
       temperature: Temperature.value,
       birth: selectedDate,
       cellphone,
-      cause: ' causa ',
+      cause: ' Registro web ',
     });
+    clearForm();
   };
 
   return (
@@ -135,7 +146,8 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
                 <Form.Control
                   type='text'
                   required={true}
-                  {...Temperature}
+                  value={Temperature}
+                  onChange={(e) => setTemperature(e.target.value)}
                   placeholder=' (°C)'
                 />
               </Form.Group>
@@ -227,13 +239,13 @@ function SearchClient({ info = [], sendData }) {
         type='text'
         onChange={handleChange}
       />
-      <ListGroup as='ul' style={{ position: 'absolute', zIndex: 100, top: '85px', display: 'flex' }} className='AutocompleteText'>
-        {query.length > 0 ? searchResults.map((item) => (
+      <ListGroup as='ul' style={{ position: 'absolute', zIndex: 100, top: '85px', display: 'flex',   }} className='AutocompleteText'>
+        {query.length > 2 ? searchResults.map((item) => (
           <ListGroup.Item onClick={() => handlerSelect(item)} as='li' variant='light' id={item.id} key={item.id}>
             {item.identification}
-            {' / '}
+            {' '}
             {item.name}
-            {' / '}
+            {' '}
             {item.telphone}
           </ListGroup.Item>
         )) : ' '}

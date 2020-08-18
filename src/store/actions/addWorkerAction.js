@@ -29,7 +29,7 @@ const saveDataWorker = (idBusiness, idSubcompany, content, imageSrc, db) => {
         if (!doc.exists) {
           return ImageSave(content.identification, imageSrc, idBusiness)
             .then((url) => {
-              console.log(url);
+              //console.log(url);
               const addWorker = [{}];
               addWorker.push(
                 db.doc(`business/${idBusiness}/subcompanies/${idSubcompany}/worker/${content.identification}`)
@@ -110,7 +110,7 @@ export const addWorker = (idBusiness, idSubcompany, content, data64, imageSrc) =
         });
       })
       .then(() => {
-        console.log('cuarto then');
+        //console.log('cuarto then');
         const config = {
           method: 'POST',
           headers: {

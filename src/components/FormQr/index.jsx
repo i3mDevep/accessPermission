@@ -45,7 +45,7 @@ const FormQr = ({ blocked = false, worker, isAuth, visibleAlert, showAlert, sede
   };
 
   const handlerOnSubmit = (e) => {
-    console.log(DocumentOption);
+    //console.log(DocumentOption);
     e.preventDefault();
     if (Gender.value !== '' && Sede.id !== '') {
       worker(isAuth.uid,
