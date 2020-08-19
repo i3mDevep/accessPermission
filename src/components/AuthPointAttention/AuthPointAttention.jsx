@@ -60,13 +60,6 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
     setTemp(event.currentTarget.value);
   };
 
-  const clearForm = () => {
-    setName(' ');
-    setLastName(' ');
-    setIdentification(' ');
-    setAction(' ');
-    setTemp(' ');
-  };
 
   const handlerOnSubmit = (event) => {
     event.preventDefault();
@@ -80,7 +73,6 @@ const AuthPointAttention = ({ sendData, traking, visibleAlert, worker = [], isAu
         identification,
         position: isAuth.displayName,
       }, imageSrc);
-      clearForm();
       setPicture(true);
     } else {
       showAlert({

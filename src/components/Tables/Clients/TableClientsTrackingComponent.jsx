@@ -37,7 +37,8 @@ const TableClientsTrackingComponent = ({ tracking }) => {
             <TableRow>
               <TableCell>Localización</TableCell>
               <TableCell align='center'>Temperatura</TableCell>
-              <TableCell align='right'>Tiempo</TableCell>
+              <TableCell align='center'>Tiempo</TableCell>
+              <TableCell align='center'>Observaciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,8 +48,10 @@ const TableClientsTrackingComponent = ({ tracking }) => {
                 <TableCell component='th' scope='row'>
                   {row.gps}
                 </TableCell>
-                <TableCell align='center'>{row.temperature}</TableCell>
-                <TableCell align='right'>{typeof row.time === 'object' ? moment(row.time.toDate().toISOString()).locale('es').format('MMMM Do YYYY, h:mm:ss a') : 'null'}</TableCell>
+                <TableCell align='left'>{row.temperature}</TableCell>
+                <TableCell align='left'>{typeof row.time === 'object' ? moment(row.time.toDate().toISOString()).locale('es').format('MMMM Do YYYY, h:mm:ss a') : 'null'}</TableCell>
+                <TableCell align='left'>{row.cause}</TableCell>
+
               </TableRow>
             ))}
           </TableBody>
