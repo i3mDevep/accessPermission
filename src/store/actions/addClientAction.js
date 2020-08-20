@@ -4,7 +4,7 @@ import { showAlert } from './sweetAlertActions';
 import 'firebase/storage';
 
 export const addClient = (idBusiness, content) => {
-  console.log(content)
+  console.log(content);
   const currentTime = firebase.firestore.FieldValue.serverTimestamp();
   const docRef = `business/${idBusiness}/clients/${content.identification}/tracking`;
   return (dispatch) => {
@@ -13,31 +13,18 @@ export const addClient = (idBusiness, content) => {
     return new Promise((resolve, reject) => {
       db.doc(content.identification).get()
         .then((doc) => {
-          //  if (!doc.exists) {
-          //console.log('el documento No existe');
-          return db.doc(content.identification).set({ ...content, time: currentTime }).then(() => {
-            return firebase.firestore().collection(docRef)
-              .add({
-                gps: content.idSubcompany,
-                idSubcompany: content.idSubcompany,
-                address: content.address,
-                identification: content.identification,
-                temperature: content.temperature,
-                cause: content.cause,
-                time: currentTime });
-          });
-          /*}
-         // console.log('el documento  existe');
+          return db.doc(content.identification).set({ ...content, time: currentTime });
+        })
+        .then(() => {
           return firebase.firestore().collection(docRef)
             .add({
               gps: content.idSubcompany,
               idSubcompany: content.idSubcompany,
+              address: content.address,
               identification: content.identification,
               temperature: content.temperature,
               cause: content.cause,
-              time: currentTime,
-            });*/
-
+              time: currentTime });
         })
         .then(() => {
           showAlert({

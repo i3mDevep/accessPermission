@@ -27,7 +27,6 @@ import TablePagination from '@material-ui/core/TablePagination';
 import { green, grey, red, purple } from '@material-ui/core/colors';
 import { Form, Col, Card, Button, ListGroup, Row, Container, Alert, Modal } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
 import './style.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 import firebase from 'firebase/app';

@@ -31,19 +31,31 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
     setSelectedDate(age);
   };
 
+  const cliearInfo = () => {
+    setName('');
+    setIdentification('');
+    setGender('');
+    setCellphone('');
+    setSelectedDate(new Date());
+    setTemperature('');
+    setAddress('');
+    setLastName('');
+  };
+
   const handlerOnSubmit = (event) => {
     event.preventDefault();
     onSubmit({
       identification,
-      name: `${lastName}${' '}${nameC}`,
+      name: `${lastName}-${nameC}`,
       idSubcompany: isAuth.uid,
       gender,
       address,
       temperature,
-      birth: selectedDate,
+      birth: new Date(selectedDate),
       cellphone,
       cause: causeChange.length > 1 ? causeChange : ' Sin Observaciones',
     });
+    cliearInfo();
   };
 
   return (
@@ -65,12 +77,16 @@ const ClientPointAttetion = ({ show, onHide, onSubmit, visibleAlert, showAlert, 
               <SearchClient
                 info={clients}
                 sendData={(mydata) => {
-                  console.log(mydata);
-                  setName(mydata.name);
+                  //const converFormat = moment()
+                  const myDate = mydata.birth.split('/');
+                  const completeName = mydata.name.split('-');
+                  console.log('recuperando datos', mydata);
+                  setLastName(completeName[0]);
+                  setName(completeName[1]);
                   setIdentification(mydata.identification);
                   setGender(mydata.gender);
                   setCellphone(mydata.cellphone);
-                  setSelectedDate(mydata.birth);
+                  setSelectedDate(new Date(myDate[2], myDate[1] - 1, myDate[0]));
                   setAddress(mydata.address);
                 }}
               />
@@ -247,7 +263,7 @@ function SearchClient({ info = [], sendData }) {
       identification: item.identification,
       name: item.name,
       gender: item.gender,
-      birth: moment(item.birth.toDate().toISOString()).locale('es').calendar('YYYY/MM/DD'), //format('YYYYMMDD'),
+      birth: moment(item.birth.toDate().toISOString()).locale('es').calendar(), //format('YYYYMMDD'),
       address: item.address,
       cellphone: item.cellphone,
     });
