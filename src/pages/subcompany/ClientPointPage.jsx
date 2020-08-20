@@ -1,9 +1,9 @@
 import React from 'react';
-import ClientPointContaier from '../../containers/SubCompanyContainers/ClienPointContainer';
+import ClientTrakingApoint from '../../containers/SubCompanyContainers/ClientTrakingApoint';
 
 const ClientPointPage = () => {
 
-  return <ClientPointContaier />;
+  return <ClientTrakingApoint />;
 };
 
 export default ClientPointPage;
