@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import firebase from 'firebase/app';
 
 import TableClientsTrackingComponent from '../../../components/Tables/Clients/TableClientsTrackingComponent';
 
-const TableClientsTrackingContainer = ({ info, isAuth }) => {
+const TableClientsTrackingContainer = ({ info, isAuth, subcompanies }) => {
   const [tracking, setTracking] = useState([]);
 
   useEffect(() => {
@@ -13,12 +14,23 @@ const TableClientsTrackingContainer = ({ info, isAuth }) => {
       .then((querySnapshot) => {
         const mydata = [];
         querySnapshot.forEach((doc) => {
-          mydata.push(doc.data());
+          const documento = doc.data();
+          const { idSubcompany } = documento;
+          try {
+            documento.nameSubcompany = subcompanies[idSubcompany].namesubcompany;
+          } catch (err) {
+            console.error('cliente sin subcompany asigando');
+          }
+          mydata.push(documento);
         });
         setTracking(mydata);
       });
   }, []);
   return (<TableClientsTrackingComponent tracking={tracking} />);
 };
-
-export default TableClientsTrackingContainer;
+const mapStateProps = (state) => {
+  return {
+    subcompanies: state.firestore.data.subcompany,
+  };
+};
+export default connect(mapStateProps, null)(TableClientsTrackingContainer);

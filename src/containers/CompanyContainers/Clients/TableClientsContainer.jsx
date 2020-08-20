@@ -25,6 +25,15 @@ export default compose(
           },
         ],
         storeAs: 'clients',
+      }, // Es necesario esto para cruzar los datos //
+      { collection: 'business',
+        doc: props.isAuth.uid,
+        subcollections: [
+          {
+            collection: 'subcompanies',
+          },
+        ],
+        storeAs: 'subcompany',
       },
     ];
   }),

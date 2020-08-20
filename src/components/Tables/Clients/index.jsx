@@ -7,7 +7,7 @@ import { tableIcons } from '../icons';
 
 import TableClientsTrackingContainer from '../../../containers/CompanyContainers/Clients/TableClientsTrackingContainer';
 
-const TableClients = ({ clients = [], isAuth }) => {
+const TableClients = ({ clients = [], isAuth, subcompanies }) => {
 
   const data = [];
   clients.forEach((client) => {
@@ -62,7 +62,6 @@ const TableClients = ({ clients = [], isAuth }) => {
 };
 
 const mapStateProps = (state) => {
-  //console.log('clientable', state);
   return {
     isAuth: state.auth.isAuth,
     clients: state.firestore.ordered.clients,
