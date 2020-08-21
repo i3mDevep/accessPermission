@@ -54,32 +54,36 @@ const tableIcons = {
   AccountCircleIcon: forwardRef((props, ref) => <AccountCircleIcon {...props} ref={red} />),
 };
 
-export default function TableTraingClients() {
-  const [state, setState] = React.useState({
-    columns: [
-      { title: 'Nombre', field: 'name' },
-      { title: 'Identificación', field: 'identification' },
-      { title: 'Género', field: 'birthYear' },
-      { title: 'Teléfono', field: 'birthYear' },
-      { title: 'Registro', field: 'birthYear' },
+export default function TableTraingClients({ trackingClients = [], onClickUpBought, onClickOffBought }) {
+  const data = [];
+  const columns = [
+    { title: 'Nombre', field: 'name' },
+    { title: 'Identificación', field: 'identification' },
+    { title: 'Género', field: 'gender' },
+    { title: 'Teléfono', field: 'cellphone' },
+    { title: 'Registro', field: 'time' },
+  ];
 
-    ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
+  console.log('recibo', trackingClients);
+  trackingClients.forEach((trackingClients) => {
+    try {
+      data.push({
+        name: trackingClients.name,
+        identification: trackingClients.identification,
+        gender: trackingClients.gender,
+        cellphone: trackingClients.cellphone,
+        time: typeof trackingClients.time === 'object' ? moment(trackingClients.time.toDate().toISOString()).locale('es').format('L') : 'null',
+
+      });
+    } catch (err) {
+    }
   });
 
   return (
     <MaterialTable
       title='Registro de Clientes'
-      columns={state.columns}
-      data={state.data}
+      columns={columns}
+      data={data}
       icons={tableIcons}
       options={{
         actionsColumnIndex: -1,
@@ -113,12 +117,12 @@ export default function TableTraingClients() {
         {
           icon: () => <ThumbUpAltIcon />,
           tooltip: 'Compró',
-          onClick: (event, rowData) => onClickEditWorker(rowData),
+          onClick: (event, rowData) => onClickUpBought(rowData),
         },
         {
           icon: () => <ThumbDownAltIcon />,
           tooltip: 'No Compró',
-          onClick: (event, rowData) => onClickEditWorker(rowData),
+          onClick: (event, rowData) => onClickOffBought(rowData),
         },
       ]}
 

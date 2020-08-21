@@ -38,7 +38,7 @@ const TableClientsTrackingComponent = ({ tracking }) => {
               <TableCell>Localización</TableCell>
               <TableCell align='center'>Temperatura</TableCell>
               <TableCell align='center'>Tiempo</TableCell>
-              <TableCell align='center'>SubCompañia</TableCell>
+              <TableCell align='center'>Sede</TableCell>
               <TableCell align='center'>Observaciones</TableCell>
             </TableRow>
           </TableHead>

@@ -8,6 +8,7 @@ import editWorkerReducer from './editWorkerReducer';
 import deleteSubCompanyReducer from './deleteSubcompanyReducer';
 import deleteWorkerReducer from './deleteWorkerReducer';
 import notifications from './notificationRecucers';
+import addBoughtReducer from './addBoughtReducer';
 import addTrakingReducer from './addTrakingReducer';
 import addClientReducer from './addClientReducer';
 
@@ -21,6 +22,7 @@ const rootReducers = combineReducers({
   resultDelete: deleteSubCompanyReducer,
   resultAddClient: addClientReducer,
   firestore: firestoreReducer,
+  resultBougth: addBoughtReducer,
   firebase: firebaseReducer,
   notifications,
 });

@@ -1,39 +1,53 @@
 /* eslint-disable react/jsx-no-undef */
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
-import { Container, Button, Card } from 'react-bootstrap';
-import TableClients from '../../components/Tables/ClientApoint/index';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import TableTraingClients from '../../components/Tables/ClientApoint/index';
 
-import { addClient } from '../../store/actions/addClientAction';
+import { addBought } from '../../store/actions/addBoughtAction';
 
-const ClienTrakingApoint = ({ requesting, isAuth, addClient, clients }) => {
+const ClienTrakingApoint = ({ requesting, isAuth, trackingClients, addBought }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
 
+  const onClickOffBought = (content) => {
+    console.log(isAuth)
+    addBought(content);
+  };
+
+  const onClickUpBought = (content) => {
+    addBought(content);
+    //console.log('onClickUpBought', content);
+  };
+
   return (
     <>
-      <Container fluid>
-        <TableClients />
+      <CssBaseline />
+      <Container>
+        <TableTraingClients trackingClients={trackingClients} onClickOffBought={onClickOffBought} onClickUpBought={onClickUpBought} />
       </Container>
     </>
   );
 };
 
 const mapStateProps = (state) => {
+  //console.log('stado', state);
   return {
     isAuth: state.auth.isAuth,
-    requesting: state.firestore.status.requesting.clients,
-    clients: state.firestore.ordered.clients,
+    requesting: state.firestore.status.requesting.trackingClients,
+    trackingClients: state.firestore.ordered.trackingClients,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addClient: (idBusiness, content) => dispatch(addClient(idBusiness, content)),
+    addBought: (idBusiness, content) => dispatch(addBought(idBusiness, content)),
     showAlert: (alertProps) => dispatch(showAlert(alertProps)),
   };
 };
@@ -46,10 +60,14 @@ export default compose(
         doc: props.isAuth.companyId,
         subcollections: [
           {
-            collection: 'clients',
+            collection: 'subcompanies',
+            doc: props.isAuth.uid,
+            subcollections: [
+              { collection: 'trackingClients' },
+            ],
           },
         ],
-        storeAs: 'clients',
+        storeAs: 'trackingClients',
       },
     ];
   }),
