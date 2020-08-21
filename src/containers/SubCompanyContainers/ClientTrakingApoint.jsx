@@ -5,9 +5,10 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { LoopCircleLoading } from 'react-loadingg';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import firebase from 'firebase/app';
 import TableTraingClients from '../../components/Tables/ClientApoint/index';
+import 'firebase/storage';
 
 import { addBought } from '../../store/actions/addBoughtAction';
 
@@ -17,13 +18,15 @@ const ClienTrakingApoint = ({ requesting, isAuth, trackingClients, addBought }) 
   }
 
   const onClickOffBought = (content) => {
-    console.log(isAuth)
-    addBought(content);
+    console.log(content);
+    firebase.firestore().doc(`business/${isAuth.companyId}/subcompanies/${isAuth.uid}/trackingClients/${content.id}`)
+      .set({ sale: false }, { merge: true });
   };
 
   const onClickUpBought = (content) => {
-    addBought(content);
-    //console.log('onClickUpBought', content);
+    console.log(content);
+    firebase.firestore().doc(`business/${isAuth.companyId}/subcompanies/${isAuth.uid}/trackingClients/${content.id}`)
+      .set({ sale: true }, { merge: true });
   };
 
   return (
@@ -37,7 +40,6 @@ const ClienTrakingApoint = ({ requesting, isAuth, trackingClients, addBought }) 
 };
 
 const mapStateProps = (state) => {
-  //console.log('stado', state);
   return {
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.trackingClients,
@@ -63,7 +65,10 @@ export default compose(
             collection: 'subcompanies',
             doc: props.isAuth.uid,
             subcollections: [
-              { collection: 'trackingClients' },
+              {
+                collection: 'trackingClients',
+                orderBy: ['time', 'desc'],
+              },
             ],
           },
         ],

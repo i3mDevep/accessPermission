@@ -62,17 +62,21 @@ export default function TableTraingClients({ trackingClients = [], onClickUpBoug
     { title: 'Género', field: 'gender' },
     { title: 'Teléfono', field: 'cellphone' },
     { title: 'Registro', field: 'time' },
+    { title: 'Id', field: 'id', hidden: true },
+    { title: 'Sale', field: 'sale', hidden: true },
   ];
 
   console.log('recibo', trackingClients);
   trackingClients.forEach((trackingClients) => {
     try {
       data.push({
+        id: trackingClients.id,
+        sale: trackingClients.sale,
         name: trackingClients.name,
         identification: trackingClients.identification,
         gender: trackingClients.gender,
         cellphone: trackingClients.cellphone,
-        time: typeof trackingClients.time === 'object' ? moment(trackingClients.time.toDate().toISOString()).locale('es').format('L') : 'null',
+        time: typeof trackingClients.time === 'object' ? moment(trackingClients.time.toDate().toISOString()).locale('es').format('LLLL') : 'null',
 
       });
     } catch (err) {
@@ -104,7 +108,7 @@ export default function TableTraingClients({ trackingClients = [], onClickUpBoug
           nRowsSelected: '{0} row(s) selected',
         },
         header: {
-          actions: 'Evento',
+          actions: 'Compra',
         },
         body: {
           emptyDataSourceMessage: 'No hay registros',
@@ -114,15 +118,25 @@ export default function TableTraingClients({ trackingClients = [], onClickUpBoug
         },
       }}
       actions={[
-        {
-          icon: () => <ThumbUpAltIcon />,
-          tooltip: 'Compró',
-          onClick: (event, rowData) => onClickUpBought(rowData),
+        (rowData) => {
+          if (rowData.sale === undefined) {
+            return { icon: (() => <ThumbUpAltIcon style={{ color: '#8888' }} />), disable: true, onClick: (event, rowData) => { onClickUpBought(rowData); } }; 
+          }
+          if (rowData.sale === false) {
+            return { icon: (() => <ThumbUpAltIcon style={{ color: '#8888' }} />), disable: true, onClick: (event, rowData) => { onClickUpBought(rowData); } } ;
+          }
+          return { icon: (() => <ThumbUpAltIcon style={{ color: '#21bf73' }} />), disable: true, onClick: (event, rowData) => { onClickUpBought(rowData); } } ;
         },
-        {
-          icon: () => <ThumbDownAltIcon />,
-          tooltip: 'No Compró',
-          onClick: (event, rowData) => onClickOffBought(rowData),
+        (rowData) => {
+          if (rowData.sale === undefined) {
+            return { icon: (() => <ThumbDownAltIcon style={{ color: '#8888' }} />), disable: true, onClick: (event, rowData) => onClickOffBought(rowData) };
+          }
+          if (rowData.sale === false) {
+            return { icon: (() => <ThumbDownAltIcon style={{ color: '#cf1b1b' }} />), disable: true, onClick: (event, rowData) => onClickOffBought(rowData) };
+          }
+
+          return { icon: (() => <ThumbDownAltIcon style={{ color: '#8888' }} />), disable: true, onClick: (event, rowData) => onClickOffBought(rowData) };
+
         },
       ]}
 

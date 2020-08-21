@@ -22,6 +22,7 @@ export default compose(
         subcollections: [
           {
             collection: 'clients',
+            orderBy: ['time', 'desc'],
           },
         ],
         storeAs: 'clients',
