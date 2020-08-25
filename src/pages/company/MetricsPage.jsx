@@ -1,12 +1,12 @@
 import React from 'react';
-import MetricsContainer from '../../containers/CompanyContainers/Clients/MetricsContainer';
+import MetricsAllPageContainer from '../../containers/CompanyContainers/Metricas/MetricsAllPageContainer';
 
 const MetricsPage = () => {
 
   return (
     <>
       <h1> Métricas </h1>
-      <MetricsContainer />
+      <MetricsAllPageContainer />
     </>
 
   );

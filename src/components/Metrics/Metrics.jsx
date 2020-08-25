@@ -45,16 +45,7 @@ const monthData = [
 
 const Metrics = ({ data = [], blocked = false, totalsCompanies = [], sendData }) => {
   const classes = useStyles();
-  const [value, setValue] = useState('');
-  const [select, setSelect] = useState('');
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  console.log(select)
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-    sendData({ data: select });
-  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -83,11 +74,11 @@ const Metrics = ({ data = [], blocked = false, totalsCompanies = [], sendData })
               <Autocomplete
                 disabled={blocked}
                 freeSolo
-                value={value}
                 id='free-solo-2-demo'
                 disableClearable
                 onChange={(event, newValue) => {
-                  setSelect(newValue);
+                  event.preventDefault();
+                  sendData({ data: newValue });
                 }}
                 options={totalsCompanies}
                 getOptionLabel={(option) => (option.namesubcompany ? option.namesubcompany : option)}
@@ -97,8 +88,6 @@ const Metrics = ({ data = [], blocked = false, totalsCompanies = [], sendData })
                     label='Busque una sede'
                     margin='normal'
                     variant='outlined'
-                    value={value}
-                    onChange={handleChange}
                     InputProps={{ ...params.InputProps, type: 'search' }}
                   />
                 )}
