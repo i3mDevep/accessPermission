@@ -43,17 +43,32 @@ const monthData = [
   { month: 'Marzo', year: 1974 },
 ];
 
-const Metrics = ({ data = [], blocked = false, totalsCompanies = [] }) => {
+const Metrics = ({ data = [], blocked = false, totalsCompanies = [], sendData }) => {
   const classes = useStyles();
   const [value, setValue] = useState('');
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [select, setSelect] = useState('');
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  console.log(select)
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    sendData({ data: select });
   };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+  };
+
+  const dataChartRadar = {
+    labels: ['Total', 'Si', 'No'],
+    datasets: [
+      {
+        data: ['', 5, 6],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      },
+    ],
   };
 
   return (
@@ -68,9 +83,14 @@ const Metrics = ({ data = [], blocked = false, totalsCompanies = [] }) => {
               <Autocomplete
                 disabled={blocked}
                 freeSolo
+                value={value}
                 id='free-solo-2-demo'
                 disableClearable
-                options={totalsCompanies.map((option) => option.namesubcompany)}
+                onChange={(event, newValue) => {
+                  setSelect(newValue);
+                }}
+                options={totalsCompanies}
+                getOptionLabel={(option) => (option.namesubcompany ? option.namesubcompany : option)}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -104,8 +124,8 @@ const Metrics = ({ data = [], blocked = false, totalsCompanies = [] }) => {
                       <KeyboardDatePicker
                         margin='normal'
                         id='date-picker-dialog'
-                        label='Seleccione una fecha'
-                        format='MM/dd/yyyy'
+                        label='Mes y Año'
+                        format='dd/MM/yyyy'
                         value={selectedDate}
                         onChange={handleDateChange}
                         KeyboardButtonProps={{
@@ -116,16 +136,38 @@ const Metrics = ({ data = [], blocked = false, totalsCompanies = [] }) => {
                   </MuiPickersUtilsProvider>
                 </Grid>
               </Grid>
-              <MyChartRadar /*data={data} *//>
+              <MyChartRadar data={dataChartRadar} />
             </CardContent>
           </Card>
         </Grid>
         <Grid item sm={6}>
           <Card>
             <CardContent>
-              <Typography className={classes.title} color='textSecondary' gutterBottom>
-                Tasa de retorno diario
-              </Typography>
+              <Grid container spacing={2}>
+                <Grid item sm={6}>
+                  <Typography className={classes.title} color='textSecondary' gutterBottom>
+                    Tasa de retorno diaria
+                  </Typography>
+                </Grid>
+                <Grid item sm={6}>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <Grid container justify='space-around'>
+                      <KeyboardDatePicker
+                        margin='normal'
+                        id='date-picker-dialog'
+                        label='Seleccione una fecha'
+                        views={['year', 'month']}
+                        format='dd/MM/yyyy'
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                          'aria-label': 'change date',
+                        }}
+                      />
+                    </Grid>
+                  </MuiPickersUtilsProvider>
+                </Grid>
+              </Grid>
               <MyChartRadar /*data={data} */ />
             </CardContent>
           </Card>

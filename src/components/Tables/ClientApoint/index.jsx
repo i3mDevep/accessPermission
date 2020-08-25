@@ -66,7 +66,7 @@ export default function TableTraingClients({ trackingClients = [], onClickUpBoug
     { title: 'Sale', field: 'sale', hidden: true },
   ];
 
-  console.log('recibo', trackingClients);
+  //console.log('recibo', trackingClients);
   trackingClients.forEach((trackingClients) => {
     try {
       data.push({
