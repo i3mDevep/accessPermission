@@ -40,6 +40,7 @@ const TableClientsTrackingComponent = ({ tracking }) => {
               <TableCell align='center'>Tiempo</TableCell>
               <TableCell align='center'>Sede</TableCell>
               <TableCell align='center'>Observaciones</TableCell>
+              <TableCell align='center'>Venta</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -53,6 +54,7 @@ const TableClientsTrackingComponent = ({ tracking }) => {
                 <TableCell align='left'>{typeof row.time === 'object' ? moment(row.time.toDate().toISOString()).locale('es').format('MMMM Do YYYY, h:mm:ss a') : 'null'}</TableCell>
                 <TableCell align='left'>{row.nameSubcompany}</TableCell>
                 <TableCell align='left'>{row.cause}</TableCell>
+                <TableCell align='left'>{row.sale}</TableCell>
               </TableRow>
             ))}
           </TableBody>
