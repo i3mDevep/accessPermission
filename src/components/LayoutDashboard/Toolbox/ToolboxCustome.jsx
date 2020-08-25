@@ -41,8 +41,8 @@ const myicons = [
   <RiQrCodeLine color='white' size='20' />,
   <MdFiberNew color='white' size='20' />];
 
-const messages = ['Dashboard', 'Empleados', 'Seguimiento', 'Clientes', 'Informes', 'Alertas', 'Registrar', 'Sedes'];
-const links = ['/dashboard', '/worker', '/payroll', '/client', '/informs', '/alerts', '/generateqr', '/sedes'];
+const messages = ['Dashboard', 'Empleados', 'Seguimiento', 'Clientes', 'Informes', 'Métricas', 'Registrar', 'Sedes'];
+const links = ['/dashboard', '/worker', '/payroll', '/client', '/informs', '/metrics', '/generateqr', '/sedes'];
 
 const themer = createMuiTheme({
   typography: {

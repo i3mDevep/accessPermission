@@ -21,6 +21,7 @@ import PricesPage from '../pages/PricesPage';
 import UserHomePage from '../pages/UserHomePage';
 import ClientPointPage from '../pages/subcompany/ClientPointPage';
 import ComingSoon from '../components/CommingSoon/CommingSoon';
+import MetricsPage from '../pages/company/MetricsPage';
 import DonacionesPage from '../pages/DonacionesPage';
 import Informs from '../pages/company/Informs';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,7 +50,7 @@ const LoggedInRoutesWithbusiness = [
   <Route key='login' path='/login' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='/' path='/' exact={true} component={() => <Redirect to='/dashboard' />} />,
   <Route key='client' path='/client' exact={true} component={Client} />,
-  <Route key='alertas' path='/alerts' exact={true} component={ComingSoon} />,
+  <Route key='metrics' path='/metrics' exact={true} component={MetricsPage} />,
   <Route key='dashboard' path='/dashboard' exact={true} component={Dashboard} />,
   <Route key='prices' path='/prices' exact={true} component={PricesPage} />,
   <Route key='dashboardsedes' path='/dashboardsedes' exact={true} component={() => <Redirect to='/dashboard' />} />,
