@@ -43,7 +43,7 @@ const monthData = [
   { month: 'Marzo', year: 1974 },
 ];
 
-const Metrics = ({ data = [], blocked = false, totalsCompanies = [], sendData }) => {
+const Metrics = ({ data = [] }) => {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
@@ -64,39 +64,6 @@ const Metrics = ({ data = [], blocked = false, totalsCompanies = [], sendData })
 
   return (
     <>
-      <Card className={classes.root} noValidate autoComplete='off'>
-        <CardContent>
-          <form className={classes.root}>
-            <div>
-              { blocked && !totalsCompanies.length && (
-                <Alert severity='warning'>Debes tener por lo menos una sede creada</Alert>
-              )}
-              <Autocomplete
-                disabled={blocked}
-                freeSolo
-                id='free-solo-2-demo'
-                disableClearable
-                onChange={(event, newValue) => {
-                  event.preventDefault();
-                  sendData({ data: newValue });
-                }}
-                options={totalsCompanies}
-                getOptionLabel={(option) => (option.namesubcompany ? option.namesubcompany : option)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label='Busque una sede'
-                    margin='normal'
-                    variant='outlined'
-                    InputProps={{ ...params.InputProps, type: 'search' }}
-                  />
-                )}
-              />
-            </div>
-          </form>
-        </CardContent>
-      </Card>
-      <br />
       <Grid container className={classes.root} spacing={2}>
         <Grid item sm={6}>
           <Card>
