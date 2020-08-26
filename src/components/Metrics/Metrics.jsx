@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
-import Alert from '@material-ui/lab/Alert';
+
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -43,12 +43,14 @@ const monthData = [
   { month: 'Marzo', year: 1974 },
 ];
 
-const Metrics = ({ data = [] }) => {
+const Metrics = ({ totalForDayFilter = [], sendDay }) => {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  console.log('totales', totalForDayFilter);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    sendDay({ dateDay: date });
   };
 
   const dataChartRadar = {
@@ -79,7 +81,7 @@ const Metrics = ({ data = [] }) => {
                     <Grid container justify='space-around'>
                       <KeyboardDatePicker
                         margin='normal'
-                        id='date-picker-dialog'
+                        id='date-picker-dialog1'
                         label='Mes y Año'
                         format='dd/MM/yyyy'
                         value={selectedDate}
@@ -110,7 +112,7 @@ const Metrics = ({ data = [] }) => {
                     <Grid container justify='space-around'>
                       <KeyboardDatePicker
                         margin='normal'
-                        id='date-picker-dialog'
+                        id='date-picker-dialog2'
                         label='Seleccione una fecha'
                         views={['year', 'month']}
                         format='dd/MM/yyyy'
@@ -141,7 +143,7 @@ const Metrics = ({ data = [] }) => {
                 <Grid container justify='space-around'>
                   <KeyboardDatePicker
                     margin='normal'
-                    id='date-picker-dialog'
+                    id='date-picker-dialog3'
                     label='Seleccione una fecha'
                     format='MM/dd/yyyy'
                     value={selectedDate}
@@ -162,6 +164,16 @@ const Metrics = ({ data = [] }) => {
     </>
   );
 };
+
+/*
+const mapStateProps = (state, { idSubcompamy }) => {
+  return {
+    idsub: idSubcompamy.length > 0 ? idSubcompamy : 'No tengo ID',
+    isAuth: state.auth.isAuth,
+    requesting: state.firestore.status.requesting.totalForDay,
+    totalForDay: state.firestore.data.totalForDay,
+  };
+};*/
 
 export default Metrics;
 

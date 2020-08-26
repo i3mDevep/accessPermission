@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 const Search = ({ data = [], blocked = false, totalsCompanies = [], sendData }) => {
   const classes = useStyles();
   const handlerData = (event, newValue) => {
-    console.log(newValue.id);    
     sendData({ data: newValue });
   };
 
