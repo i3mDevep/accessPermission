@@ -1,36 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Alert from '@material-ui/lab/Alert';
 import { LoopCircleLoading } from 'react-loadingg';
+import PikerDay from '../../../components/Metrics/PikerDay';
 import Metrics from '../../../components/Metrics/Metrics';
 
-const MetricsAllPageContainer = ({ idSubcompamy = '', totalForDayFilter = [], requesting }) => {
-  const [time, setTime] = useState(new Date());
-
+const MetricsAllPageContainer = ({ idSubcompamy = '', totalForDayFilter = [], requesting, dateFilter }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
   if (!idSubcompamy) {
     return <Alert severity='warning'>Seleccione una Sede</Alert>;
   }
-  //const dateUrl = date; // moment(date.toDate().toISOString()).locale('es').format('LL');
-  console.log(time);
+  const [sendTime, setTime] = useState(new Date());
+  console.log(sendTime);
 
   return (
     <>
-      <Metrics totalForDayFilter={totalForDayFilter} sendDay={(date) => setTime(date)} />
+      <Metrics
+        props={(
+          <PikerDay
+            sendDay={(date) => setTime(date.dateDay)}
+            onChange={handerEvent}
+            value={sendTime}
+          />
+        )}
+        totalForDayFilter={totalForDayFilter}
+      />
     </>
   );
-
 };
 
-const mapStateProps = (state, { idSubcompamy, time }) => {
-  console.log(time);
+const mapStateProps = (state, { idSubcompamy, sendTimeDay }) => {
+  const fechaDato = new Date(sendTimeDay);
+
   return {
-    dateFilter: time,
+    dateFilter: sendTimeDay ? fechaDato : 'Aug 26 2020',
     idsub: idSubcompamy.length > 0 ? idSubcompamy : 'No tengo ID',
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.totalForDayFilter,
@@ -51,7 +59,7 @@ export default compose(
             subcollections: [
               {
                 collection: 'totalForDay',
-                where: [['date', '>=', moment(props.dateFilter).startOf('day').toDate()], ['date', '<=', moment(props.dateFilter).endOf('day').toDate()]],
+                where: [['date', '==', moment(props.dateFilter).startOf('day').toDate()]],
               },
             ],
           },
