@@ -5,10 +5,11 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Alert from '@material-ui/lab/Alert';
 import { LoopCircleLoading } from 'react-loadingg';
+import { filter } from 'lodash';
 import PikerDay from '../../../components/Metrics/PikerDay';
 import Metrics from '../../../components/Metrics/Metrics';
 
-const MetricsAllPageContainer = ({ idSubcompamy = '', totalForDayFilter = [], requesting, dateFilter }) => {
+const MetricsAllPageContainer = ({ idSubcompamy = '', elementoSet, totalForDayFilter = [], requesting, dateFilter, elemento }) => {
   if (requesting) {
     return <LoopCircleLoading />;
   }
@@ -16,29 +17,35 @@ const MetricsAllPageContainer = ({ idSubcompamy = '', totalForDayFilter = [], re
     return <Alert severity='warning'>Seleccione una Sede</Alert>;
   }
   const [sendTime, setTime] = useState(new Date());
-  console.log(sendTime);
+  //console.log(sendTime);
 
   return (
     <>
-      <Metrics
+      <Metrics 
         props={(
           <PikerDay
-            sendDay={(date) => setTime(date.dateDay)}
-            onChange={handerEvent}
-            value={sendTime}
+            sendDay={(date) => {
+              //console.log('ioio', newValue);
+              setTime(date.dateDay);
+              const newValue = sendTime;
+              //console.log(newValue);
+              elemento({ date: newValue });
+            }}
           />
         )}
         totalForDayFilter={totalForDayFilter}
+        elemento={elemento}
       />
     </>
   );
 };
 
-const mapStateProps = (state, { idSubcompamy, sendTimeDay }) => {
-  const fechaDato = new Date(sendTimeDay);
-
+const mapStateProps = (state, { idSubcompamy, sendTimeDay, elementoSet }) => {
+  console.log('elementoSET---->', new Date(elementoSet));
+  const fechaDato = new Date(elementoSet);
+  console.log(state)
   return {
-    dateFilter: sendTimeDay ? fechaDato : 'Aug 26 2020',
+    dateFilter: elementoSet ? fechaDato : new Date(),
     idsub: idSubcompamy.length > 0 ? idSubcompamy : 'No tengo ID',
     isAuth: state.auth.isAuth,
     requesting: state.firestore.status.requesting.totalForDayFilter,
