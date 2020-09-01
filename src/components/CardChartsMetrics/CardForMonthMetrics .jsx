@@ -74,7 +74,7 @@ const CardForMonthMetrics = ({ dateSearchMonth, totalForMonthFilter = [] }) => {
           <Grid container spacing={2}>
             <Grid item sm={6}>
               <Typography className={classes.title} color='textSecondary' gutterBottom>
-                Tasa de retorno diaria
+                Tasa de retorno Mensual
               </Typography>
             </Grid>
             <Grid item sm={6}>

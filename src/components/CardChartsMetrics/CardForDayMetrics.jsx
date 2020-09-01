@@ -54,10 +54,10 @@ const CardForDayMetrics = ({ dateSearch, totalForDayFilter = [] }) => {
   try {
     const { sales_women, sales_men, Women, Men } = totalForDayFilter[0];
     dataChartRadar = {
-      labels: ['No marcado', 'Si', 'No'],
+      labels: ['No Confirmado', 'Confirmado' ],
       datasets: [
         {
-          data: [(parseInt(Women, 10) + parseInt(Men, 10)-(parseInt(sales_men, 10) + parseInt(sales_women, 10))), sales_women, sales_men],
+          data: [((parseInt(Women, 10) + parseInt(Men, 10))-(parseInt(sales_men, 10) + parseInt(sales_women, 10))), (parseInt(sales_men, 10) + parseInt(sales_women, 10))],
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
           hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         },
