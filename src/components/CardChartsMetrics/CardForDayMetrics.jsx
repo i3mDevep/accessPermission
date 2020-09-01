@@ -42,10 +42,10 @@ const CardForDayMetrics = ({ dateSearch, totalForDayFilter = [] }) => {
   };
   console.log(totalForDayFilter[0]);
   let dataChartRadar = {
-    labels: ['No marcado', 'Si', 'No'],
+    labels: ['No hay registros para este día'],
     datasets: [
       {
-        data: [0, 0, 0],
+        data: [100],
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
       },
