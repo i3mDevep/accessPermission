@@ -166,8 +166,9 @@ const WorkerTrackingCard = ({ title, description, image, isAuth, modalUpdate }) 
                       return;
                     }
                     try {
-                      const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart="${moment(startDate.toDateString()).format('l')} UTC-5"&dateEnd="${moment(maxDate.toDateString()).format('l')} UTC-5"`);
+                      const result = await fetch(`https://us-central1-coronavirus-control.cloudfunctions.net/apiReset/workerstracking?IdCompany=${isAuth.uid}&dateStart=${moment(startDate).format('DD/MM/YYYY')}&dateEnd=${moment(maxDate).format('DD/MM/YYYY')}`);
                       const res = await result.json();
+                      console.log(res.result);
                       setData(res.result);
                       download();
                     } catch (err) {

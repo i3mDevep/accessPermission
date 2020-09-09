@@ -11,11 +11,16 @@ const ExportToExcelTrackingWorker = forwardRef(({ data }, ref) => {
         fileName='NominaEmpleados.xlsx'
         ref={ref}
       >
+        <ExcelExportColumn field='name' title='Nombre' />
         <ExcelExportColumn field='identification' title='Identificacion' />
         <ExcelExportColumn field='action' title='Accion' />
-        <ExcelExportColumn field='time' title='Fecha-Hora' />
-        <ExcelExportColumn field='temperature' title='Temperatuara' />
-        <ExcelExportColumn field='address' title='Gps' />
+        <ExcelExportColumn field='timetracking.value' title='Fecha-Hora' />
+        <ExcelExportColumn field='subCompany' title='Sede' />
+        <ExcelExportColumn field='salary' title='Salario' />
+        <ExcelExportColumn field='gender' title='Genero' />
+        <ExcelExportColumn field='cellphone' title='Telefono' />
+        <ExcelExportColumn field='temperature' title='Temperatura' />
+        <ExcelExportColumn field='gps' title='Gps' />
       </ExcelExport>
     </div>
   );
